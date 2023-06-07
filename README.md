@@ -3,6 +3,7 @@ A work-in-progress addon that aims to bring in "speakable" ingame languages in a
 
 There are many things to do:
 - Functional conversion of messages into image textures per-character
+- Convert heiroglyphs into atlas textures
 - Fix over-character limit issue
 - Set up profiling system
   - Text color selection option
