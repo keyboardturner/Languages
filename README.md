@@ -5,6 +5,8 @@ There are many things to do:
 - Functional conversion of messages into image textures per-character
 - Convert heiroglyphs into atlas textures
 - Fix over-character limit issue
+- Potentially adjust for "true languages" ie Horde characters speaking Orcish where the language tag isn't actually detected - possibly add option to hide the default language tag
+- option to remove language tags from speech bubbles
 - Set up profiling system
   - Text color selection option
   - "Languages learned" options
