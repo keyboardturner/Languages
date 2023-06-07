@@ -12,3 +12,4 @@ There are many things to do:
 - Slash commands
 - Create dictionary (ie "Giant's Heart" = "Grommash")
 - Find decent integration into the UI, minimap button? character tab? skill section?
+- Figure out how to treat default languages
