@@ -1,0 +1,7 @@
+## Interface: 100002
+## Title: Languages
+## Notes: Testing AddOn
+## Author: Keyboardturner
+## Version: 0.0.1
+
+Languages.lua
