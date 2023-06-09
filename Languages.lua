@@ -12,6 +12,13 @@ local thingsToHide = {
 	"^%[Goblin%]",
 	"^%[Shalassian%]",
 	"^%[Vulpera%]",
+	"^%[Pandaren%]",
+	"^%[Draconic%]",
+
+	"^%[Demonic%]",
+	"^%[Titan%]",
+	"^%[Kalimag%]",
+	"^%[Shath'Yar%]",
 };
 
 
@@ -178,34 +185,137 @@ local LANGUAGE_REPLACEMENTS = {
 		[17] = {"thoribas'no'thera", "ando'meth'derador", "anu'dorinni'talah", "esh'thero'mannash"},
 	},
 
-	["Goblin"] = {
+	["Goblin"] = { -- languageID 40
 		[1] = {"z"},
-		--[[
-		get data here, languageID 40
-		]]
-
+		[2] = {"ak", "rt", "ik", "um", "fr", "bl", "zz", "ap", "un", "ek"},
+		[3] = {"eet", "paf", "gak", "erk", "gip", "nap", "kik", "bap", "ikk", "grk"},
+		[4] = {"tiga", "moof", "bitz", "akak", "ripl", "foop", "keek", "errk", "apap", "rakr"},
+		[5] = {"fibit", "shibl", "nebit", "ababl", "iklik", "nubop", "krikl", "zibit"},
+		[6] = {"amama", "apfap", "ripdip", "skoopl", "bapalu", "oggnog", "yipyip", "kaklak", "ikripl", "bipfiz", "kiklix", "nufazl"},
+		[7] = {"bakfazl", "rapnukl", "fizbikl", "lapadap", "biglkip", "nibbipl", "fuzlpop", "gipfizy", "babbada"},
+		[8] = {"igglepop", "ibbityip", "etiggara", "saklpapp", "ukklnukl", "bendippl", "ikerfafl", "ikspindl", "baksnazl", "kerpoppl", "hopskopl"},
+		[9] = {"hapkranky", "skippykik"},
+		[10] = {"nogglefrap"},
+		[11] = {"rapnakskappypappl", "rripdipskiplip", "napfazzyboggin", "kikklpipkikkl", "nibbityfuzhips", "bubnobblepapkap", "hikkitybippl"},
 	},
 
-	["Shalassian"] = {
-
-		[1] = {"a", "e"},
-		--[[
-		get data here, languageID 181
-		]]
+	["Shalassian"] = { -- languageID 181
+		[1] = {"a", "e", "n", "i", "o", "d"},
+		[2] = {"an", "do", "da", "lo", "ni", "al", "ri", "su", "no", "in"},
+		[3] = {"nei", "anu", "ala", "ano", "dur", "tal", "ash", "dor", "fal", "tur", "nor", "osa", "vas", "anu", "tel"},
+		[4] = {"alah", "mush", "diel", "anar", "thus", "andu", "dath", "shar", "fulo", "aman", "dieb", "rini", "rath"},
+		[5] = {"adore", "thera", "shari", "eburi", "falla", "balah", "talah", "ishnu", "bandu", "fandu", "turus", "shano", "terro", "omnas", "an'ah", "tanos", "telar", "denil", "falar", "n'eth"},
+		[6] = {"neph'o", "man'ar", "u'phol", "shando", "dorini", "ethala", "belore", "do'rah", "ishura", "t'as'e", "ith'el", "kanesh", "e'rath", "manari", "domaas", "ishnal", "maldin"},
+		[7] = {"dor'ano", "aman'ni", "anoduna", "asto're", "alah'ni", "al'shar", "mush'al", "shan're", "in'alah", "arkhana", "to'reth", "vallath", "dorithur", "thoribas", "il'amare", "mandalas", "eraburis"},
+		[8] = {"dal'dieb", "d'ana'no", "ith'nala", "an'ratha", "fala'andu", "shari'fal", "dune'adah", "thori'dal"},
+		[9] = {"neph'anis", "banthalos", "dath'anar", "nar'thala", "sin'dorei", "tel'vasha"},
+		[10] = {"isera'duna", "dorados'no", "thero'shan", "ash'therod", "shar'adore", "ru-shannah", "shal'dorei", "ash'thoras", "tenu'balah", "kal'theros", "nor'bethos", "tor'theras", "shal'assan"},
+		[11] = {"shari'adune", "fandu'talah", "rath-domaas"},
+		[12] = {"dor'ana'badu", "t'ase'mushal", "anar-ammenos"},
+		[13] = {"u'phol'belore"},
+		[14] = {"turus'il'amare", "anu'dorannador", "rath-anu'tanos", "rath-anu'telar"},
+		[15] = {"shindu'falla'na", "asto're'dunadah"},
+		[16] = {"anu'dorinni'talah", "ando'meth'derador", "esh'thero'mannash", "thoribas'no'thera"},
 	},
 
-	["Vulpera"] = {
-
+	["Vulpera"] = { -- languageID 285
 		[1] = {"u", "i", "o", "y"},
-		--[[
-		get data here, languageID 285
-		]]
+		[2] = {"wa", "pa", "ho", "yi", "oo", "da", "aw", "au", "ii", "yy", "ak", "ik", "uk"},
+		[3] = {"pow", "aoo", "woo", "wan", "bau", "gav", "arf", "yip", "yap", "bow", "hau", "haf", "vuf", "iiy", "iyw"},
+		[4] = {"ring", "joff", "ahee", "wooo", "guau", "bork", "woof", "yiip", "yaap", "blaf", "woef", "keff", "gheu", "vuuf", "ghav", "bhuh"},
+		[5] = {"hatti", "woooo", "waouh", "lally", "ouahn", "meong", "youwn", "wauwn", "yiuwn", "hittu", "hytou"},
+		[6] = {"geding", "tchoff", "hattii", "wanwan", "baubau", "hauhau", "caicai", "yipyip"},
+		[7] = {"frakaka", "bhuhbuh", "aheeaha", "wooowoo", "grrbork"},
+		[8] = {"guauguau", "wuffwoef", "borkbork", "blafblaf", "gheugheu", "vuufwuff", "wuffvuwn"},
+		[9] = {"ghavyouwn", "woefyouwn", "bhuhwauwn", "joffwauwn", "aheeowown", "ghavyouwn"},
+		[10] = {"keffgeding", "woofhauhau", "vuufhattii", "borkwanwan", "blafhauhau"},
+
 	},
 
 	["Pandaren"] = { -- this is probably being reworked entirely.
 
 		[1] = {"om", "nom"},
 	},
+
+	["Draconic"] = { -- languageID 11
+		[1] = {"a", "e", "i", "o", "u", "y", "g", "x"},
+		[2] = {"il", "no", "az", "te", "ur", "za", "ze", "re", "ul", "me", "xi"},
+		[3] = {"tor", "gul", "lok", "asj", "kar", "lek", "daz", "maz", "ril", "ruk", "laz", "shi", "zar"},
+		[4] = {"ashj", "alar", "orah", "amir", "aman", "ante", "kiel", "maez", "maev", "veni", "raka", "zila", "zenn", "parn", "rikk"},
+		[5] = {"melar", "rakir", "tiros", "modas", "belan", "zekul", "soran", "gular", "enkil", "adare", "golad", "buras", "nagas", "revos", "refir", "kamil"},
+		[6] = {"rethul", "rakkan", "rakkas", "tichar", "mannor", "archim", "azgala", "karkun", "revola", "mishun", "arakal", "kazile", "thorje"},
+		[7] = {"belaros", "tiriosh", "faramos", "danashj", "amanare", "faralos", "kieldaz", "karaman", "gulamir", "toralar", "rethule", "zennshi", "amanare"},
+		[8] = {"maladath", "kirasath", "romathis", "theramas", "azrathud", "mordanas", "amanalar", "ashjraka", "azgalada", "rukadare", "sorankar", "enkilzar", "belankar"},
+		[9] = {"naztheros", "zilthuras", "kanrethad", "melarorah", "arakalada", "soranaman", "nagasraka", "teamanare"},
+		[10] = {"matheredor", "ticharamir", "pathrebosh", "benthadoom", "amanemodas", "enkilgular", "burasadare", "melarnagas", "zennrakkan", "ashjrethul", "kamilgolad"},
+		[11] = {"zekulrakkas", "archimtiros", "mannorgulan", "mishunadare", "ashjrakamas"},
+		[12] = {"zennshinagas"},
+	},
+
+
+	--NPC-based languages
+
+	["Demonic"] = { -- languageID 8
+		[1] = {"a", "e", "i", "o", "u", "y", "g", "x"},
+		[2] = {"il", "no", "az", "te", "ur", "za", "ze", "re", "ul", "me", "xi"},
+		[3] = {"tor", "gul", "lok", "asj", "kar", "lek", "daz", "maz", "ril", "ruk", "laz", "shi", "zar"},
+		[4] = {"ashj", "alar", "orah", "amir", "aman", "ante", "kiel", "maez", "maev", "veni", "raka", "zila", "zenn", "parn", "rikk"},
+		[5] = {"melar", "rakir", "tiros", "modas", "belan", "zekul", "soran", "gular", "enkil", "adare", "golad", "buras", "nagas", "revos", "refir", "kamil"},
+		[6] = {"rethul", "rakkan", "rakkas", "tichar", "mannor", "archim", "azgala", "karkun", "revola", "mishun", "arakal", "kazile", "thorje"},
+		[7] = {"belaros", "tiriosh", "faramos", "danashj", "amanare", "kieldaz", "karaman", "gulamir", "toralar", "rethule", "zennshi", "amanare"},
+		[8] = {"maladath", "kirasath", "romathis", "theramas", "azrathud", "mordanas", "amanalar", "ashjraka", "azgalada", "rukadare", "sorankar", "enkilzar", "belankar"},
+		[9] = {"naztheros", "zilthuras", "kanrethad", "melarorah", "arakalada", "soranaman", "nagasraka", "teamanare"},
+		[10] = {"matheredor", "ticharamir", "pathrebosh", "benthadoom", "amanemodas", "enkilgular", "burasadare", "melarnagas", "zennrakkan", "ashjrethul", "kamilgolad"},
+		[11] = {"zekulrakkas", "archimtiros", "mannorgulan", "mishunadare", "ashjrakamas"},
+		[12] = {"zennshinagas"},
+	},
+
+	["Titan"] = { -- languageID 9
+		[1] = {"a", "e", "i", "o", "u", "y", "g", "x"},
+		[2] = {"il", "no", "az", "te", "ur", "za", "ze", "re", "ul", "me", "xi"},
+		[3] = {"tor", "gul", "lok", "asj", "kar", "lek", "daz", "maz", "ril", "ruk", "laz", "shi", "zar"},
+		[4] = {"ashj", "alar", "orah", "amir", "aman", "ante", "kiel", "maez", "maev", "veni", "raka", "zila", "zenn", "parn", "rikk"},
+		[5] = {"melar", "rakir", "tiros", "modas", "belan", "zekul", "soran", "gular", "enkil", "adare", "golad", "buras", "nagas", "revos", "refir", "kamil"},
+		[6] = {"rethul", "rakkan", "rakkas", "tichar", "mannor", "archim", "azgala", "karkun", "revola", "mishun", "arakal", "kazile", "thorje"},
+		[7] = {"belaros", "tiriosh", "faramos", "danashj", "amanare", "faralos", "kieldaz", "karaman", "gulamir", "toralar", "rethule", "zennshi", "amanare"},
+		[8] = {"maladath", "kirasath", "romathis", "theramas", "azrathud", "mordanas", "amanalar", "ashjraka", "azgalada", "rukadare", "sorankar", "enkilzar", "belankar"},
+		[9] = {"naztheros", "zilthuras", "kanrethad", "melarorah", "arakalada", "soranaman", "nagasraka", "teamanare"},
+		[10] = {"matheredor", "ticharamir", "pathrebosh", "benthadoom", "amanemodas", "enkilgular", "burasadare", "melarnagas", "zennrakkan", "kamilgolad", "ashjrethul"},
+		[11] = {"ashjrakamas", "mishunadare", "mannorgulan", "archimtiros", "zekulrakkas"},
+		[12] = {"zennshinagas"},
+	},
+
+	["Kalimag"] = { -- languageID 12
+		[1] = {"a", "o", "k", "t", "g", "u"},
+		[2] = {"ko", "ta", "gi", "ka", "tu", "os", "ma", "ra"},
+		[3] = {"fel", "rok", "kir", "dor", "von", "nuk", "tor", "kan", "tas", "gun", "dra", "sto"},
+		[4] = {"brom", "kras", "toro", "drae", "krin", "zoln", "fmer", "guto", "reth", "shin", "tols", "mahn"},
+		[5] = {"bromo", "krast", "torin", "draek", "kranu", "zoern", "fmerk", "gatin", "roath", "shone", "talsa", "fraht"},
+		[6] = {"korsul", "dratir", "drinor", "tadrom"},
+		[7] = {"ben'nig", "ter'ran", "for'kin", "suz'ahn", "fel'tes", "toka'an", "telsrah", "dorvrem", "koaresh", "fiilrok", "chokgan", "fanroke"},
+		[8] = {"kel'shae", "dak'kaun", "tchor'ah", "zela'von", "kis'tean", "ven'tiro", "taegoson", "kilagrin", "aasrugel"},
+		[9] = {"gi'frazsh", "roc'grare", "quin'mahk", "ties'alla", "shodru'ga", "os'retiak", "desh'noka", "rohh'krah", "krast'ven", "draemierr", "mastrosum"},
+		[10] = {"gi'azol'em", "nuk'tra'te", "zoln'nakaz", "gatin'roth", "ahn'torunt", "thukad'aaz", "gesh'throm", "brud'remek"},
+		[11] = {"mok'tavaler", "tae'gel'kir", "dor'dra'tor", "aer'rohgmar", "torrath'unt", "ignan'kitch", "caus'tearic", "borg'helmak", "huut'vactah", "jolpat'krim", "tzench'drah", "kraus'ghosa", "dalgo'nizha", "korsukgrare"},
+		[12] = {"moth'keretch", "vendo're'mik", "thloy'martok", "danal'korang", "sunep'kosach"},
+		[13] = {"golgo'nishver", "kawee'fe'more", "tagha'senchal", "peng'yaas'ahn", "nash'lokan'ar", "derr'moran'ki", "moor'tosav'ak", "kis'an'tadrom", "bach'usiv'hal"},
+	},
+
+	["Shath'Yar"] = { -- languageID 178
+		[1] = {"i"},
+		[2] = {"ez", "ga", "ky", "ma", "ni", "og", "za", "zz"},
+		[3] = {"gag", "hoq", "lal", "maq", "nuq", "oou", "qam", "shn", "vaz", "vra", "yrr", "zuq"},
+		[4] = {"agth", "amun", "arwi", "fssh", "ifis", "kyth", "nuul", "ongg", "puul", "qwaz", "qwor", "ryiu", "shfk", "thoq", "uull", "vwah", "vwyq", "w'oq", "wgah", "ywaq", "zaix", "zzof"},
+		[5] = {"ag'rr", "agthu", "ak'uq", "anagg", "bo'al", "fhssh", "h'iwn", "hnakf", "huqth", "iilth", "iiyoq", "lwhuk", "on'ma", "plahf", "shkul", "shuul", "thyzz", "uulwi", "vorzz", "w'ssh", "yyqzz"},
+		[6] = {"ag'xig", "al'tha", "an'qov", "an'zig", "bormaz", "c'toth", "far'al", "h'thon", "halahs", "iggksh", "ka'kar", "kaaxth", "marwol", "n'zoth", "qualar", "qvsakf", "shn'ma", "sk'tek", "skshgn", "ssaggh", "tallol", "tulall", "uhnish", "uovssh", "vormos", "yawifk", "yoq'al", "yu'gaz"},
+		[7] = {"an'shel", "awtgssh", "guu'lal", "guulphg", "iiqaath", "kssh'ga", "mh'naus", "n'lyeth", "ph'magg", "qornaus", "shandai", "shg'cul", "shg'fhn", "sk'magg", "sk'yahf", "uul'gwa", "uulg'ma", "vwahuhn", "woth'gl", "yeh'glu", "yyg'far", "zyqtahg"},
+		[8] = {"awtgsshu", "erh'ongg", "gul'kafh", "halsheth", "log'loth", "mar'kowa", "muoq'vsh", "phquathi", "qi'plahf", "qi'uothk", "sk'shuul", "sk'uuyat", "ta'thall", "thoth'al", "uhn'agth", "ye'tarin", "yoh'ghyl", "zuq'nish"},
+		[9] = {"ag'thyzak", "ga'halahs", "lyrr'keth", "par'okoth", "phgwa'cul", "pwhn'guul", "ree'thael", "shath'yar", "shgla'yos", "shuul'wah", "sshoq'meg"},
+		[10] = {"ak'agthshi", "shg'ullwaq", "sk'woth'gl"},
+		[11] = {"ghawl'fwata", "naggwa'fssh", "yeq'kafhgyl"},
+	},
+
+
 
 	
 };
@@ -225,21 +335,20 @@ local languagelist = {
 	["^%[Shalassian%]"] = "[Shalassian]",
 	["^%[Vulpera%]"] = "[Vulpera]",
 	["^%[Pandaren%]"] = "[Pandaren]",
+	["^%[Draconic%]"] = "[Draconic]",
 
 	["^%[Demonic%]"] = "[Demonic]",
 	["^%[Titan%]"] = "[Titan]",
-	["^%[Draconic%]"] = "[Draconic]",
 	["^%[Kalimag%]"] = "[Kalimag]",
-	["^%[Sprite%]"] = "[Sprite]",
 	["^%[Shath'Yar%]"] = "[Shath'Yar]",
-	["^%[Nerglish%]"] = "[Nerglish]",
-	["^%[Moonkin%]"] = "[Moonkin]",
-	["^%[Complex Cipher%]"] = "[Complex Cipher]",
-	["^%[Basic Cipher%]"] = "[Basic Cipher]",
-	["^%[Complex Cipher%]"] = "[Complex Cipher]",
-	["^%[Furbolg%]"] = "[Complex Cipher]",
-	["^%[Ancient Pandaren%]"] = "[Ancient Pandaren]",
-	["^%[Mogu%]"] = "[Mogu]",
+	--["^%[Sprite%]"] = "[Sprite]",
+	--["^%[Nerglish%]"] = "[Nerglish]",
+	--["^%[Moonkin%]"] = "[Moonkin]",
+	--["^%[Complex Cipher%]"] = "[Complex Cipher]",
+	--["^%[Basic Cipher%]"] = "[Basic Cipher]",
+	--["^%[Furbolg%]"] = "[Furbolg]",
+	--["^%[Ancient Pandaren%]"] = "[Ancient Pandaren]",
+	--["^%[Mogu%]"] = "[Mogu]",
 
 };
 
@@ -258,21 +367,20 @@ local languageNoBrackets = {
 	["^%[Shalassian%]"] = "Shalassian",
 	["^%[Vulpera%]"] = "Vulpera",
 	["^%[Pandaren%]"] = "Pandaren",
+	["^%[Draconic%]"] = "Draconic",
 
 	["^%[Demonic%]"] = "Demonic",
 	["^%[Titan%]"] = "Titan",
-	["^%[Draconic%]"] = "Draconic",
 	["^%[Kalimag%]"] = "Kalimag",
-	["^%[Sprite%]"] = "Sprite",
 	["^%[Shath'Yar%]"] = "Shath'Yar",
-	["^%[Nerglish%]"] = "Nerglish",
-	["^%[Moonkin%]"] = "Moonkin",
-	["^%[Complex Cipher%]"] = "Complex Cipher",
-	["^%[Basic Cipher%]"] = "Basic Cipher",
-	["^%[Complex Cipher%]"] = "Complex Cipher",
-	["^%[Furbolg%]"] = "Complex Cipher",
-	["^%[Ancient Pandaren%]"] = "Ancient Pandaren",
-	["^%[Mogu%]"] = "Mogu",
+	--["^%[Sprite%]"] = "Sprite",
+	--["^%[Nerglish%]"] = "Nerglish",
+	--["^%[Moonkin%]"] = "Moonkin",
+	--["^%[Complex Cipher%]"] = "Complex Cipher",
+	--["^%[Basic Cipher%]"] = "Basic Cipher",
+	--["^%[Furbolg%]"] = "Furbolg",
+	--["^%[Ancient Pandaren%]"] = "Ancient Pandaren",
+	--["^%[Mogu%]"] = "Mogu",
 
 };
 
