@@ -1,3 +1,37 @@
+local addon = LibStub("AceAddon-3.0"):NewAddon("Languages", "AceConsole-3.0")
+local bunnyLDB = LibStub("LibDataBroker-1.1"):NewDataObject("Languages", {
+	type = "data source",
+	text = "Languages",
+	icon = "Interface\\Icons\\INV_Chest_Cloth_17",
+	OnClick = function()
+		print("This will show the Languages frame")
+	end,
+})
+local icon = LibStub("LibDBIcon-1.0")
+
+function addon:OnInitialize()
+self.db = LibStub("AceDB-3.0"):New("BunniesDB", {
+	profile = {
+		minimap = {
+			hide = false,
+		},
+	},
+})
+	icon:Register("Languages", bunnyLDB, self.db.profile.minimap)
+	self:RegisterChatCommand("bunnies", "ToggleMinimapButton")
+end
+
+function addon:ToggleMinimapButton()
+	self.db.profile.minimap.hide = not
+	self.db.profile.minimap.hide
+	if self.db.profile.minimap.hide then
+		icon:Hide("Languages")
+	else
+		icon:Show("Languages")
+	end
+end
+
+
 local thingsToHide = {
 	"^%[Common%]",
 	"^%[Darnassian%]",
@@ -13,6 +47,7 @@ local thingsToHide = {
 	"^%[Shalassian%]",
 	"^%[Vulpera%]",
 	"^%[Pandaren%]",
+	"^%[Ancient Pandaren%]",
 	"^%[Draconic%]",
 
 	"^%[Demonic%]",
@@ -232,9 +267,36 @@ local LANGUAGE_REPLACEMENTS = {
 
 	},
 
-	["Pandaren"] = { -- this is probably being reworked entirely.
+	["Pandaren"] = { -- reworked entirely, a truncated list of random names
+		[1] = {"a", "i", "u", "e", "o", "n"},
+		[2] = {"bu", "ji", "yu", "bo", "ji", "le", "lu", "li", "he", "qi", "tu", "fu", "an", "wu", "nu", "xi", "da", "yi", "qu", "za"},
+		[3] = {"zhu", "jin", "chi", "shi", "zen", "bei", "ren", "zhu", "wei", "hao", "zai", "gao", "mei", "dao", "yun", "xin", "wen", "jue", "zan"},
+		[4] = {"chen", "xing", "yuan", "chun", "xiao", "feng", "shan", "quan", "feng", "shen", "ling", "yong", "tian", "zhen", "zhao", "ming"},
+		[5] = {"zhong", "binan", "xiang", "sheng", "zheng", "guang", "liang", "bo'lu", "ji'an", "xi-ji", "wu-la", "da'le", "nu-he", "bomei", "huian", "wuzen", "yumei"},
+		[6] = {"sri-la", "hei-ji", "zhi'lu", "jie-he", "xiu-tu", "hua'an", "jia-nu", "mei-da", "hui'le", "bu'yun", "yu-mei", "ji-zai", "bo-wei", "le-zhu", "li-ren", "qi'zen", "fu-jin", "daquan"},
+		[7] = {"wen-bao", "gao-ran", "mandori", "gan-tao", "zai-yan", "zen-lei", "yin'lao", "quxiang", "qitian", "zhuquan", "chenxin", "wuzheng", "xiaoyun"},
+		[8] = {"fengshan", "xiaofeng", "jingchun", "bomeiren", "meirenhe"},
+		[9] = {"fengzhong", "zhengming", "chenliang", "zhongyuan", "yuquanren", "huiqufeng", "yinlaomei"},
+		[10] = {"wuzhengzen", "jingyuanan"},
+		[11] = {"fengshanren"},
+		[12] = {"chen-xinfeng", "xinjing-chun"},
+		[13] = {"fengshanliang", "zhengmingquan"},
+	},
 
-		[1] = {"om", "nom"},
+	["Ancient Pandaren"] = { -- extended/expanded list of truncated NameGen, reformatted. Complete: 1,2
+		[1] = {"a", "i", "u", "e", "o", "n"},
+		[2] = {"ai", "an", "bo", "bu", "di", "fu", "go", "gu", "gi", "ho", "hu", "ji", "ke", "ko", "ku", "li", "lo", "lu", "ma", "mi", "mu", "ni", "pa", "pu", "qi", "ri", "ru", "so", "si", "su", "ta", "to", "ti", "tu", "um", "wi", "wu", "xi", "xu", "ye", "yi", "yu", "zi"},
+		[3] = {"zhu", "jin", "chi", "shi", "zen", "bei", "ren", "zhu", "wei", "hao", "zai", "gao", "mei", "dao", "yun", "xin", "wen", "jue", "zan"},
+		[4] = {"chen", "xing", "yuan", "chun", "xiao", "feng", "shan", "quan", "feng", "shen", "ling", "yong", "tian", "zhen", "zhao", "ming"},
+		[5] = {"zhong", "binan", "xiang", "sheng", "zheng", "guang", "liang", "bo'lu", "ji'an", "xi-ji", "wu-la", "da'le", "nu-he", "bomei", "huian", "wuzen", "yumei"},
+		[6] = {"sri-la", "hei-ji", "zhi'lu", "jie-he", "xiu-tu", "hua'an", "jia-nu", "mei-da", "hui'le", "bu'yun", "yu-mei", "ji-zai", "bo-wei", "le-zhu", "li-ren", "qi'zen", "fu-jin", "daquan"},
+		[7] = {"wen-bao", "gao-ran", "mandori", "gan-tao", "zai-yan", "zen-lei", "yin'lao", "quxiang", "qitian", "zhuquan", "chenxin", "wuzheng", "xiaoyun"},
+		[8] = {"fengshan", "xiaofeng", "jingchun", "bomeiren", "meirenhe"},
+		[9] = {"fengzhong", "zhengming", "chenliang", "zhongyuan", "yuquanren", "huiqufeng", "yinlaomei"},
+		[10] = {"wuzhengzen", "jingyuanan"},
+		[11] = {"fengshanren"},
+		[12] = {"chen-xinfeng", "xinjing-chun"},
+		[13] = {"fengshanliang", "zhengmingquan"},
 	},
 
 	["Draconic"] = { -- languageID 11
@@ -335,6 +397,7 @@ local languagelist = {
 	["^%[Shalassian%]"] = "[Shalassian]",
 	["^%[Vulpera%]"] = "[Vulpera]",
 	["^%[Pandaren%]"] = "[Pandaren]",
+	["^%[Ancient Pandaren%]"] = "[Ancient Pandaren]",
 	["^%[Draconic%]"] = "[Draconic]",
 
 	["^%[Demonic%]"] = "[Demonic]",
@@ -367,6 +430,7 @@ local languageNoBrackets = {
 	["^%[Shalassian%]"] = "Shalassian",
 	["^%[Vulpera%]"] = "Vulpera",
 	["^%[Pandaren%]"] = "Pandaren",
+	["^%[Ancient Pandaren%]"] = "Ancient Pandaren",
 	["^%[Draconic%]"] = "Draconic",
 
 	["^%[Demonic%]"] = "Demonic",
@@ -384,7 +448,7 @@ local languageNoBrackets = {
 
 };
 
-local AddonPath = "|TInterface/AddOns/Languages/Textures/Darnassian/"
+local AddonPath = "|TInterface\\AddOns\\Languages\\Textures\\"
 
 local function ReplaceLanguage(text, language)
 	print("Debug: " .. text)
@@ -438,7 +502,7 @@ ChatFrame_AddMessageEventFilter("CHAT_MSG_SAY", function(frame, event, message, 
 				local bingus = ""
 				for character in string.gmatch(message, "([%z\1-\127\194-\244][\128-\191]*)") do
 					--print(character)
-					character = character:gsub(character, "|TInterface\\AddOns\\Languages\\Textures\\" .. languageNoBrackets[v] .. "\\" .. character .. ":15:15|t" )
+					character = character:gsub(character, AddonPath .. languageNoBrackets[v] .. "\\" .. character .. ":15:15|t" )
 					--print("debug:" .. character)
 					bingus = string.join("", bingus, character)
 				end

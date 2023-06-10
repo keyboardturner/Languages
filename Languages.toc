@@ -3,5 +3,18 @@
 ## Notes: A work-in-progress addon that aims to bring in "speakable" ingame languages in a lightweight and accessible way.
 ## Author: Keyboardturner
 ## Version: 0.0.1
+## SavedVariables: BunniesDB
+## OptionalDeps: LibDBIcon, Ace3
+
+Libs\LibStub\LibStub.lua
+Libs\CallbackHandler-1.0\CallbackHandler-1.0.xml
+Libs\AceAddon-3.0\AceAddon-3.0.xml
+Libs\AceEvent-3.0\AceEvent-3.0.xml
+Libs\AceDB-3.0\AceDB-3.0.xml
+Libs\AceDBOptions-3.0\AceDBOptions-3.0.xml
+Libs\AceConsole-3.0\AceConsole-3.0.xml
+Libs\AceGUI-3.0\AceGUI-3.0.xml
+Libs\AceConfig-3.0\AceConfig-3.0.xml
+Libs\LibDBIcon-1.0\embeds.xml
 
 Languages.lua
