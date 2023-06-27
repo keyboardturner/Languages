@@ -1,10 +1,40 @@
+local mainFrame = CreateFrame("Frame", "LanguagesMainFrame", UIParent, "PortraitFrameTemplateMinimizable")
+LanguagesMainFramePortrait:SetTexture(4891426)
+LanguagesMainFrameTitleText:SetText("Languages")
+mainFrame:SetSize(300,600)
+mainFrame:SetPoint("CENTER", UIParent, "CENTER")
+mainFrame:SetMovable(true)
+mainFrame:SetClampedToScreen(true)
+mainFrame:SetScript("OnMouseDown", function(self, button)
+	self:StartMoving()
+end);
+mainFrame:SetScript("OnMouseUp", function(self, button)
+	mainFrame:StopMovingOrSizing()
+end);
+mainFrame:Hide()
+mainFrame:SetScript("OnShow", function()
+	PlaySound(74421)
+end);
+mainFrame:SetScript("OnHide", function()
+	PlaySound(74423)
+end);
+
+mainFrame.PHText = mainFrame:CreateFontString()
+mainFrame.PHText:SetFont("Fonts\\FRIZQT__.TTF", 11, "OUTLINE, MONOCHROME")
+mainFrame.PHText:SetPoint("CENTER", mainFrame, "CENTER")
+mainFrame.PHText:SetText("bingus")
+
 local addon = LibStub("AceAddon-3.0"):NewAddon("Languages", "AceConsole-3.0")
 local bunnyLDB = LibStub("LibDataBroker-1.1"):NewDataObject("Languages", {
 	type = "data source",
 	text = "Languages",
 	icon = "Interface\\Icons\\INV_Chest_Cloth_17",
 	OnClick = function()
-		print("This will show the Languages frame")
+		if mainFrame:IsShown() then
+			mainFrame:Hide()
+		else
+			mainFrame:Show()
+		end
 	end,
 })
 local icon = LibStub("LibDBIcon-1.0")
@@ -30,6 +60,8 @@ function addon:ToggleMinimapButton()
 		icon:Show("Languages")
 	end
 end
+
+
 
 
 local thingsToHide = {
