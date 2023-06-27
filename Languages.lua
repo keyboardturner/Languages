@@ -10,13 +10,13 @@ local bunnyLDB = LibStub("LibDataBroker-1.1"):NewDataObject("Languages", {
 local icon = LibStub("LibDBIcon-1.0")
 
 function addon:OnInitialize()
-self.db = LibStub("AceDB-3.0"):New("BunniesDB", {
-	profile = {
-		minimap = {
-			hide = false,
+	self.db = LibStub("AceDB-3.0"):New("BunniesDB", {
+		profile = {
+			minimap = {
+				hide = false,
+			},
 		},
-	},
-})
+	})
 	icon:Register("Languages", bunnyLDB, self.db.profile.minimap)
 	self:RegisterChatCommand("bunnies", "ToggleMinimapButton")
 end
@@ -54,6 +54,7 @@ local thingsToHide = {
 	"^%[Titan%]",
 	"^%[Kalimag%]",
 	"^%[Shath'Yar%]",
+	"^%[Broker%]",
 };
 
 
@@ -377,7 +378,16 @@ local LANGUAGE_REPLACEMENTS = {
 		[11] = {"ghawl'fwata", "naggwa'fssh", "yeq'kafhgyl"},
 	},
 
-
+	["Broker"] = { -- no languageID, fanmade
+		[1] = {"a", "o", "k", "t", "z", "u", "j", "x", "r", "h", "s", "q", "f", "y"},
+		[2] = {"au", "ba", "by", "fe", "ko", "ku", "so", "ta", "tu", "ve", "xy", "zo", "za", "ve", "sh", "ul", "al", "da", "an", "mi", "ri", "xa", "ha", "ji", "si", "ra", "fa", "nu", "ya"},
+		[3] = {"taa", "baa", "xaa", "haa", "jii", "daa", "sii", "zay", "raa", "dha", "saa", "shi", "faa", "gha", "ayn", "mii", "lam", "kaa", "qaa", "yaa", "waa", "nuu", "ara", "dal", "mox", "bic", "dul", "khe", "lla", "mba", "rim", "pyr", "qil", "sha", "til", "van", "vol", "eru", "ruu"},
+		[4] = {"nari", "amir", "thaa", "alif", "daal", "jiim", "siin", "zayn", "daad", "saad", "dhaa", "miim", "kaaf", "qaaf", "waaw", "nuun", "anap", "berk", "brak", "burk", "dara", "khem", "taza", "vesh", "krut", "myza", "nagl", "naci", "phes", "prin", "resh", "saar", "vesk", "avna", "hare", "hask", "julk", "silk", "solo", "ropo", "rana", "leah", "azmi", "turu", "bone", "drom", "gosh", "hilt", "hult", "khis", "kraz", "mari", "meri", "piks", "oren", "rela", "ruca", "sahm", "ules"},
+		[5] = {"",},
+		[6] = {"al'ara",},
+		[7] = {"amo'gus",},
+		[8] = {"",},
+	},
 
 	
 };
@@ -404,6 +414,8 @@ local languagelist = {
 	["^%[Titan%]"] = "[Titan]",
 	["^%[Kalimag%]"] = "[Kalimag]",
 	["^%[Shath'Yar%]"] = "[Shath'Yar]",
+	["^%[Broker%]"] = "[Broker]",
+	
 	--["^%[Sprite%]"] = "[Sprite]",
 	--["^%[Nerglish%]"] = "[Nerglish]",
 	--["^%[Moonkin%]"] = "[Moonkin]",
@@ -437,6 +449,8 @@ local languageNoBrackets = {
 	["^%[Titan%]"] = "Titan",
 	["^%[Kalimag%]"] = "Kalimag",
 	["^%[Shath'Yar%]"] = "Shath'Yar",
+	["^%[Broker%]"] = "Broker",
+
 	--["^%[Sprite%]"] = "Sprite",
 	--["^%[Nerglish%]"] = "Nerglish",
 	--["^%[Moonkin%]"] = "Moonkin",
@@ -473,6 +487,21 @@ local function ReplaceLanguage(text, language)
 			Translation = Translation:gsub("^%l", string.upper) -- might be able to just tack this onto ReplaceLanguage in event filter
 			capital = capital + 1
 		end
+
+		--[[ -- convert into letters, play with later.
+		local bingus = ""
+		local chungus = "^%[" .. language .. "%]"
+		for character in string.gmatch(Translation, "([%z\1-\127\194-\244][\128-\191]*)") do
+			for i, v in ipairs(thingsToHide) do
+				if chungus == v then
+					character = character:gsub(character, AddonPath .. languageNoBrackets[v] .. "\\" .. character .. ":15:15|t" )
+				end
+			end
+			--print("debug:" .. character)
+			bingus = string.join("", bingus, character)
+			Translation = bingus
+		end
+		]]
 
 		return Translation;
 	end);
