@@ -8,7 +8,7 @@ This addon intentionally only obfuscates messages on the user side. As an exampl
 4. This addon doesn't translate true ingame languages. If somebody is speaking genuine Orcish, you as an Alliance player likely won't be able to see this translation. Likewise, this will not translate your own true Shalassian to non-Nightborne. Unfortunately this is just simply a limitation and runs into that area of sending translations via addon messages. If you want to avoid this issue, request that players instead use items like the [Elixir of Tongues](https://www.wowhead.com/item=2460/elixir-of-tongues), join group with the player (grouped messages translate), or OOC speak in Common (or other languages) while IC speaking in another language. Likewise, it's outside of the addon capability to translate ingame languages you don't know, such as an NPC speaking Titan.
 
 There are many things to do:
-- Functional conversion of messages into image textures per-character
+- ~~Functional conversion of messages into image textures per-character~~
 - Convert heiroglyphs into atlas textures
 - Fix over-character limit issue
 - Dialect converter (ie "dwarven accent")
