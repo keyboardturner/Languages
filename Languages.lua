@@ -1,7 +1,93 @@
+local defaultsTableSV = {
+	
+	Settings = {glyphs = true, glyphSizeX = 15, glyphSizeY = 15, understandAll = false, translation = false, characterSpecific = true, debug = false},
+
+	Colors = {
+		prefix = {r = 1, g = 1, b = 1},
+		text = {r = 1, g = 1, b = 1},
+	},
+
+	TRP3 = {TRP3profile = true},
+};
+
+local RaceDefaults = {
+	gameplay = {
+		human = {"Common"}, -- 1
+		dwarf = {"Common", "Dwarven"}, -- 3
+		nightelf = {"Common", "Darnassian"}, -- 4
+		gnome = {"Common", "Gnomish"}, -- 7
+		draenei = {"Common", "Draenei"}, -- 11
+		worgen = {"Common"}, -- 22
+		voidelf = {"Common", "Thalassian"}, -- 29
+		lightforged = {"Common", "Draenei"}, -- 30
+		darkiron = {"Common", "Dwarven"}, -- 34
+		kultiran = {"Common"}, -- 32
+		mechagnome = {"Common", "Gnomish"}, -- 37
+		pandarenN = {"Pandaren"}, -- 24
+		pandarenA = {"Common", "Pandaren"}, -- 25
+		pandarenH = {"Orcish", "Pandaren"}, -- 26
+		orc = {"Orcish"}, -- 2
+		undead = {"Orcish", "Gutterspeak"}, -- 5
+		tauren = {"Orcish", "Taurahe"}, -- 6
+		troll = {"Orcish", "Zandali"}, -- 8
+		bloodelf = {"Orcish", "Thalassian"}, -- 10
+		goblin = {"Orcish", "Goblin"}, -- 9
+		nightborne = {"Orcish", "Shalassian"}, -- 27
+		highmountain = {"Orcish", "Taurahe"}, -- 28
+		maghar = {"Orcish"}, -- 36
+		zandalari = {"Orcish", "Zandali"}, -- 31
+		vulpera = {"Orcish", "Vulpera"}, -- 35
+		dracthyrN = {"Draconic"}, -- 
+		dracthyrA = {"Common", "Draconic"}, -- 52
+		dracthyrH = {"Orcish", "Draconic"}, -- 70
+
+		demonhunter = {"Demonic"},
+		priest = {"Shath'Yar"},
+	},
+	recommended = {
+		human = {"Common"}, -- 1
+		dwarf = {"Common", "Dwarven", "Gnomish"}, -- 3
+		nightelf = {"Common", "Darnassian"}, -- 4
+		gnome = {"Common", "Gnomish", "Dwarven"}, -- 7
+		draenei = {"Common", "Draenei", "Orcish"}, -- 11
+		worgen = {"Common"}, -- 22
+		voidelf = {"Common", "Thalassian"}, -- 29
+		lightforged = {"Common", "Draenei"}, -- 30
+		darkiron = {"Common", "Dwarven"}, -- 34
+		kultiran = {"Common"}, -- 32
+		mechagnome = {"Common", "Gnomish"}, -- 37
+		pandarenN = {"Pandaren"}, -- 24
+		pandarenA = {"Common", "Pandaren"}, -- 25
+		pandarenH = {"Orcish", "Pandaren"}, -- 26
+		orc = {"Orcish", "Common"}, -- 2
+		undead = {"Orcish", "Gutterspeak", "Common"}, -- 5
+		tauren = {"Orcish", "Taurahe"}, -- 6
+		troll = {"Orcish", "Zandali"}, -- 8
+		bloodelf = {"Orcish", "Thalassian", "Common"}, -- 10
+		goblin = {"Orcish", "Goblin", "Common"}, -- 9
+		nightborne = {"Orcish", "Shalassian"}, -- 27
+		highmountain = {"Orcish", "Taurahe"}, -- 28
+		maghar = {"Orcish"}, --36
+		zandalari = {"Orcish", "Zandali"}, -- 31
+		vulpera = {"Orcish", "Vulpera"}, -- 35
+		dracthyrN = {"Draconic", "Common", "Orcish"}, -- 
+		dracthyrA = {"Common", "Draconic", "Orcish"}, -- 52
+		dracthyrH = {"Orcish", "Draconic", "Common"}, -- 70
+
+		demonhunter = {"Demonic"},
+		warlock = {"Demonic"},
+		rogue = {"Gutterspeak"},
+		shaman = {"Kalimag"},
+		mage = {"Titan"},
+		priest = {"Shath'Yar"},
+		monk = {"Pandaren"},
+	},
+};
+
 local mainFrame = CreateFrame("Frame", "LanguagesMainFrame", UIParent, "PortraitFrameTemplateMinimizable")
-LanguagesMainFramePortrait:SetTexture(4891426)
-LanguagesMainFrameTitleText:SetText("Languages")
-mainFrame:SetSize(300,600)
+mainFrame:SetPortraitToAsset(4891426)
+mainFrame:SetTitle("Languages")
+mainFrame:SetSize(338,424)
 mainFrame:SetPoint("CENTER", UIParent, "CENTER")
 mainFrame:SetMovable(true)
 mainFrame:SetClampedToScreen(true)
@@ -18,6 +104,41 @@ end);
 mainFrame:SetScript("OnHide", function()
 	PlaySound(74423)
 end);
+
+
+local textBeforeParse, parsedEditBox;
+globalVarToEnable = true;
+
+
+local function enablePrefix()
+
+	-- Hook the ChatEdit_InsertLink() function that is called when the user SHIFT-Click a player name
+	-- in the chat frame to insert it into a text field.
+	-- We can replace the name inserted by the complete RP name of the player if we have it.
+
+	hooksecurefunc("ChatEdit_ParseText", function(editBox, send)
+		local text = editBox:GetText();
+		if text and send == 1 then
+			if text ~= "" and text ~= nil then
+				textBeforeParse = text;
+				parsedEditBox = editBox;
+				if globalVarToEnable == true then
+					text = "[Darnassian]" .. " " .. text;
+				end
+				editBox:SetText(text);
+			end
+		end
+	end);
+
+	-- Restore the text without substitution before it's stored in the chat history
+	hooksecurefunc("SubstituteChatMessageBeforeSend", function()
+		if parsedEditBox and textBeforeParse then
+			parsedEditBox:SetText(textBeforeParse);
+			parsedEditBox = nil;
+			textBeforeParse = nil;
+		end
+	end);
+end
 
 mainFrame.PHText = mainFrame:CreateFontString()
 mainFrame.PHText:SetFont("Fonts\\FRIZQT__.TTF", 11, "OUTLINE, MONOCHROME")
@@ -87,6 +208,28 @@ local thingsToHide = {
 	"^%[Kalimag%]",
 	"^%[Shath'Yar%]",
 	"^%[Broker%]",
+};
+
+--[[ -- this could be used to calculate the atlas coords
+local function CalculateSides(number)
+	local xN = (1/256)*((34*number)+1)
+	local yN = xN + 0.125
+	return xN, yN
+end
+]]
+
+local atlas = {
+	--character = {L = 0, R = 0, T = 0, B = 0}, -- L = (1/256)*((34*N)+1), R = L + 0.125, T = (1/256)*((34*N)+1), B = T + 0.125;
+	a = {L = 0.00390625, R = 0.12890625, T = 0.00390625, B = 0.12890625}, -- L = (1/256) * ((34*0)+1), R = L + 0.125, T = (1/256) * ((34*0)+1), B = T + 0.125;
+	b = {L = 0.13671875, R = 0.26171875, T = 0.00390625, B = 0.12890625}, -- L = (1/256) * ((34*1)+1), R = L + 0.125, T = (1/256) * ((34*0)+1), B = T + 0.125;
+	c = {L = 0.26953125, R = 0.39453125, T = 0.00390625, B = 0.12890625}, -- L = (1/256) * ((34*2)+1), R = L + 0.125, T = (1/256) * ((34*0)+1), B = T + 0.125;
+	d = {L = 0.40234375, R = 0.52734375, T = 0.00390625, B = 0.12890625}, -- L = (1/256) * ((34*3)+1), R = L + 0.125, T = (1/256) * ((34*0)+1), B = T + 0.125;
+	e = {L = 0.53515625, R = 0.66015625, T = 0.00390625, B = 0.12890625}, -- L = (1/256) * ((34*4)+1), R = L + 0.125, T = (1/256) * ((34*0)+1), B = T + 0.125;
+	f = {L = 0.66796875, R = 0.79296875, T = 0.00390625, B = 0.12890625}, -- L = (1/256) * ((34*5)+1), R = L + 0.125, T = (1/256) * ((34*0)+1), B = T + 0.125;
+	g = {L = 0.80078125, R = 0.92578125, T = 0.00390625, B = 0.12890625}, -- L = (1/256) * ((34*6)+1), R = L + 0.125, T = (1/256) * ((34*0)+1), B = T + 0.125;
+	h = {L = 0.00390625, R = 0.12890625, T = 0.13671875, B = 0.26171875}, -- L = (1/256) * ((34*0)+1), R = L + 0.125, T = (1/256) * ((34*1)+1), B = T + 0.125;
+	i = {L = 0.13671875, R = 0.26171875, T = 0.13671875, B = 0.26171875}, -- L = (1/256) * ((34*1)+1), R = L + 0.125, T = (1/256) * ((34*1)+1), B = T + 0.125;
+	j = {L = 0.26953125, R = 0.39453125, T = 0.13671875, B = 0.26171875}, -- etc
 };
 
 
@@ -498,6 +641,7 @@ local AddonPath = "|TInterface\\AddOns\\Languages\\Textures\\"
 
 local function ReplaceLanguage(text, language)
 	print("Debug: " .. text)
+	text = string.lower(text)
 	local capital = 1
 	local replacements = LANGUAGE_REPLACEMENTS[language];
 	assert(replacements, "unsupported language")
@@ -514,7 +658,7 @@ local function ReplaceLanguage(text, language)
 			choices = replacements[#replacements];
 		end
 
-		local Translation = replacements[#word][(hash % #choices) + 1]
+		local Translation = choices[(hash % #choices) + 1]
 		if capital == 1 then 
 			Translation = Translation:gsub("^%l", string.upper) -- might be able to just tack this onto ReplaceLanguage in event filter
 			capital = capital + 1
@@ -556,28 +700,12 @@ ChatFrame_AddMessageEventFilter("CHAT_MSG_SAY", function(frame, event, message, 
 			--print(message)
 			message = message:gsub(v, "")
 
-
 			if understandLanguage[languageNoBrackets[v]] == true then
 				return false, "|cff1ce651" .. languagelist[v] .. "|r " .. message, sender, ...
 			else
-				local bingus = ""
-				for character in string.gmatch(message, "([%z\1-\127\194-\244][\128-\191]*)") do
-					--print(character)
-					character = character:gsub(character, AddonPath .. languageNoBrackets[v] .. "\\" .. character .. ":15:15|t" )
-					--print("debug:" .. character)
-					bingus = string.join("", bingus, character)
-				end
-				--print(bingus)
-				--message = message:gsub("%a", "|TInterface\\AddOns\\Languages\\Textures\\" .. languageNoBrackets[v] .. "\\%a:15:15|t" )
+
 				return false, "|cff1ce651" .. languagelist[v] .. "|r " .. ReplaceLanguage(message, languageNoBrackets[v]) .. ".", sender, ...
 			end
-
-			--test
-			--message = message:gsub("^%l", string.upper)
-			--print(message)
-			--return false, "|cff1ce651" .. languagelist[v] .. "|r " .. " *Unintelligible*", sender, ...
-			--return false, "|cff1ce651" .. languagelist[v] .. "|r " .. ReplaceLanguage(message, languageNoBrackets[v]) .. ".", sender, ...
-			--return false, "|cff1ce651[Darnassian]|r " .. cowboytown[string.len(message)-13], sender, ... --I want to archive this for later.
 		end
 	end
 
