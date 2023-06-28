@@ -10,7 +10,7 @@ This addon intentionally only obfuscates messages on the user side. As an exampl
 There are many things to do:
 - ~~Functional conversion of messages into image textures per-character~~
 - Convert heiroglyphs into atlas textures
-- Fix over-character limit issue
+- ~~Fix over-character limit issue~~
 - Dialect converter (ie "dwarven accent")
 - Potentially adjust for "true languages" ie Horde characters speaking Orcish where the language tag isn't actually detected - possibly add option to hide the default language tag
 - option to remove language tags from speech bubbles
