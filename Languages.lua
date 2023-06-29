@@ -106,34 +106,6 @@ mainFrame:SetScript("OnHide", function()
 end);
 mainFrame.minMax = true;
 
-mainFrame.ScrollFrame = CreateFrame("ScrollFrame", nil, mainFrame, "ScrollFrameTemplate")
-mainFrame.ScrollFrame:SetPoint("TOPLEFT", mainFrame, "TOPLEFT", 4, -8)
-mainFrame.ScrollFrame:SetPoint("BOTTOMRIGHT", mainFrame, "BOTTOMRIGHT", -3, 4)
-mainFrame.ScrollFrame.ScrollBar:ClearAllPoints()
-mainFrame.ScrollFrame.ScrollBar:SetPoint("TOPLEFT", mainFrame.ScrollFrame, "TOPRIGHT", -12, -18)
-mainFrame.ScrollFrame.ScrollBar:SetPoint("BOTTOMLEFT", mainFrame.ScrollFrame, "BOTTOMRIGHT", -7, 0)
-
-
-mainFrame.ScrollFrame.child = CreateFrame("Frame", nil, mainFrame.ScrollFrame)
-mainFrame.ScrollFrame:SetScrollChild(mainFrame.ScrollFrame.child)
-mainFrame.ScrollFrame.child:SetWidth(mainFrame:GetWidth()-18)
-mainFrame.ScrollFrame.child:SetHeight(1)
-
-
---some test text
-mainFrame.PHText = mainFrame.ScrollFrame.child:CreateFontString()
-mainFrame.PHText:SetFont("Fonts\\FRIZQT__.TTF", 11, "OUTLINE, MONOCHROME")
-mainFrame.PHText:SetPoint("CENTER", mainFrame.ScrollFrame.child, "CENTER", 0, -500)
-mainFrame.PHText:SetText("bingus")
-
-
-mainFrame.ButtonTest = CreateFrame("Button", "ButtonClickTest", mainFrame.ScrollFrame.child, "BigGoldRedThreeSliceButtonTemplate")
-mainFrame.ButtonTest:SetPoint("CENTER", mainFrame.ScrollFrame.child, "CENTER", 0,-50)
-mainFrame.ButtonTest:SetSize(200,50)
-mainFrame.ButtonTest:SetScript("OnClick", function(self, button)
-	print("bingus")
-end);
-
 function mainFrame.minMaxFunc()
 	if mainFrame.minMax == true then
 		mainFrame:SetSize(200,100)
@@ -151,15 +123,34 @@ mainFrame.MinimizeButton:Enable()
 mainFrame.MinimizeButton.MinimizeButton:SetScript("OnClick", mainFrame.minMaxFunc);
 mainFrame.MinimizeButton.MaximizeButton:SetScript("OnClick", mainFrame.minMaxFunc);
 
-local function Tab_OnClick(self)
+mainFrame.ScrollFrame = CreateFrame("ScrollFrame", nil, mainFrame, "ScrollFrameTemplate")
+mainFrame.ScrollFrame:SetPoint("TOPLEFT", mainFrame, "TOPLEFT", 4, -8)
+mainFrame.ScrollFrame:SetPoint("BOTTOMRIGHT", mainFrame, "BOTTOMRIGHT", -3, 4)
+mainFrame.ScrollFrame.ScrollBar:ClearAllPoints()
+mainFrame.ScrollFrame.ScrollBar:SetPoint("TOPLEFT", mainFrame.ScrollFrame, "TOPRIGHT", -12, -18)
+mainFrame.ScrollFrame.ScrollBar:SetPoint("BOTTOMLEFT", mainFrame.ScrollFrame, "BOTTOMRIGHT", -7, 0)
+
+
+mainFrame.ScrollFrame.child = CreateFrame("Frame", nil, mainFrame.ScrollFrame)
+mainFrame.ScrollFrame:SetScrollChild(mainFrame.ScrollFrame.child)
+mainFrame.ScrollFrame.child:SetWidth(mainFrame:GetWidth()-18)
+mainFrame.ScrollFrame.child:SetHeight(1)
+
+function mainFrame.Tab_OnClick(self)
 
 	PanelTemplates_SetTab(self:GetParent(), self:GetID())
 
+	local scrollChild = mainFrame.ScrollFrame:GetScrollChild()
+	if (scrollChild) then
+		scrollChild:Hide()
+	end
+
+	mainFrame.ScrollFrame:SetScrollChild(self.content)
 	self.content:Show()
 
 end
 
-local function SetTabs(frame,numTabs, ...)
+function mainFrame.SetTabs(frame,numTabs, ...)
 	frame.numTabs = numTabs
 
 	local contents = {};
@@ -170,15 +161,15 @@ local function SetTabs(frame,numTabs, ...)
 		mainFrame.TabButtonTest = CreateFrame("Button", frameName .. "Tab" .. i, frame, "PanelTabButtonTemplate")
 		mainFrame.TabButtonTest:SetID(i)
 		mainFrame.TabButtonTest:SetText(select(i, ...))
-		mainFrame.TabButtonTest:SetScript("OnClick", Tab_OnClick)
+		mainFrame.TabButtonTest:SetScript("OnClick", mainFrame.Tab_OnClick)
 
 		mainFrame.TabButtonTest.content = CreateFrame("Frame", nil, mainFrame.ScrollFrame)
-		mainFrame.TabButtonTest.content:SetSize(308,500)
+		mainFrame.TabButtonTest.content:SetSize(334, 10)
 		mainFrame.TabButtonTest.content:Hide()
 
-		mainFrame.TabButtonTest.content.bg = mainFrame.TabButtonTest.content:CreateTexture(nil, "BACKGROUND")
-		mainFrame.TabButtonTest.content.bg:SetAllPoints(true)
-		mainFrame.TabButtonTest.content.bg:SetColorTexture(math.random(), math.random(), math.random(), .6)
+		--mainFrame.TabButtonTest.content.bg = mainFrame.TabButtonTest.content:CreateTexture(nil, "BACKGROUND")
+		--mainFrame.TabButtonTest.content.bg:SetAllPoints(true)
+		--mainFrame.TabButtonTest.content.bg:SetColorTexture(math.random(), math.random(), math.random(), .6)
 
 		table.insert(contents, mainFrame.TabButtonTest.content)
 
@@ -203,22 +194,39 @@ local function SetTabs(frame,numTabs, ...)
 	end
 
 
-	Tab_OnClick(_G[frameName .. "Tab1"])
+	mainFrame.Tab_OnClick(_G[frameName .. "Tab1"])
 
 	return unpack(contents);
 
 end
 
-local content1, content2, content3 = SetTabs(mainFrame, 3, "Diction", "Settings", "Profiles")
+local content1, content2, content3 = mainFrame.SetTabs(mainFrame, 3, "Diction", "Settings", "Profiles")
+
+
+mainFrame.prefix = false
+function mainFrame.TogglePrefix()
+	if mainFrame.prefix == true then
+		mainFrame.prefix = false
+		mainFrame.ButtonTest.text:SetText("Language Prefix: Off")
+		print("Debug: Toggling off automated language prefix!")
+	elseif mainFrame.prefix == false then
+		mainFrame.prefix = true
+		mainFrame.ButtonTest.text:SetText("Language Prefix: On")
+		print("Debug: Toggling on automated language prefix!")
+	end
+end
 
 
 
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+-- Prefix Handling
+---------------------------------------------------------------------------------------------------------------------------------------------------------
 
 local textBeforeParse, parsedEditBox;
-globalVarToEnable = true;
 
 
-local function enablePrefix()
+function mainFrame.enablePrefix()
 
 	-- Hook the ChatEdit_InsertLink() function that is called when the user SHIFT-Click a player name
 	-- in the chat frame to insert it into a text field.
@@ -230,7 +238,7 @@ local function enablePrefix()
 			if text ~= "" and text ~= nil then
 				textBeforeParse = text;
 				parsedEditBox = editBox;
-				if globalVarToEnable == true then
+				if mainFrame.prefix == true then
 					text = "[Darnassian]" .. " " .. text;
 				end
 				editBox:SetText(text);
@@ -247,6 +255,12 @@ local function enablePrefix()
 		end
 	end);
 end
+
+mainFrame.enablePrefix()
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+-- Ace Addon Minimap Button
+---------------------------------------------------------------------------------------------------------------------------------------------------------
 
 local addon = LibStub("AceAddon-3.0"):NewAddon("Languages", "AceConsole-3.0")
 local bunnyLDB = LibStub("LibDataBroker-1.1"):NewDataObject("Languages", {
@@ -286,7 +300,36 @@ function addon:ToggleMinimapButton()
 end
 
 
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+-- GUI Buttons
+---------------------------------------------------------------------------------------------------------------------------------------------------------
 
+
+
+--some test text
+mainFrame.PHText = content1:CreateFontString()
+mainFrame.PHText:SetFont("Fonts\\FRIZQT__.TTF", 11, "OUTLINE, MONOCHROME")
+mainFrame.PHText:SetPoint("CENTER", content1, "CENTER", 0, -500)
+mainFrame.PHText:SetText("bingus")
+
+mainFrame.ButtonTest = CreateFrame("Button", "LanguagesMainFrameButtonClickTest", content1, "BigGoldRedThreeSliceButtonTemplate")
+mainFrame.ButtonTest:SetPoint("CENTER", content1, "CENTER", 0,-50)
+mainFrame.ButtonTest:SetSize(200,50)
+
+mainFrame.ButtonTest.text = mainFrame.ButtonTest:CreateFontString()
+mainFrame.ButtonTest.text:SetFont("Fonts\\FRIZQT__.TTF", 15, "OUTLINE, MONOCHROME")
+mainFrame.ButtonTest.text:SetPoint("CENTER", mainFrame.ButtonTest, "CENTER", 0, 0)
+mainFrame.ButtonTest.text:SetText("Language Prefix: Off")
+
+
+mainFrame.ButtonTest:SetScript("OnClick", function(self, button)
+	mainFrame.TogglePrefix()
+end);
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+-- Language Functionality
+---------------------------------------------------------------------------------------------------------------------------------------------------------
 
 local thingsToHide = {
 	"^%[Common%]",
@@ -335,6 +378,10 @@ local atlas = {
 	j = {L = 0.26953125, R = 0.39453125, T = 0.13671875, B = 0.26171875},
 };
 
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+-- Randomized words available per language
+---------------------------------------------------------------------------------------------------------------------------------------------------------
 
 local LANGUAGE_REPLACEMENTS = {
 	["Common"] = {
@@ -739,6 +786,10 @@ local languageNoBrackets = {
 	--["^%[Mogu%]"] = "Mogu",
 
 };
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------
 
 local AddonPath = "|TInterface\\AddOns\\Languages\\Textures\\"
 
