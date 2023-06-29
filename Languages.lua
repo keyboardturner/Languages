@@ -104,6 +104,114 @@ end);
 mainFrame:SetScript("OnHide", function()
 	PlaySound(74423)
 end);
+mainFrame.minMax = true;
+
+mainFrame.ScrollFrame = CreateFrame("ScrollFrame", nil, mainFrame, "ScrollFrameTemplate")
+mainFrame.ScrollFrame:SetPoint("TOPLEFT", mainFrame, "TOPLEFT", 4, -8)
+mainFrame.ScrollFrame:SetPoint("BOTTOMRIGHT", mainFrame, "BOTTOMRIGHT", -3, 4)
+mainFrame.ScrollFrame.ScrollBar:ClearAllPoints()
+mainFrame.ScrollFrame.ScrollBar:SetPoint("TOPLEFT", mainFrame.ScrollFrame, "TOPRIGHT", -12, -18)
+mainFrame.ScrollFrame.ScrollBar:SetPoint("BOTTOMLEFT", mainFrame.ScrollFrame, "BOTTOMRIGHT", -7, 0)
+
+
+mainFrame.ScrollFrame.child = CreateFrame("Frame", nil, mainFrame.ScrollFrame)
+mainFrame.ScrollFrame:SetScrollChild(mainFrame.ScrollFrame.child)
+mainFrame.ScrollFrame.child:SetWidth(mainFrame:GetWidth()-18)
+mainFrame.ScrollFrame.child:SetHeight(1)
+
+
+--some test text
+mainFrame.PHText = mainFrame.ScrollFrame.child:CreateFontString()
+mainFrame.PHText:SetFont("Fonts\\FRIZQT__.TTF", 11, "OUTLINE, MONOCHROME")
+mainFrame.PHText:SetPoint("CENTER", mainFrame.ScrollFrame.child, "CENTER", 0, -500)
+mainFrame.PHText:SetText("bingus")
+
+
+mainFrame.ButtonTest = CreateFrame("Button", "ButtonClickTest", mainFrame.ScrollFrame.child, "BigGoldRedThreeSliceButtonTemplate")
+mainFrame.ButtonTest:SetPoint("CENTER", mainFrame.ScrollFrame.child, "CENTER", 0,-50)
+mainFrame.ButtonTest:SetSize(200,50)
+mainFrame.ButtonTest:SetScript("OnClick", function(self, button)
+	print("bingus")
+end);
+
+function mainFrame.minMaxFunc()
+	if mainFrame.minMax == true then
+		mainFrame:SetSize(200,100)
+		mainFrame.minMax = false
+	elseif mainFrame.minMax == false then
+		mainFrame:SetSize(338,424)
+		mainFrame.minMax = true
+	end
+end
+
+mainFrame.MinimizeButton = CreateFrame("Button", "LanguagesMainFrameMinMaxButton", mainFrame, "MaximizeMinimizeButtonFrameTemplate")
+mainFrame.MinimizeButton:SetPoint("TOPRIGHT", mainFrame, "TOPRIGHT", -24,0)
+mainFrame.MinimizeButton:SetSize(24,24)
+mainFrame.MinimizeButton:Enable()
+mainFrame.MinimizeButton.MinimizeButton:SetScript("OnClick", mainFrame.minMaxFunc);
+mainFrame.MinimizeButton.MaximizeButton:SetScript("OnClick", mainFrame.minMaxFunc);
+
+local function Tab_OnClick(self)
+
+	PanelTemplates_SetTab(self:GetParent(), self:GetID())
+
+	self.content:Show()
+
+end
+
+local function SetTabs(frame,numTabs, ...)
+	frame.numTabs = numTabs
+
+	local contents = {};
+	local frameName = frame:GetName()
+
+	for i = 1, numTabs do
+
+		mainFrame.TabButtonTest = CreateFrame("Button", frameName .. "Tab" .. i, frame, "PanelTabButtonTemplate")
+		mainFrame.TabButtonTest:SetID(i)
+		mainFrame.TabButtonTest:SetText(select(i, ...))
+		mainFrame.TabButtonTest:SetScript("OnClick", Tab_OnClick)
+
+		mainFrame.TabButtonTest.content = CreateFrame("Frame", nil, mainFrame.ScrollFrame)
+		mainFrame.TabButtonTest.content:SetSize(308,500)
+		mainFrame.TabButtonTest.content:Hide()
+
+		mainFrame.TabButtonTest.content.bg = mainFrame.TabButtonTest.content:CreateTexture(nil, "BACKGROUND")
+		mainFrame.TabButtonTest.content.bg:SetAllPoints(true)
+		mainFrame.TabButtonTest.content.bg:SetColorTexture(math.random(), math.random(), math.random(), .6)
+
+		table.insert(contents, mainFrame.TabButtonTest.content)
+
+		if (i == 1) then
+			mainFrame.TabButtonTest:SetPoint("TOPLEFT", mainFrame, "BOTTOMLEFT", 11,2)
+		else
+			mainFrame.TabButtonTest:SetPoint("TOPLEFT", _G[frameName .. "Tab" .. (i-1)] , "TOPRIGHT", 3, 0)
+		end
+
+		--[[
+		mainFrame.TabButtonTest:SetPoint("TOPLEFT", mainFrame, "BOTTOMLEFT", 20,0)
+		mainFrame.TabButtonTest:SetSize(100,30)
+		mainFrame.TabButtonTest:Enable()
+		mainFrame.TabButtonTest:SetScript("OnClick", function(self, button)
+			print("bingus")
+
+		end);
+
+		]]
+
+		
+	end
+
+
+	Tab_OnClick(_G[frameName .. "Tab1"])
+
+	return unpack(contents);
+
+end
+
+local content1, content2, content3 = SetTabs(mainFrame, 3, "Diction", "Settings", "Profiles")
+
+
 
 
 local textBeforeParse, parsedEditBox;
@@ -139,11 +247,6 @@ local function enablePrefix()
 		end
 	end);
 end
-
-mainFrame.PHText = mainFrame:CreateFontString()
-mainFrame.PHText:SetFont("Fonts\\FRIZQT__.TTF", 11, "OUTLINE, MONOCHROME")
-mainFrame.PHText:SetPoint("CENTER", mainFrame, "CENTER")
-mainFrame.PHText:SetText("bingus")
 
 local addon = LibStub("AceAddon-3.0"):NewAddon("Languages", "AceConsole-3.0")
 local bunnyLDB = LibStub("LibDataBroker-1.1"):NewDataObject("Languages", {
@@ -219,17 +322,17 @@ end
 ]]
 
 local atlas = {
-	--character = {L = 0, R = 0, T = 0, B = 0}, -- L = (1/256)*((34*N)+1), R = L + 0.125, T = (1/256)*((34*N)+1), B = T + 0.125;
-	a = {L = 0.00390625, R = 0.12890625, T = 0.00390625, B = 0.12890625}, -- L = (1/256) * ((34*0)+1), R = L + 0.125, T = (1/256) * ((34*0)+1), B = T + 0.125;
-	b = {L = 0.13671875, R = 0.26171875, T = 0.00390625, B = 0.12890625}, -- L = (1/256) * ((34*1)+1), R = L + 0.125, T = (1/256) * ((34*0)+1), B = T + 0.125;
-	c = {L = 0.26953125, R = 0.39453125, T = 0.00390625, B = 0.12890625}, -- L = (1/256) * ((34*2)+1), R = L + 0.125, T = (1/256) * ((34*0)+1), B = T + 0.125;
-	d = {L = 0.40234375, R = 0.52734375, T = 0.00390625, B = 0.12890625}, -- L = (1/256) * ((34*3)+1), R = L + 0.125, T = (1/256) * ((34*0)+1), B = T + 0.125;
-	e = {L = 0.53515625, R = 0.66015625, T = 0.00390625, B = 0.12890625}, -- L = (1/256) * ((34*4)+1), R = L + 0.125, T = (1/256) * ((34*0)+1), B = T + 0.125;
-	f = {L = 0.66796875, R = 0.79296875, T = 0.00390625, B = 0.12890625}, -- L = (1/256) * ((34*5)+1), R = L + 0.125, T = (1/256) * ((34*0)+1), B = T + 0.125;
-	g = {L = 0.80078125, R = 0.92578125, T = 0.00390625, B = 0.12890625}, -- L = (1/256) * ((34*6)+1), R = L + 0.125, T = (1/256) * ((34*0)+1), B = T + 0.125;
-	h = {L = 0.00390625, R = 0.12890625, T = 0.13671875, B = 0.26171875}, -- L = (1/256) * ((34*0)+1), R = L + 0.125, T = (1/256) * ((34*1)+1), B = T + 0.125;
-	i = {L = 0.13671875, R = 0.26171875, T = 0.13671875, B = 0.26171875}, -- L = (1/256) * ((34*1)+1), R = L + 0.125, T = (1/256) * ((34*1)+1), B = T + 0.125;
-	j = {L = 0.26953125, R = 0.39453125, T = 0.13671875, B = 0.26171875}, -- etc
+	--character = {L = 0, R = 0, T = 0, B = 0}, -- L = (1/256)*((34*N1)+1), R = L + 0.125, T = (1/256)*((34*N2)+1), B = T + 0.125;
+	a = {L = 0.00390625, R = 0.12890625, T = 0.00390625, B = 0.12890625},
+	b = {L = 0.13671875, R = 0.26171875, T = 0.00390625, B = 0.12890625},
+	c = {L = 0.26953125, R = 0.39453125, T = 0.00390625, B = 0.12890625},
+	d = {L = 0.40234375, R = 0.52734375, T = 0.00390625, B = 0.12890625},
+	e = {L = 0.53515625, R = 0.66015625, T = 0.00390625, B = 0.12890625},
+	f = {L = 0.66796875, R = 0.79296875, T = 0.00390625, B = 0.12890625},
+	g = {L = 0.80078125, R = 0.92578125, T = 0.00390625, B = 0.12890625},
+	h = {L = 0.00390625, R = 0.12890625, T = 0.13671875, B = 0.26171875},
+	i = {L = 0.13671875, R = 0.26171875, T = 0.13671875, B = 0.26171875},
+	j = {L = 0.26953125, R = 0.39453125, T = 0.13671875, B = 0.26171875},
 };
 
 
@@ -686,6 +789,8 @@ end
 local understandLanguage = {
 	Darnassian = false,
 	Orcish = false,
+	Broker = true,
+	Goblin = false,
 };
 
 
@@ -703,7 +808,6 @@ ChatFrame_AddMessageEventFilter("CHAT_MSG_SAY", function(frame, event, message, 
 			if understandLanguage[languageNoBrackets[v]] == true then
 				return false, "|cff1ce651" .. languagelist[v] .. "|r " .. message, sender, ...
 			else
-
 				return false, "|cff1ce651" .. languagelist[v] .. "|r " .. ReplaceLanguage(message, languageNoBrackets[v]) .. ".", sender, ...
 			end
 		end
