@@ -320,20 +320,19 @@ mainFrame.PHText3:SetFont("Fonts\\FRIZQT__.TTF", 11, "OUTLINE, MONOCHROME")
 mainFrame.PHText3:SetPoint("CENTER", content3, "CENTER", 0, -50)
 mainFrame.PHText3:SetText("Placeholder - Profiles")
 
-mainFrame.ButtonTest = CreateFrame("Button", "LanguagesMainFrameButtonClickTest", content1, "BigGoldRedThreeSliceButtonTemplate")
+mainFrame.ButtonTest = CreateFrame("Button", "LanguagesMainFrameButtonClickTest", content1, "SharedGoldRedButtonSmallTemplate")
 mainFrame.ButtonTest:SetPoint("CENTER", content1, "CENTER", 0,-50)
 mainFrame.ButtonTest:SetSize(200,50)
-
-mainFrame.ButtonTest.text = mainFrame.ButtonTest:CreateFontString()
-mainFrame.ButtonTest.text:SetFont("Fonts\\FRIZQT__.TTF", 15, "OUTLINE, MONOCHROME")
-mainFrame.ButtonTest.text:SetPoint("CENTER", mainFrame.ButtonTest, "CENTER", 0, 0)
-mainFrame.ButtonTest.text:SetText("Language Prefix: Off")
+mainFrame.ButtonTest:SetText("Language Prefix: Off")
 
 
 mainFrame.ButtonTest:SetScript("OnClick", function(self, button)
 	mainFrame.TogglePrefix()
 end);
 
+
+local understandLanguage = {
+};
 
 local languageBasicList = {
 	"Common",
@@ -360,25 +359,87 @@ local languageBasicList = {
 };
 
 
+mainFrame.ColumnLanguage = content1:CreateFontString()
+mainFrame.ColumnLanguage:SetFont("Fonts\\FRIZQT__.TTF", 11, "OUTLINE, MONOCHROME")
+mainFrame.ColumnLanguage:SetPoint("LEFT", content1, "LEFT", 10, -85)
+mainFrame.ColumnLanguage:SetText("[PH] Language")
+
+mainFrame.ColumnUnderstand = content1:CreateFontString()
+mainFrame.ColumnUnderstand:SetFont("Fonts\\FRIZQT__.TTF", 11, "OUTLINE, MONOCHROME")
+mainFrame.ColumnUnderstand:SetPoint("LEFT", content1, "LEFT", 115, -85)
+mainFrame.ColumnUnderstand:SetText("[PH] Understand")
+
+
 for k, v in ipairs(languageBasicList) do
-	mainFrame.ButtonListTest = CreateFrame("Button", nil, content1, "BigGoldRedThreeSliceButtonTemplate")
-	mainFrame.ButtonListTest:SetPoint("CENTER", content1, "CENTER", 90,-30*k-60)
-	mainFrame.ButtonListTest:SetSize(110,25)
+	mainFrame[k] = CreateFrame("Button", nil, content1, "SharedGoldRedButtonSmallTemplate")
+	mainFrame[k]:SetPoint("LEFT", content1, "LEFT", 10, -30*k-75)
+	mainFrame[k]:SetSize(110,25)
+	mainFrame[k]:SetText(v)
 
-	mainFrame.ButtonListTest.text = mainFrame.ButtonListTest:CreateFontString()
-	mainFrame.ButtonListTest.text:SetFont("Fonts\\FRIZQT__.TTF", 12, "OUTLINE, MONOCHROME")
-	mainFrame.ButtonListTest.text:SetPoint("CENTER", mainFrame.ButtonListTest, "CENTER", 0, 0)
-	mainFrame.ButtonListTest.text:SetText(v)
-
-
-	mainFrame.ButtonListTest:SetScript("OnClick", function(self, button)
+	mainFrame[k]:SetScript("OnClick", function(self, button)
 		currentLanguage = v
 		print("Debug: Setting language to " .. currentLanguage)
-		--local testBingusHeaderRevert = _G[ACTIVE_CHAT_EDIT_BOX:GetName().."Header"]:GetText()
-		--local testBingusHeader = _G[ACTIVE_CHAT_EDIT_BOX:GetName().."Header"]:GetText() .. "[" .. currentLanguage .. "] "
-		--_G[ACTIVE_CHAT_EDIT_BOX:GetName().."Header"]:SetText(testBingusHeader)
+	end);
+
+	mainFrame[k].CB = CreateFrame("CheckButton", nil, content1, "UICheckButtonTemplate");
+	mainFrame[k].CB:SetPoint("LEFT", mainFrame[k], "RIGHT", 5, 0);
+	--mainFrame.CheckButtonLangList.Text:SetText("Check Btn " .. v);
+
+	mainFrame[k].CB:SetScript("OnClick", function(self)
+		if self:GetChecked() then
+			understandLanguage[v] = true;
+			print("Debug: Enable Understand " .. k .. " " .. v);
+		else
+			understandLanguage[v] = false;
+			print("Debug: Disable Understand " .. k .. " " .. v);
+		end
 	end);
 end
+
+mainFrame.Dialect = content1:CreateFontString()
+mainFrame.Dialect:SetFont("Fonts\\FRIZQT__.TTF", 11, "OUTLINE, MONOCHROME")
+mainFrame.Dialect:SetPoint("LEFT", mainFrame[21], "LEFT", 0, -30*1)
+mainFrame.Dialect:SetText("[PH] Dialect")
+
+dialectOption1 = CreateFrame("Button", nil, content1, "SharedGoldRedButtonSmallTemplate")
+dialectOption1:SetPoint("LEFT", mainFrame[21], "LEFT", 0, -30*1-20)
+dialectOption1:SetSize(110,25)
+dialectOption1:SetText("Dwarvish")
+
+dialectOption1:SetScript("OnClick", function(self, button)
+	print("Debug: Setting dialect to Dwarvish")
+end);
+
+
+dialectOption2 = CreateFrame("Button", nil, content1, "SharedGoldRedButtonSmallTemplate")
+dialectOption2:SetPoint("LEFT", mainFrame[21], "LEFT", 0, -30*2-20)
+dialectOption2:SetSize(110,25)
+dialectOption2:SetText("Draenic")
+
+dialectOption2:SetScript("OnClick", function(self, button)
+	print("Debug: Setting dialect to Draenic")
+end);
+
+
+dialectOption3 = CreateFrame("Button", nil, content1, "SharedGoldRedButtonSmallTemplate")
+dialectOption3:SetPoint("LEFT", mainFrame[21], "LEFT", 0, -30*3-20)
+dialectOption3:SetSize(110,25)
+dialectOption3:SetText("Zandali")
+
+dialectOption3:SetScript("OnClick", function(self, button)
+	print("Debug: Setting dialect to Zandali")
+end);
+
+
+dialectOptionToggle = CreateFrame("Button", nil, content1, "SharedGoldRedButtonSmallTemplate")
+dialectOptionToggle:SetPoint("LEFT", dialectOption1, "LEFT", 170, 0)
+dialectOptionToggle:SetSize(110,25)
+dialectOptionToggle:SetText("Dialect: Off")
+
+dialectOptionToggle:SetScript("OnClick", function(self, button)
+	print("Debug: Something about toggling Dialect here")
+end);
+
 
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -771,6 +832,60 @@ local LANGUAGE_REPLACEMENTS = {
 	
 };
 
+-- Table of characters to keep as they are
+local doNotTranslate = { ".", ",", "-", "¤", "0", "1", };
+
+local dictionaries = {
+	["Orcish"] = { ["hello"] = "lok'tar", },
+	["Darnassian"] = { ["hello"] = "bingus",},
+};
+
+local function TranslateWord(word, language)
+
+	return translatedWord
+end
+
+-- Function to translate a full sentence
+local function TranslateText(text, language)
+	text = text:lower()
+
+	-- Replace words and word sequences from dictionary
+	local dictionarySequences = {}
+	for word, translatedWord in dictionaries[language] do
+		text = text:gsub(word, "¤")
+		tinsert(dictionarySequences, translatedWord)
+	end
+
+	local sequenceIndex = 1
+	local translatedText = ""
+	local currentWord = ""
+	-- Go over every character (Unicode compliant)
+	for character in string.gmatch(text, "([%z\1-\127\194-\244][\128-\191]*)") do
+		-- Character shouldn't be translated
+		if tContains(doNotTranslate, character) then
+			-- Translate and add the word that just finished
+			translatedText = translatedText .. TranslateWord(currentWord, language)
+			if character == "¤" then
+				-- If special character, replace by the appropriate translated sequence
+				translatedText = translatedText .. dictionarySequences[sequenceIndex]
+				sequenceIndex = sequenceIndex + 1
+			else
+				-- Not special character, just add it as is
+				translatedText = translatedText .. character
+			end
+			-- Reset current word since we translated and added it
+			currentWord = ""
+		else
+			-- Regular character, just add to the current word
+			currentWord = currentWord .. character
+		end
+	end
+	-- Add the last word if the sentence doesn't end with punctuation
+	translatedText = translatedText .. TranslateWord(currentWord, language)
+
+	return translatedText
+end
+
 local languagelist = {
 	["^%[Common%]"] = "[Common]",
 	["^%[Darnassian%]"] = "[Darnassian]",
@@ -890,13 +1005,6 @@ local function ReplaceLanguage(text, language)
 		return Translation;
 	end);
 end
-
-local understandLanguage = {
-	Darnassian = false,
-	Orcish = false,
-	Broker = true,
-	Goblin = false,
-};
 
 local function eventFilterStuff(frame, event, message, sender, ...)
 	for i, v in ipairs(thingsToHide) do
