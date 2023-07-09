@@ -238,7 +238,7 @@ function mainFrame.enablePrefix()
 			if text ~= "" and text ~= nil then
 				textBeforeParse = text;
 				parsedEditBox = editBox;
-				if mainFrame.prefix == true and currentLanguage ~= "" and currentLanguage ~= nil then
+				if mainFrame.prefix == true and currentLanguage ~= "" and currentLanguage ~= nil and (_G[ACTIVE_CHAT_EDIT_BOX:GetName()]:GetAttribute("chatType") == "SAY" or _G[ACTIVE_CHAT_EDIT_BOX:GetName()]:GetAttribute("chatType") == "YELL") then
 					text = "[" .. currentLanguage .. "]" .. " " .. text;
 				end
 				editBox:SetText(text);
@@ -361,7 +361,7 @@ local languageBasicList = {
 
 
 for k, v in ipairs(languageBasicList) do
-	mainFrame.ButtonListTest = CreateFrame("Button", "ButtonListTest" .. v, content1, "BigGoldRedThreeSliceButtonTemplate")
+	mainFrame.ButtonListTest = CreateFrame("Button", nil, content1, "BigGoldRedThreeSliceButtonTemplate")
 	mainFrame.ButtonListTest:SetPoint("CENTER", content1, "CENTER", 90,-30*k-60)
 	mainFrame.ButtonListTest:SetSize(110,25)
 
@@ -373,10 +373,12 @@ for k, v in ipairs(languageBasicList) do
 
 	mainFrame.ButtonListTest:SetScript("OnClick", function(self, button)
 		currentLanguage = v
-		print("Setting language to " .. currentLanguage)
+		print("Debug: Setting language to " .. currentLanguage)
+		--local testBingusHeaderRevert = _G[ACTIVE_CHAT_EDIT_BOX:GetName().."Header"]:GetText()
+		--local testBingusHeader = _G[ACTIVE_CHAT_EDIT_BOX:GetName().."Header"]:GetText() .. "[" .. currentLanguage .. "] "
+		--_G[ACTIVE_CHAT_EDIT_BOX:GetName().."Header"]:SetText(testBingusHeader)
 	end);
 end
-
 
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -896,8 +898,7 @@ local understandLanguage = {
 	Goblin = false,
 };
 
-
-ChatFrame_AddMessageEventFilter("CHAT_MSG_SAY", function(frame, event, message, sender, ...)
+local function eventFilterStuff(frame, event, message, sender, ...)
 	for i, v in ipairs(thingsToHide) do
 		--print(i) -- 6
 		--print(languagelist[i]) -- nil
@@ -916,4 +917,32 @@ ChatFrame_AddMessageEventFilter("CHAT_MSG_SAY", function(frame, event, message, 
 		end
 	end
 
-end)
+end
+
+
+ChatFrame_AddMessageEventFilter("CHAT_MSG_SAY", eventFilterStuff)
+ChatFrame_AddMessageEventFilter("CHAT_MSG_YELL", eventFilterStuff)
+
+local function testScriptHeader()
+	--_G[ACTIVE_CHAT_EDIT_BOX:GetName().."Header"]:GetText()
+	--local header = _G[ACTIVE_CHAT_EDIT_BOX:GetName().."Header"]
+	local editBox
+	local header
+	if ACTIVE_CHAT_EDIT_BOX ~= nil and currentLanguage ~= "" and currentLanguage ~= nil and mainFrame.prefix == true then
+		editBox = _G[ACTIVE_CHAT_EDIT_BOX:GetName()]
+		header = _G[ACTIVE_CHAT_EDIT_BOX:GetName().."Header"]
+		if editBox:GetAttribute("chatType") == "SAY" or editBox:GetAttribute("chatType") == "YELL" then
+			if editBox:IsShown() then
+				local left, right, top, bottom = editBox:GetTextInsets() -- top/bottom will always be 0
+				header:SetText(header:GetText() .. "[" .. currentLanguage .. "]")
+				editBox:SetTextInsets(left+(header:GetStringWidth()/1.3), right, top, bottom)
+			else
+				return
+			end
+		end
+	end
+	
+end
+
+--hooksecurefunc("ChatEdit_ResetChatType", function() RunNextFrame(testScriptHeader); end)
+hooksecurefunc("ChatEdit_OnEditFocusGained", function() RunNextFrame(testScriptHeader); end)
