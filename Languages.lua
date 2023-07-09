@@ -108,7 +108,7 @@ mainFrame.minMax = true;
 
 function mainFrame.minMaxFunc()
 	if mainFrame.minMax == true then
-		mainFrame:SetSize(200,100)
+		mainFrame:SetSize(338,100)
 		mainFrame.minMax = false
 	elseif mainFrame.minMax == false then
 		mainFrame:SetSize(338,424)
@@ -224,7 +224,7 @@ end
 ---------------------------------------------------------------------------------------------------------------------------------------------------------
 
 local textBeforeParse, parsedEditBox;
-
+local currentLanguage = "";
 
 function mainFrame.enablePrefix()
 
@@ -238,8 +238,8 @@ function mainFrame.enablePrefix()
 			if text ~= "" and text ~= nil then
 				textBeforeParse = text;
 				parsedEditBox = editBox;
-				if mainFrame.prefix == true then
-					text = "[Darnassian]" .. " " .. text;
+				if mainFrame.prefix == true and currentLanguage ~= "" and currentLanguage ~= nil then
+					text = "[" .. currentLanguage .. "]" .. " " .. text;
 				end
 				editBox:SetText(text);
 			end
@@ -304,13 +304,21 @@ end
 -- GUI Buttons
 ---------------------------------------------------------------------------------------------------------------------------------------------------------
 
-
-
 --some test text
-mainFrame.PHText = content1:CreateFontString()
-mainFrame.PHText:SetFont("Fonts\\FRIZQT__.TTF", 11, "OUTLINE, MONOCHROME")
-mainFrame.PHText:SetPoint("CENTER", content1, "CENTER", 0, -500)
-mainFrame.PHText:SetText("bingus")
+mainFrame.PHText1 = content1:CreateFontString()
+mainFrame.PHText1:SetFont("Fonts\\FRIZQT__.TTF", 11, "OUTLINE, MONOCHROME")
+mainFrame.PHText1:SetPoint("CENTER", content1, "CENTER", 0, -500)
+mainFrame.PHText1:SetText("Placeholder - Diction")
+
+mainFrame.PHText2 = content2:CreateFontString()
+mainFrame.PHText2:SetFont("Fonts\\FRIZQT__.TTF", 11, "OUTLINE, MONOCHROME")
+mainFrame.PHText2:SetPoint("CENTER", content2, "CENTER", 0, -50)
+mainFrame.PHText2:SetText("Placeholder - Settings")
+
+mainFrame.PHText3 = content3:CreateFontString()
+mainFrame.PHText3:SetFont("Fonts\\FRIZQT__.TTF", 11, "OUTLINE, MONOCHROME")
+mainFrame.PHText3:SetPoint("CENTER", content3, "CENTER", 0, -50)
+mainFrame.PHText3:SetText("Placeholder - Profiles")
 
 mainFrame.ButtonTest = CreateFrame("Button", "LanguagesMainFrameButtonClickTest", content1, "BigGoldRedThreeSliceButtonTemplate")
 mainFrame.ButtonTest:SetPoint("CENTER", content1, "CENTER", 0,-50)
@@ -325,6 +333,50 @@ mainFrame.ButtonTest.text:SetText("Language Prefix: Off")
 mainFrame.ButtonTest:SetScript("OnClick", function(self, button)
 	mainFrame.TogglePrefix()
 end);
+
+
+local languageBasicList = {
+	"Common",
+	"Darnassian",
+	"Dwarven",
+	"Gnomish",
+	"Draenei",
+	"Orcish",
+	"Zandali",
+	"Taurahe",
+	"Gutterspeak",
+	"Thalassian",
+	"Goblin",
+	"Shalassian",
+	"Vulpera",
+	"Pandaren",
+	"Ancient Pandaren",
+	"Draconic",
+	"Demonic",
+	"Titan",
+	"Kalimag",
+	"Shath'Yar",
+	"Broker",
+};
+
+
+for k, v in ipairs(languageBasicList) do
+	mainFrame.ButtonListTest = CreateFrame("Button", "ButtonListTest" .. v, content1, "BigGoldRedThreeSliceButtonTemplate")
+	mainFrame.ButtonListTest:SetPoint("CENTER", content1, "CENTER", 90,-30*k-60)
+	mainFrame.ButtonListTest:SetSize(110,25)
+
+	mainFrame.ButtonListTest.text = mainFrame.ButtonListTest:CreateFontString()
+	mainFrame.ButtonListTest.text:SetFont("Fonts\\FRIZQT__.TTF", 12, "OUTLINE, MONOCHROME")
+	mainFrame.ButtonListTest.text:SetPoint("CENTER", mainFrame.ButtonListTest, "CENTER", 0, 0)
+	mainFrame.ButtonListTest.text:SetText(v)
+
+
+	mainFrame.ButtonListTest:SetScript("OnClick", function(self, button)
+		currentLanguage = v
+		print("Setting language to " .. currentLanguage)
+	end);
+end
+
 
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------
