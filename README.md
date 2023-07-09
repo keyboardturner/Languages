@@ -19,8 +19,8 @@ There are many things to do:
   - "Languages learned" options
   - TRP3 Profile Integration
   - Heiroglyph toggles
-- Build frames for options
+- ~~Build frames for options~~
 - Slash commands
 - Create dictionary (ie "Giant's Heart" = "Grommash")
-- Find decent integration into the UI, minimap button? character tab? skill section?
+- ~~Find decent integration into the UI, minimap button? character tab? skill section?~~
 - Figure out how to treat default languages
