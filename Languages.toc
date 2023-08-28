@@ -1,10 +1,11 @@
-## Interface: 100100
+## Interface: 100105
 ## Title: Languages
 ## Notes: A work-in-progress addon that aims to bring in "speakable" ingame languages in a lightweight and accessible way.
+## IconTexture: Interface/Icons/ability_priest_heavanlyvoice.blp
 ## Author: Keyboardturner
 ## Version: 0.0.1
-## SavedVariables: BunniesDB
-## OptionalDeps: LibDBIcon, Ace3
+## SavedVariables: Languages_DB
+## OptionalDeps: LibDBIcon, Ace3, TotalRP3
 
 Libs\LibStub\LibStub.lua
 Libs\CallbackHandler-1.0\CallbackHandler-1.0.xml

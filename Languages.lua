@@ -10,69 +10,71 @@ local defaultsTableSV = {
 	TRP3 = {TRP3profile = true},
 };
 
+local lang = CreateFrame("Frame");
+
 local RaceDefaults = {
 	gameplay = {
-		human = {"Common"}, -- 1
-		dwarf = {"Common", "Dwarven"}, -- 3
-		nightelf = {"Common", "Darnassian"}, -- 4
-		gnome = {"Common", "Gnomish"}, -- 7
-		draenei = {"Common", "Draenei"}, -- 11
-		worgen = {"Common"}, -- 22
-		voidelf = {"Common", "Thalassian"}, -- 29
-		lightforged = {"Common", "Draenei"}, -- 30
-		darkiron = {"Common", "Dwarven"}, -- 34
-		kultiran = {"Common"}, -- 32
-		mechagnome = {"Common", "Gnomish"}, -- 37
-		pandarenN = {"Pandaren"}, -- 24
-		pandarenA = {"Common", "Pandaren"}, -- 25
-		pandarenH = {"Orcish", "Pandaren"}, -- 26
-		orc = {"Orcish"}, -- 2
-		undead = {"Orcish", "Gutterspeak"}, -- 5
-		tauren = {"Orcish", "Taurahe"}, -- 6
-		troll = {"Orcish", "Zandali"}, -- 8
-		bloodelf = {"Orcish", "Thalassian"}, -- 10
-		goblin = {"Orcish", "Goblin"}, -- 9
-		nightborne = {"Orcish", "Shalassian"}, -- 27
-		highmountain = {"Orcish", "Taurahe"}, -- 28
-		maghar = {"Orcish"}, -- 36
-		zandalari = {"Orcish", "Zandali"}, -- 31
-		vulpera = {"Orcish", "Vulpera"}, -- 35
-		dracthyrN = {"Draconic"}, -- 
-		dracthyrA = {"Common", "Draconic"}, -- 52
-		dracthyrH = {"Orcish", "Draconic"}, -- 70
+		[1] = {"Common"}, -- 1 human 
+		[3] = {"Common", "Dwarven"}, -- 3 dwarf
+		[4] = {"Common", "Darnassian"}, -- 4 night elf
+		[7] = {"Common", "Gnomish"}, -- 7 gnome
+		[11] = {"Common", "Draenei"}, -- 11 draenei
+		[22] = {"Common"}, -- 22 worgen
+		[29] = {"Common", "Thalassian"}, -- 29 void elf
+		[30] = {"Common", "Draenei"}, -- 30 lightforged
+		[34] = {"Common", "Dwarven"}, -- 34 dark iron
+		[32] = {"Common"}, -- 32 kul tiran
+		[37] = {"Common", "Gnomish"}, -- 37 mechagnome
+		[24] = {"Pandaren"}, -- 24 pandaren neutral
+		[25] = {"Common", "Pandaren"}, -- 25 pandaren alliance
+		[26] = {"Orcish", "Pandaren"}, -- 26 pandaren horde
+		[2] = {"Orcish"}, -- 2 orc
+		[5] = {"Orcish", "Gutterspeak"}, -- 5 forsaken
+		[6] = {"Orcish", "Taurahe"}, -- 6 tauren
+		[8] = {"Orcish", "Zandali"}, -- 8 troll
+		[10] = {"Orcish", "Thalassian"}, -- 10 blood elf
+		[9] = {"Orcish", "Goblin"}, -- 9 goblin
+		[27] = {"Orcish", "Shalassian"}, -- 27 nightborne
+		[28] = {"Orcish", "Taurahe"}, -- 28 highmountain
+		[36] = {"Orcish"}, -- 36 mag'har
+		[31] = {"Orcish", "Zandali"}, -- 31 zandalari
+		[35] = {"Orcish", "Vulpera"}, -- 35 vulpera
+		--dracthyrN = {"Draconic"}, -- 
+		[52] = {"Common", "Draconic"}, -- 52 dracthyr alliance
+		[70] = {"Orcish", "Draconic"}, -- 70 dracthyr horde
 
 		demonhunter = {"Demonic"},
 		priest = {"Shath'Yar"},
 	},
 	recommended = {
-		human = {"Common"}, -- 1
-		dwarf = {"Common", "Dwarven", "Gnomish"}, -- 3
-		nightelf = {"Common", "Darnassian"}, -- 4
-		gnome = {"Common", "Gnomish", "Dwarven"}, -- 7
-		draenei = {"Common", "Draenei", "Orcish"}, -- 11
-		worgen = {"Common"}, -- 22
-		voidelf = {"Common", "Thalassian"}, -- 29
-		lightforged = {"Common", "Draenei"}, -- 30
-		darkiron = {"Common", "Dwarven"}, -- 34
-		kultiran = {"Common"}, -- 32
-		mechagnome = {"Common", "Gnomish"}, -- 37
-		pandarenN = {"Pandaren"}, -- 24
-		pandarenA = {"Common", "Pandaren"}, -- 25
-		pandarenH = {"Orcish", "Pandaren"}, -- 26
-		orc = {"Orcish", "Common"}, -- 2
-		undead = {"Orcish", "Gutterspeak", "Common"}, -- 5
-		tauren = {"Orcish", "Taurahe"}, -- 6
-		troll = {"Orcish", "Zandali"}, -- 8
-		bloodelf = {"Orcish", "Thalassian", "Common"}, -- 10
-		goblin = {"Orcish", "Goblin", "Common"}, -- 9
-		nightborne = {"Orcish", "Shalassian"}, -- 27
-		highmountain = {"Orcish", "Taurahe"}, -- 28
-		maghar = {"Orcish"}, --36
-		zandalari = {"Orcish", "Zandali"}, -- 31
-		vulpera = {"Orcish", "Vulpera"}, -- 35
-		dracthyrN = {"Draconic", "Common", "Orcish"}, -- 
-		dracthyrA = {"Common", "Draconic", "Orcish"}, -- 52
-		dracthyrH = {"Orcish", "Draconic", "Common"}, -- 70
+		[1] = {"Common"}, -- 1 human
+		[3] = {"Common", "Dwarven", "Gnomish"}, -- 3 dwarf
+		[4] = {"Common", "Darnassian"}, -- 4 night elf
+		[7] = {"Common", "Gnomish", "Dwarven"}, -- 7 dwarf
+		[11] = {"Common", "Draenei", "Orcish"}, -- 11 draenei
+		[22] = {"Common"}, -- 22 worgen
+		[29] = {"Common", "Thalassian"}, -- 29 void elf
+		[30] = {"Common", "Draenei"}, -- 30 lightforged
+		[34] = {"Common", "Dwarven"}, -- 34 dark iron
+		[32] = {"Common"}, -- 32 kul tiran 
+		[37] = {"Common", "Gnomish"}, -- 37 mechagnome
+		[24] = {"Pandaren"}, -- 24 pandaren neutral
+		[25] = {"Common", "Pandaren"}, -- 25 pandaren alliance
+		[26] = {"Orcish", "Pandaren"}, -- 26 pandaren horde
+		[2] = {"Orcish", "Common"}, -- 2 orc
+		[5] = {"Orcish", "Gutterspeak", "Common"}, -- 5 forsaken
+		[6] = {"Orcish", "Taurahe"}, -- 6 tauren
+		[8] = {"Orcish", "Zandali"}, -- 8 troll
+		[10] = {"Orcish", "Thalassian", "Common"}, -- 10 blood elf
+		[9] = {"Orcish", "Goblin", "Common"}, -- 9 goblin
+		[27] = {"Orcish", "Shalassian"}, -- 27 nightborne
+		[28] = {"Orcish", "Taurahe"}, -- 28 highmountain
+		[36] = {"Orcish"}, --36 mag'har
+		[31] = {"Orcish", "Zandali"}, -- 31 zandalari
+		[35] = {"Orcish", "Vulpera"}, -- 35 vulpera
+		--dracthyrN = {"Draconic", "Common", "Orcish"}, -- 
+		[52] = {"Common", "Draconic", "Orcish"}, -- 52 dracthyr alliance
+		[70] = {"Orcish", "Draconic", "Common"}, -- 70 dracthyr horde
 
 		demonhunter = {"Demonic"},
 		warlock = {"Demonic"},
@@ -207,11 +209,11 @@ mainFrame.prefix = false
 function mainFrame.TogglePrefix()
 	if mainFrame.prefix == true then
 		mainFrame.prefix = false
-		mainFrame.ButtonTest.text:SetText("Language Prefix: Off")
+		mainFrame.ButtonTest:SetText("Language Prefix: Off")
 		print("Debug: Toggling off automated language prefix!")
 	elseif mainFrame.prefix == false then
 		mainFrame.prefix = true
-		mainFrame.ButtonTest.text:SetText("Language Prefix: On")
+		mainFrame.ButtonTest:SetText("Language Prefix: On")
 		print("Debug: Toggling on automated language prefix!")
 	end
 end
@@ -263,7 +265,7 @@ mainFrame.enablePrefix()
 ---------------------------------------------------------------------------------------------------------------------------------------------------------
 
 local addon = LibStub("AceAddon-3.0"):NewAddon("Languages", "AceConsole-3.0")
-local bunnyLDB = LibStub("LibDataBroker-1.1"):NewDataObject("Languages", {
+local languagesLDB = LibStub("LibDataBroker-1.1"):NewDataObject("Languages", {
 	type = "data source",
 	text = "Languages",
 	icon = "Interface\\Icons\\INV_Chest_Cloth_17",
@@ -278,14 +280,14 @@ local bunnyLDB = LibStub("LibDataBroker-1.1"):NewDataObject("Languages", {
 local icon = LibStub("LibDBIcon-1.0")
 
 function addon:OnInitialize()
-	self.db = LibStub("AceDB-3.0"):New("BunniesDB", {
+	self.db = LibStub("AceDB-3.0"):New("Languages_DB", {
 		profile = {
 			minimap = {
 				hide = false,
 			},
 		},
 	})
-	icon:Register("Languages", bunnyLDB, self.db.profile.minimap)
+	icon:Register("Languages", languagesLDB, self.db.profile.minimap)
 	self:RegisterChatCommand("bunnies", "ToggleMinimapButton")
 end
 
@@ -316,19 +318,80 @@ mainFrame.PHText2:SetPoint("CENTER", content2, "CENTER", 0, -50)
 mainFrame.PHText2:SetText("Placeholder - Settings")
 
 mainFrame.PHText3 = content3:CreateFontString()
-mainFrame.PHText3:SetFont("Fonts\\FRIZQT__.TTF", 11, "OUTLINE, MONOCHROME")
+mainFrame.PHText3:SetFont("Fonts\\FRIZQT__.TTF", 11, "")
 mainFrame.PHText3:SetPoint("CENTER", content3, "CENTER", 0, -50)
 mainFrame.PHText3:SetText("Placeholder - Profiles")
 
-mainFrame.ButtonTest = CreateFrame("Button", "LanguagesMainFrameButtonClickTest", content1, "SharedGoldRedButtonSmallTemplate")
+mainFrame.ButtonTest = CreateFrame("Button", nil, content1, "SharedGoldRedButtonSmallTemplate")
 mainFrame.ButtonTest:SetPoint("CENTER", content1, "CENTER", 0,-50)
 mainFrame.ButtonTest:SetSize(200,50)
 mainFrame.ButtonTest:SetText("Language Prefix: Off")
-
-
 mainFrame.ButtonTest:SetScript("OnClick", function(self, button)
 	mainFrame.TogglePrefix()
 end);
+
+
+----------------------------------------
+-- content 1 - Diction
+----------------------------------------
+
+----------------------------------------
+-- content 2 - Settings
+----------------------------------------
+
+mainFrame.Acc_backdropInfo = {
+	bgFile = "Interface\\Tooltips\\UI-Tooltip-Background",
+	edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border",
+	tile = true,
+	tileEdge = true,
+	tileSize = 8,
+	edgeSize = 8,
+	insets = { left = 1, right = 1, top = 1, bottom = 1 },
+};
+
+mainFrame.Acc_Frame = CreateFrame("Frame", nil, content2, "BackdropTemplate")
+mainFrame.Acc_Frame:SetPoint("TOP", content2, "TOP", 0, -75)
+mainFrame.Acc_Frame:SetSize(300,250)
+mainFrame.Acc_Frame:SetBackdrop(mainFrame.Acc_backdropInfo)
+mainFrame.Acc_Frame:SetBackdropColor(0,0,0,.5)
+
+mainFrame.header1 = content2:CreateFontString()
+mainFrame.header1:SetFont("Fonts\\FRIZQT__.TTF", 11, "")
+mainFrame.header1:SetPoint("BOTTOMLEFT", mainFrame.Acc_Frame, "TOPLEFT", 0, 0)
+mainFrame.header1:SetText("[PH] Account Settings")
+
+
+
+mainFrame.Char_Frame = CreateFrame("Frame", nil, mainFrame.Acc_Frame, "BackdropTemplate")
+mainFrame.Char_Frame:SetPoint("TOP", mainFrame.Acc_Frame, "BOTTOM", 0, -55)
+mainFrame.Char_Frame:SetSize(300,250)
+mainFrame.Char_Frame:SetBackdrop(mainFrame.Acc_backdropInfo)
+mainFrame.Char_Frame:SetBackdropColor(0,0,0,.5)
+
+mainFrame.header2 = content2:CreateFontString()
+mainFrame.header2:SetFont("Fonts\\FRIZQT__.TTF", 11, "")
+mainFrame.header2:SetPoint("BOTTOMLEFT", mainFrame.Char_Frame, "TOPLEFT", 0, 0)
+mainFrame.header2:SetText("[PH] Character Settings")
+
+----------------------------------------
+-- content 3 - Profiles
+----------------------------------------
+mainFrame.trp3ProfileCB = CreateFrame("CheckButton", nil, mainFrame.Char_Frame, "UICheckButtonTemplate");
+mainFrame.trp3ProfileCB:SetPoint("TOP", mainFrame.Char_Frame, "TOP", 35, -15);
+mainFrame.trp3ProfileCB:SetScript("OnClick", function(self)
+	if self:GetChecked() then
+		print("Debug: Link to Total RP 3 Profile");
+	else
+		print("Debug: Link to Total RP 3 Profile");
+	end
+end);
+mainFrame.trp3ProfileCB:Disable();
+
+mainFrame.trp3ProfileCB.text = mainFrame.Char_Frame:CreateFontString()
+mainFrame.trp3ProfileCB.text:SetFont("Fonts\\FRIZQT__.TTF", 11, "")
+mainFrame.trp3ProfileCB.text:SetPoint("RIGHT", mainFrame.trp3ProfileCB, "LEFT", -5, 0)
+mainFrame.trp3ProfileCB.text:SetText("Link to Total RP 3 Profile")
+mainFrame.trp3ProfileCB.text:SetTextColor(.5,.5,.5)
 
 
 local understandLanguage = {
@@ -371,7 +434,7 @@ mainFrame.ColumnUnderstand:SetText("[PH] Understand")
 
 
 for k, v in ipairs(languageBasicList) do
-	mainFrame[k] = CreateFrame("Button", nil, content1, "SharedGoldRedButtonSmallTemplate")
+	mainFrame[k] = CreateFrame("Button", nil, content1, "SharedButtonSmallTemplate")
 	mainFrame[k]:SetPoint("LEFT", content1, "LEFT", 10, -30*k-75)
 	mainFrame[k]:SetSize(110,25)
 	mainFrame[k]:SetText(v)
@@ -836,7 +899,12 @@ local LANGUAGE_REPLACEMENTS = {
 local doNotTranslate = { ".", ",", "-", "¤", "0", "1", };
 
 local dictionaries = {
-	["Orcish"] = { ["hello"] = "lok'tar", },
+	["Orcish"] = {
+		["hello"] = "lok'tar", ["i'll protect you"] = "bin mog g'thazag cha", ["i will protect you"] = "bin mog g'thazag cha", ["me protect you"] = "bin mog g'thazag cha", ["twisted soul"] = "dae'mon", ["demon"] = "dae'mon", 
+		["draenor's honor"] = "Dra'gora", ["draenor's honor"] = "Dra'gora", ["draenors honor"] = "Dra'gora", ["draenors' honor"] = "Dra'gora", ["honor of draenor"] = "Dra'gora", ["draenor's heart"] = "dranosh",
+		["heart of draenor"] = "dranosh", ["draenors heart"] = "dranosh", ["draenors' heart"] = "dranosh", ["warrior's heart"] = "garrosh", ["warriors heart"] = "garrosh", ["warriors' heart"] = "garrosh", ["heart of the warrior"] = "garrosh", 
+		["heart of a warrior"] = "garrosh", ["heart of warrior"] = "garrosh", ["heart"] = "osh", ["by my axe"] = "gol'kosh",
+	},
 	["Darnassian"] = { ["hello"] = "bingus",},
 };
 
@@ -1054,3 +1122,31 @@ end
 
 --hooksecurefunc("ChatEdit_ResetChatType", function() RunNextFrame(testScriptHeader); end)
 hooksecurefunc("ChatEdit_OnEditFocusGained", function() RunNextFrame(testScriptHeader); end)
+
+function lang.trp3ProfileName()
+	mainFrame.PHTRP3Text = content3:CreateFontString()
+	mainFrame.PHTRP3Text:SetFont("Fonts\\FRIZQT__.TTF", 11, "")
+	mainFrame.PHTRP3Text:SetPoint("CENTER", content3, "CENTER", 0, -70)
+	mainFrame.PHTRP3Text:SetText("Placeholder TRP3 Profile Name")
+	if TRP3_API.profile.getPlayerCurrentProfile() then
+		mainFrame.PHTRP3Text:SetText(TRP3_API.profile.getPlayerCurrentProfile().profileName);
+		mainFrame.trp3ProfileCB:Enable();
+		mainFrame.trp3ProfileCB.text:SetTextColor(1,1,1)
+	end
+end
+
+function lang.trp3Check()
+	if IsAddOnLoaded("totalRP3") == true then
+		TRP3_API.RegisterCallback(TRP3_Addon, "REGISTER_DATA_UPDATED", lang.trp3ProfileName);
+	end
+end
+
+lang:RegisterEvent("ADDON_LOADED")
+
+function lang.addonLoaded(arg1, arg2, arg3) -- table, event, addonName
+	if arg2 == "ADDON_LOADED" and arg3 == "Languages" then
+		lang.trp3Check()
+	end
+end
+
+lang:SetScript("OnEvent", lang.addonLoaded)
