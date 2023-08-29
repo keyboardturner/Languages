@@ -1,21 +1,35 @@
 local _, L = ...
 
-local defaultsTableSV = {
+local defaultsTableAcc = {
 	
-	Settings = {glyphs = true, glyphSizeX = 15, glyphSizeY = 15, understandAll = false, translation = false, characterSpecific = true, debug = false},
+	glyphs = true, glyphSizeX = 15, glyphSizeY = 15,
+	characterSpecific = true,
+	debug = false,
 
-	Colors = {
+	colors = {
 		prefix = {r = 28/255, g = 230/255, b = 81/255},
 		text = {r = 1, g = 1, b = 1},
 	},
 
-	TRP3 = {TRP3profile = true},
+};
+
+local defaultsTableChar = {
+	minimap = {
+		hide = false,
+	},
+	TRP3 = true;
+	translation = false,
+	understandAll = false,
+	understandLanguage = {
+	};
 };
 
 local lang = CreateFrame("Frame");
+local chatTypeBingus = ChatTypeInfo["SAY"];
 
 local function Print(text)
-	text = L["Languages"] .. ": " .. text
+	local textColor = CreateColor(Languages_DB.settings.colors.prefix.r, Languages_DB.settings.colors.prefix.g, Languages_DB.settings.colors.prefix.b):GenerateHexColor()
+	text = "|c" .. textColor .. L["Languages"] .. "|r" .. ": " .. text
 	
 	return DEFAULT_CHAT_FRAME:AddMessage(text, 1, 1, 1)
 end
@@ -137,6 +151,30 @@ function mainFrame:tooltip_OnEnter(frame, text)
 end
 function mainFrame.tooltip_OnLeave()
 	GameTooltip:Hide();
+end
+
+function mainFrame:ShowColorPicker(r, g, b, a, changedCallback)
+	ColorPickerFrame.hasOpacity, ColorPickerFrame.opacity = (a ~= nil), a;
+	ColorPickerFrame.previousValues = {r,g,b,a};
+	ColorPickerFrame.func, ColorPickerFrame.opacityFunc, ColorPickerFrame.cancelFunc = changedCallback, changedCallback, changedCallback;
+	ColorPickerFrame:SetColorRGB(r,g,b);
+	ColorPickerFrame:Hide(); -- Need to run the OnShow handler.
+	ColorPickerFrame:Show();
+end
+
+function mainFrame:PrefixColor(restore)
+	local newR, newG, newB, newA; -- I forgot what to do with the alpha value but it's needed to not swap RGB values
+	if restore then
+		-- The user bailed, we extract the old color from the table created by ShowColorPicker.
+		newR, newG, newB, newA = unpack(restore);
+	else
+		-- Something changed
+		newA, newR, newG, newB = OpacitySliderFrame:GetValue(), ColorPickerFrame:GetColorRGB();
+	end
+	 -- Update our internal storage.
+	r, g, b = newR, newG, newB
+	 -- And update any UI elements that use this color...
+	Languages_DB.settings.colors.prefix.r, Languages_DB.settings.colors.prefix.g, Languages_DB.settings.colors.prefix.b = newR, newG, newB;
 end
 
 mainFrame.MinimizeButton = CreateFrame("Button", "LanguagesMainFrameMinMaxButton", mainFrame, "MaximizeMinimizeButtonFrameTemplate")
@@ -292,36 +330,35 @@ local languagesLDB = LibStub("LibDataBroker-1.1"):NewDataObject("Languages", {
 	icon = "Interface\\Icons\\INV_Chest_Cloth_17",
 	OnClick = function()
 		if mainFrame:IsShown() then
-			mainFrame:Hide()
+			mainFrame:Hide();
 		else
-			mainFrame:Show()
+			mainFrame:Show();
 		end
 	end,
 	OnTooltipShow = function(tt)
-		tt:AddLine(L["MinimapTooltip"])
+		tt:AddLine(L["MinimapTooltip"]);
 	end,
 })
 local icon = LibStub("LibDBIcon-1.0")
 
+local realmKey = GetRealmName()
+local charKey = UnitName("player") .. " - " .. realmKey
+
 function addon:OnInitialize()
 	self.db = LibStub("AceDB-3.0"):New("Languages_DB", {
-		profile = {
-			minimap = {
-				hide = false,
-			},
-		},
-	})
-	icon:Register("Languages", languagesLDB, self.db.profile.minimap)
-	self:RegisterChatCommand("languageshide", "ToggleMinimapButton")
+		profile = CopyTable(defaultsTableChar);
+	});
+	icon:Register("Languages", languagesLDB, self.db.profile.minimap);
+	self:RegisterChatCommand("languageshide", "ToggleMinimapButton");
 end
 
 function addon:ToggleMinimapButton()
 	self.db.profile.minimap.hide = not
 	self.db.profile.minimap.hide
 	if self.db.profile.minimap.hide then
-		icon:Hide("Languages")
+		icon:Hide("Languages");
 	else
-		icon:Show("Languages")
+		icon:Show("Languages");
 	end
 end
 
@@ -351,7 +388,7 @@ mainFrame.ButtonTest:SetPoint("CENTER", content1, "CENTER", 0,-50)
 mainFrame.ButtonTest:SetSize(200,50)
 mainFrame.ButtonTest:SetText(L["TogglePrefixOff"])
 mainFrame.ButtonTest:SetScript("OnClick", function(self, button)
-	mainFrame.TogglePrefix()
+	mainFrame.TogglePrefix();
 end);
 
 
@@ -383,6 +420,34 @@ mainFrame.backdropTestLetter = {
 	insets = { left = 1, right = 1, top = 1, bottom = 1 },
 };
 
+StaticPopupDialogs["LANGUAGES_ACC_RESET_SETTINGS"] = {
+	text = L["ResetAccSettingsConfirm"],
+	button1 = "Yes",
+	button2 = "No",
+	OnAccept = function()
+		Languages_DB.settings = nil;
+		Languages_DB.settings = CopyTable(defaultsTableAcc);
+		lang.checkSettings();
+	end,
+	timeout = 0,
+	whileDead = true,
+	hideOnEscape = true,
+};
+
+StaticPopupDialogs["LANGUAGES_CHAR_RESET_SETTINGS"] = {
+	text = L["ResetAccSettingsConfirm"],
+	button1 = "Yes",
+	button2 = "No",
+	OnAccept = function()
+		Languages_DB.profiles[charKey] = nil;
+		Languages_DB.profiles[charKey] = CopyTable(defaultsTableChar);
+		lang.checkSettings();
+	end,
+	timeout = 0,
+	whileDead = true,
+	hideOnEscape = true,
+};
+
 mainFrame.Acc_Frame = CreateFrame("Frame", nil, content2, "BackdropTemplate")
 mainFrame.Acc_Frame:SetPoint("TOP", content2, "TOP", 0, -75)
 mainFrame.Acc_Frame:SetSize(300,250)
@@ -394,30 +459,53 @@ mainFrame.header1:SetFont("Fonts\\FRIZQT__.TTF", 11, "")
 mainFrame.header1:SetPoint("BOTTOMLEFT", mainFrame.Acc_Frame, "TOPLEFT", 0, 0)
 mainFrame.header1:SetText(L["AccountSettings"])
 
+mainFrame.resetAccSettings = CreateFrame("Button", nil, mainFrame.Acc_Frame, "SharedButtonSmallTemplate")
+mainFrame.resetAccSettings:SetPoint("BOTTOMRIGHT", mainFrame.Acc_Frame, "TOPRIGHT", -15, 5)
+mainFrame.resetAccSettings:SetSize(110,25)
+mainFrame.resetAccSettings:SetText(DEFAULTS)
+mainFrame.resetAccSettings:SetScript("OnClick", function(self, button)
+	StaticPopup_Show("LANGUAGES_ACC_RESET_SETTINGS");
+end);
+mainFrame.resetAccSettings:SetScript("OnEnter", function(self)
+	mainFrame:tooltip_OnEnter(self, L["ResetAccSettings"]);
+end);
+mainFrame.resetAccSettings:SetScript("OnLeave", mainFrame.tooltip_OnLeave);
+
 
 mainFrame.Char_Frame = CreateFrame("Frame", nil, mainFrame.Acc_Frame, "BackdropTemplate")
 mainFrame.Char_Frame:SetPoint("TOP", mainFrame.Acc_Frame, "BOTTOM", 0, -55)
 mainFrame.Char_Frame:SetSize(300,250)
 mainFrame.Char_Frame:SetBackdrop(mainFrame.Acc_backdropInfo)
-mainFrame.Char_Frame:SetBackdropColor(0,0,0,.5)
+mainFrame.Char_Frame:SetBackdropColor(0,0,0,.5)	
 
 mainFrame.header2 = content2:CreateFontString()
 mainFrame.header2:SetFont("Fonts\\FRIZQT__.TTF", 11, "")
 mainFrame.header2:SetPoint("BOTTOMLEFT", mainFrame.Char_Frame, "TOPLEFT", 0, 0)
 mainFrame.header2:SetText(L["CharacterSettings"])
 
-----------------------------------------
--- content 3 - Profiles
-----------------------------------------
+mainFrame.resetCharSettings = CreateFrame("Button", nil, mainFrame.Char_Frame, "SharedButtonSmallTemplate")
+mainFrame.resetCharSettings:SetPoint("BOTTOMRIGHT", mainFrame.Char_Frame, "TOPRIGHT", -15, 5)
+mainFrame.resetCharSettings:SetSize(110,25)
+mainFrame.resetCharSettings:SetText(DEFAULTS)
+mainFrame.resetCharSettings:SetScript("OnClick", function(self, button)
+	StaticPopup_Show("LANGUAGES_CHAR_RESET_SETTINGS");
+end);
+mainFrame.resetCharSettings:SetScript("OnEnter", function(self)
+	mainFrame:tooltip_OnEnter(self, L["ResetCharSettings"]);
+end);
+mainFrame.resetCharSettings:SetScript("OnLeave", mainFrame.tooltip_OnLeave);
 
 mainFrame.glyphsCB = CreateFrame("CheckButton", nil, mainFrame.Acc_Frame, "UICheckButtonTemplate");
 mainFrame.glyphsCB:SetPoint("TOPRIGHT", mainFrame.Acc_Frame, "TOPRIGHT", -15, -15);
 mainFrame.glyphsCB:SetScript("OnClick", function(self)
 	if self:GetChecked() then
 		Print(L["GlyphsOn"]);
+		Languages_DB.settings.glyphs = true;
 	else
 		Print(L["GlyphsOff"]);
+		Languages_DB.settings.glyphs = false;
 	end
+	lang.checkSettings();
 end);
 mainFrame.glyphsCB.text = mainFrame.Acc_Frame:CreateFontString()
 mainFrame.glyphsCB.text:SetFont("Fonts\\FRIZQT__.TTF", 11, "")
@@ -428,6 +516,17 @@ mainFrame.glyphsCB:SetScript("OnEnter", function(self)
 end);
 mainFrame.glyphsCB:SetScript("OnLeave", mainFrame.tooltip_OnLeave);
 
+mainFrame.prefixColorPickerButton = CreateFrame("Button", nil, mainFrame.glyphsCB, "SharedButtonSmallTemplate")
+mainFrame.prefixColorPickerButton:SetPoint("TOPRIGHT", mainFrame.glyphsCB, "TOPRIGHT", 0, -30)
+mainFrame.prefixColorPickerButton:SetSize(110,25)
+mainFrame.prefixColorPickerButton:SetText(COLOR_PICKER)
+mainFrame.prefixColorPickerButton.text = mainFrame.Acc_Frame:CreateFontString()
+mainFrame.prefixColorPickerButton.text:SetFont("Fonts\\FRIZQT__.TTF", 11, "")
+mainFrame.prefixColorPickerButton.text:SetPoint("RIGHT", mainFrame.prefixColorPickerButton, "LEFT", -5, 0)
+mainFrame.prefixColorPickerButton.text:SetText(L["AddonPrefixColor"])
+mainFrame.prefixColorPickerButton:SetScript("OnClick", function(self, button)
+	mainFrame:ShowColorPicker(Languages_DB.settings.colors.prefix.r, Languages_DB.settings.colors.prefix.g, Languages_DB.settings.colors.prefix.b, nil, mainFrame.PrefixColor);
+end);
 
 
 mainFrame.trp3ProfileCB = CreateFrame("CheckButton", nil, mainFrame.Char_Frame, "UICheckButtonTemplate");
@@ -435,9 +534,12 @@ mainFrame.trp3ProfileCB:SetPoint("TOPRIGHT", mainFrame.Char_Frame, "TOPRIGHT", -
 mainFrame.trp3ProfileCB:SetScript("OnClick", function(self)
 	if self:GetChecked() then
 		Print(L["LinkToTotalRP3On"]);
+		Languages_DB.profiles[charKey].TRP3 = true;
 	else
 		Print(L["LinkToTotalRP3Off"]);
+		Languages_DB.profiles[charKey].TRP3 = false;
 	end
+	lang.checkSettings();
 end);
 mainFrame.trp3ProfileCB:Disable();
 mainFrame.trp3ProfileCB.text = mainFrame.Char_Frame:CreateFontString()
@@ -449,6 +551,10 @@ mainFrame.trp3ProfileCB:SetScript("OnEnter", function(self)
 	mainFrame:tooltip_OnEnter(self, L["LinkToTotalRP3TT"])
 end);
 mainFrame.trp3ProfileCB:SetScript("OnLeave", mainFrame.tooltip_OnLeave);
+
+----------------------------------------
+-- content 3 - Profiles
+----------------------------------------
 
 
 local understandLanguage = {
@@ -482,12 +588,12 @@ local languageBasicList = {
 mainFrame.ColumnLanguage = content1:CreateFontString()
 mainFrame.ColumnLanguage:SetFont("Fonts\\FRIZQT__.TTF", 11, "OUTLINE, MONOCHROME")
 mainFrame.ColumnLanguage:SetPoint("LEFT", content1, "LEFT", 10, -85)
-mainFrame.ColumnLanguage:SetText("[PH] Language")
+mainFrame.ColumnLanguage:SetText(L["Language"])
 
 mainFrame.ColumnUnderstand = content1:CreateFontString()
 mainFrame.ColumnUnderstand:SetFont("Fonts\\FRIZQT__.TTF", 11, "OUTLINE, MONOCHROME")
 mainFrame.ColumnUnderstand:SetPoint("LEFT", content1, "LEFT", 115, -85)
-mainFrame.ColumnUnderstand:SetText("[PH] Understand")
+mainFrame.ColumnUnderstand:SetText(L["Understand"])
 
 
 for k, v in ipairs(languageBasicList) do
@@ -509,10 +615,19 @@ for k, v in ipairs(languageBasicList) do
 		if self:GetChecked() then
 			understandLanguage[v] = true;
 			Print(L["EnableUnderstand"] .. " " .. v);
+			if Languages_DB.profiles[charKey].TRP3 == true then
+				Languages_DB.profiles["TRP3_" .. TRP3_API.profile.getPlayerCurrentProfile().profileName].understandLanguage[v] = true;
+			end
+			Languages_DB.profiles[charKey].understandLanguage[v] = true;
 		else
 			understandLanguage[v] = false;
 			Print(L["DisableUnderstand"] .. " " .. v);
+			if Languages_DB.profiles[charKey].TRP3 == true then
+				Languages_DB.profiles["TRP3_" .. TRP3_API.profile.getPlayerCurrentProfile().profileName].understandLanguage[v] = false;
+			end
+			Languages_DB.profiles[charKey].understandLanguage[v] = false;
 		end
+		lang.checkSettings();
 	end);
 end
 
@@ -521,43 +636,43 @@ mainFrame.Dialect:SetFont("Fonts\\FRIZQT__.TTF", 11, "OUTLINE, MONOCHROME")
 mainFrame.Dialect:SetPoint("LEFT", mainFrame[21], "LEFT", 0, -30*1)
 mainFrame.Dialect:SetText(L["Dialect"])
 
-dialectOption1 = CreateFrame("Button", nil, content1, "SharedGoldRedButtonSmallTemplate")
-dialectOption1:SetPoint("LEFT", mainFrame[21], "LEFT", 0, -30*1-20)
-dialectOption1:SetSize(110,25)
-dialectOption1:SetText(L["Dwarvish"])
+mainFrame.dialectOption1 = CreateFrame("Button", nil, content1, "SharedButtonSmallTemplate")
+mainFrame.dialectOption1:SetPoint("LEFT", mainFrame[21], "LEFT", 0, -30*1-20)
+mainFrame.dialectOption1:SetSize(110,25)
+mainFrame.dialectOption1:SetText(L["Dwarvish"])
 
-dialectOption1:SetScript("OnClick", function(self, button)
-	Print(L["SettingDialectTo"] .. " " .. L["Dwarvish"])
+mainFrame.dialectOption1:SetScript("OnClick", function(self, button)
+	Print(L["SettingDialectTo"] .. " " .. L["Dwarvish"]);
 end);
 
 
-dialectOption2 = CreateFrame("Button", nil, content1, "SharedGoldRedButtonSmallTemplate")
-dialectOption2:SetPoint("LEFT", mainFrame[21], "LEFT", 0, -30*2-20)
-dialectOption2:SetSize(110,25)
-dialectOption2:SetText(L["Draenic"])
+mainFrame.dialectOption2 = CreateFrame("Button", nil, content1, "SharedButtonSmallTemplate")
+mainFrame.dialectOption2:SetPoint("LEFT", mainFrame[21], "LEFT", 0, -30*2-20)
+mainFrame.dialectOption2:SetSize(110,25)
+mainFrame.dialectOption2:SetText(L["Draenic"])
 
-dialectOption2:SetScript("OnClick", function(self, button)
-	Print(L["SettingDialectTo"] .. " " .. L["Draenic"])
+mainFrame.dialectOption2:SetScript("OnClick", function(self, button)
+	Print(L["SettingDialectTo"] .. " " .. L["Draenic"]);
 end);
 
 
-dialectOption3 = CreateFrame("Button", nil, content1, "SharedGoldRedButtonSmallTemplate")
-dialectOption3:SetPoint("LEFT", mainFrame[21], "LEFT", 0, -30*3-20)
-dialectOption3:SetSize(110,25)
-dialectOption3:SetText(L["Zandali"])
+mainFrame.dialectOption3 = CreateFrame("Button", nil, content1, "SharedButtonSmallTemplate")
+mainFrame.dialectOption3:SetPoint("LEFT", mainFrame[21], "LEFT", 0, -30*3-20)
+mainFrame.dialectOption3:SetSize(110,25)
+mainFrame.dialectOption3:SetText(L["Zandali"])
 
-dialectOption3:SetScript("OnClick", function(self, button)
-	Print(L["SettingDialectTo"] .. " " .. L["Zandali"])
+mainFrame.dialectOption3:SetScript("OnClick", function(self, button)
+	Print(L["SettingDialectTo"] .. " " .. L["Zandali"]);
 end);
 
 
-dialectOptionToggle = CreateFrame("Button", nil, content1, "SharedGoldRedButtonSmallTemplate")
-dialectOptionToggle:SetPoint("LEFT", dialectOption1, "LEFT", 170, 0)
-dialectOptionToggle:SetSize(110,25)
-dialectOptionToggle:SetText("Dialect: Off")
+mainFrame.dialectOptionToggle = CreateFrame("Button", nil, content1, "SharedButtonSmallTemplate")
+mainFrame.dialectOptionToggle:SetPoint("LEFT", mainFrame.dialectOption1, "LEFT", 170, 0)
+mainFrame.dialectOptionToggle:SetSize(110,25)
+mainFrame.dialectOptionToggle:SetText("Dialect: Off")
 
-dialectOptionToggle:SetScript("OnClick", function(self, button)
-	Print("Debug: Something about toggling Dialect here")
+mainFrame.dialectOptionToggle:SetScript("OnClick", function(self, button)
+	Print("Debug: Something about toggling Dialect here");
 end);
 
 
@@ -1055,8 +1170,8 @@ local function TranslateText(text, language)
 	-- Replace words and word sequences from dictionary
 	local dictionarySequences = {}
 	for word, translatedWord in dictionaries[language] do
-		text = text:gsub(word, "¤")
-		tinsert(dictionarySequences, translatedWord)
+		text = text:gsub(word, "¤");
+		tinsert(dictionarySequences, translatedWord);
 	end
 
 	local sequenceIndex = 1
@@ -1067,24 +1182,24 @@ local function TranslateText(text, language)
 		-- Character shouldn't be translated
 		if tContains(doNotTranslate, character) then
 			-- Translate and add the word that just finished
-			translatedText = translatedText .. TranslateWord(currentWord, language)
+			translatedText = translatedText .. TranslateWord(currentWord, language);
 			if character == "¤" then
 				-- If special character, replace by the appropriate translated sequence
-				translatedText = translatedText .. dictionarySequences[sequenceIndex]
-				sequenceIndex = sequenceIndex + 1
+				translatedText = translatedText .. dictionarySequences[sequenceIndex];
+				sequenceIndex = sequenceIndex + 1;
 			else
 				-- Not special character, just add it as is
-				translatedText = translatedText .. character
+				translatedText = translatedText .. character;
 			end
 			-- Reset current word since we translated and added it
-			currentWord = ""
+			currentWord = "";
 		else
 			-- Regular character, just add to the current word
-			currentWord = currentWord .. character
+			currentWord = currentWord .. character;
 		end
 	end
 	-- Add the last word if the sentence doesn't end with punctuation
-	translatedText = translatedText .. TranslateWord(currentWord, language)
+	translatedText = translatedText .. TranslateWord(currentWord, language);
 
 	return translatedText
 end
@@ -1187,8 +1302,8 @@ local function ReplaceLanguage(text, language)
 
 		local Translation = choices[(hash % #choices) + 1]
 		if capital == 1 then 
-			Translation = Translation:gsub("^%l", string.upper) -- might be able to just tack this onto ReplaceLanguage in event filter
-			capital = capital + 1
+			Translation = Translation:gsub("^%l", string.upper); -- might be able to just tack this onto ReplaceLanguage in event filter
+			capital = capital + 1;
 		end
 
 		 -- convert into letters
@@ -1200,14 +1315,14 @@ local function ReplaceLanguage(text, language)
 					if chungus == v then
 						--character = character:gsub(character, AddonPath .. languageNoBrackets[v] .. "\\" .. character .. ":" .. fontSize .. ":" .. "9" .. "|t" )
 						character = character:gsub(character, "|T" .. AddonPath .. languageNoBrackets[v] .. "_atlas.png" .. ":" .. fontSize --[[Height]] .. ":" .. "9" --[[Width]] .. ":0:0" --[[offsetX:offsetY]] .. ":512:512" --[[textureWidth:textureHeight]]
-						.. ":" .. atlas[character].L * 512 --[[L]] .. ":" .. atlas[character].R * 512 --[[R]] .. ":" .. atlas[character].T * 512 --[[T]] .. ":" .. atlas[character].B * 512 --[[B]]
-
-						.. "|t" )
+						.. ":" .. atlas[character].L * 512 --[[L]] .. ":" .. atlas[character].R * 512 --[[R]] .. ":" .. atlas[character].T * 512 --[[T]] .. ":" .. atlas[character].B * 512 --[[B]] .. ":"
+						.. chatTypeBingus.r * 255 .. ":" .. chatTypeBingus.g * 255 .. ":" .. chatTypeBingus.b * 255 .. ":"
+						.. "|t" );
 					end
 				end
 				--print("debug:" .. character)
-				bingus = string.join("", bingus, character)
-				Translation = bingus
+				bingus = string.join("", bingus, character);
+				Translation = bingus;
 			end
 		end
 		
@@ -1227,11 +1342,36 @@ local function eventFilterStuff(frame, event, message, sender, ...)
 			--print(message)
 			message = message:gsub(v, "")
 
-			if understandLanguage[languageNoBrackets[v]] == true then
-				return false, "|cff1ce651" .. languagelist[v] .. "|r " .. message, sender, ...
+			local textColor = CreateColor(Languages_DB.settings.colors.prefix.r, Languages_DB.settings.colors.prefix.g, Languages_DB.settings.colors.prefix.b):GenerateHexColor()
+
+
+			if Languages_DB.profiles[charKey].TRP3 == true then
+				
+				if Languages_DB.profiles["TRP3_" .. TRP3_API.profile.getPlayerCurrentProfile().profileName].understandLanguage[languageNoBrackets[v]] == true then
+					return false, "|c" .. textColor .. languagelist[v] .. "|r " .. message, sender, ...
+				else
+					if event == "CHAT_MSG_SAY" then
+						chatTypeBingus = ChatTypeInfo["SAY"];
+					elseif event == "CHAT_MSG_YELL" then
+						chatTypeBingus = ChatTypeInfo["YELL"];
+					end
+					return false, "|c" .. textColor .. languagelist[v] .. "|r " .. ReplaceLanguage(message, languageNoBrackets[v]) .. ".", sender, ...
+				end
+
 			else
-				return false, "|cff1ce651" .. languagelist[v] .. "|r " .. ReplaceLanguage(message, languageNoBrackets[v]) .. ".", sender, ...
+				if Languages_DB.profiles[charKey].understandLanguage[languageNoBrackets[v]] == true then
+					return false, "|c" .. textColor .. languagelist[v] .. "|r " .. message, sender, ...
+				else
+					if event == "CHAT_MSG_SAY" then
+						chatTypeBingus = ChatTypeInfo["SAY"];
+					elseif event == "CHAT_MSG_YELL" then
+						chatTypeBingus = ChatTypeInfo["YELL"];
+					end
+					return false, "|c" .. textColor .. languagelist[v] .. "|r " .. ReplaceLanguage(message, languageNoBrackets[v]) .. ".", sender, ...
+				end
 			end
+
+
 		end
 	end
 
@@ -1251,9 +1391,9 @@ local function testScriptHeader()
 		header = _G[ACTIVE_CHAT_EDIT_BOX:GetName().."Header"]
 		if editBox:GetAttribute("chatType") == "SAY" or editBox:GetAttribute("chatType") == "YELL" then
 			if editBox:IsShown() then
-				local left, right, top, bottom = editBox:GetTextInsets() -- top/bottom will always be 0
-				header:SetText(header:GetText() .. "[" .. currentLanguage .. "]")
-				editBox:SetTextInsets(left+(header:GetStringWidth()/1.3), right, top, bottom)
+				local left, right, top, bottom = editBox:GetTextInsets(); -- top/bottom will always be 0
+				header:SetText(header:GetText() .. "[" .. currentLanguage .. "]");
+				editBox:SetTextInsets(left+(header:GetStringWidth()/1.3), right, top, bottom);
 			else
 				return
 			end
@@ -1271,9 +1411,19 @@ function lang.trp3ProfileName()
 	mainFrame.PHTRP3Text:SetPoint("CENTER", content3, "CENTER", 0, -70)
 	mainFrame.PHTRP3Text:SetText("Placeholder TRP3 Profile Name")
 	if TRP3_API.profile.getPlayerCurrentProfile() then
+		if Languages_DB.profiles["TRP3_" .. TRP3_API.profile.getPlayerCurrentProfile().profileName] == nil then
+			Languages_DB.profiles["TRP3_" .. TRP3_API.profile.getPlayerCurrentProfile().profileName] = CopyTable(defaultsTableChar);
+		end
+
+		for k, v in ipairs(languageBasicList) do
+			if Languages_DB.profiles[charKey].TRP3 == true and Languages_DB.profiles["TRP3_" .. TRP3_API.profile.getPlayerCurrentProfile().profileName].understandLanguage[v] == nil then
+				Languages_DB.profiles["TRP3_" .. TRP3_API.profile.getPlayerCurrentProfile().profileName].understandLanguage[v] = false;
+			end
+			mainFrame[k].CB:SetChecked(Languages_DB.profiles["TRP3_" .. TRP3_API.profile.getPlayerCurrentProfile().profileName].understandLanguage[v]);
+		end
 		mainFrame.PHTRP3Text:SetText(TRP3_API.profile.getPlayerCurrentProfile().profileName);
 		mainFrame.trp3ProfileCB:Enable();
-		mainFrame.trp3ProfileCB.text:SetTextColor(1,1,1)
+		mainFrame.trp3ProfileCB.text:SetTextColor(1,1,1);
 	end
 end
 
@@ -1283,11 +1433,34 @@ function lang.trp3Check()
 	end
 end
 
+function lang.checkSettings()
+	mainFrame.trp3ProfileCB:SetChecked(Languages_DB.profiles[charKey].TRP3);
+	mainFrame.glyphsCB:SetChecked(Languages_DB.settings.glyphs);
+
+	for k, v in ipairs(languageBasicList) do
+		if Languages_DB.profiles[charKey].understandLanguage[v] == nil then
+			Languages_DB.profiles[charKey].understandLanguage[v] = false;
+		end
+		mainFrame[k].CB:SetChecked(Languages_DB.profiles[charKey].understandLanguage[v]);
+	end
+end
+
 lang:RegisterEvent("ADDON_LOADED")
 
 function lang.addonLoaded(arg1, arg2, arg3) -- table, event, addonName
 	if arg2 == "ADDON_LOADED" and arg3 == "Languages" then
-		lang.trp3Check()
+
+		if Languages_DB.settings == nil then
+			Languages_DB.settings = CopyTable(defaultsTableAcc);
+		end
+
+		if Languages_DB.profiles[charKey] == nil then
+			Languages_DB.profiles[charKey] = CopyTable(defaultsTableChar);
+		end
+
+
+		lang.checkSettings();
+		lang.trp3Check();
 	end
 end
 
