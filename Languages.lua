@@ -1,9 +1,11 @@
+local _, L = ...
+
 local defaultsTableSV = {
 	
 	Settings = {glyphs = true, glyphSizeX = 15, glyphSizeY = 15, understandAll = false, translation = false, characterSpecific = true, debug = false},
 
 	Colors = {
-		prefix = {r = 1, g = 1, b = 1},
+		prefix = {r = 28/255, g = 230/255, b = 81/255},
 		text = {r = 1, g = 1, b = 1},
 	},
 
@@ -11,6 +13,12 @@ local defaultsTableSV = {
 };
 
 local lang = CreateFrame("Frame");
+
+local function Print(text)
+	text = L["Languages"] .. ": " .. text
+	
+	return DEFAULT_CHAT_FRAME:AddMessage(text, 1, 1, 1)
+end
 
 local RaceDefaults = {
 	gameplay = {
@@ -118,6 +126,19 @@ function mainFrame.minMaxFunc()
 	end
 end
 
+function mainFrame:tooltip_OnEnter(frame, text)
+	if GameTooltip:IsShown() == false then
+		GameTooltip_SetDefaultAnchor(GameTooltip, frame);
+	end
+	GameTooltip:ClearAllPoints();
+	GameTooltip:SetText(text, 1, 1, 1, 1, true);
+	GameTooltip:SetPoint("BOTTOMLEFT", frame, "TOPRIGHT", 0, 0);
+	GameTooltip:Show();
+end
+function mainFrame.tooltip_OnLeave()
+	GameTooltip:Hide();
+end
+
 mainFrame.MinimizeButton = CreateFrame("Button", "LanguagesMainFrameMinMaxButton", mainFrame, "MaximizeMinimizeButtonFrameTemplate")
 mainFrame.MinimizeButton:SetPoint("TOPRIGHT", mainFrame, "TOPRIGHT", -24,0)
 mainFrame.MinimizeButton:SetSize(24,24)
@@ -209,12 +230,12 @@ mainFrame.prefix = false
 function mainFrame.TogglePrefix()
 	if mainFrame.prefix == true then
 		mainFrame.prefix = false
-		mainFrame.ButtonTest:SetText("Language Prefix: Off")
-		print("Debug: Toggling off automated language prefix!")
+		mainFrame.ButtonTest:SetText(L["TogglePrefixOff"])
+		Print(L["TogglePrefixTextOff"])
 	elseif mainFrame.prefix == false then
 		mainFrame.prefix = true
-		mainFrame.ButtonTest:SetText("Language Prefix: On")
-		print("Debug: Toggling on automated language prefix!")
+		mainFrame.ButtonTest:SetText(L["TogglePrefixOn"])
+		Print(L["TogglePrefixTextOn"])
 	end
 end
 
@@ -276,6 +297,9 @@ local languagesLDB = LibStub("LibDataBroker-1.1"):NewDataObject("Languages", {
 			mainFrame:Show()
 		end
 	end,
+	OnTooltipShow = function(tt)
+		tt:AddLine(L["MinimapTooltip"])
+	end,
 })
 local icon = LibStub("LibDBIcon-1.0")
 
@@ -288,7 +312,7 @@ function addon:OnInitialize()
 		},
 	})
 	icon:Register("Languages", languagesLDB, self.db.profile.minimap)
-	self:RegisterChatCommand("bunnies", "ToggleMinimapButton")
+	self:RegisterChatCommand("languageshide", "ToggleMinimapButton")
 end
 
 function addon:ToggleMinimapButton()
@@ -310,22 +334,22 @@ end
 mainFrame.PHText1 = content1:CreateFontString()
 mainFrame.PHText1:SetFont("Fonts\\FRIZQT__.TTF", 11, "OUTLINE, MONOCHROME")
 mainFrame.PHText1:SetPoint("CENTER", content1, "CENTER", 0, -500)
-mainFrame.PHText1:SetText("Placeholder - Diction")
+mainFrame.PHText1:SetText(L["Diction"])
 
 mainFrame.PHText2 = content2:CreateFontString()
 mainFrame.PHText2:SetFont("Fonts\\FRIZQT__.TTF", 11, "OUTLINE, MONOCHROME")
 mainFrame.PHText2:SetPoint("CENTER", content2, "CENTER", 0, -50)
-mainFrame.PHText2:SetText("Placeholder - Settings")
+mainFrame.PHText2:SetText(L["Settings"])
 
 mainFrame.PHText3 = content3:CreateFontString()
 mainFrame.PHText3:SetFont("Fonts\\FRIZQT__.TTF", 11, "")
 mainFrame.PHText3:SetPoint("CENTER", content3, "CENTER", 0, -50)
-mainFrame.PHText3:SetText("Placeholder - Profiles")
+mainFrame.PHText3:SetText(L["Profiles"])
 
 mainFrame.ButtonTest = CreateFrame("Button", nil, content1, "SharedGoldRedButtonSmallTemplate")
 mainFrame.ButtonTest:SetPoint("CENTER", content1, "CENTER", 0,-50)
 mainFrame.ButtonTest:SetSize(200,50)
-mainFrame.ButtonTest:SetText("Language Prefix: Off")
+mainFrame.ButtonTest:SetText(L["TogglePrefixOff"])
 mainFrame.ButtonTest:SetScript("OnClick", function(self, button)
 	mainFrame.TogglePrefix()
 end);
@@ -349,6 +373,16 @@ mainFrame.Acc_backdropInfo = {
 	insets = { left = 1, right = 1, top = 1, bottom = 1 },
 };
 
+mainFrame.backdropTestLetter = {
+	bgFile = "Interface\\AddOns\\Languages\\Textures\\darnassian_atlas",
+	edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border",
+	tile = false,
+	tileEdge = true,
+	tileSize = 8,
+	edgeSize = 8,
+	insets = { left = 1, right = 1, top = 1, bottom = 1 },
+};
+
 mainFrame.Acc_Frame = CreateFrame("Frame", nil, content2, "BackdropTemplate")
 mainFrame.Acc_Frame:SetPoint("TOP", content2, "TOP", 0, -75)
 mainFrame.Acc_Frame:SetSize(300,250)
@@ -358,8 +392,7 @@ mainFrame.Acc_Frame:SetBackdropColor(0,0,0,.5)
 mainFrame.header1 = content2:CreateFontString()
 mainFrame.header1:SetFont("Fonts\\FRIZQT__.TTF", 11, "")
 mainFrame.header1:SetPoint("BOTTOMLEFT", mainFrame.Acc_Frame, "TOPLEFT", 0, 0)
-mainFrame.header1:SetText("[PH] Account Settings")
-
+mainFrame.header1:SetText(L["AccountSettings"])
 
 
 mainFrame.Char_Frame = CreateFrame("Frame", nil, mainFrame.Acc_Frame, "BackdropTemplate")
@@ -371,27 +404,51 @@ mainFrame.Char_Frame:SetBackdropColor(0,0,0,.5)
 mainFrame.header2 = content2:CreateFontString()
 mainFrame.header2:SetFont("Fonts\\FRIZQT__.TTF", 11, "")
 mainFrame.header2:SetPoint("BOTTOMLEFT", mainFrame.Char_Frame, "TOPLEFT", 0, 0)
-mainFrame.header2:SetText("[PH] Character Settings")
+mainFrame.header2:SetText(L["CharacterSettings"])
 
 ----------------------------------------
 -- content 3 - Profiles
 ----------------------------------------
+
+mainFrame.glyphsCB = CreateFrame("CheckButton", nil, mainFrame.Acc_Frame, "UICheckButtonTemplate");
+mainFrame.glyphsCB:SetPoint("TOPRIGHT", mainFrame.Acc_Frame, "TOPRIGHT", -15, -15);
+mainFrame.glyphsCB:SetScript("OnClick", function(self)
+	if self:GetChecked() then
+		Print(L["GlyphsOn"]);
+	else
+		Print(L["GlyphsOff"]);
+	end
+end);
+mainFrame.glyphsCB.text = mainFrame.Acc_Frame:CreateFontString()
+mainFrame.glyphsCB.text:SetFont("Fonts\\FRIZQT__.TTF", 11, "")
+mainFrame.glyphsCB.text:SetPoint("RIGHT", mainFrame.glyphsCB, "LEFT", -5, 0)
+mainFrame.glyphsCB.text:SetText(L["UseGlyphs"])
+mainFrame.glyphsCB:SetScript("OnEnter", function(self)
+	mainFrame:tooltip_OnEnter(self, L["UseGlyphsTT"])
+end);
+mainFrame.glyphsCB:SetScript("OnLeave", mainFrame.tooltip_OnLeave);
+
+
+
 mainFrame.trp3ProfileCB = CreateFrame("CheckButton", nil, mainFrame.Char_Frame, "UICheckButtonTemplate");
-mainFrame.trp3ProfileCB:SetPoint("TOP", mainFrame.Char_Frame, "TOP", 35, -15);
+mainFrame.trp3ProfileCB:SetPoint("TOPRIGHT", mainFrame.Char_Frame, "TOPRIGHT", -15, -15);
 mainFrame.trp3ProfileCB:SetScript("OnClick", function(self)
 	if self:GetChecked() then
-		print("Debug: Link to Total RP 3 Profile");
+		Print(L["LinkToTotalRP3On"]);
 	else
-		print("Debug: Link to Total RP 3 Profile");
+		Print(L["LinkToTotalRP3Off"]);
 	end
 end);
 mainFrame.trp3ProfileCB:Disable();
-
 mainFrame.trp3ProfileCB.text = mainFrame.Char_Frame:CreateFontString()
 mainFrame.trp3ProfileCB.text:SetFont("Fonts\\FRIZQT__.TTF", 11, "")
 mainFrame.trp3ProfileCB.text:SetPoint("RIGHT", mainFrame.trp3ProfileCB, "LEFT", -5, 0)
-mainFrame.trp3ProfileCB.text:SetText("Link to Total RP 3 Profile")
+mainFrame.trp3ProfileCB.text:SetText(L["LinkToTotalRP3"])
 mainFrame.trp3ProfileCB.text:SetTextColor(.5,.5,.5)
+mainFrame.trp3ProfileCB:SetScript("OnEnter", function(self)
+	mainFrame:tooltip_OnEnter(self, L["LinkToTotalRP3TT"])
+end);
+mainFrame.trp3ProfileCB:SetScript("OnLeave", mainFrame.tooltip_OnLeave);
 
 
 local understandLanguage = {
@@ -441,7 +498,7 @@ for k, v in ipairs(languageBasicList) do
 
 	mainFrame[k]:SetScript("OnClick", function(self, button)
 		currentLanguage = v
-		print("Debug: Setting language to " .. currentLanguage)
+		Print(L["SettingLanguageTo"] .. " " .. currentLanguage)
 	end);
 
 	mainFrame[k].CB = CreateFrame("CheckButton", nil, content1, "UICheckButtonTemplate");
@@ -451,10 +508,10 @@ for k, v in ipairs(languageBasicList) do
 	mainFrame[k].CB:SetScript("OnClick", function(self)
 		if self:GetChecked() then
 			understandLanguage[v] = true;
-			print("Debug: Enable Understand " .. k .. " " .. v);
+			Print(L["EnableUnderstand"] .. " " .. v);
 		else
 			understandLanguage[v] = false;
-			print("Debug: Disable Understand " .. k .. " " .. v);
+			Print(L["DisableUnderstand"] .. " " .. v);
 		end
 	end);
 end
@@ -462,35 +519,35 @@ end
 mainFrame.Dialect = content1:CreateFontString()
 mainFrame.Dialect:SetFont("Fonts\\FRIZQT__.TTF", 11, "OUTLINE, MONOCHROME")
 mainFrame.Dialect:SetPoint("LEFT", mainFrame[21], "LEFT", 0, -30*1)
-mainFrame.Dialect:SetText("[PH] Dialect")
+mainFrame.Dialect:SetText(L["Dialect"])
 
 dialectOption1 = CreateFrame("Button", nil, content1, "SharedGoldRedButtonSmallTemplate")
 dialectOption1:SetPoint("LEFT", mainFrame[21], "LEFT", 0, -30*1-20)
 dialectOption1:SetSize(110,25)
-dialectOption1:SetText("Dwarvish")
+dialectOption1:SetText(L["Dwarvish"])
 
 dialectOption1:SetScript("OnClick", function(self, button)
-	print("Debug: Setting dialect to Dwarvish")
+	Print(L["SettingDialectTo"] .. " " .. L["Dwarvish"])
 end);
 
 
 dialectOption2 = CreateFrame("Button", nil, content1, "SharedGoldRedButtonSmallTemplate")
 dialectOption2:SetPoint("LEFT", mainFrame[21], "LEFT", 0, -30*2-20)
 dialectOption2:SetSize(110,25)
-dialectOption2:SetText("Draenic")
+dialectOption2:SetText(L["Draenic"])
 
 dialectOption2:SetScript("OnClick", function(self, button)
-	print("Debug: Setting dialect to Draenic")
+	Print(L["SettingDialectTo"] .. " " .. L["Draenic"])
 end);
 
 
 dialectOption3 = CreateFrame("Button", nil, content1, "SharedGoldRedButtonSmallTemplate")
 dialectOption3:SetPoint("LEFT", mainFrame[21], "LEFT", 0, -30*3-20)
 dialectOption3:SetSize(110,25)
-dialectOption3:SetText("Zandali")
+dialectOption3:SetText(L["Zandali"])
 
 dialectOption3:SetScript("OnClick", function(self, button)
-	print("Debug: Setting dialect to Zandali")
+	Print(L["SettingDialectTo"] .. " " .. L["Zandali"])
 end);
 
 
@@ -500,7 +557,7 @@ dialectOptionToggle:SetSize(110,25)
 dialectOptionToggle:SetText("Dialect: Off")
 
 dialectOptionToggle:SetScript("OnClick", function(self, button)
-	print("Debug: Something about toggling Dialect here")
+	Print("Debug: Something about toggling Dialect here")
 end);
 
 
@@ -544,16 +601,63 @@ end
 
 local atlas = {
 	--character = {L = 0, R = 0, T = 0, B = 0}, -- L = (1/256)*((34*N1)+1), R = L + 0.125, T = (1/256)*((34*N2)+1), B = T + 0.125;
-	a = {L = 0.00390625, R = 0.12890625, T = 0.00390625, B = 0.12890625},
-	b = {L = 0.13671875, R = 0.26171875, T = 0.00390625, B = 0.12890625},
-	c = {L = 0.26953125, R = 0.39453125, T = 0.00390625, B = 0.12890625},
-	d = {L = 0.40234375, R = 0.52734375, T = 0.00390625, B = 0.12890625},
-	e = {L = 0.53515625, R = 0.66015625, T = 0.00390625, B = 0.12890625},
-	f = {L = 0.66796875, R = 0.79296875, T = 0.00390625, B = 0.12890625},
-	g = {L = 0.80078125, R = 0.92578125, T = 0.00390625, B = 0.12890625},
-	h = {L = 0.00390625, R = 0.12890625, T = 0.13671875, B = 0.26171875},
-	i = {L = 0.13671875, R = 0.26171875, T = 0.13671875, B = 0.26171875},
-	j = {L = 0.26953125, R = 0.39453125, T = 0.13671875, B = 0.26171875},
+	["a"] = {L = 0.00390625, R = 0.12890625, T = 0.00390625, B = 0.12890625},
+	["b"] = {L = 0.13671875, R = 0.26171875, T = 0.00390625, B = 0.12890625},
+	["c"] = {L = 0.26953125, R = 0.39453125, T = 0.00390625, B = 0.12890625},
+	["d"] = {L = 0.40234375, R = 0.52734375, T = 0.00390625, B = 0.12890625},
+	["e"] = {L = 0.53515625, R = 0.66015625, T = 0.00390625, B = 0.12890625},
+	["f"] = {L = 0.66796875, R = 0.79296875, T = 0.00390625, B = 0.12890625},
+	["g"] = {L = 0.80078125, R = 0.92578125, T = 0.00390625, B = 0.12890625},
+	["h"] = {L = 0.00390625, R = 0.12890625, T = 0.13671875, B = 0.26171875},
+	["i"] = {L = 0.13671875, R = 0.26171875, T = 0.13671875, B = 0.26171875},
+	["j"] = {L = 0.26953125, R = 0.39453125, T = 0.13671875, B = 0.26171875},
+	["k"] = {L = 0.40234375, R = 0.52734375, T = 0.13671875, B = 0.26171875},
+	["l"] = {L = 0.53515625, R = 0.66015625, T = 0.13671875, B = 0.26171875},
+	["m"] = {L = 0.66796875, R = 0.79296875, T = 0.13671875, B = 0.26171875},
+	["n"] = {L = 0.80078125, R = 0.92578125, T = 0.13671875, B = 0.26171875},
+	["o"] = {L = 0.00390625, R = 0.12890625, T = 0.26953125, B = 0.39453125},
+	["p"] = {L = 0.13671875, R = 0.26171875, T = 0.26953125, B = 0.39453125},
+	["q"] = {L = 0.26953125, R = 0.39453125, T = 0.26953125, B = 0.39453125},
+	["r"] = {L = 0.40234375, R = 0.52734375, T = 0.26953125, B = 0.39453125},
+	["s"] = {L = 0.53515625, R = 0.66015625, T = 0.26953125, B = 0.39453125},
+	["t"] = {L = 0.66796875, R = 0.79296875, T = 0.26953125, B = 0.39453125},
+	["u"] = {L = 0.80078125, R = 0.92578125, T = 0.26953125, B = 0.39453125},
+	["v"] = {L = 0.00390625, R = 0.12890625, T = 0.40234375, B = 0.52734375},
+	["w"] = {L = 0.13671875, R = 0.26171875, T = 0.40234375, B = 0.52734375},
+	["x"] = {L = 0.26953125, R = 0.39453125, T = 0.40234375, B = 0.52734375},
+	["y"] = {L = 0.40234375, R = 0.52734375, T = 0.40234375, B = 0.52734375},
+	["z"] = {L = 0.53515625, R = 0.66015625, T = 0.40234375, B = 0.52734375},
+
+	["A"] = {L = 0.00390625, R = 0.12890625, T = 0.00390625, B = 0.12890625},
+	["B"] = {L = 0.13671875, R = 0.26171875, T = 0.00390625, B = 0.12890625},
+	["C"] = {L = 0.26953125, R = 0.39453125, T = 0.00390625, B = 0.12890625},
+	["D"] = {L = 0.40234375, R = 0.52734375, T = 0.00390625, B = 0.12890625},
+	["E"] = {L = 0.53515625, R = 0.66015625, T = 0.00390625, B = 0.12890625},
+	["F"] = {L = 0.66796875, R = 0.79296875, T = 0.00390625, B = 0.12890625},
+	["G"] = {L = 0.80078125, R = 0.92578125, T = 0.00390625, B = 0.12890625},
+	["H"] = {L = 0.00390625, R = 0.12890625, T = 0.13671875, B = 0.26171875},
+	["I"] = {L = 0.13671875, R = 0.26171875, T = 0.13671875, B = 0.26171875},
+	["J"] = {L = 0.26953125, R = 0.39453125, T = 0.13671875, B = 0.26171875},
+	["K"] = {L = 0.40234375, R = 0.52734375, T = 0.13671875, B = 0.26171875},
+	["L"] = {L = 0.53515625, R = 0.66015625, T = 0.13671875, B = 0.26171875},	
+	["M"] = {L = 0.66796875, R = 0.79296875, T = 0.13671875, B = 0.26171875},
+	["N"] = {L = 0.80078125, R = 0.92578125, T = 0.13671875, B = 0.26171875},
+	["O"] = {L = 0.00390625, R = 0.12890625, T = 0.26953125, B = 0.39453125},
+	["P"] = {L = 0.13671875, R = 0.26171875, T = 0.26953125, B = 0.39453125},
+	["Q"] = {L = 0.26953125, R = 0.39453125, T = 0.26953125, B = 0.39453125},
+	["R"] = {L = 0.40234375, R = 0.52734375, T = 0.26953125, B = 0.39453125},
+	["S"] = {L = 0.53515625, R = 0.66015625, T = 0.26953125, B = 0.39453125},
+	["T"] = {L = 0.66796875, R = 0.79296875, T = 0.26953125, B = 0.39453125},
+	["U"] = {L = 0.80078125, R = 0.92578125, T = 0.26953125, B = 0.39453125},
+	["V"] = {L = 0.00390625, R = 0.12890625, T = 0.40234375, B = 0.52734375},
+	["W"] = {L = 0.13671875, R = 0.26171875, T = 0.40234375, B = 0.52734375},
+	["X"] = {L = 0.26953125, R = 0.39453125, T = 0.40234375, B = 0.52734375},
+	["Y"] = {L = 0.40234375, R = 0.52734375, T = 0.40234375, B = 0.52734375},
+	["Z"] = {L = 0.53515625, R = 0.66015625, T = 0.40234375, B = 0.52734375},
+
+	["'"] = {L = 0.66796875, R = 0.79296875, T = 0.40234375, B = 0.52734375}, -- apostrophes
+	["-"] = {L = 0.80078125, R = 0.92578125, T = 0.40234375, B = 0.52734375}, -- hyphens
+
 };
 
 
@@ -575,6 +679,7 @@ local LANGUAGE_REPLACEMENTS = {
 		[10] = {"aelgestron", "cynewalden", "danavandar", "dyrstigost", "falhedring", "vastrungen"},
 		[11] = {"agolandovis", "bornvalesh", "dornevalesh", "farlandowar", "forthasador", "thorlithtos", "vassildador", "wershaesire"},
 		[12] = {"gorveldbarad", "mandosdaegil", "nevrenrothas", "waldirskilde"},
+		["hasRunes"] = false,
 	},
 
 	["Darnassian"] = {
@@ -594,6 +699,7 @@ local LANGUAGE_REPLACEMENTS = {
 		[14] = {"anu'dorannador", "turus'il'amare"},
 		[15] = {"asto're'dunadah", "shindu'falla'na"},
 		[16] = {"ando'meth'derador", "anu'dorinni'talah", "esh'thero'mannash", "thoribas'no'thera"},
+		["hasRunes"] = true,
 	},
 
 	["Dwarven"] = {
@@ -612,6 +718,7 @@ local LANGUAGE_REPLACEMENTS = {
 		[13] = {"gimil-thumane", "gol'gethrunon", "haldji-drugan"},
 		[14] = {"gosh-algaz-dun", "scyld-modor-ok"},
 		[15] = {"haldren-lo-modoss"},
+		["hasRunes"] = false,
 	},
 
 	["Gnomish"] = {
@@ -626,6 +733,7 @@ local LANGUAGE_REPLACEMENTS = {
 		[9] = {"angordame", "elodergim", "elodmodor", "naggirath", "nockhavis"},
 		[10] = {"ahzodaugum", "alegaskron", "algosgoten", "danavandar", "dyrstagist", "falhadrink", "frendgalva", "mosgodunan", "mundgizber", "naginbumat", "sihnvulden", "throsigear", "vustrangin"},
 		[11] = {"ferdosmodan", "gizbarlodun", "haldjinagin", "helmokheram", "kahzhaldren", "lockrevoshi", "robuswaldir", "skalfgizgar", "thrunon'gol", "thumanerand"},
+		["hasRunes"] = false,
 	},
 
 	["Draenei"] = {
@@ -641,6 +749,7 @@ local LANGUAGE_REPLACEMENTS = {
 		[10] = {"amanemodas", "ashjrethul", "benthadoom", "kamilgolad", "matheredor", "pathrebosh", "ticharamir", "zennrakkan"},
 		[11] = {"archimtiros", "ashjrakamas", "mannorgulan", "mishunadare", "zekulrakkas"},
 		[12] = {"zennshinagas"},
+		["hasRunes"] = false,
 	},
 
 	["Orcish"] = {
@@ -657,6 +766,7 @@ local LANGUAGE_REPLACEMENTS = {
 		[11] = {"thrakk'reva", "kaz'goth'no", "no'gor'goth", "kil'azi'aga", "zug-zug'ama", "maza'thrakk"},
 		[12] = {"lokando'nash", "ul'gammathar", "golgonnashar", "dalggo'mazah"},
 		[13] = {"khaz'rogg'ahn", "moth'kazoroth"},
+		["hasRunes"] = false,
 	},
 
 	["Zandali"] = {
@@ -669,6 +779,7 @@ local LANGUAGE_REPLACEMENTS = {
 		[7] = {"chakari", "craaweh", "flimeff", "godehsi", "lok'dim", "reespek", "rivasuf", "tanponi", "uptfeel", "yahsoda", "ziondeh"},
 		[8] = {"ginnalka", "machette", "nyamanpo", "oondasta", "wehnehjo", "whutless", "yeyewata", "zutopong"},
 		[9] = {"fus'obeah", "or'manley"},
+		["hasRunes"] = false,
 	},
 
 	["Taurahe"] = {
@@ -687,6 +798,7 @@ local LANGUAGE_REPLACEMENTS = {
 		[13] = {"ishne'awahalo", "neashushahmen"},
 		[14] = {"awakeeahmenalo"},
 		[15] = {"ishne'alo'porah"},
+		["hasRunes"] = false,
 	},
 
 	["Gutterspeak"] = {
@@ -702,6 +814,7 @@ local LANGUAGE_REPLACEMENTS = {
 		[10] = {"aelgestron", "cynewalden", "danavandar", "dyrstigost", "falhedring", "vastrungen"},
 		[11] = {"agolandovis", "bornevalesh", "farlandowar", "forthasador", "thorlithtos", "vassildador", "wershaesire"},
 		[12] = {"adorstaerume", "golveldbarad", "mandosdaegil", "nevrenrothas", "waldirskilde"},
+		["hasRunes"] = false,
 	},
 
 	["Thalassian"] = {
@@ -722,6 +835,7 @@ local LANGUAGE_REPLACEMENTS = {
 		[15] = {"asto're'dunadah"},
 		[16] = {"shindu'fallah'na"},
 		[17] = {"thoribas'no'thera", "ando'meth'derador", "anu'dorinni'talah", "esh'thero'mannash"},
+		["hasRunes"] = false,
 	},
 
 	["Goblin"] = { -- languageID 40
@@ -736,6 +850,7 @@ local LANGUAGE_REPLACEMENTS = {
 		[9] = {"hapkranky", "skippykik"},
 		[10] = {"nogglefrap"},
 		[11] = {"rapnakskappypappl", "rripdipskiplip", "napfazzyboggin", "kikklpipkikkl", "nibbityfuzhips", "bubnobblepapkap", "hikkitybippl"},
+		["hasRunes"] = false,
 	},
 
 	["Shalassian"] = { -- languageID 181
@@ -755,6 +870,7 @@ local LANGUAGE_REPLACEMENTS = {
 		[14] = {"turus'il'amare", "anu'dorannador", "rath-anu'tanos", "rath-anu'telar"},
 		[15] = {"shindu'falla'na", "asto're'dunadah"},
 		[16] = {"anu'dorinni'talah", "ando'meth'derador", "esh'thero'mannash", "thoribas'no'thera"},
+		["hasRunes"] = false,
 	},
 
 	["Vulpera"] = { -- languageID 285
@@ -768,6 +884,7 @@ local LANGUAGE_REPLACEMENTS = {
 		[8] = {"guauguau", "wuffwoef", "borkbork", "blafblaf", "gheugheu", "vuufwuff", "wuffvuwn"},
 		[9] = {"ghavyouwn", "woefyouwn", "bhuhwauwn", "joffwauwn", "aheeowown", "ghavyouwn"},
 		[10] = {"keffgeding", "woofhauhau", "vuufhattii", "borkwanwan", "blafhauhau"},
+		["hasRunes"] = false,
 
 	},
 
@@ -785,6 +902,7 @@ local LANGUAGE_REPLACEMENTS = {
 		[11] = {"fengshanren"},
 		[12] = {"chen-xinfeng", "xinjing-chun"},
 		[13] = {"fengshanliang", "zhengmingquan"},
+		["hasRunes"] = false,
 	},
 
 	["Ancient Pandaren"] = { -- extended/expanded list of truncated NameGen, reformatted. Complete: 1,2
@@ -801,6 +919,7 @@ local LANGUAGE_REPLACEMENTS = {
 		[11] = {"fengshanren"},
 		[12] = {"chen-xinfeng", "xinjing-chun"},
 		[13] = {"fengshanliang", "zhengmingquan"},
+		["hasRunes"] = false,
 	},
 
 	["Draconic"] = { -- languageID 11
@@ -816,6 +935,7 @@ local LANGUAGE_REPLACEMENTS = {
 		[10] = {"matheredor", "ticharamir", "pathrebosh", "benthadoom", "amanemodas", "enkilgular", "burasadare", "melarnagas", "zennrakkan", "ashjrethul", "kamilgolad"},
 		[11] = {"zekulrakkas", "archimtiros", "mannorgulan", "mishunadare", "ashjrakamas"},
 		[12] = {"zennshinagas"},
+		["hasRunes"] = false,
 	},
 
 
@@ -834,6 +954,7 @@ local LANGUAGE_REPLACEMENTS = {
 		[10] = {"matheredor", "ticharamir", "pathrebosh", "benthadoom", "amanemodas", "enkilgular", "burasadare", "melarnagas", "zennrakkan", "ashjrethul", "kamilgolad"},
 		[11] = {"zekulrakkas", "archimtiros", "mannorgulan", "mishunadare", "ashjrakamas"},
 		[12] = {"zennshinagas"},
+		["hasRunes"] = false,
 	},
 
 	["Titan"] = { -- languageID 9
@@ -849,6 +970,7 @@ local LANGUAGE_REPLACEMENTS = {
 		[10] = {"matheredor", "ticharamir", "pathrebosh", "benthadoom", "amanemodas", "enkilgular", "burasadare", "melarnagas", "zennrakkan", "kamilgolad", "ashjrethul"},
 		[11] = {"ashjrakamas", "mishunadare", "mannorgulan", "archimtiros", "zekulrakkas"},
 		[12] = {"zennshinagas"},
+		["hasRunes"] = false,
 	},
 
 	["Kalimag"] = { -- languageID 12
@@ -865,6 +987,7 @@ local LANGUAGE_REPLACEMENTS = {
 		[11] = {"mok'tavaler", "tae'gel'kir", "dor'dra'tor", "aer'rohgmar", "torrath'unt", "ignan'kitch", "caus'tearic", "borg'helmak", "huut'vactah", "jolpat'krim", "tzench'drah", "kraus'ghosa", "dalgo'nizha", "korsukgrare"},
 		[12] = {"moth'keretch", "vendo're'mik", "thloy'martok", "danal'korang", "sunep'kosach"},
 		[13] = {"golgo'nishver", "kawee'fe'more", "tagha'senchal", "peng'yaas'ahn", "nash'lokan'ar", "derr'moran'ki", "moor'tosav'ak", "kis'an'tadrom", "bach'usiv'hal"},
+		["hasRunes"] = false,
 	},
 
 	["Shath'Yar"] = { -- languageID 178
@@ -879,6 +1002,7 @@ local LANGUAGE_REPLACEMENTS = {
 		[9] = {"ag'thyzak", "ga'halahs", "lyrr'keth", "par'okoth", "phgwa'cul", "pwhn'guul", "ree'thael", "shath'yar", "shgla'yos", "shuul'wah", "sshoq'meg"},
 		[10] = {"ak'agthshi", "shg'ullwaq", "sk'woth'gl"},
 		[11] = {"ghawl'fwata", "naggwa'fssh", "yeq'kafhgyl"},
+		["hasRunes"] = false,
 	},
 
 	["Broker"] = { -- no languageID, fanmade
@@ -890,6 +1014,7 @@ local LANGUAGE_REPLACEMENTS = {
 		[6] = {"al'ara",},
 		[7] = {"amo'gus",},
 		[8] = {"",},
+		["hasRunes"] = false,
 	},
 
 	
@@ -900,10 +1025,20 @@ local doNotTranslate = { ".", ",", "-", "¤", "0", "1", };
 
 local dictionaries = {
 	["Orcish"] = {
-		["hello"] = "lok'tar", ["i'll protect you"] = "bin mog g'thazag cha", ["i will protect you"] = "bin mog g'thazag cha", ["me protect you"] = "bin mog g'thazag cha", ["twisted soul"] = "dae'mon", ["demon"] = "dae'mon", 
+		["i'll protect you"] = "bin mog g'thazag cha", ["i will protect you"] = "bin mog g'thazag cha", ["me protect you"] = "bin mog g'thazag cha", ["twisted soul"] = "dae'mon", ["demon"] = "dae'mon", 
 		["draenor's honor"] = "Dra'gora", ["draenor's honor"] = "Dra'gora", ["draenors honor"] = "Dra'gora", ["draenors' honor"] = "Dra'gora", ["honor of draenor"] = "Dra'gora", ["draenor's heart"] = "dranosh",
 		["heart of draenor"] = "dranosh", ["draenors heart"] = "dranosh", ["draenors' heart"] = "dranosh", ["warrior's heart"] = "garrosh", ["warriors heart"] = "garrosh", ["warriors' heart"] = "garrosh", ["heart of the warrior"] = "garrosh", 
-		["heart of a warrior"] = "garrosh", ["heart of warrior"] = "garrosh", ["heart"] = "osh", ["by my axe"] = "gol'kosh",
+		["heart of a warrior"] = "garrosh", ["heart of warrior"] = "garrosh", ["heart"] = "osh", ["by my axe"] = "gol'kosh", ["the long knives"] = "gor'krosh", ["bowels of the giant"] = "grombolar", ["giant's bowels"] = "grombolar",
+		["giants bowels"] = "grombolar", ["giants' bowels"] = "grombolar", ["giant's heart"] = "grommash", ["giants heart"] = "grommash", ["giants' heart"] = "grommash", ["heart of the giant"] = "grommash", 
+		["heart of a giant"] = "grommash", ["heart of giant"] = "grommash",
+
+		--literals / non-translated
+		["aka'magosh"] = "aka'magosh", ["bin mog g'thazag cha"] = "bin mog g'thazag cha", ["dae'mon"] = "dae'mon", ["dra'gora"] = "dra'gora", ["dranosh"] = "dranosh", ["garrosh"] = "garrosh", ["gol'kosh"] = "gol'kosh",
+		["gor'krosh"] = "gor'krosh", ["grombolar"] = "grombolar", ["grommash"] = "grommash", ["kagh"] = "kagh", ["lohn'goron"] = "lohn'goron", ["lok-narash"] = "lok-narash", ["lok-tar"] = "lok-tar", ["lok-tar ogar"] = "lok-tar ogar",
+		["lok'amon"] = "lok'amon", ["lok'osh"] = "lok'osh", ["lok'tra"] = "lok'tra", ["lok'vadnod"] = "lok'vadnod", ["mag'har"] = "mag'har", ["mak'gora"] = "mak'gora", ["mak'rogahn"] = "mak'rogahn", ["mok-thorin ka"] = "mok-thorin ka",
+		["nagrand"] = "nagrand", ["nelghor"] = "nelghor", ["nelghor-shomash"] = "nelghor-shomash", ["no'ku kil zil'nok ha tar"] = "no'ku kil zil'nok ha tar", ["om'gora"] = "om'gora", ["oshu'gun"] = "oshu'gun", ["ur'gora"] = "ur'gora",
+		["wor'gol"] = "wor'gol", ["zug-zug"] = "zug-zug", ["zug zug"] = "zug zug",
+		[""] = "",
 	},
 	["Darnassian"] = { ["hello"] = "bingus",},
 };
@@ -1028,16 +1163,17 @@ local languageNoBrackets = {
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------
 
-local AddonPath = "|TInterface\\AddOns\\Languages\\Textures\\"
+local AddonPath = "Interface\\AddOns\\Languages\\Textures\\"
 
 local function ReplaceLanguage(text, language)
-	print("Debug: " .. text)
+	Print(text)
 	text = string.lower(text)
 	local capital = 1
 	local replacements = LANGUAGE_REPLACEMENTS[language];
 	assert(replacements, "unsupported language")
 
 	return string.gsub(text, "[^%s]+", function(word)
+		local fontSize = select(2, ChatFrame1:GetFont())
 		local hash = 5381;
 		for i = 1, #word do
 			hash = bit.bxor((hash * 33), string.byte(word, i, i));
@@ -1055,20 +1191,26 @@ local function ReplaceLanguage(text, language)
 			capital = capital + 1
 		end
 
-		--[[ -- convert into letters, play with later.
-		local bingus = ""
-		local chungus = "^%[" .. language .. "%]"
-		for character in string.gmatch(Translation, "([%z\1-\127\194-\244][\128-\191]*)") do
-			for i, v in ipairs(thingsToHide) do
-				if chungus == v then
-					character = character:gsub(character, AddonPath .. languageNoBrackets[v] .. "\\" .. character .. ":15:15|t" )
+		 -- convert into letters
+		if LANGUAGE_REPLACEMENTS[language]["hasRunes"] == true then
+			local bingus = ""
+			local chungus = "^%[" .. language .. "%]"
+			for character in string.gmatch(Translation, "([%z\1-\127\194-\244][\128-\191]*)") do
+				for i, v in ipairs(thingsToHide) do
+					if chungus == v then
+						--character = character:gsub(character, AddonPath .. languageNoBrackets[v] .. "\\" .. character .. ":" .. fontSize .. ":" .. "9" .. "|t" )
+						character = character:gsub(character, "|T" .. AddonPath .. languageNoBrackets[v] .. "_atlas.png" .. ":" .. fontSize --[[Height]] .. ":" .. "9" --[[Width]] .. ":0:0" --[[offsetX:offsetY]] .. ":512:512" --[[textureWidth:textureHeight]]
+						.. ":" .. atlas[character].L * 512 --[[L]] .. ":" .. atlas[character].R * 512 --[[R]] .. ":" .. atlas[character].T * 512 --[[T]] .. ":" .. atlas[character].B * 512 --[[B]]
+
+						.. "|t" )
+					end
 				end
+				--print("debug:" .. character)
+				bingus = string.join("", bingus, character)
+				Translation = bingus
 			end
-			--print("debug:" .. character)
-			bingus = string.join("", bingus, character)
-			Translation = bingus
 		end
-		]]
+		
 
 		return Translation;
 	end);
