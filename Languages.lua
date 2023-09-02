@@ -261,19 +261,20 @@ function mainFrame.SetTabs(frame,numTabs, ...)
 
 end
 
+local currentLanguage = "";
 local content1, content2, content3 = mainFrame.SetTabs(mainFrame, 3, "Diction", "Settings", "Profiles")
 
 
 mainFrame.prefix = false
 function mainFrame.TogglePrefix()
 	if mainFrame.prefix == true then
-		mainFrame.prefix = false
-		mainFrame.ButtonTest:SetText(L["TogglePrefixOff"])
-		Print(L["TogglePrefixTextOff"])
+		mainFrame.prefix = false;
+		mainFrame.ButtonTest:SetText(L["TogglePrefixOff"]);
+		--Print(L["TogglePrefixTextOff"]);
 	elseif mainFrame.prefix == false then
-		mainFrame.prefix = true
-		mainFrame.ButtonTest:SetText(L["TogglePrefixOn"])
-		Print(L["TogglePrefixTextOn"])
+		mainFrame.prefix = true;
+		mainFrame.ButtonTest:SetText(L["TogglePrefixOn"] .. "\n" .. L["CurrentlySpeaking"] .. " " .. currentLanguage);
+		--Print(L["TogglePrefixTextOn"]);
 	end
 end
 
@@ -285,7 +286,6 @@ end
 ---------------------------------------------------------------------------------------------------------------------------------------------------------
 
 local textBeforeParse, parsedEditBox;
-local currentLanguage = "";
 
 function mainFrame.enablePrefix()
 
@@ -367,6 +367,10 @@ end
 -- GUI Buttons
 ---------------------------------------------------------------------------------------------------------------------------------------------------------
 
+mainFrame.backgroundTex = mainFrame.ScrollFrame:CreateTexture()
+mainFrame.backgroundTex:SetAllPoints(mainFrame.ScrollFrame)
+mainFrame.backgroundTex:SetAtlas("dragonriding-talents-background")
+
 --some test text
 mainFrame.PHText1 = content1:CreateFontString()
 mainFrame.PHText1:SetFont("Fonts\\FRIZQT__.TTF", 11, "OUTLINE, MONOCHROME")
@@ -374,12 +378,12 @@ mainFrame.PHText1:SetPoint("CENTER", content1, "CENTER", 0, -500)
 mainFrame.PHText1:SetText(L["Diction"])
 
 mainFrame.PHText2 = content2:CreateFontString()
-mainFrame.PHText2:SetFont("Fonts\\FRIZQT__.TTF", 11, "OUTLINE, MONOCHROME")
-mainFrame.PHText2:SetPoint("CENTER", content2, "CENTER", 0, -50)
+mainFrame.PHText2:SetFont("Fonts\\FRIZQT__.TTF", 20)
+mainFrame.PHText2:SetPoint("TOPLEFT", content2, "TOPLEFT", 55, -25)
 mainFrame.PHText2:SetText(L["Settings"])
 
 mainFrame.PHText3 = content3:CreateFontString()
-mainFrame.PHText3:SetFont("Fonts\\FRIZQT__.TTF", 11, "")
+mainFrame.PHText3:SetFont("Fonts\\FRIZQT__.TTF", 11)
 mainFrame.PHText3:SetPoint("CENTER", content3, "CENTER", 0, -50)
 mainFrame.PHText3:SetText(L["Profiles"])
 
@@ -435,7 +439,7 @@ StaticPopupDialogs["LANGUAGES_ACC_RESET_SETTINGS"] = {
 };
 
 StaticPopupDialogs["LANGUAGES_CHAR_RESET_SETTINGS"] = {
-	text = L["ResetAccSettingsConfirm"],
+	text = L["ResetCharSettingsConfirm"],
 	button1 = "Yes",
 	button2 = "No",
 	OnAccept = function()
@@ -602,9 +606,29 @@ for k, v in ipairs(languageBasicList) do
 	mainFrame[k]:SetSize(110,25)
 	mainFrame[k]:SetText(v)
 
+	mainFrame[k].BGTex = mainFrame[k]:CreateTexture()
+	mainFrame[k].BGTex:SetPoint("LEFT", mainFrame[k], "LEFT", 0, 0)
+	mainFrame[k].BGTex:SetSize(115*2,30)
+	mainFrame[k].BGTex:SetAtlas("perks-list-active")
+	mainFrame[k].BGTex:SetVertexColor(0/255,0/255,0/255,150/255);
+
+	mainFrame[k].HLTex = mainFrame[k]:CreateTexture()
+	mainFrame[k].HLTex:SetPoint("CENTER", mainFrame[k], "CENTER", 0, 0)
+	mainFrame[k].HLTex:SetSize(115,30)
+	mainFrame[k].HLTex:SetAtlas("UI-Frame-Dragonflight-Portrait")
+	mainFrame[k].HLTex:Hide()
+
 	mainFrame[k]:SetScript("OnClick", function(self, button)
-		currentLanguage = v
-		Print(L["SettingLanguageTo"] .. " " .. currentLanguage)
+		currentLanguage = v;
+		Print(L["SettingLanguageTo"] .. " " .. currentLanguage);
+		for k, v in ipairs(languageBasicList) do
+			mainFrame[k].HLTex:Hide();
+			mainFrame[k].BGTex:SetVertexColor(0/255,0/255,0/255,150/255);
+		end
+		mainFrame[k].HLTex:Show();
+		mainFrame[k].BGTex:SetVertexColor(255/255,255/255,255/255,255/255);
+		mainFrame.prefix = false;
+		mainFrame.TogglePrefix();
 	end);
 
 	mainFrame[k].CB = CreateFrame("CheckButton", nil, content1, "UICheckButtonTemplate");
@@ -644,6 +668,7 @@ mainFrame.dialectOption1:SetText(L["Dwarvish"])
 mainFrame.dialectOption1:SetScript("OnClick", function(self, button)
 	Print(L["SettingDialectTo"] .. " " .. L["Dwarvish"]);
 end);
+mainFrame.dialectOption1:Disable()
 
 
 mainFrame.dialectOption2 = CreateFrame("Button", nil, content1, "SharedButtonSmallTemplate")
@@ -654,6 +679,7 @@ mainFrame.dialectOption2:SetText(L["Draenic"])
 mainFrame.dialectOption2:SetScript("OnClick", function(self, button)
 	Print(L["SettingDialectTo"] .. " " .. L["Draenic"]);
 end);
+mainFrame.dialectOption2:Disable()
 
 
 mainFrame.dialectOption3 = CreateFrame("Button", nil, content1, "SharedButtonSmallTemplate")
@@ -664,6 +690,7 @@ mainFrame.dialectOption3:SetText(L["Zandali"])
 mainFrame.dialectOption3:SetScript("OnClick", function(self, button)
 	Print(L["SettingDialectTo"] .. " " .. L["Zandali"]);
 end);
+mainFrame.dialectOption3:Disable()
 
 
 mainFrame.dialectOptionToggle = CreateFrame("Button", nil, content1, "SharedButtonSmallTemplate")
@@ -674,6 +701,7 @@ mainFrame.dialectOptionToggle:SetText("Dialect: Off")
 mainFrame.dialectOptionToggle:SetScript("OnClick", function(self, button)
 	Print("Debug: Something about toggling Dialect here");
 end);
+mainFrame.dialectOptionToggle:Disable()
 
 
 
@@ -1405,25 +1433,32 @@ end
 --hooksecurefunc("ChatEdit_ResetChatType", function() RunNextFrame(testScriptHeader); end)
 hooksecurefunc("ChatEdit_OnEditFocusGained", function() RunNextFrame(testScriptHeader); end)
 
-function lang.trp3ProfileName()
-	mainFrame.PHTRP3Text = content3:CreateFontString()
-	mainFrame.PHTRP3Text:SetFont("Fonts\\FRIZQT__.TTF", 11, "")
-	mainFrame.PHTRP3Text:SetPoint("CENTER", content3, "CENTER", 0, -70)
-	mainFrame.PHTRP3Text:SetText("Placeholder TRP3 Profile Name")
-	if TRP3_API.profile.getPlayerCurrentProfile() then
-		if Languages_DB.profiles["TRP3_" .. TRP3_API.profile.getPlayerCurrentProfile().profileName] == nil then
-			Languages_DB.profiles["TRP3_" .. TRP3_API.profile.getPlayerCurrentProfile().profileName] = CopyTable(defaultsTableChar);
-		end
+mainFrame.PHTRP3Text = content3:CreateFontString()
+mainFrame.PHTRP3Text:SetFont("Fonts\\FRIZQT__.TTF", 11)
+mainFrame.PHTRP3Text:SetPoint("CENTER", content3, "CENTER", 0, -70)
+mainFrame.PHTRP3Text:SetText("Placeholder TRP3 Profile Name")
+mainFrame.PHTRP3Text:Hide()
 
-		for k, v in ipairs(languageBasicList) do
-			if Languages_DB.profiles[charKey].TRP3 == true and Languages_DB.profiles["TRP3_" .. TRP3_API.profile.getPlayerCurrentProfile().profileName].understandLanguage[v] == nil then
-				Languages_DB.profiles["TRP3_" .. TRP3_API.profile.getPlayerCurrentProfile().profileName].understandLanguage[v] = false;
+
+function lang.trp3ProfileName()
+	if IsAddOnLoaded("totalRP3") == true then
+
+		mainFrame.PHTRP3Text:Show()
+		if TRP3_API.profile.getPlayerCurrentProfile() then
+			if Languages_DB.profiles["TRP3_" .. TRP3_API.profile.getPlayerCurrentProfile().profileName] == nil then
+				Languages_DB.profiles["TRP3_" .. TRP3_API.profile.getPlayerCurrentProfile().profileName] = CopyTable(defaultsTableChar);
 			end
-			mainFrame[k].CB:SetChecked(Languages_DB.profiles["TRP3_" .. TRP3_API.profile.getPlayerCurrentProfile().profileName].understandLanguage[v]);
+
+			for k, v in ipairs(languageBasicList) do
+				if Languages_DB.profiles[charKey].TRP3 == true and Languages_DB.profiles["TRP3_" .. TRP3_API.profile.getPlayerCurrentProfile().profileName].understandLanguage[v] == nil then
+					Languages_DB.profiles["TRP3_" .. TRP3_API.profile.getPlayerCurrentProfile().profileName].understandLanguage[v] = false;
+				end
+				mainFrame[k].CB:SetChecked(Languages_DB.profiles["TRP3_" .. TRP3_API.profile.getPlayerCurrentProfile().profileName].understandLanguage[v]);
+			end
+			mainFrame.PHTRP3Text:SetText(TRP3_API.profile.getPlayerCurrentProfile().profileName);
+			mainFrame.trp3ProfileCB:Enable();
+			mainFrame.trp3ProfileCB.text:SetTextColor(1,1,1);
 		end
-		mainFrame.PHTRP3Text:SetText(TRP3_API.profile.getPlayerCurrentProfile().profileName);
-		mainFrame.trp3ProfileCB:Enable();
-		mainFrame.trp3ProfileCB.text:SetTextColor(1,1,1);
 	end
 end
 
@@ -1443,6 +1478,7 @@ function lang.checkSettings()
 		end
 		mainFrame[k].CB:SetChecked(Languages_DB.profiles[charKey].understandLanguage[v]);
 	end
+	lang.trp3ProfileName();
 end
 
 lang:RegisterEvent("ADDON_LOADED")

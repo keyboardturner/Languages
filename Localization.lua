@@ -51,6 +51,8 @@ if LOCALE == "enUS" then
 	L["Dwarvish"] = "Dwarvish"
 	L["Draenic"] = "Draenic"
 	L["Zandali"] = "Zandali"
+	L["CurrentlySpeaking"] = "Currently speaking:"
+	L["NoPrefixBaseLang"] = "Don't use the prefix if speaking your faction's base language (Common/Orcish as Alliance/Horde respectively)."
 
 return end
 
