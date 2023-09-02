@@ -882,7 +882,7 @@ local LANGUAGE_REPLACEMENTS = {
 		[10] = {"amanemodas", "ashjrethul", "benthadoom", "kamilgolad", "matheredor", "pathrebosh", "ticharamir", "zennrakkan"},
 		[11] = {"archimtiros", "ashjrakamas", "mannorgulan", "mishunadare", "zekulrakkas"},
 		[12] = {"zennshinagas"},
-		["hasRunes"] = false,
+		["hasRunes"] = true,
 	},
 
 	["Orcish"] = {
@@ -912,7 +912,7 @@ local LANGUAGE_REPLACEMENTS = {
 		[7] = {"chakari", "craaweh", "flimeff", "godehsi", "lok'dim", "reespek", "rivasuf", "tanponi", "uptfeel", "yahsoda", "ziondeh"},
 		[8] = {"ginnalka", "machette", "nyamanpo", "oondasta", "wehnehjo", "whutless", "yeyewata", "zutopong"},
 		[9] = {"fus'obeah", "or'manley"},
-		["hasRunes"] = false,
+		["hasRunes"] = true,
 	},
 
 	["Taurahe"] = {
@@ -968,7 +968,7 @@ local LANGUAGE_REPLACEMENTS = {
 		[15] = {"asto're'dunadah"},
 		[16] = {"shindu'fallah'na"},
 		[17] = {"thoribas'no'thera", "ando'meth'derador", "anu'dorinni'talah", "esh'thero'mannash"},
-		["hasRunes"] = false,
+		["hasRunes"] = true,
 	},
 
 	["Goblin"] = { -- languageID 40
@@ -1035,7 +1035,7 @@ local LANGUAGE_REPLACEMENTS = {
 		[11] = {"fengshanren"},
 		[12] = {"chen-xinfeng", "xinjing-chun"},
 		[13] = {"fengshanliang", "zhengmingquan"},
-		["hasRunes"] = false,
+		["hasRunes"] = true,
 	},
 
 	["Ancient Pandaren"] = { -- extended/expanded list of truncated NameGen, reformatted. Complete: 1,2
@@ -1052,7 +1052,7 @@ local LANGUAGE_REPLACEMENTS = {
 		[11] = {"fengshanren"},
 		[12] = {"chen-xinfeng", "xinjing-chun"},
 		[13] = {"fengshanliang", "zhengmingquan"},
-		["hasRunes"] = false,
+		["hasRunes"] = true,
 	},
 
 	["Draconic"] = { -- languageID 11
