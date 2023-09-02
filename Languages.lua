@@ -414,16 +414,6 @@ mainFrame.Acc_backdropInfo = {
 	insets = { left = 1, right = 1, top = 1, bottom = 1 },
 };
 
-mainFrame.backdropTestLetter = {
-	bgFile = "Interface\\AddOns\\Languages\\Textures\\darnassian_atlas",
-	edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border",
-	tile = false,
-	tileEdge = true,
-	tileSize = 8,
-	edgeSize = 8,
-	insets = { left = 1, right = 1, top = 1, bottom = 1 },
-};
-
 StaticPopupDialogs["LANGUAGES_ACC_RESET_SETTINGS"] = {
 	text = L["ResetAccSettingsConfirm"],
 	button1 = "Yes",
@@ -1013,7 +1003,7 @@ local LANGUAGE_REPLACEMENTS = {
 		[14] = {"turus'il'amare", "anu'dorannador", "rath-anu'tanos", "rath-anu'telar"},
 		[15] = {"shindu'falla'na", "asto're'dunadah"},
 		[16] = {"anu'dorinni'talah", "ando'meth'derador", "esh'thero'mannash", "thoribas'no'thera"},
-		["hasRunes"] = false,
+		["hasRunes"] = true,
 	},
 
 	["Vulpera"] = { -- languageID 285
@@ -1335,7 +1325,7 @@ local function ReplaceLanguage(text, language)
 		end
 
 		 -- convert into letters
-		if LANGUAGE_REPLACEMENTS[language]["hasRunes"] == true then
+		if LANGUAGE_REPLACEMENTS[language]["hasRunes"] == true and Languages_DB.settings.glyphs == true then
 			local bingus = ""
 			local chungus = "^%[" .. language .. "%]"
 			for character in string.gmatch(Translation, "([%z\1-\127\194-\244][\128-\191]*)") do
