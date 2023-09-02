@@ -34,80 +34,6 @@ local function Print(text)
 	return DEFAULT_CHAT_FRAME:AddMessage(text, 1, 1, 1)
 end
 
-local RaceDefaults = {
-	gameplay = {
-		[1] = {"Common"}, -- 1 human 
-		[3] = {"Common", "Dwarven"}, -- 3 dwarf
-		[4] = {"Common", "Darnassian"}, -- 4 night elf
-		[7] = {"Common", "Gnomish"}, -- 7 gnome
-		[11] = {"Common", "Draenei"}, -- 11 draenei
-		[22] = {"Common"}, -- 22 worgen
-		[29] = {"Common", "Thalassian"}, -- 29 void elf
-		[30] = {"Common", "Draenei"}, -- 30 lightforged
-		[34] = {"Common", "Dwarven"}, -- 34 dark iron
-		[32] = {"Common"}, -- 32 kul tiran
-		[37] = {"Common", "Gnomish"}, -- 37 mechagnome
-		[24] = {"Pandaren"}, -- 24 pandaren neutral
-		[25] = {"Common", "Pandaren"}, -- 25 pandaren alliance
-		[26] = {"Orcish", "Pandaren"}, -- 26 pandaren horde
-		[2] = {"Orcish"}, -- 2 orc
-		[5] = {"Orcish", "Gutterspeak"}, -- 5 forsaken
-		[6] = {"Orcish", "Taurahe"}, -- 6 tauren
-		[8] = {"Orcish", "Zandali"}, -- 8 troll
-		[10] = {"Orcish", "Thalassian"}, -- 10 blood elf
-		[9] = {"Orcish", "Goblin"}, -- 9 goblin
-		[27] = {"Orcish", "Shalassian"}, -- 27 nightborne
-		[28] = {"Orcish", "Taurahe"}, -- 28 highmountain
-		[36] = {"Orcish"}, -- 36 mag'har
-		[31] = {"Orcish", "Zandali"}, -- 31 zandalari
-		[35] = {"Orcish", "Vulpera"}, -- 35 vulpera
-		--dracthyrN = {"Draconic"}, -- 
-		[52] = {"Common", "Draconic"}, -- 52 dracthyr alliance
-		[70] = {"Orcish", "Draconic"}, -- 70 dracthyr horde
-
-		demonhunter = {"Demonic"},
-		priest = {"Shath'Yar"},
-	},
-	recommended = {
-		[1] = {"Common"}, -- 1 human
-		[3] = {"Common", "Dwarven", "Gnomish"}, -- 3 dwarf
-		[4] = {"Common", "Darnassian"}, -- 4 night elf
-		[7] = {"Common", "Gnomish", "Dwarven"}, -- 7 dwarf
-		[11] = {"Common", "Draenei", "Orcish"}, -- 11 draenei
-		[22] = {"Common"}, -- 22 worgen
-		[29] = {"Common", "Thalassian"}, -- 29 void elf
-		[30] = {"Common", "Draenei"}, -- 30 lightforged
-		[34] = {"Common", "Dwarven"}, -- 34 dark iron
-		[32] = {"Common"}, -- 32 kul tiran 
-		[37] = {"Common", "Gnomish"}, -- 37 mechagnome
-		[24] = {"Pandaren"}, -- 24 pandaren neutral
-		[25] = {"Common", "Pandaren"}, -- 25 pandaren alliance
-		[26] = {"Orcish", "Pandaren"}, -- 26 pandaren horde
-		[2] = {"Orcish", "Common"}, -- 2 orc
-		[5] = {"Orcish", "Gutterspeak", "Common"}, -- 5 forsaken
-		[6] = {"Orcish", "Taurahe"}, -- 6 tauren
-		[8] = {"Orcish", "Zandali"}, -- 8 troll
-		[10] = {"Orcish", "Thalassian", "Common"}, -- 10 blood elf
-		[9] = {"Orcish", "Goblin", "Common"}, -- 9 goblin
-		[27] = {"Orcish", "Shalassian"}, -- 27 nightborne
-		[28] = {"Orcish", "Taurahe"}, -- 28 highmountain
-		[36] = {"Orcish"}, --36 mag'har
-		[31] = {"Orcish", "Zandali"}, -- 31 zandalari
-		[35] = {"Orcish", "Vulpera"}, -- 35 vulpera
-		--dracthyrN = {"Draconic", "Common", "Orcish"}, -- 
-		[52] = {"Common", "Draconic", "Orcish"}, -- 52 dracthyr alliance
-		[70] = {"Orcish", "Draconic", "Common"}, -- 70 dracthyr horde
-
-		demonhunter = {"Demonic"},
-		warlock = {"Demonic"},
-		rogue = {"Gutterspeak"},
-		shaman = {"Kalimag"},
-		mage = {"Titan"},
-		priest = {"Shath'Yar"},
-		monk = {"Pandaren"},
-	},
-};
-
 local mainFrame = CreateFrame("Frame", "LanguagesMainFrame", UIParent, "PortraitFrameTemplateMinimizable")
 mainFrame:SetPortraitToAsset(4891426)
 mainFrame:SetTitle("Languages")
@@ -362,342 +288,9 @@ function addon:ToggleMinimapButton()
 	end
 end
 
-
----------------------------------------------------------------------------------------------------------------------------------------------------------
--- GUI Buttons
----------------------------------------------------------------------------------------------------------------------------------------------------------
-
-mainFrame.backgroundTex = mainFrame.ScrollFrame:CreateTexture()
-mainFrame.backgroundTex:SetAllPoints(mainFrame.ScrollFrame)
-mainFrame.backgroundTex:SetAtlas("dragonriding-talents-background")
-
---some test text
-mainFrame.PHText1 = content1:CreateFontString()
-mainFrame.PHText1:SetFont("Fonts\\FRIZQT__.TTF", 11, "OUTLINE, MONOCHROME")
-mainFrame.PHText1:SetPoint("CENTER", content1, "CENTER", 0, -500)
-mainFrame.PHText1:SetText(L["Diction"])
-
-mainFrame.PHText2 = content2:CreateFontString()
-mainFrame.PHText2:SetFont("Fonts\\FRIZQT__.TTF", 20)
-mainFrame.PHText2:SetPoint("TOPLEFT", content2, "TOPLEFT", 55, -25)
-mainFrame.PHText2:SetText(L["Settings"])
-
-mainFrame.PHText3 = content3:CreateFontString()
-mainFrame.PHText3:SetFont("Fonts\\FRIZQT__.TTF", 11)
-mainFrame.PHText3:SetPoint("CENTER", content3, "CENTER", 0, -50)
-mainFrame.PHText3:SetText(L["Profiles"])
-
-mainFrame.ButtonTest = CreateFrame("Button", nil, content1, "SharedGoldRedButtonSmallTemplate")
-mainFrame.ButtonTest:SetPoint("CENTER", content1, "CENTER", 0,-50)
-mainFrame.ButtonTest:SetSize(200,50)
-mainFrame.ButtonTest:SetText(L["TogglePrefixOff"])
-mainFrame.ButtonTest:SetScript("OnClick", function(self, button)
-	mainFrame.TogglePrefix();
-end);
-
-
 ----------------------------------------
--- content 1 - Diction
+-- Tables
 ----------------------------------------
-
-----------------------------------------
--- content 2 - Settings
-----------------------------------------
-
-mainFrame.Acc_backdropInfo = {
-	bgFile = "Interface\\Tooltips\\UI-Tooltip-Background",
-	edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border",
-	tile = true,
-	tileEdge = true,
-	tileSize = 8,
-	edgeSize = 8,
-	insets = { left = 1, right = 1, top = 1, bottom = 1 },
-};
-
-StaticPopupDialogs["LANGUAGES_ACC_RESET_SETTINGS"] = {
-	text = L["ResetAccSettingsConfirm"],
-	button1 = "Yes",
-	button2 = "No",
-	OnAccept = function()
-		Languages_DB.settings = nil;
-		Languages_DB.settings = CopyTable(defaultsTableAcc);
-		lang.checkSettings();
-	end,
-	timeout = 0,
-	whileDead = true,
-	hideOnEscape = true,
-};
-
-StaticPopupDialogs["LANGUAGES_CHAR_RESET_SETTINGS"] = {
-	text = L["ResetCharSettingsConfirm"],
-	button1 = "Yes",
-	button2 = "No",
-	OnAccept = function()
-		Languages_DB.profiles[charKey] = nil;
-		Languages_DB.profiles[charKey] = CopyTable(defaultsTableChar);
-		lang.checkSettings();
-	end,
-	timeout = 0,
-	whileDead = true,
-	hideOnEscape = true,
-};
-
-mainFrame.Acc_Frame = CreateFrame("Frame", nil, content2, "BackdropTemplate")
-mainFrame.Acc_Frame:SetPoint("TOP", content2, "TOP", 0, -75)
-mainFrame.Acc_Frame:SetSize(300,250)
-mainFrame.Acc_Frame:SetBackdrop(mainFrame.Acc_backdropInfo)
-mainFrame.Acc_Frame:SetBackdropColor(0,0,0,.5)
-
-mainFrame.header1 = content2:CreateFontString()
-mainFrame.header1:SetFont("Fonts\\FRIZQT__.TTF", 11, "")
-mainFrame.header1:SetPoint("BOTTOMLEFT", mainFrame.Acc_Frame, "TOPLEFT", 0, 0)
-mainFrame.header1:SetText(L["AccountSettings"])
-
-mainFrame.resetAccSettings = CreateFrame("Button", nil, mainFrame.Acc_Frame, "SharedButtonSmallTemplate")
-mainFrame.resetAccSettings:SetPoint("BOTTOMRIGHT", mainFrame.Acc_Frame, "TOPRIGHT", -15, 5)
-mainFrame.resetAccSettings:SetSize(110,25)
-mainFrame.resetAccSettings:SetText(DEFAULTS)
-mainFrame.resetAccSettings:SetScript("OnClick", function(self, button)
-	StaticPopup_Show("LANGUAGES_ACC_RESET_SETTINGS");
-end);
-mainFrame.resetAccSettings:SetScript("OnEnter", function(self)
-	mainFrame:tooltip_OnEnter(self, L["ResetAccSettings"]);
-end);
-mainFrame.resetAccSettings:SetScript("OnLeave", mainFrame.tooltip_OnLeave);
-
-
-mainFrame.Char_Frame = CreateFrame("Frame", nil, mainFrame.Acc_Frame, "BackdropTemplate")
-mainFrame.Char_Frame:SetPoint("TOP", mainFrame.Acc_Frame, "BOTTOM", 0, -55)
-mainFrame.Char_Frame:SetSize(300,250)
-mainFrame.Char_Frame:SetBackdrop(mainFrame.Acc_backdropInfo)
-mainFrame.Char_Frame:SetBackdropColor(0,0,0,.5)	
-
-mainFrame.header2 = content2:CreateFontString()
-mainFrame.header2:SetFont("Fonts\\FRIZQT__.TTF", 11, "")
-mainFrame.header2:SetPoint("BOTTOMLEFT", mainFrame.Char_Frame, "TOPLEFT", 0, 0)
-mainFrame.header2:SetText(L["CharacterSettings"])
-
-mainFrame.resetCharSettings = CreateFrame("Button", nil, mainFrame.Char_Frame, "SharedButtonSmallTemplate")
-mainFrame.resetCharSettings:SetPoint("BOTTOMRIGHT", mainFrame.Char_Frame, "TOPRIGHT", -15, 5)
-mainFrame.resetCharSettings:SetSize(110,25)
-mainFrame.resetCharSettings:SetText(DEFAULTS)
-mainFrame.resetCharSettings:SetScript("OnClick", function(self, button)
-	StaticPopup_Show("LANGUAGES_CHAR_RESET_SETTINGS");
-end);
-mainFrame.resetCharSettings:SetScript("OnEnter", function(self)
-	mainFrame:tooltip_OnEnter(self, L["ResetCharSettings"]);
-end);
-mainFrame.resetCharSettings:SetScript("OnLeave", mainFrame.tooltip_OnLeave);
-
-mainFrame.glyphsCB = CreateFrame("CheckButton", nil, mainFrame.Acc_Frame, "UICheckButtonTemplate");
-mainFrame.glyphsCB:SetPoint("TOPRIGHT", mainFrame.Acc_Frame, "TOPRIGHT", -15, -15);
-mainFrame.glyphsCB:SetScript("OnClick", function(self)
-	if self:GetChecked() then
-		Print(L["GlyphsOn"]);
-		Languages_DB.settings.glyphs = true;
-	else
-		Print(L["GlyphsOff"]);
-		Languages_DB.settings.glyphs = false;
-	end
-	lang.checkSettings();
-end);
-mainFrame.glyphsCB.text = mainFrame.Acc_Frame:CreateFontString()
-mainFrame.glyphsCB.text:SetFont("Fonts\\FRIZQT__.TTF", 11, "")
-mainFrame.glyphsCB.text:SetPoint("RIGHT", mainFrame.glyphsCB, "LEFT", -5, 0)
-mainFrame.glyphsCB.text:SetText(L["UseGlyphs"])
-mainFrame.glyphsCB:SetScript("OnEnter", function(self)
-	mainFrame:tooltip_OnEnter(self, L["UseGlyphsTT"])
-end);
-mainFrame.glyphsCB:SetScript("OnLeave", mainFrame.tooltip_OnLeave);
-
-mainFrame.prefixColorPickerButton = CreateFrame("Button", nil, mainFrame.glyphsCB, "SharedButtonSmallTemplate")
-mainFrame.prefixColorPickerButton:SetPoint("TOPRIGHT", mainFrame.glyphsCB, "TOPRIGHT", 0, -30)
-mainFrame.prefixColorPickerButton:SetSize(110,25)
-mainFrame.prefixColorPickerButton:SetText(COLOR_PICKER)
-mainFrame.prefixColorPickerButton.text = mainFrame.Acc_Frame:CreateFontString()
-mainFrame.prefixColorPickerButton.text:SetFont("Fonts\\FRIZQT__.TTF", 11, "")
-mainFrame.prefixColorPickerButton.text:SetPoint("RIGHT", mainFrame.prefixColorPickerButton, "LEFT", -5, 0)
-mainFrame.prefixColorPickerButton.text:SetText(L["AddonPrefixColor"])
-mainFrame.prefixColorPickerButton:SetScript("OnClick", function(self, button)
-	mainFrame:ShowColorPicker(Languages_DB.settings.colors.prefix.r, Languages_DB.settings.colors.prefix.g, Languages_DB.settings.colors.prefix.b, nil, mainFrame.PrefixColor);
-end);
-
-
-mainFrame.trp3ProfileCB = CreateFrame("CheckButton", nil, mainFrame.Char_Frame, "UICheckButtonTemplate");
-mainFrame.trp3ProfileCB:SetPoint("TOPRIGHT", mainFrame.Char_Frame, "TOPRIGHT", -15, -15);
-mainFrame.trp3ProfileCB:SetScript("OnClick", function(self)
-	if self:GetChecked() then
-		Print(L["LinkToTotalRP3On"]);
-		Languages_DB.profiles[charKey].TRP3 = true;
-	else
-		Print(L["LinkToTotalRP3Off"]);
-		Languages_DB.profiles[charKey].TRP3 = false;
-	end
-	lang.checkSettings();
-end);
-mainFrame.trp3ProfileCB:Disable();
-mainFrame.trp3ProfileCB.text = mainFrame.Char_Frame:CreateFontString()
-mainFrame.trp3ProfileCB.text:SetFont("Fonts\\FRIZQT__.TTF", 11, "")
-mainFrame.trp3ProfileCB.text:SetPoint("RIGHT", mainFrame.trp3ProfileCB, "LEFT", -5, 0)
-mainFrame.trp3ProfileCB.text:SetText(L["LinkToTotalRP3"])
-mainFrame.trp3ProfileCB.text:SetTextColor(.5,.5,.5)
-mainFrame.trp3ProfileCB:SetScript("OnEnter", function(self)
-	mainFrame:tooltip_OnEnter(self, L["LinkToTotalRP3TT"])
-end);
-mainFrame.trp3ProfileCB:SetScript("OnLeave", mainFrame.tooltip_OnLeave);
-
-----------------------------------------
--- content 3 - Profiles
-----------------------------------------
-
-
-local understandLanguage = {
-};
-
-local languageBasicList = {
-	"Common",
-	"Darnassian",
-	"Dwarven",
-	"Gnomish",
-	"Draenei",
-	"Orcish",
-	"Zandali",
-	"Taurahe",
-	"Gutterspeak",
-	"Thalassian",
-	"Goblin",
-	"Shalassian",
-	"Vulpera",
-	"Pandaren",
-	"Ancient Pandaren",
-	"Draconic",
-	"Demonic",
-	"Titan",
-	"Kalimag",
-	"Shath'Yar",
-	"Broker",
-};
-
-
-mainFrame.ColumnLanguage = content1:CreateFontString()
-mainFrame.ColumnLanguage:SetFont("Fonts\\FRIZQT__.TTF", 11, "OUTLINE, MONOCHROME")
-mainFrame.ColumnLanguage:SetPoint("LEFT", content1, "LEFT", 10, -85)
-mainFrame.ColumnLanguage:SetText(L["Language"])
-
-mainFrame.ColumnUnderstand = content1:CreateFontString()
-mainFrame.ColumnUnderstand:SetFont("Fonts\\FRIZQT__.TTF", 11, "OUTLINE, MONOCHROME")
-mainFrame.ColumnUnderstand:SetPoint("LEFT", content1, "LEFT", 115, -85)
-mainFrame.ColumnUnderstand:SetText(L["Understand"])
-
-
-for k, v in ipairs(languageBasicList) do
-	mainFrame[k] = CreateFrame("Button", nil, content1, "SharedButtonSmallTemplate")
-	mainFrame[k]:SetPoint("LEFT", content1, "LEFT", 10, -30*k-75)
-	mainFrame[k]:SetSize(110,25)
-	mainFrame[k]:SetText(v)
-
-	mainFrame[k].BGTex = mainFrame[k]:CreateTexture()
-	mainFrame[k].BGTex:SetPoint("LEFT", mainFrame[k], "LEFT", 0, 0)
-	mainFrame[k].BGTex:SetSize(115*2,30)
-	mainFrame[k].BGTex:SetAtlas("perks-list-active")
-	mainFrame[k].BGTex:SetVertexColor(0/255,0/255,0/255,150/255);
-
-	mainFrame[k].HLTex = mainFrame[k]:CreateTexture()
-	mainFrame[k].HLTex:SetPoint("CENTER", mainFrame[k], "CENTER", 0, 0)
-	mainFrame[k].HLTex:SetSize(115,30)
-	mainFrame[k].HLTex:SetAtlas("UI-Frame-Dragonflight-Portrait")
-	mainFrame[k].HLTex:Hide()
-
-	mainFrame[k]:SetScript("OnClick", function(self, button)
-		currentLanguage = v;
-		Print(L["SettingLanguageTo"] .. " " .. currentLanguage);
-		for k, v in ipairs(languageBasicList) do
-			mainFrame[k].HLTex:Hide();
-			mainFrame[k].BGTex:SetVertexColor(0/255,0/255,0/255,150/255);
-		end
-		mainFrame[k].HLTex:Show();
-		mainFrame[k].BGTex:SetVertexColor(255/255,255/255,255/255,255/255);
-		mainFrame.prefix = false;
-		mainFrame.TogglePrefix();
-	end);
-
-	mainFrame[k].CB = CreateFrame("CheckButton", nil, content1, "UICheckButtonTemplate");
-	mainFrame[k].CB:SetPoint("LEFT", mainFrame[k], "RIGHT", 5, 0);
-	--mainFrame.CheckButtonLangList.Text:SetText("Check Btn " .. v);
-
-	mainFrame[k].CB:SetScript("OnClick", function(self)
-		if self:GetChecked() then
-			understandLanguage[v] = true;
-			Print(L["EnableUnderstand"] .. " " .. v);
-			if Languages_DB.profiles[charKey].TRP3 == true then
-				Languages_DB.profiles["TRP3_" .. TRP3_API.profile.getPlayerCurrentProfile().profileName].understandLanguage[v] = true;
-			end
-			Languages_DB.profiles[charKey].understandLanguage[v] = true;
-		else
-			understandLanguage[v] = false;
-			Print(L["DisableUnderstand"] .. " " .. v);
-			if Languages_DB.profiles[charKey].TRP3 == true then
-				Languages_DB.profiles["TRP3_" .. TRP3_API.profile.getPlayerCurrentProfile().profileName].understandLanguage[v] = false;
-			end
-			Languages_DB.profiles[charKey].understandLanguage[v] = false;
-		end
-		lang.checkSettings();
-	end);
-end
-
-mainFrame.Dialect = content1:CreateFontString()
-mainFrame.Dialect:SetFont("Fonts\\FRIZQT__.TTF", 11, "OUTLINE, MONOCHROME")
-mainFrame.Dialect:SetPoint("LEFT", mainFrame[21], "LEFT", 0, -30*1)
-mainFrame.Dialect:SetText(L["Dialect"])
-
-mainFrame.dialectOption1 = CreateFrame("Button", nil, content1, "SharedButtonSmallTemplate")
-mainFrame.dialectOption1:SetPoint("LEFT", mainFrame[21], "LEFT", 0, -30*1-20)
-mainFrame.dialectOption1:SetSize(110,25)
-mainFrame.dialectOption1:SetText(L["Dwarvish"])
-
-mainFrame.dialectOption1:SetScript("OnClick", function(self, button)
-	Print(L["SettingDialectTo"] .. " " .. L["Dwarvish"]);
-end);
-mainFrame.dialectOption1:Disable()
-
-
-mainFrame.dialectOption2 = CreateFrame("Button", nil, content1, "SharedButtonSmallTemplate")
-mainFrame.dialectOption2:SetPoint("LEFT", mainFrame[21], "LEFT", 0, -30*2-20)
-mainFrame.dialectOption2:SetSize(110,25)
-mainFrame.dialectOption2:SetText(L["Draenic"])
-
-mainFrame.dialectOption2:SetScript("OnClick", function(self, button)
-	Print(L["SettingDialectTo"] .. " " .. L["Draenic"]);
-end);
-mainFrame.dialectOption2:Disable()
-
-
-mainFrame.dialectOption3 = CreateFrame("Button", nil, content1, "SharedButtonSmallTemplate")
-mainFrame.dialectOption3:SetPoint("LEFT", mainFrame[21], "LEFT", 0, -30*3-20)
-mainFrame.dialectOption3:SetSize(110,25)
-mainFrame.dialectOption3:SetText(L["Zandali"])
-
-mainFrame.dialectOption3:SetScript("OnClick", function(self, button)
-	Print(L["SettingDialectTo"] .. " " .. L["Zandali"]);
-end);
-mainFrame.dialectOption3:Disable()
-
-
-mainFrame.dialectOptionToggle = CreateFrame("Button", nil, content1, "SharedButtonSmallTemplate")
-mainFrame.dialectOptionToggle:SetPoint("LEFT", mainFrame.dialectOption1, "LEFT", 170, 0)
-mainFrame.dialectOptionToggle:SetSize(110,25)
-mainFrame.dialectOptionToggle:SetText("Dialect: Off")
-
-mainFrame.dialectOptionToggle:SetScript("OnClick", function(self, button)
-	Print("Debug: Something about toggling Dialect here");
-end);
-mainFrame.dialectOptionToggle:Disable()
-
-
-
----------------------------------------------------------------------------------------------------------------------------------------------------------
--- Language Functionality
----------------------------------------------------------------------------------------------------------------------------------------------------------
 
 local thingsToHide = {
 	"^%[Common%]",
@@ -1176,52 +769,6 @@ local dictionaries = {
 	["Darnassian"] = { ["hello"] = "bingus",},
 };
 
-local function TranslateWord(word, language)
-
-	return translatedWord
-end
-
--- Function to translate a full sentence
-local function TranslateText(text, language)
-	text = text:lower()
-
-	-- Replace words and word sequences from dictionary
-	local dictionarySequences = {}
-	for word, translatedWord in dictionaries[language] do
-		text = text:gsub(word, "¤");
-		tinsert(dictionarySequences, translatedWord);
-	end
-
-	local sequenceIndex = 1
-	local translatedText = ""
-	local currentWord = ""
-	-- Go over every character (Unicode compliant)
-	for character in string.gmatch(text, "([%z\1-\127\194-\244][\128-\191]*)") do
-		-- Character shouldn't be translated
-		if tContains(doNotTranslate, character) then
-			-- Translate and add the word that just finished
-			translatedText = translatedText .. TranslateWord(currentWord, language);
-			if character == "¤" then
-				-- If special character, replace by the appropriate translated sequence
-				translatedText = translatedText .. dictionarySequences[sequenceIndex];
-				sequenceIndex = sequenceIndex + 1;
-			else
-				-- Not special character, just add it as is
-				translatedText = translatedText .. character;
-			end
-			-- Reset current word since we translated and added it
-			currentWord = "";
-		else
-			-- Regular character, just add to the current word
-			currentWord = currentWord .. character;
-		end
-	end
-	-- Add the last word if the sentence doesn't end with punctuation
-	translatedText = translatedText .. TranslateWord(currentWord, language);
-
-	return translatedText
-end
-
 local languagelist = {
 	["^%[Common%]"] = "[Common]",
 	["^%[Darnassian%]"] = "[Darnassian]",
@@ -1291,6 +838,534 @@ local languageNoBrackets = {
 	--["^%[Mogu%]"] = "Mogu",
 
 };
+
+
+local understandLanguage = {
+};
+
+local languageBasicList = {
+	"Common",
+	"Darnassian",
+	"Dwarven",
+	"Gnomish",
+	"Draenei",
+	"Orcish",
+	"Zandali",
+	"Taurahe",
+	"Gutterspeak",
+	"Thalassian",
+	"Goblin",
+	"Shalassian",
+	"Vulpera",
+	"Pandaren",
+	"Ancient Pandaren",
+	"Draconic",
+	"Demonic",
+	"Titan",
+	"Kalimag",
+	"Shath'Yar",
+	"Broker",
+};
+
+local RaceDefaults = {
+	gameplay = {
+		[1] = {["Common"] = true}, -- 1 human 
+		[3] = {["Common"] = true, ["Dwarven"] = true}, -- 3 dwarf
+		[4] = {["Common"] = true, ["Darnassian"] = true}, -- 4 night elf
+		[7] = {["Common"] = true, ["Gnomish"] = true}, -- 7 gnome
+		[11] = {["Common"] = true, ["Draenei"] = true}, -- 11 draenei
+		[22] = {["Common"] = true}, -- 22 worgen
+		[29] = {["Common"] = true, ["Thalassian"] = true}, -- 29 void elf
+		[30] = {["Common"] = true, ["Draenei"] = true}, -- 30 lightforged
+		[34] = {["Common"] = true, ["Dwarven"] = true}, -- 34 dark iron
+		[32] = {["Common"] = true}, -- 32 kul tiran
+		[37] = {["Common"] = true, ["Gnomish"] = true}, -- 37 mechagnome
+		[24] = {["Pandaren"] = true}, -- 24 pandaren neutral
+		[25] = {["Common"] = true, ["Pandaren"] = true}, -- 25 pandaren alliance
+		[26] = {["Orcish"] = true, ["Pandaren"] = true}, -- 26 pandaren horde
+		[2] = {["Orcish"] = true}, -- 2 orc
+		[5] = {["Orcish"] = true, ["Gutterspeak"] = true}, -- 5 forsaken
+		[6] = {["Orcish"] = true, ["Taurahe"] = true}, -- 6 tauren
+		[8] = {["Orcish"] = true, ["Zandali"] = true}, -- 8 troll
+		[10] = {["Orcish"] = true, ["Thalassian"] = true}, -- 10 blood elf
+		[9] = {["Orcish"] = true, ["Goblin"] = true}, -- 9 goblin
+		[27] = {["Orcish"] = true, ["Shalassian"] = true}, -- 27 nightborne
+		[28] = {["Orcish"] = true, ["Taurahe"] = true}, -- 28 highmountain
+		[36] = {["Orcish"] = true}, -- 36 mag'har
+		[31] = {["Orcish"] = true, ["Zandali"] = true}, -- 31 zandalari
+		[35] = {["Orcish"] = true, ["Vulpera"] = true}, -- 35 vulpera
+		--dracthyrN = {"Draconic"}, -- 
+		[52] = {["Common"] = true, ["Draconic"] = true}, -- 52 dracthyr alliance
+		[70] = {["Orcish"] = true, ["Draconic"] = true}, -- 70 dracthyr horde
+
+		demonhunter = {["Demonic"] = true},
+		priest = {["Shath'Yar"] = true},
+	},
+	recommended = {
+		[1] = {["Common"] = true}, -- 1 human
+		[3] = {["Common"] = true, ["Dwarven"] = true, ["Gnomish"] = true}, -- 3 dwarf
+		[4] = {["Common"] = true, ["Darnassian"] = true}, -- 4 night elf
+		[7] = {["Common"] = true, ["Gnomish"] = true, ["Dwarven"] = true}, -- 7 dwarf
+		[11] = {["Common"] = true, ["Draenei"] = true, ["Orcish"] = true}, -- 11 draenei
+		[22] = {["Common"] = true}, -- 22 worgen
+		[29] = {["Common"] = true, ["Thalassian"] = true}, -- 29 void elf
+		[30] = {["Common"] = true, ["Draenei"] = true}, -- 30 lightforged
+		[34] = {["Common"] = true, ["Dwarven"] = true}, -- 34 dark iron
+		[32] = {["Common"] = true}, -- 32 kul tiran 
+		[37] = {["Common"] = true, ["Gnomish"] = true}, -- 37 mechagnome
+		[24] = {["Pandaren"] = true}, -- 24 pandaren neutral
+		[25] = {["Common"] = true, ["Pandaren"] = true}, -- 25 pandaren alliance
+		[26] = {["Orcish"] = true, ["Pandaren"] = true}, -- 26 pandaren horde
+		[2] = {["Orcish"] = true, ["Common"] = true}, -- 2 orc
+		[5] = {["Orcish"] = true, ["Gutterspeak"] = true, ["Common"] = true}, -- 5 forsaken
+		[6] = {["Orcish"] = true, ["Taurahe"] = true}, -- 6 tauren
+		[8] = {["Orcish"] = true, ["Zandali"] = true}, -- 8 troll
+		[10] = {["Orcish"] = true, ["Thalassian"] = true, ["Common"] = true}, -- 10 blood elf
+		[9] = {["Orcish"] = true, ["Goblin"] = true, ["Common"] = true}, -- 9 goblin
+		[27] = {["Orcish"] = true, ["Shalassian"] = true}, -- 27 nightborne
+		[28] = {["Orcish"] = true, ["Taurahe"] = true}, -- 28 highmountain
+		[36] = {["Orcish"] = true}, --36 mag'har
+		[31] = {["Orcish"] = true, ["Zandali"] = true}, -- 31 zandalari
+		[35] = {["Orcish"] = true, ["Vulpera"] = true}, -- 35 vulpera
+		--dracthyrN = {"Draconic", "Common", "Orcish"}, -- 
+		[52] = {["Common"] = true, ["Draconic"] = true, ["Orcish"] = true}, -- 52 dracthyr alliance
+		[70] = {["Orcish"] = true, ["Draconic"] = true, ["Common"] = true}, -- 70 dracthyr horde
+
+		demonhunter = {"Demonic"},
+		warlock = {"Demonic"},
+		rogue = {"Gutterspeak"},
+		shaman = {"Kalimag"},
+		mage = {"Titan"},
+		priest = {"Shath'Yar"},
+		monk = {"Pandaren"},
+	},
+};
+
+
+----------------------------------------
+--
+----------------------------------------
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+-- GUI Buttons
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+
+mainFrame.backgroundTex = mainFrame.ScrollFrame:CreateTexture()
+mainFrame.backgroundTex:SetAllPoints(mainFrame.ScrollFrame)
+mainFrame.backgroundTex:SetAtlas("dragonriding-talents-background")
+
+--some test text
+mainFrame.PHText1 = content1:CreateFontString()
+mainFrame.PHText1:SetFont("Fonts\\FRIZQT__.TTF", 11, "OUTLINE, MONOCHROME")
+mainFrame.PHText1:SetPoint("CENTER", content1, "CENTER", 0, -500)
+mainFrame.PHText1:SetText(L["Diction"])
+
+mainFrame.PHText2 = content2:CreateFontString()
+mainFrame.PHText2:SetFont("Fonts\\FRIZQT__.TTF", 20)
+mainFrame.PHText2:SetPoint("TOPLEFT", content2, "TOPLEFT", 55, -25)
+mainFrame.PHText2:SetText(L["Settings"])
+
+mainFrame.PHText3 = content3:CreateFontString()
+mainFrame.PHText3:SetFont("Fonts\\FRIZQT__.TTF", 11)
+mainFrame.PHText3:SetPoint("CENTER", content3, "CENTER", 0, -50)
+mainFrame.PHText3:SetText(L["Profiles"])
+
+mainFrame.ButtonTest = CreateFrame("Button", nil, content1, "SharedGoldRedButtonSmallTemplate")
+mainFrame.ButtonTest:SetPoint("CENTER", content1, "CENTER", 0,-50)
+mainFrame.ButtonTest:SetSize(200,50)
+mainFrame.ButtonTest:SetText(L["TogglePrefixOff"])
+mainFrame.ButtonTest:SetScript("OnClick", function(self, button)
+	mainFrame.TogglePrefix();
+end);
+
+
+----------------------------------------
+-- content 1 - Diction
+----------------------------------------
+
+----------------------------------------
+-- content 2 - Settings
+----------------------------------------
+
+mainFrame.Acc_backdropInfo = {
+	bgFile = "Interface\\Tooltips\\UI-Tooltip-Background",
+	edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border",
+	tile = true,
+	tileEdge = true,
+	tileSize = 8,
+	edgeSize = 8,
+	insets = { left = 1, right = 1, top = 1, bottom = 1 },
+};
+
+StaticPopupDialogs["LANGUAGES_ACC_RESET_SETTINGS"] = {
+	text = L["ResetAccSettingsConfirm"],
+	button1 = "Yes",
+	button2 = "No",
+	OnAccept = function()
+		Languages_DB.settings = nil;
+		Languages_DB.settings = CopyTable(defaultsTableAcc);
+		lang.checkSettings();
+	end,
+	timeout = 0,
+	whileDead = true,
+	hideOnEscape = true,
+};
+
+StaticPopupDialogs["LANGUAGES_CHAR_RESET_SETTINGS"] = {
+	text = L["ResetCharSettingsConfirm"],
+	button1 = "Yes",
+	button2 = "No",
+	OnAccept = function()
+		Languages_DB.profiles[charKey] = nil;
+		Languages_DB.profiles[charKey] = CopyTable(defaultsTableChar);
+		lang.checkSettings();
+	end,
+	timeout = 0,
+	whileDead = true,
+	hideOnEscape = true,
+};
+
+mainFrame.Acc_Frame = CreateFrame("Frame", nil, content2, "BackdropTemplate")
+mainFrame.Acc_Frame:SetPoint("TOP", content2, "TOP", 0, -75)
+mainFrame.Acc_Frame:SetSize(300,250)
+mainFrame.Acc_Frame:SetBackdrop(mainFrame.Acc_backdropInfo)
+mainFrame.Acc_Frame:SetBackdropColor(0,0,0,.5)
+
+mainFrame.header1 = content2:CreateFontString()
+mainFrame.header1:SetFont("Fonts\\FRIZQT__.TTF", 11, "")
+mainFrame.header1:SetPoint("BOTTOMLEFT", mainFrame.Acc_Frame, "TOPLEFT", 0, 0)
+mainFrame.header1:SetText(L["AccountSettings"])
+
+mainFrame.resetAccSettings = CreateFrame("Button", nil, mainFrame.Acc_Frame, "SharedButtonSmallTemplate")
+mainFrame.resetAccSettings:SetPoint("BOTTOMRIGHT", mainFrame.Acc_Frame, "TOPRIGHT", -15, 5)
+mainFrame.resetAccSettings:SetSize(110,25)
+mainFrame.resetAccSettings:SetText(DEFAULTS)
+mainFrame.resetAccSettings:SetScript("OnClick", function(self, button)
+	StaticPopup_Show("LANGUAGES_ACC_RESET_SETTINGS");
+end);
+mainFrame.resetAccSettings:SetScript("OnEnter", function(self)
+	mainFrame:tooltip_OnEnter(self, L["ResetAccSettings"]);
+end);
+mainFrame.resetAccSettings:SetScript("OnLeave", mainFrame.tooltip_OnLeave);
+
+
+mainFrame.Char_Frame = CreateFrame("Frame", nil, mainFrame.Acc_Frame, "BackdropTemplate")
+mainFrame.Char_Frame:SetPoint("TOP", mainFrame.Acc_Frame, "BOTTOM", 0, -55)
+mainFrame.Char_Frame:SetSize(300,250)
+mainFrame.Char_Frame:SetBackdrop(mainFrame.Acc_backdropInfo)
+mainFrame.Char_Frame:SetBackdropColor(0,0,0,.5)	
+
+mainFrame.header2 = content2:CreateFontString()
+mainFrame.header2:SetFont("Fonts\\FRIZQT__.TTF", 11, "")
+mainFrame.header2:SetPoint("BOTTOMLEFT", mainFrame.Char_Frame, "TOPLEFT", 0, 0)
+mainFrame.header2:SetText(L["CharacterSettings"])
+
+mainFrame.resetCharSettings = CreateFrame("Button", nil, mainFrame.Char_Frame, "SharedButtonSmallTemplate")
+mainFrame.resetCharSettings:SetPoint("BOTTOMRIGHT", mainFrame.Char_Frame, "TOPRIGHT", -15, 5)
+mainFrame.resetCharSettings:SetSize(110,25)
+mainFrame.resetCharSettings:SetText(DEFAULTS)
+mainFrame.resetCharSettings:SetScript("OnClick", function(self, button)
+	StaticPopup_Show("LANGUAGES_CHAR_RESET_SETTINGS");
+end);
+mainFrame.resetCharSettings:SetScript("OnEnter", function(self)
+	mainFrame:tooltip_OnEnter(self, L["ResetCharSettings"]);
+end);
+mainFrame.resetCharSettings:SetScript("OnLeave", mainFrame.tooltip_OnLeave);
+
+mainFrame.glyphsCB = CreateFrame("CheckButton", nil, mainFrame.Acc_Frame, "UICheckButtonTemplate");
+mainFrame.glyphsCB:SetPoint("TOPRIGHT", mainFrame.Acc_Frame, "TOPRIGHT", -15, -15);
+mainFrame.glyphsCB:SetScript("OnClick", function(self)
+	if self:GetChecked() then
+		Print(L["GlyphsOn"]);
+		Languages_DB.settings.glyphs = true;
+	else
+		Print(L["GlyphsOff"]);
+		Languages_DB.settings.glyphs = false;
+	end
+	lang.checkSettings();
+end);
+mainFrame.glyphsCB.text = mainFrame.Acc_Frame:CreateFontString()
+mainFrame.glyphsCB.text:SetFont("Fonts\\FRIZQT__.TTF", 11, "")
+mainFrame.glyphsCB.text:SetPoint("RIGHT", mainFrame.glyphsCB, "LEFT", -5, 0)
+mainFrame.glyphsCB.text:SetText(L["UseGlyphs"])
+mainFrame.glyphsCB:SetScript("OnEnter", function(self)
+	mainFrame:tooltip_OnEnter(self, L["UseGlyphsTT"])
+end);
+mainFrame.glyphsCB:SetScript("OnLeave", mainFrame.tooltip_OnLeave);
+
+mainFrame.prefixColorPickerButton = CreateFrame("Button", nil, mainFrame.glyphsCB, "SharedButtonSmallTemplate")
+mainFrame.prefixColorPickerButton:SetPoint("TOPRIGHT", mainFrame.glyphsCB, "TOPRIGHT", 0, -30)
+mainFrame.prefixColorPickerButton:SetSize(110,25)
+mainFrame.prefixColorPickerButton:SetText(COLOR_PICKER)
+mainFrame.prefixColorPickerButton.text = mainFrame.Acc_Frame:CreateFontString()
+mainFrame.prefixColorPickerButton.text:SetFont("Fonts\\FRIZQT__.TTF", 11, "")
+mainFrame.prefixColorPickerButton.text:SetPoint("RIGHT", mainFrame.prefixColorPickerButton, "LEFT", -5, 0)
+mainFrame.prefixColorPickerButton.text:SetText(L["AddonPrefixColor"])
+mainFrame.prefixColorPickerButton:SetScript("OnClick", function(self, button)
+	mainFrame:ShowColorPicker(Languages_DB.settings.colors.prefix.r, Languages_DB.settings.colors.prefix.g, Languages_DB.settings.colors.prefix.b, nil, mainFrame.PrefixColor);
+end);
+
+
+mainFrame.trp3ProfileCB = CreateFrame("CheckButton", nil, mainFrame.Char_Frame, "UICheckButtonTemplate");
+mainFrame.trp3ProfileCB:SetPoint("TOPRIGHT", mainFrame.Char_Frame, "TOPRIGHT", -15, -15);
+mainFrame.trp3ProfileCB:SetScript("OnClick", function(self)
+	if self:GetChecked() then
+		Print(L["LinkToTotalRP3On"]);
+		Languages_DB.profiles[charKey].TRP3 = true;
+	else
+		Print(L["LinkToTotalRP3Off"]);
+		Languages_DB.profiles[charKey].TRP3 = false;
+	end
+	lang.checkSettings();
+end);
+mainFrame.trp3ProfileCB:Disable();
+mainFrame.trp3ProfileCB.text = mainFrame.Char_Frame:CreateFontString()
+mainFrame.trp3ProfileCB.text:SetFont("Fonts\\FRIZQT__.TTF", 11, "")
+mainFrame.trp3ProfileCB.text:SetPoint("RIGHT", mainFrame.trp3ProfileCB, "LEFT", -5, 0)
+mainFrame.trp3ProfileCB.text:SetText(L["LinkToTotalRP3"])
+mainFrame.trp3ProfileCB.text:SetTextColor(.5,.5,.5)
+mainFrame.trp3ProfileCB:SetScript("OnEnter", function(self)
+	mainFrame:tooltip_OnEnter(self, L["LinkToTotalRP3TT"])
+end);
+mainFrame.trp3ProfileCB:SetScript("OnLeave", mainFrame.tooltip_OnLeave);
+
+----------------------------------------
+-- content 3 - Profiles
+----------------------------------------
+
+mainFrame.preset_recommended = CreateFrame("Button", nil, content3, "SharedButtonSmallTemplate")
+mainFrame.preset_recommended:SetPoint("BOTTOMRIGHT", content3, "TOPRIGHT", -25, -150)
+mainFrame.preset_recommended:SetSize(110,25)
+mainFrame.preset_recommended:SetText(L["ImportRecommended"])
+mainFrame.preset_recommended:SetScript("OnClick", function(self, button)
+	if Languages_DB.profiles[charKey].TRP3 == true then
+		Languages_DB.profiles["TRP3_" .. TRP3_API.profile.getPlayerCurrentProfile().profileName].understandLanguage = CopyTable(RaceDefaults.recommended[select(3, UnitRace("player"))]);
+	end
+	Languages_DB.profiles[charKey].understandLanguage = CopyTable(RaceDefaults.recommended[select(3, UnitRace("player"))]);
+	lang.checkSettings();
+end);
+mainFrame.preset_recommended:SetScript("OnEnter", function(self)
+	mainFrame:tooltip_OnEnter(self, L["ImportRecommendedTT"]);
+end);
+mainFrame.preset_recommended:SetScript("OnLeave", mainFrame.tooltip_OnLeave);
+
+mainFrame.preset_gameplay = CreateFrame("Button", nil, content3, "SharedButtonSmallTemplate")
+mainFrame.preset_gameplay:SetPoint("TOPRIGHT", mainFrame.preset_recommended, "TOPRIGHT", 0, -30)
+mainFrame.preset_gameplay:SetSize(110,25)
+mainFrame.preset_gameplay:SetText(L["ImportGameplay"])
+mainFrame.preset_gameplay:SetScript("OnClick", function(self, button)
+	if Languages_DB.profiles[charKey].TRP3 == true then
+		Languages_DB.profiles["TRP3_" .. TRP3_API.profile.getPlayerCurrentProfile().profileName].understandLanguage = CopyTable(RaceDefaults.gameplay[select(3, UnitRace("player"))]);
+	end
+	Languages_DB.profiles[charKey].understandLanguage = CopyTable(RaceDefaults.gameplay[select(3, UnitRace("player"))]);
+	lang.checkSettings();
+end);
+mainFrame.preset_gameplay:SetScript("OnEnter", function(self)
+	mainFrame:tooltip_OnEnter(self, L["ImportGameplayTT"]);
+end);
+mainFrame.preset_gameplay:SetScript("OnLeave", mainFrame.tooltip_OnLeave);
+
+
+----------------------------------------
+--
+----------------------------------------
+
+
+mainFrame.ColumnLanguage = content1:CreateFontString()
+mainFrame.ColumnLanguage:SetFont("Fonts\\FRIZQT__.TTF", 11, "OUTLINE, MONOCHROME")
+mainFrame.ColumnLanguage:SetPoint("LEFT", content1, "LEFT", 10, -85)
+mainFrame.ColumnLanguage:SetText(L["Language"])
+
+mainFrame.ColumnUnderstand = content1:CreateFontString()
+mainFrame.ColumnUnderstand:SetFont("Fonts\\FRIZQT__.TTF", 11, "OUTLINE, MONOCHROME")
+mainFrame.ColumnUnderstand:SetPoint("LEFT", content1, "LEFT", 115, -85)
+mainFrame.ColumnUnderstand:SetText(L["Understand"])
+
+
+for k, v in ipairs(languageBasicList) do
+	mainFrame[k] = CreateFrame("Button", nil, content1, "SharedButtonSmallTemplate")
+	mainFrame[k]:SetPoint("LEFT", content1, "LEFT", 10, -30*k-75)
+	mainFrame[k]:SetSize(110,25)
+	mainFrame[k]:SetText(v)
+
+
+	mainFrame[k]:SetScript("OnEnter", function(self)
+		mainFrame:tooltip_OnEnter(self, L["ToggleLanguageSpokenTT"]);
+	end);
+	mainFrame[k]:SetScript("OnLeave", mainFrame.tooltip_OnLeave);
+
+	if LANGUAGE_REPLACEMENTS[v]["hasRunes"] == true then
+		mainFrame[k].runeIcon = CreateFrame("Frame", nil, mainFrame[k])
+		mainFrame[k].runeIcon:SetPoint("LEFT", mainFrame[k], "RIGHT", 50, 0)
+		mainFrame[k].runeIcon:SetSize(25,25)
+
+		mainFrame[k].runeIconTex = mainFrame[k].runeIcon:CreateTexture()
+		mainFrame[k].runeIconTex:SetAllPoints()
+		mainFrame[k].runeIconTex:SetAtlas("Rune-01-light")
+
+		mainFrame[k].runeIcon:SetScript("OnEnter", function(self)
+			mainFrame:tooltip_OnEnter(self, L["ThisLangHasRunesTT"]);
+		end);
+		mainFrame[k].runeIcon:SetScript("OnLeave", mainFrame.tooltip_OnLeave);
+	end
+
+	mainFrame[k].BGTex = mainFrame[k]:CreateTexture()
+	mainFrame[k].BGTex:SetPoint("LEFT", mainFrame[k], "LEFT", 0, 0)
+	mainFrame[k].BGTex:SetSize(115*2,30)
+	mainFrame[k].BGTex:SetAtlas("perks-list-active")
+	mainFrame[k].BGTex:SetVertexColor(0/255,0/255,0/255,150/255);
+
+	mainFrame[k].HLTex = mainFrame[k]:CreateTexture()
+	mainFrame[k].HLTex:SetPoint("CENTER", mainFrame[k], "CENTER", 0, 0)
+	mainFrame[k].HLTex:SetSize(115,30)
+	mainFrame[k].HLTex:SetAtlas("UI-Frame-Dragonflight-Portrait")
+	mainFrame[k].HLTex:Hide()
+
+	mainFrame[k]:SetScript("OnClick", function(self, button)
+		currentLanguage = v;
+		Print(L["SettingLanguageTo"] .. " " .. currentLanguage);
+		for k, v in ipairs(languageBasicList) do
+			mainFrame[k].HLTex:Hide();
+			mainFrame[k].BGTex:SetVertexColor(0/255,0/255,0/255,150/255);
+		end
+		mainFrame[k].HLTex:Show();
+		mainFrame[k].BGTex:SetVertexColor(255/255,255/255,255/255,255/255);
+		mainFrame.prefix = false;
+		mainFrame.TogglePrefix();
+	end);
+
+	mainFrame[k].CB = CreateFrame("CheckButton", nil, content1, "UICheckButtonTemplate");
+	mainFrame[k].CB:SetPoint("LEFT", mainFrame[k], "RIGHT", 5, 0);
+	--mainFrame.CheckButtonLangList.Text:SetText("Check Btn " .. v);
+
+	mainFrame[k].CB:SetScript("OnClick", function(self)
+		if self:GetChecked() then
+			understandLanguage[v] = true;
+			Print(L["EnableUnderstand"] .. " " .. v);
+			if Languages_DB.profiles[charKey].TRP3 == true then
+				Languages_DB.profiles["TRP3_" .. TRP3_API.profile.getPlayerCurrentProfile().profileName].understandLanguage[v] = true;
+			end
+			Languages_DB.profiles[charKey].understandLanguage[v] = true;
+		else
+			understandLanguage[v] = false;
+			Print(L["DisableUnderstand"] .. " " .. v);
+			if Languages_DB.profiles[charKey].TRP3 == true then
+				Languages_DB.profiles["TRP3_" .. TRP3_API.profile.getPlayerCurrentProfile().profileName].understandLanguage[v] = false;
+			end
+			Languages_DB.profiles[charKey].understandLanguage[v] = false;
+		end
+		lang.checkSettings();
+	end);
+
+
+
+	mainFrame[k].CB:SetScript("OnEnter", function(self)
+		mainFrame:tooltip_OnEnter(self, L["ToggleLanguageLearnedTT"]);
+	end);
+	mainFrame[k].CB:SetScript("OnLeave", mainFrame.tooltip_OnLeave);
+end
+
+mainFrame.Dialect = content1:CreateFontString()
+mainFrame.Dialect:SetFont("Fonts\\FRIZQT__.TTF", 11, "OUTLINE, MONOCHROME")
+mainFrame.Dialect:SetPoint("LEFT", mainFrame[21], "LEFT", 0, -30*1)
+mainFrame.Dialect:SetText(L["Dialect"])
+
+mainFrame.dialectOption1 = CreateFrame("Button", nil, content1, "SharedButtonSmallTemplate")
+mainFrame.dialectOption1:SetPoint("LEFT", mainFrame[21], "LEFT", 0, -30*1-20)
+mainFrame.dialectOption1:SetSize(110,25)
+mainFrame.dialectOption1:SetText(L["Dwarvish"])
+
+mainFrame.dialectOption1:SetScript("OnClick", function(self, button)
+	Print(L["SettingDialectTo"] .. " " .. L["Dwarvish"]);
+end);
+mainFrame.dialectOption1:Disable()
+
+
+mainFrame.dialectOption2 = CreateFrame("Button", nil, content1, "SharedButtonSmallTemplate")
+mainFrame.dialectOption2:SetPoint("LEFT", mainFrame[21], "LEFT", 0, -30*2-20)
+mainFrame.dialectOption2:SetSize(110,25)
+mainFrame.dialectOption2:SetText(L["Draenic"])
+
+mainFrame.dialectOption2:SetScript("OnClick", function(self, button)
+	Print(L["SettingDialectTo"] .. " " .. L["Draenic"]);
+end);
+mainFrame.dialectOption2:Disable()
+
+
+mainFrame.dialectOption3 = CreateFrame("Button", nil, content1, "SharedButtonSmallTemplate")
+mainFrame.dialectOption3:SetPoint("LEFT", mainFrame[21], "LEFT", 0, -30*3-20)
+mainFrame.dialectOption3:SetSize(110,25)
+mainFrame.dialectOption3:SetText(L["Zandali"])
+
+mainFrame.dialectOption3:SetScript("OnClick", function(self, button)
+	Print(L["SettingDialectTo"] .. " " .. L["Zandali"]);
+end);
+mainFrame.dialectOption3:Disable()
+
+
+mainFrame.dialectOptionToggle = CreateFrame("Button", nil, content1, "SharedButtonSmallTemplate")
+mainFrame.dialectOptionToggle:SetPoint("LEFT", mainFrame.dialectOption1, "LEFT", 170, 0)
+mainFrame.dialectOptionToggle:SetSize(110,25)
+mainFrame.dialectOptionToggle:SetText("Dialect: Off")
+
+mainFrame.dialectOptionToggle:SetScript("OnClick", function(self, button)
+	Print("Debug: Something about toggling Dialect here");
+end);
+mainFrame.dialectOptionToggle:Disable()
+
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+-- Language Functionality
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+local function TranslateWord(word, language)
+
+	return translatedWord
+end
+
+-- Function to translate a full sentence
+local function TranslateText(text, language)
+	text = text:lower()
+
+	-- Replace words and word sequences from dictionary
+	local dictionarySequences = {}
+	for word, translatedWord in dictionaries[language] do
+		text = text:gsub(word, "¤");
+		tinsert(dictionarySequences, translatedWord);
+	end
+
+	local sequenceIndex = 1
+	local translatedText = ""
+	local currentWord = ""
+	-- Go over every character (Unicode compliant)
+	for character in string.gmatch(text, "([%z\1-\127\194-\244][\128-\191]*)") do
+		-- Character shouldn't be translated
+		if tContains(doNotTranslate, character) then
+			-- Translate and add the word that just finished
+			translatedText = translatedText .. TranslateWord(currentWord, language);
+			if character == "¤" then
+				-- If special character, replace by the appropriate translated sequence
+				translatedText = translatedText .. dictionarySequences[sequenceIndex];
+				sequenceIndex = sequenceIndex + 1;
+			else
+				-- Not special character, just add it as is
+				translatedText = translatedText .. character;
+			end
+			-- Reset current word since we translated and added it
+			currentWord = "";
+		else
+			-- Regular character, just add to the current word
+			currentWord = currentWord .. character;
+		end
+	end
+	-- Add the last word if the sentence doesn't end with punctuation
+	translatedText = translatedText .. TranslateWord(currentWord, language);
+
+	return translatedText
+end
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------
 
