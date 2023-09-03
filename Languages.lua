@@ -212,6 +212,24 @@ end
 ---------------------------------------------------------------------------------------------------------------------------------------------------------
 
 local textBeforeParse, parsedEditBox;
+local gopherPadding;
+
+function mainFrame.setMaxLetters()
+	if ACTIVE_CHAT_EDIT_BOX ~= nil then
+		local editBox = _G[ACTIVE_CHAT_EDIT_BOX:GetName()]
+		local header = _G[ACTIVE_CHAT_EDIT_BOX:GetName().."Header"]
+		if IsAddOnLoaded("EmoteSplitter") == true then
+			return
+		else
+			local maxLetters = editBox:GetVisibleTextByteLimit()
+			local subtractLetters = string.len("[" .. currentLanguage .. "]" .. " ")
+			if mainFrame.prefix ~= true then
+				subtractLetters = 0
+			end
+			editBox:SetVisibleTextByteLimit(maxLetters - subtractLetters)
+		end
+	end
+end
 
 function mainFrame.enablePrefix()
 
@@ -225,8 +243,23 @@ function mainFrame.enablePrefix()
 			if text ~= "" and text ~= nil then
 				textBeforeParse = text;
 				parsedEditBox = editBox;
+				if ACTIVE_CHAT_EDIT_BOX == nil then
+					return
+				end
 				if mainFrame.prefix == true and currentLanguage ~= "" and currentLanguage ~= nil and (_G[ACTIVE_CHAT_EDIT_BOX:GetName()]:GetAttribute("chatType") == "SAY" or _G[ACTIVE_CHAT_EDIT_BOX:GetName()]:GetAttribute("chatType") == "YELL") then
-					text = "[" .. currentLanguage .. "]" .. " " .. text;
+
+					if editBox:GetMaxBytes() ~= 1280 then
+						if IsAddOnLoaded("EmoteSplitter") == true then
+							gopherPadding = LibGopher.GetPadding()
+							LibGopher.SetPadding( "[" .. currentLanguage .. "]" )
+							text = " " .. text
+						else
+							text = "[" .. currentLanguage .. "]" .. " " .. text;
+						end
+					else
+						text = "[" .. currentLanguage .. "]" .. " " .. text;
+						editBox:SetVisibleTextByteLimit(255)
+					end
 				end
 				editBox:SetText(text);
 			end
@@ -327,62 +360,62 @@ end
 
 local atlas = {
 	--character = {L = 0, R = 0, T = 0, B = 0}, -- L = (1/256)*((34*N1)+1), R = L + 0.125, T = (1/256)*((34*N2)+1), B = T + 0.125;
-	["a"] = {L = 0.00390625, R = 0.12890625, T = 0.00390625, B = 0.12890625},
-	["b"] = {L = 0.13671875, R = 0.26171875, T = 0.00390625, B = 0.12890625},
-	["c"] = {L = 0.26953125, R = 0.39453125, T = 0.00390625, B = 0.12890625},
-	["d"] = {L = 0.40234375, R = 0.52734375, T = 0.00390625, B = 0.12890625},
-	["e"] = {L = 0.53515625, R = 0.66015625, T = 0.00390625, B = 0.12890625},
-	["f"] = {L = 0.66796875, R = 0.79296875, T = 0.00390625, B = 0.12890625},
-	["g"] = {L = 0.80078125, R = 0.92578125, T = 0.00390625, B = 0.12890625},
-	["h"] = {L = 0.00390625, R = 0.12890625, T = 0.13671875, B = 0.26171875},
-	["i"] = {L = 0.13671875, R = 0.26171875, T = 0.13671875, B = 0.26171875},
-	["j"] = {L = 0.26953125, R = 0.39453125, T = 0.13671875, B = 0.26171875},
-	["k"] = {L = 0.40234375, R = 0.52734375, T = 0.13671875, B = 0.26171875},
-	["l"] = {L = 0.53515625, R = 0.66015625, T = 0.13671875, B = 0.26171875},
-	["m"] = {L = 0.66796875, R = 0.79296875, T = 0.13671875, B = 0.26171875},
-	["n"] = {L = 0.80078125, R = 0.92578125, T = 0.13671875, B = 0.26171875},
-	["o"] = {L = 0.00390625, R = 0.12890625, T = 0.26953125, B = 0.39453125},
-	["p"] = {L = 0.13671875, R = 0.26171875, T = 0.26953125, B = 0.39453125},
-	["q"] = {L = 0.26953125, R = 0.39453125, T = 0.26953125, B = 0.39453125},
-	["r"] = {L = 0.40234375, R = 0.52734375, T = 0.26953125, B = 0.39453125},
-	["s"] = {L = 0.53515625, R = 0.66015625, T = 0.26953125, B = 0.39453125},
-	["t"] = {L = 0.66796875, R = 0.79296875, T = 0.26953125, B = 0.39453125},
-	["u"] = {L = 0.80078125, R = 0.92578125, T = 0.26953125, B = 0.39453125},
-	["v"] = {L = 0.00390625, R = 0.12890625, T = 0.40234375, B = 0.52734375},
-	["w"] = {L = 0.13671875, R = 0.26171875, T = 0.40234375, B = 0.52734375},
-	["x"] = {L = 0.26953125, R = 0.39453125, T = 0.40234375, B = 0.52734375},
-	["y"] = {L = 0.40234375, R = 0.52734375, T = 0.40234375, B = 0.52734375},
-	["z"] = {L = 0.53515625, R = 0.66015625, T = 0.40234375, B = 0.52734375},
+	["a"] = {L = 2,		R = 66,		T = 2,			B = 66},
+	["b"] = {L = 70,	R = 134,	T = 2,			B = 66},
+	["c"] = {L = 138,	R = 202,	T = 2,			B = 66},
+	["d"] = {L = 206,	R = 270,	T = 2,			B = 66},
+	["e"] = {L = 274,	R = 338,	T = 2,			B = 66},
+	["f"] = {L = 342,	R = 406,	T = 2,			B = 66},
+	["g"] = {L = 410,	R = 474,	T = 2,			B = 66},
+	["h"] = {L = 2,		R = 66,		T = 70,			B = 134},
+	["i"] = {L = 70,	R = 134,	T = 70,			B = 134},
+	["j"] = {L = 138,	R = 202,	T = 70,			B = 134},
+	["k"] = {L = 206,	R = 270,	T = 70,			B = 134},
+	["l"] = {L = 274,	R = 338,	T = 70,			B = 134},
+	["m"] = {L = 342,	R = 406,	T = 70,			B = 134},
+	["n"] = {L = 410,	R = 474,	T = 70,			B = 134},
+	["o"] = {L = 2,		R = 66,		T = 138,		B = 202},
+	["p"] = {L = 70,	R = 134,	T = 138,		B = 202},
+	["q"] = {L = 138,	R = 202,	T = 138,		B = 202},
+	["r"] = {L = 206,	R = 270,	T = 138,		B = 202},
+	["s"] = {L = 274,	R = 338,	T = 138,		B = 202},
+	["t"] = {L = 342,	R = 406,	T = 138,		B = 202},
+	["u"] = {L = 410,	R = 474,	T = 138,		B = 202},
+	["v"] = {L = 2,		R = 66,		T = 206,		B = 270},
+	["w"] = {L = 70,	R = 134,	T = 206,		B = 270},
+	["x"] = {L = 138,	R = 202,	T = 206,		B = 270},
+	["y"] = {L = 206,	R = 270,	T = 206,		B = 270},
+	["z"] = {L = 274,	R = 338,	T = 206,		B = 270},
 
-	["A"] = {L = 0.00390625, R = 0.12890625, T = 0.00390625, B = 0.12890625},
-	["B"] = {L = 0.13671875, R = 0.26171875, T = 0.00390625, B = 0.12890625},
-	["C"] = {L = 0.26953125, R = 0.39453125, T = 0.00390625, B = 0.12890625},
-	["D"] = {L = 0.40234375, R = 0.52734375, T = 0.00390625, B = 0.12890625},
-	["E"] = {L = 0.53515625, R = 0.66015625, T = 0.00390625, B = 0.12890625},
-	["F"] = {L = 0.66796875, R = 0.79296875, T = 0.00390625, B = 0.12890625},
-	["G"] = {L = 0.80078125, R = 0.92578125, T = 0.00390625, B = 0.12890625},
-	["H"] = {L = 0.00390625, R = 0.12890625, T = 0.13671875, B = 0.26171875},
-	["I"] = {L = 0.13671875, R = 0.26171875, T = 0.13671875, B = 0.26171875},
-	["J"] = {L = 0.26953125, R = 0.39453125, T = 0.13671875, B = 0.26171875},
-	["K"] = {L = 0.40234375, R = 0.52734375, T = 0.13671875, B = 0.26171875},
-	["L"] = {L = 0.53515625, R = 0.66015625, T = 0.13671875, B = 0.26171875},	
-	["M"] = {L = 0.66796875, R = 0.79296875, T = 0.13671875, B = 0.26171875},
-	["N"] = {L = 0.80078125, R = 0.92578125, T = 0.13671875, B = 0.26171875},
-	["O"] = {L = 0.00390625, R = 0.12890625, T = 0.26953125, B = 0.39453125},
-	["P"] = {L = 0.13671875, R = 0.26171875, T = 0.26953125, B = 0.39453125},
-	["Q"] = {L = 0.26953125, R = 0.39453125, T = 0.26953125, B = 0.39453125},
-	["R"] = {L = 0.40234375, R = 0.52734375, T = 0.26953125, B = 0.39453125},
-	["S"] = {L = 0.53515625, R = 0.66015625, T = 0.26953125, B = 0.39453125},
-	["T"] = {L = 0.66796875, R = 0.79296875, T = 0.26953125, B = 0.39453125},
-	["U"] = {L = 0.80078125, R = 0.92578125, T = 0.26953125, B = 0.39453125},
-	["V"] = {L = 0.00390625, R = 0.12890625, T = 0.40234375, B = 0.52734375},
-	["W"] = {L = 0.13671875, R = 0.26171875, T = 0.40234375, B = 0.52734375},
-	["X"] = {L = 0.26953125, R = 0.39453125, T = 0.40234375, B = 0.52734375},
-	["Y"] = {L = 0.40234375, R = 0.52734375, T = 0.40234375, B = 0.52734375},
-	["Z"] = {L = 0.53515625, R = 0.66015625, T = 0.40234375, B = 0.52734375},
+	["A"] = {L = 2,		R = 66,		T = 2,			B = 66},
+	["B"] = {L = 70,	R = 134,	T = 2,			B = 66},
+	["C"] = {L = 138,	R = 202,	T = 2,			B = 66},
+	["D"] = {L = 206,	R = 270,	T = 2,			B = 66},
+	["E"] = {L = 274,	R = 338,	T = 2,			B = 66},
+	["F"] = {L = 342,	R = 406,	T = 2,			B = 66},
+	["G"] = {L = 410,	R = 474,	T = 2,			B = 66},
+	["H"] = {L = 2,		R = 66,		T = 70,			B = 134},
+	["I"] = {L = 70,	R = 134,	T = 70,			B = 134},
+	["J"] = {L = 138,	R = 202,	T = 70,			B = 134},
+	["K"] = {L = 206,	R = 270,	T = 70,			B = 134},
+	["L"] = {L = 274,	R = 338,	T = 70,			B = 134},	
+	["M"] = {L = 342,	R = 406,	T = 70,			B = 134},
+	["N"] = {L = 410,	R = 474,	T = 70,			B = 134},
+	["O"] = {L = 2,		R = 66,		T = 138,		B = 202},
+	["P"] = {L = 70,	R = 134,	T = 138,		B = 202},
+	["Q"] = {L = 138,	R = 202,	T = 138,		B = 202},
+	["R"] = {L = 206,	R = 270,	T = 138,		B = 202},
+	["S"] = {L = 274,	R = 338,	T = 138,		B = 202},
+	["T"] = {L = 342,	R = 406,	T = 138,		B = 202},
+	["U"] = {L = 410,	R = 474,	T = 138,		B = 202},
+	["V"] = {L = 2,		R = 66,		T = 206,		B = 270},
+	["W"] = {L = 70,	R = 134,	T = 206,		B = 270},
+	["X"] = {L = 138,	R = 202,	T = 206,		B = 270},
+	["Y"] = {L = 206,	R = 270,	T = 206,		B = 270},
+	["Z"] = {L = 274,	R = 338,	T = 206,		B = 270},
 
-	["'"] = {L = 0.66796875, R = 0.79296875, T = 0.40234375, B = 0.52734375}, -- apostrophes
-	["-"] = {L = 0.80078125, R = 0.92578125, T = 0.40234375, B = 0.52734375}, -- hyphens
+	["'"] = {L = 342,	R = 406,	T = 206,		B = 270}, -- apostrophes
+	["-"] = {L = 410,	R = 474,	T = 206,		B = 270}, -- hyphens
 
 };
 
@@ -1374,7 +1407,7 @@ end
 local AddonPath = "Interface\\AddOns\\Languages\\Textures\\"
 
 local function ReplaceLanguage(text, language)
-	Print(text)
+	--Print(text)
 	text = string.lower(text)
 	local capital = 1
 	local replacements = LANGUAGE_REPLACEMENTS[language];
@@ -1406,11 +1439,12 @@ local function ReplaceLanguage(text, language)
 			for character in string.gmatch(Translation, "([%z\1-\127\194-\244][\128-\191]*)") do
 				for i, v in ipairs(thingsToHide) do
 					if chungus == v then
-						--character = character:gsub(character, AddonPath .. languageNoBrackets[v] .. "\\" .. character .. ":" .. fontSize .. ":" .. "9" .. "|t" )
-						character = character:gsub(character, "|T" .. AddonPath .. languageNoBrackets[v] .. "_atlas.png" .. ":" .. fontSize --[[Height]] .. ":" .. "9" --[[Width]] .. ":0:0" --[[offsetX:offsetY]] .. ":512:512" --[[textureWidth:textureHeight]]
-						.. ":" .. atlas[character].L * 512 --[[L]] .. ":" .. atlas[character].R * 512 --[[R]] .. ":" .. atlas[character].T * 512 --[[T]] .. ":" .. atlas[character].B * 512 --[[B]] .. ":"
-						.. chatTypeBingus.r * 255 .. ":" .. chatTypeBingus.g * 255 .. ":" .. chatTypeBingus.b * 255 .. ":"
-						.. "|t" );
+						character = character:gsub(character, "|T" ..AddonPath .. languageNoBrackets[v] .. "\\" .. character .. ":" .. fontSize .. ":" .. "9" .. "|t" )
+						-- this was the "new" method, using a sort of atlas-like texture. however the texel portion of this method proved to be horrible to performance, so individual files per letter (above) are used instead.
+						--character = character:gsub(character, "|T" .. AddonPath .. languageNoBrackets[v] .. "_atlas.blp" .. ":" .. fontSize --[[Height]] .. ":" .. "9" --[[Width]] .. ":0:0" --[[offsetX:offsetY]] .. ":512:512" --[[textureWidth:textureHeight]]
+						--.. ":" .. atlas[character].L --[[L]] .. ":" .. atlas[character].R --[[R]] .. ":" .. atlas[character].T --[[T]] .. ":" .. atlas[character].B --[[B]] .. ":"
+						--.. chatTypeBingus.r * 255 .. ":" .. chatTypeBingus.g * 255 .. ":" .. chatTypeBingus.b * 255 .. ":"
+						--.. "|t" );
 					end
 				end
 				--print("debug:" .. character)
@@ -1475,6 +1509,7 @@ ChatFrame_AddMessageEventFilter("CHAT_MSG_SAY", eventFilterStuff)
 ChatFrame_AddMessageEventFilter("CHAT_MSG_YELL", eventFilterStuff)
 
 local function testScriptHeader()
+	mainFrame.setMaxLetters()
 	--_G[ACTIVE_CHAT_EDIT_BOX:GetName().."Header"]:GetText()
 	--local header = _G[ACTIVE_CHAT_EDIT_BOX:GetName().."Header"]
 	local editBox

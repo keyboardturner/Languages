@@ -58,7 +58,7 @@ if LOCALE == "enUS" then
 	L["ImportGameplayTT"] = "Automatically learn default languages that your race would in normal gameplay mechanics.\nThis will overwrite your current learned languages."
 	L["ImportRecommended"] = "Recommended"
 	L["ImportRecommendedTT"] = "Automatically learn languages your race / class likely would have learned in their probable history.\nThis will overwrite your current learned languages."
-	L["ThisLangHasRunesTT"] = "This language will display runes when unlearned."
+	L["ThisLangHasRunesTT"] = "This language can display runes when unlearned."
 	L["ToggleLanguageLearnedTT"] = "Click to toggle your ability to understand this language when spoken by yourself and others."
 	L["ToggleLanguageSpokenTT"] = "Click to set this language as your prefix."
 
