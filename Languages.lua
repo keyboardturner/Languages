@@ -864,14 +864,13 @@ local LANGUAGE_REPLACEMENTS = {
 	},
 
 	["Furbolg"] = {
-		[1] = {""},
-		[1] = {""},
-		[1] = {""},
-		[1] = {""},
-		[1] = {""},
-		[1] = {""},
-		[1] = {""},
-		[1] = {""},
+		[1] = {"a", "e", "r", "k", "u", "h", "g"},
+		[2] = {"gr", "ra", "er", "ku", "kr", "ga", "re", "rr", "na", "ah", "oh", "eh", "en", "ek", "ka"},
+		[3] = {"hum", "mum", "bur", "ker", "mur", "esh", "grr", "rrf", "bar", "ark", "gli", "ten", "fur", "toe", "paw", "nap", "rum", "fer", "kah", "kan", "err", "rrr", "gar", "rar", "enn", "ehk"},
+		[4] = {"tumb", "snik", "rumb", "grrf", "mumb", "pelt", "burr", "norr", "tang", "furr", "bark", "fluf", "argh", "barb", "murr", "kart", "kert", "humb", "grrr", "pawr", "garr", "tenn", "arkk", "krah", "droo"},
+		[5] = {"ka-en", "glimm", "thumb", "thump", "rumbr", "grrarf", "barrk", "grrrr", "krahn", "whirr", "rroar", "mo-on", "ha're", "er'rr", "ar'gh", "ba-rr", "mumbrr"},
+		[6] = {"rrargh", "nrronn", "gargrr", "gro'rr", "ten-ra", "brumar", "then'a", "grothr", "whisra"},
+		["hasRunes"] = true,
 	},
 	
 };
