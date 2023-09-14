@@ -12,6 +12,8 @@ local defaultsTableAcc = {
 	},
 
 	speechBubbles = true,
+	combat = false,
+	faction = true,
 
 };
 
@@ -191,21 +193,28 @@ function mainFrame.SetTabs(frame,numTabs, ...)
 
 end
 
-local currentLanguage = "";
+local currentLanguage = {};
+local preserveLanguage = {};
 local content1, content2, content3 = mainFrame.SetTabs(mainFrame, 3, "Diction", "Settings", "Profiles")
 
+function lang.combatCheck()
+	if UnitAffectingCombat("player") == true and Languages_DB.settings.combat == false then
+		return true
+	end
+end
 
 mainFrame.prefix = false
 function mainFrame.TogglePrefix()
 	if mainFrame.prefix == true then
 		mainFrame.prefix = false;
 		mainFrame.ButtonTest:SetText(L["TogglePrefixOff"]);
-		PlaySound(856);
 		--Print(L["TogglePrefixTextOff"]);
 	elseif mainFrame.prefix == false then
 		mainFrame.prefix = true;
-		mainFrame.ButtonTest:SetText(L["TogglePrefixOn"] .. "\n" .. L["CurrentlySpeaking"] .. " " .. currentLanguage);
-		PlaySound(857);
+		if currentLanguage.lang == nil then
+			currentLanguage.lang = ""
+		end
+		mainFrame.ButtonTest:SetText(L["TogglePrefixOn"] .. "\n" .. L["CurrentlySpeaking"] .. " " .. currentLanguage.lang);
 		--Print(L["TogglePrefixTextOn"]);
 	end
 end
@@ -221,19 +230,23 @@ local textBeforeParse, parsedEditBox;
 local gopherPadding;
 
 function mainFrame.setMaxLetters()
-	if ACTIVE_CHAT_EDIT_BOX ~= nil then
-		local editBox = _G[ACTIVE_CHAT_EDIT_BOX:GetName()]
-		local header = _G[ACTIVE_CHAT_EDIT_BOX:GetName().."Header"]
-		if IsAddOnLoaded("EmoteSplitter") == true then
-			return
-		else
-			local maxLetters = 255
-			local subtractLetters = string.len("[" .. currentLanguage .. "]" .. " ")
-			if mainFrame.prefix ~= true then
+	if currentLanguage.lang == nil then
+		return
+	else
+		if ACTIVE_CHAT_EDIT_BOX ~= nil then
+			local editBox = _G[ACTIVE_CHAT_EDIT_BOX:GetName()]
+			local header = _G[ACTIVE_CHAT_EDIT_BOX:GetName().."Header"]
+			if IsAddOnLoaded("EmoteSplitter") == true then
+				return
+			else
+				local maxLetters = 255
+				local subtractLetters = string.len("[" .. currentLanguage.lang .. "]" .. " ")
+				if mainFrame.prefix ~= true then
+					subtractLetters = 0
+				end
+				editBox:SetVisibleTextByteLimit(maxLetters - subtractLetters)
 				subtractLetters = 0
 			end
-			editBox:SetVisibleTextByteLimit(maxLetters - subtractLetters)
-			subtractLetters = 0
 		end
 	end
 end
@@ -245,30 +258,36 @@ function mainFrame.enablePrefix()
 	-- We can replace the name inserted by the complete RP name of the player if we have it.
 
 	hooksecurefunc("ChatEdit_ParseText", function(editBox, send)
-		local text = editBox:GetText();
-		if text and send == 1 then
-			if text ~= "" and text ~= nil then
-				textBeforeParse = text;
-				parsedEditBox = editBox;
-				if ACTIVE_CHAT_EDIT_BOX == nil then -- required for things like macros, where active edit box is nil
-					return
-				end
-				if mainFrame.prefix == true and currentLanguage ~= "" and currentLanguage ~= nil and (_G[ACTIVE_CHAT_EDIT_BOX:GetName()]:GetAttribute("chatType") == "SAY" or _G[ACTIVE_CHAT_EDIT_BOX:GetName()]:GetAttribute("chatType") == "YELL") then
-
-					if editBox:GetMaxBytes() ~= 1280 then
-						if IsAddOnLoaded("EmoteSplitter") == true then
-							gopherPadding = LibGopher.GetPadding()
-							LibGopher.SetPadding( "[" .. currentLanguage .. "]" )
-							text = " " .. text
-						else
-							text = "[" .. currentLanguage .. "]" .. " " .. text;
+		if lang.combatCheck() then
+			return
+		else
+			if lang.factionCheck() == true then
+				local text = editBox:GetText();
+				if text and send == 1 then
+					if text ~= "" and text ~= nil then
+						textBeforeParse = text;
+						parsedEditBox = editBox;
+						if ACTIVE_CHAT_EDIT_BOX == nil then -- required for things like macros, where active edit box is nil
+							return
 						end
-					else
-						text = "[" .. currentLanguage .. "]" .. " " .. text;
-						editBox:SetVisibleTextByteLimit(255)
+						if mainFrame.prefix == true and currentLanguage.lang ~= "" and currentLanguage.lang ~= nil and (_G[ACTIVE_CHAT_EDIT_BOX:GetName()]:GetAttribute("chatType") == "SAY" or _G[ACTIVE_CHAT_EDIT_BOX:GetName()]:GetAttribute("chatType") == "YELL") then
+
+							if editBox:GetMaxBytes() ~= 1280 then
+								if IsAddOnLoaded("EmoteSplitter") == true then
+									gopherPadding = LibGopher.GetPadding()
+									LibGopher.SetPadding( "[" .. currentLanguage.lang .. "]" )
+									text = " " .. text
+								else
+									text = "[" .. currentLanguage.lang .. "]" .. " " .. text;
+								end
+							else
+								text = "[" .. currentLanguage.lang .. "]" .. " " .. text;
+								editBox:SetVisibleTextByteLimit(255)
+							end
+						end
+						editBox:SetText(text);
 					end
 				end
-				editBox:SetText(text);
 			end
 		end
 	end);
@@ -355,6 +374,12 @@ local thingsToHide = {
 	"^%[Kalimag%]",
 	"^%[Shath'Yar%]",
 	"^%[Broker%]",
+	"^%[Cypher%]",
+
+	"^%[Sprite%]",
+	"^%[Nerglish%]",
+	"^%[Moonkin%]",
+	"^%[Furbolg%]",
 };
 
 --[[ -- this could be used to calculate the atlas coords
@@ -783,6 +808,71 @@ local LANGUAGE_REPLACEMENTS = {
 		["hasRunes"] = false,
 	},
 
+	["Cypher"] = { -- languageID 287
+		[1] = {"a", "i", "u"},
+		[2] = {"ba", "se", "ri", "la", "et", "ex"},
+		[3] = {"han", "lee", "pho", "qua", "pax", "ars"},
+		[4] = {"flen", "shah", "honh", "luce", "mare", "nova", "sint", "voce", "mens", "sala"},
+		[5] = {"ha-na", "heran", "zaral", "sogno", "cuore", "magia", "omnia", "corda", "iuxta", "vitae", "umbra", "tumult", "lumen", "ordus", "honos", "ignis", "fides", "sensa"},
+		[6] = {"zenren", "roshoh", "tenero", "sacris", "sonent", "noctis", "tempus", "mortis"},
+		[7] = {"rasshan", "zihliha", "incanto", "sanctus", "aeterna"},
+		[8] = {"dolcezza", "serenata"},
+		["hasRunes"] = true,
+	},
+
+	["Sprite"] = { -- languageID 168
+		[1] = {"E"},
+		[2] = {"ki", "uk"},
+		[3] = {"ike", "ika"},
+		[4] = {"ikki", "keet"},
+		[5] = {"takku"},
+		[6] = {"shikku", "koshwi"},
+		[7] = {"shikkun"},
+		[8] = {"ishakush"},
+		[9] = {"ishakusha"},
+		["hasRunes"] = false,
+	},
+
+	["Nerglish"] = { -- languageID 179
+		[1] = {"u", "i"},
+		[2] = {"gl", "ih", "uh", "rr"},
+		[3] = {"grl", "mrl", "bhr", "buh", "urr"},
+		[4] = {"mrgl", "mmml", "blrg", "mrml"},
+		[5] = {"grgrl", "grrrm", "lglgl", "grmlm", "mlrgl", "rmrgl"},
+		[6] = {"burgle", "mrrgmm", "gurgle", "mglglg"},
+		[7] = {"mrgllll", "mrglrgl"},
+		[8] = {"mrglrgrl", "mrgmlrrg"},
+		[9] = {"mrgmlrrlg", "rrgmlrlmr"},
+		[10] = {"mrrglmrlgr", "mrglmrgrlm"},
+		[11] = {"mrlgrmrglrm"},
+		[12] = {"gmmmlmrmrgmg"},
+		["hasRunes"] = false,
+	},
+
+	["Moonkin"] = { -- languageID 180
+		[1] = {"a"},
+		[2] = {"ca", "do", "pa"},
+		[3] = {"caw", "coo"},
+		[4] = {"chaw", "chee", "quaw", "bock"},
+		[5] = {"cluck", "block"},
+		[6] = {"ca-caw", "coodle", "doodle", "pa-caw"},
+		[7] = {"cuh-caw"},
+		[8] = {"caw-quawa"},
+		[9] = {"chee-chaw"},
+		[10] = {"cluck-ahhh"},
+		["hasRunes"] = false,
+	},
+
+	["Furbolg"] = {
+		[1] = {""},
+		[1] = {""},
+		[1] = {""},
+		[1] = {""},
+		[1] = {""},
+		[1] = {""},
+		[1] = {""},
+		[1] = {""},
+	},
 	
 };
 
@@ -832,14 +922,12 @@ local languagelist = {
 	["^%[Kalimag%]"] = "[Kalimag]",
 	["^%[Shath'Yar%]"] = "[Shath'Yar]",
 	["^%[Broker%]"] = "[Broker]",
+	["^%[Cypher%]"] = "[Cypher]",
 	
-	--["^%[Sprite%]"] = "[Sprite]",
-	--["^%[Nerglish%]"] = "[Nerglish]",
-	--["^%[Moonkin%]"] = "[Moonkin]",
-	--["^%[Complex Cipher%]"] = "[Complex Cipher]",
-	--["^%[Basic Cipher%]"] = "[Basic Cipher]",
-	--["^%[Furbolg%]"] = "[Furbolg]",
-	--["^%[Ancient Pandaren%]"] = "[Ancient Pandaren]",
+	["^%[Sprite%]"] = "[Sprite]",
+	["^%[Nerglish%]"] = "[Nerglish]",
+	["^%[Moonkin%]"] = "[Moonkin]",
+	["^%[Furbolg%]"] = "[Furbolg]",
 	--["^%[Mogu%]"] = "[Mogu]",
 
 };
@@ -867,14 +955,12 @@ local languageNoBrackets = {
 	["^%[Kalimag%]"] = "Kalimag",
 	["^%[Shath'Yar%]"] = "Shath'Yar",
 	["^%[Broker%]"] = "Broker",
+	["^%[Cypher%]"] = "Cypher",
 
-	--["^%[Sprite%]"] = "Sprite",
-	--["^%[Nerglish%]"] = "Nerglish",
-	--["^%[Moonkin%]"] = "Moonkin",
-	--["^%[Complex Cipher%]"] = "Complex Cipher",
-	--["^%[Basic Cipher%]"] = "Basic Cipher",
-	--["^%[Furbolg%]"] = "Furbolg",
-	--["^%[Ancient Pandaren%]"] = "Ancient Pandaren",
+	["^%[Sprite%]"] = "Sprite",
+	["^%[Nerglish%]"] = "Nerglish",
+	["^%[Moonkin%]"] = "Moonkin",
+	["^%[Furbolg%]"] = "Furbolg",
 	--["^%[Mogu%]"] = "Mogu",
 
 };
@@ -905,6 +991,12 @@ local languageBasicList = {
 	"Kalimag",
 	"Shath'Yar",
 	"Broker",
+	"Cypher",
+
+	"Sprite",
+	"Nerglish",
+	"Moonkin",
+	"Furbolg",
 };
 
 local RaceDefaults = {
@@ -937,9 +1029,6 @@ local RaceDefaults = {
 		--dracthyrN = {"Draconic"}, -- 
 		[52] = {["Common"] = true, ["Draconic"] = true}, -- 52 dracthyr alliance
 		[70] = {["Orcish"] = true, ["Draconic"] = true}, -- 70 dracthyr horde
-
-		demonhunter = {["Demonic"] = true},
-		priest = {["Shath'Yar"] = true},
 	},
 	recommended = {
 		[1] = {["Common"] = true}, -- 1 human
@@ -970,14 +1059,6 @@ local RaceDefaults = {
 		--dracthyrN = {"Draconic", "Common", "Orcish"}, -- 
 		[52] = {["Common"] = true, ["Draconic"] = true, ["Orcish"] = true}, -- 52 dracthyr alliance
 		[70] = {["Orcish"] = true, ["Draconic"] = true, ["Common"] = true}, -- 70 dracthyr horde
-
-		demonhunter = {"Demonic"},
-		warlock = {"Demonic"},
-		rogue = {"Gutterspeak"},
-		shaman = {"Kalimag"},
-		mage = {"Titan"},
-		priest = {"Shath'Yar"},
-		monk = {"Pandaren"},
 	},
 };
 
@@ -1014,10 +1095,11 @@ mainFrame.PHText3:SetText(L["Profiles"])
 
 mainFrame.ButtonTest = CreateFrame("Button", nil, content1, "SharedGoldRedButtonSmallTemplate")
 mainFrame.ButtonTest:SetPoint("CENTER", content1, "CENTER", 0,-50)
-mainFrame.ButtonTest:SetSize(200,50)
+mainFrame.ButtonTest:SetSize(230,50)
 mainFrame.ButtonTest:SetText(L["TogglePrefixOff"])
 mainFrame.ButtonTest:SetScript("OnClick", function(self, button)
 	mainFrame.TogglePrefix();
+	PlaySound(857);
 end);
 
 
@@ -1029,7 +1111,7 @@ end);
 -- content 2 - Settings
 ----------------------------------------
 
-mainFrame.Acc_backdropInfo = {
+mainFrame.backdropInfo = {
 	bgFile = "Interface\\Tooltips\\UI-Tooltip-Background",
 	edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border",
 	tile = true,
@@ -1081,8 +1163,57 @@ StaticPopupDialogs["LANGUAGES_CHAR_PRESET_RECOMMENDED"] = {
 	OnAccept = function()
 		if Languages_DB.profiles[charKey].TRP3 == true and TRP3_API then
 			Languages_DB.profiles["TRP3_" .. TRP3_API.profile.getPlayerCurrentProfile().profileName].understandLanguage = CopyTable(RaceDefaults.recommended[select(3, UnitRace("player"))]);
+			if select(3, UnitClass("player")) ==  12 then
+				Languages_DB.profiles["TRP3_" .. TRP3_API.profile.getPlayerCurrentProfile().profileName].understandLanguage["Demonic"] = true;
+			end
+			if select(3, UnitClass("player")) == 5 then
+				Languages_DB.profiles["TRP3_" .. TRP3_API.profile.getPlayerCurrentProfile().profileName].understandLanguage["Shath'Yar"] = true;
+			end
+			if select(3, UnitClass("player")) == 9 then
+				Languages_DB.profiles["TRP3_" .. TRP3_API.profile.getPlayerCurrentProfile().profileName].understandLanguage["Demonic"] = true;
+			end
+			if select(3, UnitClass("player")) == 4 then
+				Languages_DB.profiles["TRP3_" .. TRP3_API.profile.getPlayerCurrentProfile().profileName].understandLanguage["Gutterspeak"] = true;
+			end
+			if select(3, UnitClass("player")) == 7 then
+				Languages_DB.profiles["TRP3_" .. TRP3_API.profile.getPlayerCurrentProfile().profileName].understandLanguage["Kalimag"] = true;
+			end
+			if select(3, UnitClass("player")) == 8 then
+				Languages_DB.profiles["TRP3_" .. TRP3_API.profile.getPlayerCurrentProfile().profileName].understandLanguage["Titan"] = true;
+			end
+			if select(3, UnitClass("player")) == 10 then
+				Languages_DB.profiles["TRP3_" .. TRP3_API.profile.getPlayerCurrentProfile().profileName].understandLanguage["Pandaren"] = true;
+			end
+			if select(3, UnitClass("player")) == 13 then
+				Languages_DB.profiles["TRP3_" .. TRP3_API.profile.getPlayerCurrentProfile().profileName].understandLanguage["Draconic"] = true;
+			end
+
 		end
 		Languages_DB.profiles[charKey].understandLanguage = CopyTable(RaceDefaults.recommended[select(3, UnitRace("player"))]);
+		if select(3, UnitClass("player")) ==  12 then
+			Languages_DB.profiles[charKey].understandLanguage["Demonic"] = true;
+		end
+		if select(3, UnitClass("player")) == 5 then
+			Languages_DB.profiles[charKey].understandLanguage["Shath'Yar"] = true;
+		end
+		if select(3, UnitClass("player")) == 9 then
+			Languages_DB.profiles[charKey].understandLanguage["Demonic"] = true;
+		end
+		if select(3, UnitClass("player")) == 4 then
+			Languages_DB.profiles[charKey].understandLanguage["Gutterspeak"] = true;
+		end
+		if select(3, UnitClass("player")) == 7 then
+			Languages_DB.profiles[charKey].understandLanguage["Kalimag"] = true;
+		end
+		if select(3, UnitClass("player")) == 8 then
+			Languages_DB.profiles[charKey].understandLanguage["Titan"] = true;
+		end
+		if select(3, UnitClass("player")) == 10 then
+			Languages_DB.profiles[charKey].understandLanguage["Pandaren"] = true;
+		end
+		if select(3, UnitClass("player")) == 13 then
+			Languages_DB.profiles[charKey].understandLanguage["Draconic"] = true;
+		end
 		lang.checkSettings();
 	end,
 	timeout = 0,
@@ -1099,8 +1230,20 @@ StaticPopupDialogs["LANGUAGES_CHAR_PRESET_GAMEPLAY"] = {
 	OnAccept = function()
 		if Languages_DB.profiles[charKey].TRP3 == true and TRP3_API then
 			Languages_DB.profiles["TRP3_" .. TRP3_API.profile.getPlayerCurrentProfile().profileName].understandLanguage = CopyTable(RaceDefaults.gameplay[select(3, UnitRace("player"))]);
+			if select(3, UnitClass("player")) ==  12 then
+				Languages_DB.profiles["TRP3_" .. TRP3_API.profile.getPlayerCurrentProfile().profileName].understandLanguage["Demonic"] = true;
+			end
+			if select(3, UnitClass("player")) == 5 then
+				Languages_DB.profiles["TRP3_" .. TRP3_API.profile.getPlayerCurrentProfile().profileName].understandLanguage["Shath'Yar"] = true;
+			end
 		end
 		Languages_DB.profiles[charKey].understandLanguage = CopyTable(RaceDefaults.gameplay[select(3, UnitRace("player"))]);
+		if select(3, UnitClass("player")) ==  12 then
+			Languages_DB.profiles[charKey].understandLanguage["Demonic"] = true;
+		end
+		if select(3, UnitClass("player")) == 5 then
+			Languages_DB.profiles[charKey].understandLanguage["Shath'Yar"] = true;
+		end
 		lang.checkSettings();
 	end,
 	timeout = 0,
@@ -1108,10 +1251,24 @@ StaticPopupDialogs["LANGUAGES_CHAR_PRESET_GAMEPLAY"] = {
 	hideOnEscape = true,
 };
 
+
+
+mainFrame.LangList_Frame = CreateFrame("Frame", nil, content1, "BackdropTemplate")
+mainFrame.LangList_Frame:SetPoint("TOP", content1, "TOP", 0, -95)
+mainFrame.LangList_Frame:SetSize(300,780)
+mainFrame.LangList_Frame:SetBackdrop(mainFrame.backdropInfo)
+mainFrame.LangList_Frame:SetBackdropColor(0,0,0,.5)
+
+mainFrame.DialectList_Frame = CreateFrame("Frame", nil, mainFrame.LangList_Frame, "BackdropTemplate")
+mainFrame.DialectList_Frame:SetPoint("TOP", mainFrame.LangList_Frame, "BOTTOM", 0, -55)
+mainFrame.DialectList_Frame:SetSize(300,120)
+mainFrame.DialectList_Frame:SetBackdrop(mainFrame.backdropInfo)
+mainFrame.DialectList_Frame:SetBackdropColor(0,0,0,.5)
+
 mainFrame.Acc_Frame = CreateFrame("Frame", nil, content2, "BackdropTemplate")
 mainFrame.Acc_Frame:SetPoint("TOP", content2, "TOP", 0, -75)
-mainFrame.Acc_Frame:SetSize(300,130)
-mainFrame.Acc_Frame:SetBackdrop(mainFrame.Acc_backdropInfo)
+mainFrame.Acc_Frame:SetSize(300,170)
+mainFrame.Acc_Frame:SetBackdrop(mainFrame.backdropInfo)
 mainFrame.Acc_Frame:SetBackdropColor(0,0,0,.5)
 
 mainFrame.header1 = content2:CreateFontString()
@@ -1135,8 +1292,8 @@ mainFrame.resetAccSettings:SetScript("OnLeave", mainFrame.tooltip_OnLeave);
 mainFrame.Char_Frame = CreateFrame("Frame", nil, mainFrame.Acc_Frame, "BackdropTemplate")
 mainFrame.Char_Frame:SetPoint("TOP", mainFrame.Acc_Frame, "BOTTOM", 0, -55)
 mainFrame.Char_Frame:SetSize(300,80)
-mainFrame.Char_Frame:SetBackdrop(mainFrame.Acc_backdropInfo)
-mainFrame.Char_Frame:SetBackdropColor(0,0,0,.5)	
+mainFrame.Char_Frame:SetBackdrop(mainFrame.backdropInfo)
+mainFrame.Char_Frame:SetBackdropColor(0,0,0,.5)
 
 mainFrame.header2 = content2:CreateFontString()
 mainFrame.header2:SetFont("Fonts\\FRIZQT__.TTF", 11)
@@ -1213,6 +1370,51 @@ mainFrame.speechbubCB:SetScript("OnEnter", function(self)
 end);
 mainFrame.speechbubCB:SetScript("OnLeave", mainFrame.tooltip_OnLeave);
 
+mainFrame.combatCB = CreateFrame("CheckButton", nil, mainFrame.speechbubCB, "UICheckButtonTemplate");
+mainFrame.combatCB:SetPoint("TOPRIGHT", mainFrame.speechbubCB, "TOPRIGHT", 0, -30);
+mainFrame.combatCB:SetScript("OnClick", function(self)
+	if self:GetChecked() then
+		Print(L["CombatOptionOn"]);
+		Languages_DB.settings.combat = true;
+		PlaySound(856);
+	else
+		Print(L["CombatOptionOff"]);
+		Languages_DB.settings.combat = false;
+		PlaySound(857);
+	end
+	lang.checkSettings();
+end);
+mainFrame.combatCB.text = mainFrame.Acc_Frame:CreateFontString()
+mainFrame.combatCB.text:SetFont("Fonts\\FRIZQT__.TTF", 11)
+mainFrame.combatCB.text:SetPoint("RIGHT", mainFrame.combatCB, "LEFT", -5, 0)
+mainFrame.combatCB.text:SetText(L["CombatOption"])
+mainFrame.combatCB:SetScript("OnEnter", function(self)
+	mainFrame:tooltip_OnEnter(self, L["CombatOptionTT"])
+end);
+mainFrame.combatCB:SetScript("OnLeave", mainFrame.tooltip_OnLeave);
+
+mainFrame.factionLangCB = CreateFrame("CheckButton", nil, mainFrame.combatCB, "UICheckButtonTemplate");
+mainFrame.factionLangCB:SetPoint("TOPRIGHT", mainFrame.combatCB, "TOPRIGHT", 0, -30);
+mainFrame.factionLangCB:SetScript("OnClick", function(self)
+	if self:GetChecked() then
+		Print(L["FactionOptionOn"]);
+		Languages_DB.settings.faction = true;
+		PlaySound(856);
+	else
+		Print(L["FactionOptionOff"]);
+		Languages_DB.settings.faction = false;
+		PlaySound(857);
+	end
+	lang.checkSettings();
+end);
+mainFrame.factionLangCB.text = mainFrame.Acc_Frame:CreateFontString()
+mainFrame.factionLangCB.text:SetFont("Fonts\\FRIZQT__.TTF", 11)
+mainFrame.factionLangCB.text:SetPoint("RIGHT", mainFrame.factionLangCB, "LEFT", -5, 0)
+mainFrame.factionLangCB.text:SetText(L["FactionOption"])
+mainFrame.factionLangCB:SetScript("OnEnter", function(self)
+	mainFrame:tooltip_OnEnter(self, L["FactionOptionTT"])
+end);
+mainFrame.factionLangCB:SetScript("OnLeave", mainFrame.tooltip_OnLeave);
 
 mainFrame.trp3ProfileCB = CreateFrame("CheckButton", nil, mainFrame.Char_Frame, "UICheckButtonTemplate");
 mainFrame.trp3ProfileCB:SetPoint("TOPRIGHT", mainFrame.Char_Frame, "TOPRIGHT", -15, -15);
@@ -1311,20 +1513,20 @@ mainFrame.preset_gameplay:SetScript("OnLeave", mainFrame.tooltip_OnLeave);
 ----------------------------------------
 
 
-mainFrame.ColumnLanguage = content1:CreateFontString()
+mainFrame.ColumnLanguage = mainFrame.LangList_Frame:CreateFontString()
 mainFrame.ColumnLanguage:SetFont("Fonts\\FRIZQT__.TTF", 11)
-mainFrame.ColumnLanguage:SetPoint("LEFT", content1, "LEFT", 10, -85)
+mainFrame.ColumnLanguage:SetPoint("TOPLEFT", mainFrame.LangList_Frame, "TOPLEFT", 10, -5)
 mainFrame.ColumnLanguage:SetText(L["Language"])
 
-mainFrame.ColumnUnderstand = content1:CreateFontString()
+mainFrame.ColumnUnderstand = mainFrame.LangList_Frame:CreateFontString()
 mainFrame.ColumnUnderstand:SetFont("Fonts\\FRIZQT__.TTF", 11)
-mainFrame.ColumnUnderstand:SetPoint("LEFT", content1, "LEFT", 115, -85)
+mainFrame.ColumnUnderstand:SetPoint("TOPLEFT", mainFrame.LangList_Frame, "TOPLEFT", 115, -5)
 mainFrame.ColumnUnderstand:SetText(L["Understand"])
 
 
 for k, v in ipairs(languageBasicList) do
-	mainFrame[k] = CreateFrame("Button", nil, content1, "SharedButtonSmallTemplate")
-	mainFrame[k]:SetPoint("LEFT", content1, "LEFT", 10, -30*k-75)
+	mainFrame[k] = CreateFrame("Button", nil, mainFrame.LangList_Frame, "SharedButtonSmallTemplate")
+	mainFrame[k]:SetPoint("TOPLEFT", mainFrame.LangList_Frame, "TOPLEFT", 10, -30*k)
 	mainFrame[k]:SetSize(110,25)
 	mainFrame[k]:SetText(v)
 
@@ -1362,8 +1564,9 @@ for k, v in ipairs(languageBasicList) do
 	mainFrame[k].HLTex:Hide()
 
 	mainFrame[k]:SetScript("OnClick", function(self, button)
-		currentLanguage = v;
-		Print(L["SettingLanguageTo"] .. " " .. currentLanguage);
+		currentLanguage.lang = v;
+		preserveLanguage.lang = v;
+		Print(L["SettingLanguageTo"] .. " " .. currentLanguage.lang);
 		for k, v in ipairs(languageBasicList) do
 			mainFrame[k].HLTex:Hide();
 			mainFrame[k].BGTex:SetVertexColor(0/255,0/255,0/255,150/255);
@@ -1375,7 +1578,7 @@ for k, v in ipairs(languageBasicList) do
 		PlaySound(857);
 	end);
 
-	mainFrame[k].CB = CreateFrame("CheckButton", nil, content1, "UICheckButtonTemplate");
+	mainFrame[k].CB = CreateFrame("CheckButton", nil, mainFrame.LangList_Frame, "UICheckButtonTemplate");
 	mainFrame[k].CB:SetPoint("LEFT", mainFrame[k], "RIGHT", 5, 0);
 
 	mainFrame[k].CB:SetScript("OnClick", function(self)
@@ -1409,13 +1612,13 @@ for k, v in ipairs(languageBasicList) do
 	mainFrame[k].CB:SetScript("OnLeave", mainFrame.tooltip_OnLeave);
 end
 
-mainFrame.Dialect = content1:CreateFontString()
+mainFrame.Dialect = mainFrame.DialectList_Frame:CreateFontString()
 mainFrame.Dialect:SetFont("Fonts\\FRIZQT__.TTF", 11)
-mainFrame.Dialect:SetPoint("LEFT", mainFrame[20], "LEFT", 0, -30*1)
+mainFrame.Dialect:SetPoint("TOPLEFT", mainFrame.DialectList_Frame, "TOPLEFT", 10, -5)
 mainFrame.Dialect:SetText(L["Dialect"])
 
-mainFrame.dialectOption1 = CreateFrame("Button", nil, content1, "SharedButtonSmallTemplate")
-mainFrame.dialectOption1:SetPoint("LEFT", mainFrame[20], "LEFT", 0, -30*1-20)
+mainFrame.dialectOption1 = CreateFrame("Button", nil, mainFrame.DialectList_Frame, "SharedButtonSmallTemplate")
+mainFrame.dialectOption1:SetPoint("TOPLEFT", mainFrame.DialectList_Frame, "TOPLEFT", 10, -30*1)
 mainFrame.dialectOption1:SetSize(110,25)
 mainFrame.dialectOption1:SetText(L["Dwarvish"])
 
@@ -1425,8 +1628,8 @@ end);
 mainFrame.dialectOption1:Disable()
 
 
-mainFrame.dialectOption2 = CreateFrame("Button", nil, content1, "SharedButtonSmallTemplate")
-mainFrame.dialectOption2:SetPoint("LEFT", mainFrame[20], "LEFT", 0, -30*2-20)
+mainFrame.dialectOption2 = CreateFrame("Button", nil, mainFrame.DialectList_Frame, "SharedButtonSmallTemplate")
+mainFrame.dialectOption2:SetPoint("TOPLEFT", mainFrame.DialectList_Frame, "TOPLEFT", 10, -30*2)
 mainFrame.dialectOption2:SetSize(110,25)
 mainFrame.dialectOption2:SetText(L["Draenic"])
 
@@ -1436,8 +1639,8 @@ end);
 mainFrame.dialectOption2:Disable()
 
 
-mainFrame.dialectOption3 = CreateFrame("Button", nil, content1, "SharedButtonSmallTemplate")
-mainFrame.dialectOption3:SetPoint("LEFT", mainFrame[20], "LEFT", 0, -30*3-20)
+mainFrame.dialectOption3 = CreateFrame("Button", nil, mainFrame.DialectList_Frame, "SharedButtonSmallTemplate")
+mainFrame.dialectOption3:SetPoint("TOPLEFT", mainFrame.DialectList_Frame, "TOPLEFT", 10, -30*3)
 mainFrame.dialectOption3:SetSize(110,25)
 mainFrame.dialectOption3:SetText(L["Zandali"])
 
@@ -1447,8 +1650,8 @@ end);
 mainFrame.dialectOption3:Disable()
 
 
-mainFrame.dialectOptionToggle = CreateFrame("Button", nil, content1, "SharedButtonSmallTemplate")
-mainFrame.dialectOptionToggle:SetPoint("LEFT", mainFrame.dialectOption1, "LEFT", 170, 0)
+mainFrame.dialectOptionToggle = CreateFrame("Button", nil, mainFrame.DialectList_Frame, "SharedButtonSmallTemplate")
+mainFrame.dialectOptionToggle:SetPoint("TOPLEFT", mainFrame.dialectOption1, "TOPLEFT", 170, 0)
 mainFrame.dialectOptionToggle:SetSize(110,25)
 mainFrame.dialectOptionToggle:SetText("Dialect: Off")
 
@@ -1571,44 +1774,42 @@ end
 
 local function eventFilterStuff(frame, event, message, sender, ...)
 	for i, v in ipairs(thingsToHide) do
-		--print(i) -- 6
-		--print(languagelist[i]) -- nil
-		--print(v) -- ^%[Orcish%]
-		--print(languagelist[v]) -- [Orcish]
-		--print(languageNoBrackets[v]) -- Orcish
-		if message:find(v) then
-			--print(message)
-			message = message:gsub(v, "")
+		if lang.combatCheck() then
+			return
+		else
+			if message:find(v) then
+				message = message:gsub(v, "")
 
-			local textColor = CreateColor(Languages_DB.settings.colors.prefix.r, Languages_DB.settings.colors.prefix.g, Languages_DB.settings.colors.prefix.b):GenerateHexColor()
+				local textColor = CreateColor(Languages_DB.settings.colors.prefix.r, Languages_DB.settings.colors.prefix.g, Languages_DB.settings.colors.prefix.b):GenerateHexColor()
 
 
-			if Languages_DB.profiles[charKey].TRP3 == true and TRP3_API then
-				if Languages_DB.profiles["TRP3_" .. TRP3_API.profile.getPlayerCurrentProfile().profileName].understandLanguage[languageNoBrackets[v]] == true then
-					return false, "|c" .. textColor .. languagelist[v] .. "|r " .. message, sender, ...
-				else
-					if event == "CHAT_MSG_SAY" then
-						chatTypeBingus = ChatTypeInfo["SAY"];
-					elseif event == "CHAT_MSG_YELL" then
-						chatTypeBingus = ChatTypeInfo["YELL"];
+				if Languages_DB.profiles[charKey].TRP3 == true and TRP3_API then
+					if Languages_DB.profiles["TRP3_" .. TRP3_API.profile.getPlayerCurrentProfile().profileName].understandLanguage[languageNoBrackets[v]] == true then
+						return false, "|c" .. textColor .. languagelist[v] .. "|r " .. message, sender, ...
+					else
+						if event == "CHAT_MSG_SAY" then
+							chatTypeBingus = ChatTypeInfo["SAY"];
+						elseif event == "CHAT_MSG_YELL" then
+							chatTypeBingus = ChatTypeInfo["YELL"];
+						end
+						return false, "|c" .. textColor .. languagelist[v] .. "|r " .. ReplaceLanguage(message, languageNoBrackets[v]) .. ".", sender, ...
 					end
-					return false, "|c" .. textColor .. languagelist[v] .. "|r " .. ReplaceLanguage(message, languageNoBrackets[v]) .. ".", sender, ...
+
+				else
+					if Languages_DB.profiles[charKey].understandLanguage[languageNoBrackets[v]] == true then
+						return false, "|c" .. textColor .. languagelist[v] .. "|r " .. message, sender, ...
+					else
+						if event == "CHAT_MSG_SAY" then
+							chatTypeBingus = ChatTypeInfo["SAY"];
+						elseif event == "CHAT_MSG_YELL" then
+							chatTypeBingus = ChatTypeInfo["YELL"];
+						end
+						return false, "|c" .. textColor .. languagelist[v] .. "|r " .. ReplaceLanguage(message, languageNoBrackets[v]) .. ".", sender, ...
+					end
 				end
 
-			else
-				if Languages_DB.profiles[charKey].understandLanguage[languageNoBrackets[v]] == true then
-					return false, "|c" .. textColor .. languagelist[v] .. "|r " .. message, sender, ...
-				else
-					if event == "CHAT_MSG_SAY" then
-						chatTypeBingus = ChatTypeInfo["SAY"];
-					elseif event == "CHAT_MSG_YELL" then
-						chatTypeBingus = ChatTypeInfo["YELL"];
-					end
-					return false, "|c" .. textColor .. languagelist[v] .. "|r " .. ReplaceLanguage(message, languageNoBrackets[v]) .. ".", sender, ...
-				end
+
 			end
-
-
 		end
 	end
 
@@ -1624,28 +1825,34 @@ local function testScriptHeader()
 	--local header = _G[ACTIVE_CHAT_EDIT_BOX:GetName().."Header"]
 	local editBox
 	local header
-	if ACTIVE_CHAT_EDIT_BOX ~= nil and currentLanguage ~= "" and currentLanguage ~= nil and mainFrame.prefix == true then
-		editBox = _G[ACTIVE_CHAT_EDIT_BOX:GetName()]
-		header = _G[ACTIVE_CHAT_EDIT_BOX:GetName().."Header"]
-		if string.find(header:GetText(),currentLanguage) then -- the header already exists
+	if ACTIVE_CHAT_EDIT_BOX ~= nil and currentLanguage.lang ~= "" and currentLanguage.lang ~= nil and mainFrame.prefix == true then
+		if lang.combatCheck() then
 			return
-		end
-		if editBox:GetAttribute("chatType") == "SAY" then
-			if editBox:IsShown() then
-				local left, right, top, bottom = editBox:GetTextInsets(); -- top/bottom will always be 0
-				header:SetText(header:GetText() .. "[" .. currentLanguage .. "]");
-				editBox:SetTextInsets(left+(header:GetStringWidth()/1.3), right, top, bottom);
-			else
-				return
-			end
-		end
-		if editBox:GetAttribute("chatType") == "YELL" then
-			if editBox:IsShown() then
-				local left, right, top, bottom = editBox:GetTextInsets(); -- top/bottom will always be 0
-				header:SetText(header:GetText() .. "[" .. currentLanguage .. "]");
-				editBox:SetTextInsets(left+(header:GetStringWidth()/1.3), right, top, bottom);
-			else
-				return
+		else
+			if lang.factionCheck() == true then
+				editBox = _G[ACTIVE_CHAT_EDIT_BOX:GetName()]
+				header = _G[ACTIVE_CHAT_EDIT_BOX:GetName().."Header"]
+				if string.find(header:GetText(),currentLanguage.lang) then -- the header already exists
+					return
+				end
+				if editBox:GetAttribute("chatType") == "SAY" then
+					if editBox:IsShown() then
+						local left, right, top, bottom = editBox:GetTextInsets(); -- top/bottom will always be 0
+						header:SetText(header:GetText() .. "[" .. currentLanguage.lang .. "]");
+						editBox:SetTextInsets(left+(header:GetStringWidth()/1.3), right, top, bottom);
+					else
+						return
+					end
+				end
+				if editBox:GetAttribute("chatType") == "YELL" then
+					if editBox:IsShown() then
+						local left, right, top, bottom = editBox:GetTextInsets(); -- top/bottom will always be 0
+						header:SetText(header:GetText() .. "[" .. currentLanguage.lang .. "]");
+						editBox:SetTextInsets(left+(header:GetStringWidth()/1.3), right, top, bottom);
+					else
+						return
+					end
+				end
 			end
 		end
 	end
@@ -1694,6 +1901,80 @@ function lang.trp3ProfileName()
 	end
 end
 
+function lang.factionCheck()
+	if Languages_DB.settings.faction ~= true then
+		return true
+	else
+		if UnitFactionGroup("player") == "Alliance" then
+			if currentLanguage.lang == "Common" then
+				return false
+			else
+				return true
+			end
+		elseif UnitFactionGroup("player") == "Horde" then
+			if currentLanguage.lang == "Orcish" then
+				return false
+			else
+				return true
+			end
+		elseif UnitFactionGroup("player") == "Neutral" then
+			if currentLanguage.lang == "Pandaren" then
+				return false
+			else
+				return true
+			end
+		else
+			return true
+		end
+	end
+end
+
+lang.prefixRevert = false;
+
+function lang.shapeshiftForm()
+	if mainFrame.prefix == false then
+		lang.prefixRevert = false;
+	else
+		lang.prefixRevert = true;
+	end
+	if C_UnitAuras.GetPlayerAuraBySpellID(232698) then -- shadowform
+		currentLanguage.lang = "Shath'Yar";
+		mainFrame.prefix = false;
+		mainFrame.TogglePrefix();
+		lang.checkSettings();
+	elseif C_UnitAuras.GetPlayerAuraBySpellID(162264) or C_UnitAuras.GetPlayerAuraBySpellID(187827) then -- metamorphosis
+		currentLanguage.lang = "Demonic";
+		mainFrame.prefix = false;
+		mainFrame.TogglePrefix();
+		lang.checkSettings();
+	else
+		if lang.prefixRevert == false then
+			mainFrame.prefix = true;
+			mainFrame.TogglePrefix();
+			lang.checkSettings();
+		else
+			mainFrame.prefix = false;
+			mainFrame.TogglePrefix();
+			lang.checkSettings();
+		end
+		currentLanguage = CopyTable(preserveLanguage);
+	end
+
+end
+
+
+function lang.shapeshiftProfileCheck()
+	if Languages_DB.profiles[charKey].TRP3 == true and TRP3_API then
+		if Languages_DB.profiles["TRP3_" .. TRP3_API.profile.getPlayerCurrentProfile().profileName].shapeshift == true then
+			lang.shapeshiftForm()
+		end
+	else
+		if Languages_DB.profiles[charKey].shapeshift == true then
+			lang.shapeshiftForm()
+		end
+	end
+end
+
 function lang.trp3Check()
 	if IsAddOnLoaded("totalRP3") == true then
 		TRP3_API.RegisterCallback(TRP3_Addon, "REGISTER_DATA_UPDATED", lang.trp3ProfileName);
@@ -1704,6 +1985,8 @@ function lang.checkSettings()
 	mainFrame.trp3ProfileCB:SetChecked(Languages_DB.profiles[charKey].TRP3);
 	mainFrame.glyphsCB:SetChecked(Languages_DB.settings.glyphs);
 	mainFrame.speechbubCB:SetChecked(Languages_DB.settings.speechBubbles);
+	mainFrame.combatCB:SetChecked(Languages_DB.settings.combat);
+	mainFrame.factionLangCB:SetChecked(Languages_DB.settings.faction);
 	mainFrame.shapeshiftFormsCB:SetChecked(Languages_DB.profiles[charKey].shapeshift);
 
 	for k, v in ipairs(languageBasicList) do
@@ -1768,9 +2051,10 @@ function lang:LoadChatBubbles()
 end
 
 lang:RegisterEvent("ADDON_LOADED")
+lang:RegisterEvent("UNIT_AURA")
 
-function lang.addonLoaded(arg1, arg2, arg3) -- table, event, addonName
-	if arg2 == "ADDON_LOADED" and arg3 == "Languages" then
+function lang.addonLoaded(self, event, arg1) -- table, event, addonName
+	if event == "ADDON_LOADED" and arg1 == "Languages" then
 
 		if Languages_DB.settings == nil then
 			Languages_DB.settings = CopyTable(defaultsTableAcc);
@@ -1784,6 +2068,9 @@ function lang.addonLoaded(arg1, arg2, arg3) -- table, event, addonName
 
 		lang.checkSettings();
 		lang.trp3Check();
+	end
+	if event == "UNIT_AURA" and arg1 == "player" then
+		lang.shapeshiftProfileCheck()
 	end
 end
 

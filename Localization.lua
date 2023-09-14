@@ -40,7 +40,15 @@ if LOCALE == "enUS" then
 	L["SpeechBubblesOff"] = "Turning speech bubble translations off."
 	L["SpeechBubblesOn"] = "Turning speech bubble translations on."
 	L["SpeechBubbles"] = "Show in speech bubbles"
-	L["SpeechBubblesTT"] = "Controls if untranslated languages will show up in speech bubbles."
+	L["SpeechBubblesTT"] = "Controls if untranslated languages will show up in speech bubbles.\nBlizzard API limits this feature from working in instanced content."
+	L["CombatOptionOn"] = "Turning translations during combat on."
+	L["CombatOptionOff"] = "Turning translations during combat off."
+	L["CombatOption"] = "Function during combat"
+	L["CombatOptionTT"] = "Controls if the addon will function in combat"
+	L["FactionOptionOn"] = "Ignoring faction language on."
+	L["FactionOptionOff"] = "Ignoring faction language off."
+	L["FactionOption"] = "Ignore own faction's languages"
+	L["FactionOptionTT"] = "Controls if the addon will ignore the prefix option for \"Common\" while on an Alliance character or \"Orcish\" for a Horde character."
 	L["LinkToTotalRP3Off"] = "Total RP 3 link disabled for this character."
 	L["LinkToTotalRP3On"] = "Total RP 3 link enabled for this character."
 	L["LinkToTotalRP3"] = "Link to Total RP 3 Profile"
@@ -69,7 +77,7 @@ if LOCALE == "enUS" then
 	L["UseAutoShapeshiftOff"] = "Automatic Shapeshift language disabled for this character."
 	L["UseAutoShapeshiftOn"] = "Automatic Shapeshift language enabled for this character."
 	L["UseAutoShapeshift"] = "Automatic Shapeshift language"
-	L["UseAutoShapeshiftTT"] = "Shapeshifting into a form will automatically change your language to its association.\nRequires: Shadowform, Druid Forms, Ghost Wolf, Metamorphosis."
+	L["UseAutoShapeshiftTT"] = "Shapeshifting into a form will automatically change your language to its association.\nRequires: Shadowform, Metamorphosis." --  Druid Forms, Ghost Wolf are planned maybe later 
 	L["LoadingProfile"] = "Loading Profile"
 
 return end
