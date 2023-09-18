@@ -557,7 +557,7 @@ local LANGUAGE_REPLACEMENTS = {
 		[11] = {"thrakk'reva", "kaz'goth'no", "no'gor'goth", "kil'azi'aga", "zug-zug'ama", "maza'thrakk"},
 		[12] = {"lokando'nash", "ul'gammathar", "golgonnashar", "dalggo'mazah"},
 		[13] = {"khaz'rogg'ahn", "moth'kazoroth"},
-		["hasRunes"] = false,
+		["hasRunes"] = true,
 	},
 
 	["Zandali"] = {
