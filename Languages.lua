@@ -40,7 +40,8 @@ local function Print(text)
 end
 
 local mainFrame = CreateFrame("Frame", "LanguagesMainFrame", UIParent, "PortraitFrameTemplateMinimizable")
-mainFrame:SetPortraitToAsset(4891426)
+mainFrame:SetPortraitTextureRaw("Interface\\AddOns\\Languages\\Languages_Icon_Small")
+--mainFrame.PortraitContainer.portrait:SetTexture("Interface\\AddOns\\Languages\\Languages_Icon_Small")
 mainFrame:SetTitle("Languages")
 mainFrame:SetSize(338,424)
 mainFrame:SetPoint("CENTER", UIParent, "CENTER")
@@ -312,7 +313,7 @@ local addon = LibStub("AceAddon-3.0"):NewAddon("Languages", "AceConsole-3.0")
 local languagesLDB = LibStub("LibDataBroker-1.1"):NewDataObject("Languages", {
 	type = "data source",
 	text = "Languages",
-	icon = "Interface\\Icons\\INV_Chest_Cloth_17",
+	icon = "Interface\\AddOns\\Languages\\Languages_Icon_Small.blp",
 	OnClick = function()
 		if mainFrame:IsShown() then
 			mainFrame:Hide();
@@ -470,7 +471,7 @@ local LANGUAGE_REPLACEMENTS = {
 		[10] = {"aelgestron", "cynewalden", "danavandar", "dyrstigost", "falhedring", "vastrungen"},
 		[11] = {"agolandovis", "bornvalesh", "dornevalesh", "farlandowar", "forthasador", "thorlithtos", "vassildador", "wershaesire"},
 		[12] = {"gorveldbarad", "mandosdaegil", "nevrenrothas", "waldirskilde"},
-		["hasRunes"] = false,
+		["hasRunes"] = true,
 	},
 
 	["Darnassian"] = {
@@ -801,11 +802,12 @@ local LANGUAGE_REPLACEMENTS = {
 		[2] = {"au", "ba", "by", "fe", "ko", "ku", "so", "ta", "tu", "ve", "xy", "zo", "za", "ve", "sh", "ul", "al", "da", "an", "mi", "ri", "xa", "ha", "ji", "si", "ra", "fa", "nu", "ya"},
 		[3] = {"taa", "baa", "xaa", "haa", "jii", "daa", "sii", "zay", "raa", "dha", "saa", "shi", "faa", "gha", "ayn", "mii", "lam", "kaa", "qaa", "yaa", "waa", "nuu", "ara", "dal", "mox", "bic", "dul", "khe", "lla", "mba", "rim", "pyr", "qil", "sha", "til", "van", "vol", "eru", "ruu"},
 		[4] = {"nari", "amir", "thaa", "alif", "daal", "jiim", "siin", "zayn", "daad", "saad", "dhaa", "miim", "kaaf", "qaaf", "waaw", "nuun", "anap", "berk", "brak", "burk", "dara", "khem", "taza", "vesh", "krut", "myza", "nagl", "naci", "phes", "prin", "resh", "saar", "vesk", "avna", "hare", "hask", "julk", "silk", "solo", "ropo", "rana", "leah", "azmi", "turu", "bone", "drom", "gosh", "hilt", "hult", "khis", "kraz", "mari", "meri", "piks", "oren", "rela", "ruca", "sahm", "ules"},
-		[5] = {"",},
-		[6] = {"al'ara",},
-		[7] = {"amo'gus",},
-		[8] = {"",},
-		["hasRunes"] = false,
+		[5] = {"feshi", "au'fe", "za-da", "mii'xy", "sadal", "fe-an", "bur-so", "dalfe", "jihaa", "vesku", "mi'ha", "na-ra", "ta'fe", "dadsa", "kraza"},
+		[6] = {"al'ara", "bakuza", "taaqil", "xariya", "zaynul", "nariya", "koraan", "jilkha", "veshda", "tazaal", "haalda", "ulmiya", "brakso", "jilanu", "qil-ri", "kaa-fe", "reshtu", "veskso", "leahza", "phesri"},
+		[7] = {"amo'gus", "daalshi", "faakrim", "miiraku", "shivari", "taaresk", "dromiwa", "zayn-mi", "lamvesh", "prin'xa", "daal-ko", "ami-rya", "qilriha", "al'ifar", "zayndad", "reshmii", "miirana", "daalshi", "feshika", "hultaza"},
+		[8] = {"daadnari", "veshzayn", "braksolo", "hiltthaa", "burkmari", "saadmari", "krazmiim", "daalsaad", "zaynmiim", "sahmphes", "julkhesh", "kaafburk", "daalkaaf", "veshdaal", "dromsolo", "jul'kraz", "sah-mari", "vesh-daa", "krutnari"},
+		[9] = {"reshtaqil", "miirakuza", "alifarana", "jil'khaaf", "baku-zaad", "naci-thaa", "vesk'soza", "oren-saad", "kaaf'nuun", "taza'anap", "nariyahar", "mi'xydaal"},
+		["hasRunes"] = true,
 	},
 
 	["Cypher"] = { -- languageID 287
@@ -1263,6 +1265,7 @@ mainFrame.DialectList_Frame:SetPoint("TOP", mainFrame.LangList_Frame, "BOTTOM", 
 mainFrame.DialectList_Frame:SetSize(300,120)
 mainFrame.DialectList_Frame:SetBackdrop(mainFrame.backdropInfo)
 mainFrame.DialectList_Frame:SetBackdropColor(0,0,0,.5)
+mainFrame.DialectList_Frame:Hide()
 
 mainFrame.Acc_Frame = CreateFrame("Frame", nil, content2, "BackdropTemplate")
 mainFrame.Acc_Frame:SetPoint("TOP", content2, "TOP", 0, -75)
@@ -1483,7 +1486,7 @@ mainFrame.shapeshiftFormsCB:SetScript("OnLeave", mainFrame.tooltip_OnLeave);
 ----------------------------------------
 
 mainFrame.preset_recommended = CreateFrame("Button", nil, content3, "SharedButtonSmallTemplate")
-mainFrame.preset_recommended:SetPoint("BOTTOMRIGHT", content3, "TOPRIGHT", -25, -150)
+mainFrame.preset_recommended:SetPoint("TOP", content3, "TOP", 0, -150)
 mainFrame.preset_recommended:SetSize(110,25)
 mainFrame.preset_recommended:SetText(L["ImportRecommended"])
 mainFrame.preset_recommended:SetScript("OnClick", function(self, button)

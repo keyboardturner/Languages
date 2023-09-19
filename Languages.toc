@@ -1,7 +1,7 @@
-## Interface: 100105
+## Interface: 100107
 ## Title: Languages
-## Notes: A work-in-progress addon that aims to bring in "speakable" ingame languages in a lightweight and accessible way.
-## IconTexture: Interface/Icons/ability_priest_heavanlyvoice.blp
+## Notes: A roleplaying addon that aims to bring in "speakable" ingame languages in a lightweight and accessible way.
+## IconTexture: Interface/AddOns/Languages/Languages_Icon_Small.blp
 ## Author: Keyboardturner
 ## Version: 0.0.1
 ## SavedVariables: Languages_DB
