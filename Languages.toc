@@ -4,6 +4,28 @@
 ## IconTexture: Interface/AddOns/Languages/Languages_Icon_Small.blp
 ## Author: Keyboardturner
 ## Version: 0.0.1
+## Title-enUS: Languages
+## Notes-enUS: A roleplaying addon that aims to bring in "speakable" ingame languages in a lightweight and accessible way.
+## Title-frFR: Langues
+## Notes-frFR: Un module complémentaire de jeu de rôle qui vise à introduire des langages de jeu « parlables » de manière légère et accessible.
+## Title-esES: Idiomas
+## Notes-esES: Un complemento de juego de rol que tiene como objetivo incorporar idiomas "hablables" dentro del juego de una manera liviana y accesible.
+## Title-esMX: Idiomas
+## Notes-esMX: Un complemento de juego de rol que tiene como objetivo incorporar idiomas "hablables" dentro del juego de una manera liviana y accesible.
+## Title-deDE: Sprachen
+## Notes-deDE: Ein Rollenspiel-Addon, das darauf abzielt, „sprechbare“ Ingame-Sprachen auf einfache und zugängliche Weise einzuführen.
+## Title-itIT: Le lingue
+## Notes-itIT: Un componente aggiuntivo di gioco di ruolo che mira a introdurre linguaggi di gioco "parlabili" in modo leggero e accessibile.
+## Title-ptBR: Línguas
+## Notes-ptBR: Um complemento de RPG que visa trazer linguagens "faláveis" no jogo de uma forma leve e acessível.
+## Title-ruRU: Языки
+## Notes-ruRU: Аддон для ролевых игр, целью которого является создание «разговорных» игровых языков в легкой и доступной форме.
+## Title-koKR: 언어 (Languages)
+## Notes-koKR: 가볍고 접근 가능한 방식으로 "말할 수 있는" 게임 내 언어를 가져오는 것을 목표로 하는 롤플레잉 애드온입니다.
+## Title-zhCN: Languages：语言
+## Notes-zhCN: 一个角色扮演插件，旨在以轻量级且易于访问的方式引入“可说的”游戏语言。
+## Title-zhTW: Languages：語言
+## Notes-zhTW: 一個角色扮演插件，旨在以輕量級且易於訪問的方式引入“可說的”遊戲語言。
 ## SavedVariables: Languages_DB
 ## OptionalDeps: LibDBIcon, Ace3, TotalRP3
 
