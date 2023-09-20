@@ -10,6 +10,9 @@ setmetatable(L, {__index=defaultFunc});
 
 local LOCALE = GetLocale()
 
+local colorThingS = "|cff9ce6d9"
+local colorThingE = "|r"
+
 if LOCALE == "enUS" then
 -- The EU English game client also
 -- uses the US English locale code.
@@ -78,7 +81,12 @@ if LOCALE == "enUS" then
 	L["UseAutoShapeshiftOn"] = "Automatic Shapeshift language enabled for this character."
 	L["UseAutoShapeshift"] = "Automatic Shapeshift language"
 	L["UseAutoShapeshiftTT"] = "Shapeshifting into a form will automatically change your language to its association.\nRequires: Shadowform, Metamorphosis." --  Druid Forms, Ghost Wolf are planned maybe later 
-	L["LoadingProfile"] ="Loading Profile"
+	L["LoadingProfile"] = "Loading Profile"
+	L["Help"] = "You can use "..colorThingS.."/languages"..colorThingE..", "..colorThingS.."/language"..colorThingE..", or "..colorThingS.."/lang"..colorThingE.." to access slash commands. The list of slash command sub-options available:"..
+	"\n"..colorThingS.."prefix"..colorThingE.." - toggle the [Language] prefix on/off."..
+	"\n"..colorThingS.."open"..colorThingE.." - open the options frame."..
+	"\n"..colorThingS.."minimap"..colorThingE.." - toggle the minimap button on/off."..
+	"\nAdditionally, you can set a language, such as for example "..colorThingS.."/lang Darnassian"..colorThingE.." or "..colorThingS.."/Darnassian"..colorThingE.."."
 
 return end
 
@@ -150,6 +158,11 @@ if LOCALE == "esES" or LOCALE == "esMX" then
 	L["UseAutoShapeshift"] = "Idioma de cambio de forma automático"
 	L["UseAutoShapeshiftTT"] = "Cambiar de forma a una forma cambiará automáticamente su idioma a su asociación.\nRequiere: Forma de sombra, Metamorfosis."
 	L["LoadingProfile"] = "Cargando perfil"
+	L["Help"] = "Puede utilizar "..colorThingS.."/languages"..colorThingE..", "..colorThingS.."/language"..colorThingE..", o "..colorThingS.."/lang"..colorThingE.." para acceder a los comandos de barra diagonal. La lista de subopciones de comandos de barra diagonal disponibles:"..
+	"\n"..colorThingS.."prefix"..colorThingE.." - activa o desactiva el prefijo [Language]."..
+	"\n"..colorThingS.."open"..colorThingE.." - abre el marco de opciones."..
+	"\n"..colorThingS.."minimap"..colorThingE.." - activa o desactiva el botón del minimapa."..
+	"\nAdemás, puede configurar un idioma, como por ejemplo "..colorThingS.."/lang Darnassian"..colorThingE.." o "..colorThingS.."/Darnassian"..colorThingE.."."
 return end
 
 if LOCALE == "deDE" then
@@ -220,6 +233,11 @@ if LOCALE == "deDE" then
 	L["UseAutoShapeshift"] = "Automatische Shapeshift-Sprache"
 	L["UseAutoShapeshiftTT"] = "Durch die Gestaltwandlung in eine Form wird Ihre Sprache automatisch an die entsprechende Assoziation angepasst.\nErfordert: Schattenform, Metamorphose."
 	L["LoadingProfile"] = "Profil wird geladen"
+	L["Help"] = "Sie können "..colorThingS.."/languages"..colorThingE..", "..colorThingS.."/language"..colorThingE..", oder "..colorThingS.."/lang"..colorThingE.." verwenden, um auf Schrägstrich-Befehle zuzugreifen. Die Liste der verfügbaren Unteroptionen für Schrägstrich-Befehle:"..
+	"\n"..colorThingS.."prefix"..colorThingE.." - Schaltet das [Language]-Präfix ein/aus."..
+	"\n"..colorThingS.."open"..colorThingE.." - Öffnet den Optionsrahmen."..
+	"\n"..colorThingS.."minimap"..colorThingE.." - Schaltet die Minikarten-Schaltfläche ein/aus."..
+	"\nZusätzlich können Sie eine Sprache festlegen, beispielsweise "..colorThingS.."/lang Darnassian"..colorThingE.." oder "..colorThingS.."/Darnassian"..colorThingE.."."
 return end
 
 if LOCALE == "frFR" then
@@ -290,6 +308,11 @@ if LOCALE == "frFR" then
 	L["UseAutoShapeshift"] = "Langage Shapeshift automatique"
 	L["UseAutoShapeshiftTT"] = "Le changement de forme dans un formulaire changera automatiquement votre langue en son association.\nNécessite : Forme d'Ombre, Métamorphose."
 	L["LoadingProfile"] = "Chargement du profil"
+	L["Help"] = "Vous pouvez utiliser "..colorThingS.."/languages"..colorThingE..", "..colorThingS.."/language"..colorThingE..", ou "..colorThingS.."/lang"..colorThingE.." pour accéder aux commandes slash. La liste des sous-options de commande slash disponibles:"..
+	"\n"..colorThingS.."prefix"..colorThingE.." - active/désactive le préfixe [Language]."..
+	"\n"..colorThingS.."open"..colorThingE.." - ouvre le cadre des options."..
+	"\n"..colorThingS.."minimap"..colorThingE.." - active/désactive le bouton de la mini-carte."..
+	"\nDe plus, vous pouvez définir une langue, comme par exemple "..colorThingS.."/lang Darnassian"..colorThingE.." ou "..colorThingS.."/Darnassian"..colorThingE.."."
 return end
 
 if LOCALE == "itIT" then
@@ -360,6 +383,11 @@ if LOCALE == "itIT" then
 	L["UseAutoShapeshift"] = "Linguaggio Shapeshift automatico"
 	L["UseAutoShapeshiftTT"] = "Trasformarti in una forma cambierà automaticamente la tua lingua in base alla sua associazione.\nRichiede: Forma d'Ombra, Metamorfosi."
 	L["LoadingProfile"] = "Caricamento profilo"
+	L["Help"] = "È possibile utilizzare "..colorThingS.."/languages"..colorThingE..", "..colorThingS.."/language"..colorThingE..", o "..colorThingS.."/lang"..colorThingE.." per accedere ai comandi slash. L'elenco delle opzioni secondarie dei comandi slash disponibili:"..
+	"\n"..colorThingS.."prefix"..colorThingE.." - attiva/disattiva il prefisso [Language]."..
+	"\n"..colorThingS.."open"..colorThingE.." - apre il riquadro delle opzioni."..
+	"\n"..colorThingS.."minimap"..colorThingE.." - attiva/disattiva il pulsante della minimappa."..
+	"\nAdditionally, you can set a language, such as for examplInoltre è possibile impostare una lingua, come ad esempio "..colorThingS.."/lang Darnassian"..colorThingE.." o "..colorThingS.."/Darnassian"..colorThingE.."."
 return end
 
 if LOCALE == "ptBR" then
@@ -430,6 +458,11 @@ if LOCALE == "ptBR" then
 	L["UseAutoShapeshift"] = "Linguagem de mudança de forma automática"
 	L["UseAutoShapeshiftTT"] = "Mudar de forma para uma forma mudará automaticamente seu idioma para sua associação.\nRequer: Shadowform, Metamorphosis."
 	L["LoadingProfile"] = "Carregando perfil"
+	L["Help"] = "Você pode usar "..colorThingS.."/languages"..colorThingE..", "..colorThingS.."/language"..colorThingE..", ou "..colorThingS.."/lang"..colorThingE.." para acessar comandos de barra. A lista de subopções de comando de barra disponíveis:"..
+	"\n"..colorThingS.."prefix"..colorThingE.." - ativa/desativa o prefixo [Language]."..
+	"\n"..colorThingS.."open"..colorThingE.." - abre o quadro de opções."..
+	"\n"..colorThingS.."minimap"..colorThingE.." - ativa/desativa o botão do minimapa."..
+	"\nAlém disso, você pode definir um idioma, como por exemplo "..colorThingS.."/lang Darnassian"..colorThingE.." ou "..colorThingS.."/Darnassian"..colorThingE.."."
 -- Note that the EU Portuguese WoW client also
 -- uses the Brazilian Portuguese locale code.
 return end
@@ -502,6 +535,11 @@ if LOCALE == "ruRU" then
 	L["UseAutoShapeshift"] = "Язык автоматического изменения формы"
 	L["UseAutoShapeshiftTT"] = "Преобразование в форму автоматически изменит ваш язык в соответствии с ассоциацией.\nТребуется: Теневая форма, Метаморфоза."
 	L["LoadingProfile"] = "Загрузка профиля"
+	L["Help"] = "Вы можете использовать "..colorThingS.."/languages"..colorThingE..", "..colorThingS.."/language"..colorThingE..", или "..colorThingS.."/lang"..colorThingE.." для доступа к командам с косой чертой. Список доступных подопций команды с косой чертой:"..
+	"\n"..colorThingS.."prefix"..colorThingE.." - включение/выключение префикса [Language]."..
+	"\n"..colorThingS.."open"..colorThingE.." - открыть рамку опций."..
+	"\n"..colorThingS.."minimap"..colorThingE.." - включение/выключение кнопки миникарты."..
+	"\nКроме того, вы можете установить язык, например "..colorThingS.."/lang Darnassian"..colorThingE.." или "..colorThingS.."/Darnassian"..colorThingE.."."
 return end
 
 if LOCALE == "koKR" then
@@ -572,6 +610,11 @@ if LOCALE == "koKR" then
 	L["UseAutoShapeshift"] = "자동 변신 언어"
 	L["UseAutoShapeshiftTT"] = "형태로 변신하면 자동으로 언어가 연관되어 변경됩니다.\n필요 사항: Shadowform, Metamorphosis."
 	L["LoadingProfile"] = "프로필 로드 중"
+	L["Help"] = colorThingS.."/languages"..colorThingE..", "..colorThingS.."/language"..colorThingE..", 또는 "..colorThingS.."/lang"..colorThingE.." 사용하여 슬래시 명령에 액세스할 수 있습니다. 사용 가능한 슬래시 명령 하위 옵션 목록은 다음과 같습니다:"..
+	"\n"..colorThingS.."prefix"..colorThingE.." - [언어] 접두어를 켜거나 끕니다."..
+	"\n"..colorThingS.."open"..colorThingE.." - 옵션 프레임을 엽니다."..
+	"\n"..colorThingS.."minimap"..colorThingE.." - 미니맵 버튼을 켜거나 끕니다."..
+	"\n또한 "..colorThingS.."/lang Darnassian"..colorThingE.." 또는 "..colorThingS.."/Darnassian"..colorThingE.." 과 같은 언어를 설정할 수 있습니다."
 return end
 
 if LOCALE == "zhCN" then
@@ -642,6 +685,11 @@ if LOCALE == "zhCN" then
 	L["UseAutoShapeshift"] = "自动变形语言"
 	L["UseAutoShapeshiftTT"] = "变形为某种形态会自动改变你的语言与其关联。\n需要：暗影形态、变形。"
 	L["LoadingProfile"] = "加载配置文件"
+	L["Help"] = "您可以使用 "..colorThingS.."/languages"..colorThingE..", "..colorThingS.."/language"..colorThingE..", 或 "..colorThingS.."/lang"..colorThingE.." t来访问斜杠命令。可用的斜杠命令子选项列表:"..
+	"\n"..colorThingS.."prefix"..colorThingE.." - 打开/关闭 [Language] 前缀。"..
+	"\n"..colorThingS.."open"..colorThingE.." - 打开选项框架。"..
+	"\n"..colorThingS.."minimap"..colorThingE.." - 打开/关闭小地图按钮。"..
+	"\n此外，您还可以设置语言，例如 "..colorThingS.."/lang Darnassian"..colorThingE.." 或 "..colorThingS.."/Darnassian"..colorThingE.."。"
 return end
 
 if LOCALE == "zhTW" then
@@ -712,4 +760,9 @@ if LOCALE == "zhTW" then
 	L["UseAutoShapeshift"] = "自動變形語言"
 	L["UseAutoShapeshiftTT"] = "變形為某種形態會自動改變你的語言與其關聯。\n需要：暗影形態、變形。"
 	L["LoadingProfile"] = "載入設定檔"
+	L["Help"] = "您可以使用 "..colorThingS.."/languages"..colorThingE..", "..colorThingS.."/language"..colorThingE..", 或 "..colorThingS.."/lang"..colorThingE.." 來存取斜杠命令。可用的斜杠命令子選項清單:"..
+	"\n"..colorThingS.."prefix"..colorThingE.." - 開啟/關閉 [Language] 前綴。"..
+	"\n"..colorThingS.."open"..colorThingE.." - 開啟選項框架。"..
+	"\n"..colorThingS.."minimap"..colorThingE.." - 開啟/關閉小地圖按鈕。"..
+	"\n此外，您還可以設定語言，例如 "..colorThingS.."/lang Darnassian"..colorThingE.." 或 "..colorThingS.."/Darnassian"..colorThingE.."。"
 return end

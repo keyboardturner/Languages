@@ -335,7 +335,7 @@ function addon:OnInitialize()
 		profile = CopyTable(defaultsTableChar);
 	});
 	icon:Register("Languages", languagesLDB, self.db.profile.minimap);
-	self:RegisterChatCommand("languageshide", "ToggleMinimapButton");
+	--self:RegisterChatCommand("languageshide", "ToggleMinimapButton");
 end
 
 function addon:ToggleMinimapButton()
@@ -345,6 +345,74 @@ function addon:ToggleMinimapButton()
 		icon:Hide("Languages");
 	else
 		icon:Show("Languages");
+	end
+end
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+-- Slash commands
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+mainFrame.commands = {
+	["prefix"] = function()
+		mainFrame.TogglePrefix();
+		if mainFrame.prefix == true then
+			Print(L["CurrentlySpeaking"] .. currentLanguage.lang)
+		else
+			Print(L["TogglePrefixOff"])
+		end
+	end,
+
+	["help"] = function()
+		Print(L["Help"])
+	end,
+
+	["open"] = function()
+		if mainFrame:IsShown() then
+			mainFrame:Hide();
+		else
+			mainFrame:Show();
+		end
+	end,
+
+	["minimap"] = function()
+		addon:ToggleMinimapButton()
+	end,
+
+};
+
+function mainFrame.HandleSlashCommands(str)
+	if (#str == 0) then
+		mainFrame.commands.help();
+		return;
+		end
+
+		local args = {};
+		for _dummy, arg in ipairs({ string.split(' ', str) }) do
+		if (#arg > 0) then
+			table.insert(args, arg);
+			end
+			end
+
+			local path = mainFrame.commands; -- required for updating found table.
+
+			for id, arg in ipairs(args) do
+
+			if (#arg > 0) then --if string length is greater than 0
+			arg = arg:lower();          
+			if (path[arg]) then
+				if (type(path[arg]) == "function") then
+					-- all remaining args passed to our function!
+					path[arg](select(id + 1, unpack(args))); 
+					return;                 
+				elseif (type(path[arg]) == "table") then
+					path = path[arg]; -- another sub-table found!
+				end
+				else
+					mainFrame.commands.help();
+				return;
+			end
+		end
 	end
 end
 
@@ -2055,6 +2123,28 @@ end
 lang:RegisterEvent("ADDON_LOADED")
 lang:RegisterEvent("UNIT_AURA")
 
+function mainFrame.init()
+	for k, v in ipairs(languageBasicList) do
+		mainFrame.commands[string.lower(v)] = function()
+			currentLanguage.lang = v;
+			preserveLanguage.lang = v;
+			Print(L["SettingLanguageTo"] .. " " .. currentLanguage.lang);
+			for k, v in ipairs(languageBasicList) do
+				mainFrame[k].HLTex:Hide();
+				mainFrame[k].BGTex:SetVertexColor(0/255,0/255,0/255,150/255);
+			end
+			mainFrame[k].HLTex:Show();
+			mainFrame[k].BGTex:SetVertexColor(255/255,255/255,255/255,255/255);
+			mainFrame.prefix = false;
+			mainFrame.TogglePrefix();
+		end
+
+		_G["SLASH_" .. v .. "1"] = "/" .. v
+		SlashCmdList[v] = mainFrame.commands[string.lower(v)]
+	end
+
+end
+
 function lang.addonLoaded(self, event, arg1) -- table, event, addonName
 	if event == "ADDON_LOADED" and arg1 == "Languages" then
 
@@ -2070,6 +2160,13 @@ function lang.addonLoaded(self, event, arg1) -- table, event, addonName
 
 		lang.checkSettings();
 		lang.trp3Check();
+
+		SLASH_LANG1 = "/languages"
+		SLASH_LANG2 = "/language"
+		SLASH_LANG3 = "/lang"
+		SlashCmdList.LANG = mainFrame.HandleSlashCommands;
+
+		mainFrame.init();
 	end
 	if event == "UNIT_AURA" and arg1 == "player" then
 		lang.shapeshiftProfileCheck()
