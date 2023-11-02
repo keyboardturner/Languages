@@ -5,10 +5,7 @@ license-output: LICENSE
 
 externals:
   Libs/Ace3: https://repos.curseforge.com/wow/ace3/trunk
-  Libs/LibStub: https://repos.wowace.com/wow/libstub/trunk
   Libs/LibDBIcon-1.0: https://repos.curseforge.com/wow/libdbicon-1-0/trunk
-  Libs/LibDataBroker-1.1: https://repos.curseforge.com/wow/libdatabroker-1-1
-  Libs/CallbackHandler-1.0: https://repos.curseforge.com/wow/callbackhandler/trunk
 
 ignore:
   - Libs/*/*.rockspec
