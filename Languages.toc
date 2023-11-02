@@ -3,7 +3,7 @@
 ## Notes: A roleplaying addon that aims to bring in "speakable" ingame languages in a lightweight and accessible way.
 ## IconTexture: Interface/AddOns/Languages/Languages_Icon_Small.blp
 ## Author: Keyboardturner
-## Version: 0.0.2
+## Version: @project-version@
 ## Title-enUS: Languages
 ## Notes-enUS: A roleplaying addon that aims to bring in "speakable" ingame languages in a lightweight and accessible way.
 ## Title-frFR: Langues
