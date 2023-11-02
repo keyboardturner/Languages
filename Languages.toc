@@ -3,11 +3,11 @@
 ## Notes: A roleplaying addon that aims to bring in "speakable" ingame languages in a lightweight and accessible way.
 ## IconTexture: Interface/AddOns/Languages/Languages_Icon_Small.blp
 ## Author: Keyboardturner
-## Version: 0.0.1
+## Version: 0.0.2
 ## Title-enUS: Languages
 ## Notes-enUS: A roleplaying addon that aims to bring in "speakable" ingame languages in a lightweight and accessible way.
 ## Title-frFR: Langues
-## Notes-frFR: Un module complémentaire de jeu de rôle qui vise à introduire des langages de jeu « parlables » de manière légère et accessible.
+## Notes-frFR: Un addon de jeu de rôle qui vise à introduire des langages de jeu "parlés" de manière légère et accessible.
 ## Title-esES: Idiomas
 ## Notes-esES: Un complemento de juego de rol que tiene como objetivo incorporar idiomas "hablables" dentro del juego de una manera liviana y accesible.
 ## Title-esMX: Idiomas
@@ -29,6 +29,9 @@
 ## SavedVariables: Languages_DB
 ## OptionalDeps: LibDBIcon, Ace3, TotalRP3
 
+Libs\Ace3\AceAddon-3.0\AceAddon-3.0.lua
+Libs\Ace3\AceConsole-3.0\AceConsole-3.0.lua
+Libs\Ace3\AceDB-3.0\AceDB-3.0.lua
 Libs\LibStub\LibStub.lua
 Libs\CallbackHandler-1.0\CallbackHandler-1.0.lua
 Libs\LibDataBroker-1.1\LibDataBroker-1.1.lua

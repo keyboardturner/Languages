@@ -1,0 +1,29 @@
+package-as: Languages
+enable-nolib-creation: yes
+
+license-output: LICENSE
+
+externals:
+  Languages/Libs/Ace3: https://repos.curseforge.com/wow/ace3/trunk
+  Languages/Libs/LibStub: https://repos.wowace.com/wow/libstub/trunk
+  Languages/Libs/LibDBIcon-1.0: https://repos.curseforge.com/wow/libdbicon-1-0/trunk
+  Languages/Libs/LibDataBroker-1.1: https://repos.curseforge.com/wow/libdatabroker-1-1
+  Languages/Libs/CallbackHandler-1.0: https://repos.curseforge.com/wow/callbackhandler/trunk
+
+ignore:
+  - Languages/Libs/*/*.rockspec
+  - Languages/Libs/*/*.toc
+  - Languages/Libs/*/changelog.*
+  - Languages/Libs/*/CHANGELOG.*
+  - Languages/Libs/*/docs
+  - Languages/Libs/*/examples
+  - Languages/Libs/*/README.*
+  - Languages/Libs/*/tests
+  - Languages/Libs/*/.pkgmeta
+  - CHANGELOG.md
+  - README.md
+
+
+manual-changelog:
+  filename: CHANGELOG.md
+  markup-type: markdown
