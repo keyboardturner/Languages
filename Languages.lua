@@ -85,23 +85,39 @@ function mainFrame.tooltip_OnLeave()
 	GameTooltip:Hide();
 end
 
-function mainFrame:ShowColorPicker(r, g, b, a, changedCallback)
-	ColorPickerFrame.hasOpacity, ColorPickerFrame.opacity = (a ~= nil), a;
-	ColorPickerFrame.previousValues = {r,g,b,a};
-	ColorPickerFrame.func, ColorPickerFrame.opacityFunc, ColorPickerFrame.cancelFunc = changedCallback, changedCallback, changedCallback;
-	ColorPickerFrame:SetColorRGB(r,g,b);
-	ColorPickerFrame:Hide(); -- Need to run the OnShow handler.
-	ColorPickerFrame:Show();
+function mainFrame:ShowColorPickerText(r, g, b, callbackFunc)
+	if ColorPickerFrame.SetupColorPickerAndShow then
+		local options = {
+			swatchFunc = callbackFunc,
+			opacityFunc = callbackFunc,
+			cancelFunc = callbackFunc,
+			hasOpacity = false,
+			r = r,
+			g = g,
+			b = b,
+		};
+
+		ColorPickerFrame:SetupColorPickerAndShow(options);
+	else
+		ColorPickerFrame.hasOpacity, ColorPickerFrame.opacity = false, a;
+		ColorPickerFrame.previousValues = {r,g,b};
+		ColorPickerFrame.func, ColorPickerFrame.opacityFunc, ColorPickerFrame.cancelFunc = callbackFunc, callbackFunc, callbackFunc;
+		ColorPickerFrame:SetColorRGB(r,g,b);
+		ColorPickerFrame:Hide();
+		ColorPickerFrame:Show();
+	end
 end
 
-function mainFrame:PrefixColor(restore)
-	local newR, newG, newB, newA; -- I forgot what to do with the alpha value but it's needed to not swap RGB values
+function mainFrame.PrefixColor(restore)
+	local newR, newG, newB; -- I forgot what to do with the alpha value but it's needed to not swap RGB values
 	if restore then
-		-- The user bailed, we extract the old color from the table created by ShowColorPicker.
-		newR, newG, newB, newA = unpack(restore);
+	 -- The user bailed, we extract the old color from the table created by ShowColorPicker.
+		newR = restore["r"]
+		newG = restore["g"]
+		newB = restore["b"]
 	else
-		-- Something changed
-		newA, newR, newG, newB = OpacitySliderFrame:GetValue(), ColorPickerFrame:GetColorRGB();
+	 -- Something changed
+		newR, newG, newB = ColorPickerFrame:GetColorRGB();
 	end
 	 -- Update our internal storage.
 	r, g, b = newR, newG, newB
@@ -1414,7 +1430,7 @@ mainFrame.prefixColorPickerButton.text:SetFont("Fonts\\FRIZQT__.TTF", 11)
 mainFrame.prefixColorPickerButton.text:SetPoint("RIGHT", mainFrame.prefixColorPickerButton, "LEFT", -5, 0)
 mainFrame.prefixColorPickerButton.text:SetText(L["AddonPrefixColor"])
 mainFrame.prefixColorPickerButton:SetScript("OnClick", function(self, button)
-	mainFrame:ShowColorPicker(Languages_DB.settings.colors.prefix.r, Languages_DB.settings.colors.prefix.g, Languages_DB.settings.colors.prefix.b, nil, mainFrame.PrefixColor);
+	mainFrame:ShowColorPickerText(Languages_DB.settings.colors.prefix.r, Languages_DB.settings.colors.prefix.g, Languages_DB.settings.colors.prefix.b, mainFrame.PrefixColor);
 end);
 
 mainFrame.speechbubCB = CreateFrame("CheckButton", nil, mainFrame.prefixColorPickerButton, "UICheckButtonTemplate");
