@@ -1,3 +1,7 @@
+# 0.0.7
+
+toc bump to 10.2.6
+
 # 0.0.6
 
 10.2.5 toc bump, color picker fixes
