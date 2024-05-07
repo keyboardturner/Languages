@@ -1,6 +1,6 @@
-# 0.0.8
+# 0.0.9
 
-toc bump to 10.2.7
+toc bump to 10.2.7 (and fix versioning number)
 
 # 0.0.7
 
