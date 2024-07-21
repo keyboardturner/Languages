@@ -253,7 +253,7 @@ function mainFrame.setMaxLetters()
 		if ACTIVE_CHAT_EDIT_BOX ~= nil then
 			local editBox = _G[ACTIVE_CHAT_EDIT_BOX:GetName()]
 			local header = _G[ACTIVE_CHAT_EDIT_BOX:GetName().."Header"]
-			if IsAddOnLoaded("EmoteSplitter") == true then
+			if C_AddOns.IsAddOnLoaded("EmoteSplitter") == true then
 				return
 			else
 				local maxLetters = 255
@@ -290,7 +290,7 @@ function mainFrame.enablePrefix()
 						if mainFrame.prefix == true and currentLanguage.lang ~= "" and currentLanguage.lang ~= nil and (_G[ACTIVE_CHAT_EDIT_BOX:GetName()]:GetAttribute("chatType") == "SAY" or _G[ACTIVE_CHAT_EDIT_BOX:GetName()]:GetAttribute("chatType") == "YELL") then
 
 							if editBox:GetMaxBytes() ~= 1280 then
-								if IsAddOnLoaded("EmoteSplitter") == true then
+								if C_AddOns.IsAddOnLoaded("EmoteSplitter") == true then
 									gopherPadding = LibGopher.GetPadding()
 									LibGopher.SetPadding( "[" .. currentLanguage.lang .. "]" )
 									text = " " .. text
@@ -1225,7 +1225,7 @@ StaticPopupDialogs["LANGUAGES_CHAR_RESET_SETTINGS"] = {
 	button1 = "Yes",
 	button2 = "No",
 	OnAccept = function()
-		if IsAddOnLoaded("totalRP3") == true and Languages_DB.profiles[charKey].TRP3 == true and TRP3_API then
+		if C_AddOns.IsAddOnLoaded("totalRP3") == true and Languages_DB.profiles[charKey].TRP3 == true and TRP3_API then
 			Languages_DB.profiles["TRP3_" .. TRP3_API.profile.getPlayerCurrentProfile().profileName] = nil;
 			Languages_DB.profiles["TRP3_" .. TRP3_API.profile.getPlayerCurrentProfile().profileName] = CopyTable(defaultsTableChar);
 		else
@@ -1507,7 +1507,7 @@ mainFrame.trp3ProfileCB:SetPoint("TOPRIGHT", mainFrame.Char_Frame, "TOPRIGHT", -
 mainFrame.trp3ProfileCB:SetScript("OnClick", function(self)
 	if self:GetChecked() then
 		Print(L["LinkToTotalRP3On"]);
-		if IsAddOnLoaded("totalRP3") == true and TRP3_API then
+		if C_AddOns.IsAddOnLoaded("totalRP3") == true and TRP3_API then
 			Print(L["LoadingProfile"] .. ": " .. "TRP3_" .. TRP3_API.profile.getPlayerCurrentProfile().profileName);
 		else
 			Print(L["LoadingProfile"] .. ": " .. charKey);
@@ -1957,7 +1957,7 @@ mainFrame.PHTRP3Text:SetText("Placeholder TRP3 Profile Name")
 
 
 function lang.trp3ProfileName()
-	if IsAddOnLoaded("totalRP3") == true then
+	if C_AddOns.IsAddOnLoaded("totalRP3") == true then
 
 		mainFrame.PHTRP3Text:Show()
 		if TRP3_API.profile.getPlayerCurrentProfile() then
@@ -2062,7 +2062,7 @@ function lang.shapeshiftProfileCheck()
 end
 
 function lang.trp3Check()
-	if IsAddOnLoaded("totalRP3") == true then
+	if C_AddOns.IsAddOnLoaded("totalRP3") == true then
 		TRP3_API.RegisterCallback(TRP3_Addon, "REGISTER_DATA_UPDATED", lang.trp3ProfileName);
 	end
 end
