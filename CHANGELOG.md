@@ -1,3 +1,7 @@
+# 0.1.0
+
+TOC updates for TWW, addition of Dwarvish and Taur-Ahe runes. Maybe addition of Arathi?
+
 # 0.0.9
 
 toc bump to 10.2.7 (and fix versioning number)
