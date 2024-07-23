@@ -461,6 +461,8 @@ local thingsToHide = {
 	"^%[Broker%]",
 	"^%[Cypher%]",
 
+	"^%[Arathi%]",
+	"^%[Nerubian%]",
 	"^%[Sprite%]",
 	"^%[Nerglish%]",
 	"^%[Moonkin%]",
@@ -906,6 +908,44 @@ local LANGUAGE_REPLACEMENTS = {
 		["hasRunes"] = true,
 	},
 
+	["Arathi"] = { -- no languageID, fanmade
+
+		[1] = {"a", "d", "e", "n", "p", "s", "y"},
+		[2] = {"ae", "al", "am", "an", "ar", "as", "au", "ch", "da", "ea", "ed", "eh", "el", "en", "es", "ez", "ge", "ja", "je", "jo", "ke", "la", "lo", "ma", "mi", "na", "ne", "on", "ra", "ro", "ru", "so", "th", "ve", "vi", "we", "yl", "za", "zo"},
+		[3] = {"ahl", "ald", "all", "aly", "avi", "axe", "bar", "bas", "bli", "bow", "car", "cie", "cry", "del", "den", "der", "dra", "ead", "fae", "fas", "fay", "fyn", "gen", "gol", "gor", "hor", "ill", "iza", "jae", "jer", "kae", "kei", "key", "kie", "lar", "las", "lay", "leb", "len", "ler", "lia", "lip", "lor", "lyn", "mae", "mal", "man", "mar", "mer", "mor", "mut", "mya", "myl", "ner", "net", "nie", "pal", "pea", "pha", "pon", "pyr", "rae", "ran", "raw", "ren", "rex", "rie", "rin", "rnt", "roe", "rra", "rys", "sap", "sil", "son", "sor", "syg", "tae", "tea", "ter", "ton", "tor", "tta", "vae", "val", "van", "vel", "ven", "vik", "war", "way", "wen", "wyd", "wyn", "yol"},
+		[4] = {"anda", "aura", "blae", "bray", "bron", "cava", "dail", "dala", "dale", "dawn", "diri", "dorn", "dram", "duel", "enta", "evae", "fair", "fall", "fend", "fire", "flan", "flit", "fyre", "fyrm", "gaen", "gard", "glen", "glow", "hael", "hand", "hann", "helm", "host", "iron", "iryn", "klay", "lain", "lani", "layr", "lina", "lych", "mael", "maer", "mail", "marc", "meld", "mian", "more", "murr", "oria", "paig", "pert", "phie", "phil", "pray", "pure", "pyke", "seph", "shel", "song", "stan", "thal", "thar", "tian", "veir", "vera", "vest", "waet", "ward", "wynd"},
+		[5] = {"aegis", "akith", "amble", "bawnd", "blaze", "braes", "braun", "brigh", "brons", "clair", "corhe", "flame", "fraed", "fyres", "gills", "glynn", "havuk", "lisia", "lithe", "maelt", "monte", "shelm", "sieyr", "sterl", "steur", "stone", "stray", "suley", "surge", "taver", "telle", "thuri", "thyst"},
+		[6] = {"astair", "entine", "fierce", "flayme", "leifen", "pierce", "plough", "shayne", "smithe", "stonge", "strike", "strong", "taella", "torina", "ezalyn", "golren", "klayth"},
+		[7] = {"sorath", "keirath", "veirlis", "faermar", "naliren"},
+		[8] = {"fairfend", "trueglen", "laynemar", "bronfyre", "flitfyre", "hostglen", "ironglow", "veirdawn"},
+		[9] = {"ironblaze", "bronsfend", "helmsurge", "duelbawnd", "brighhelm", "faynstell", "jeveraest"},
+		[10] = {"haelvaedra", "valmarward"},
+		[11] = {"eadwardfend", "warhostfyre", "rystonsterl", "bowglenfend", "auralistone", "dawnmarward", "nalinstonge"},
+		[12] = {"drampertmaer", "pureironfire", "sygreglowren"},
+		[13] = {"sygremarblade", "auralialychen"},
+		[14] = {"lynironmaldawn", "laynebrighglow", "nalironmarward"},
+		[15] = {"flamefyreplough", "sterlglensturge", "fairlaynesturge", "brighstelledawn", "helmmardawnfend", "bronsstellaglow", "drammarfairward", "ironsturgebrigh"},
+		[16] = {"warbladeaurafend", "dawntruefairward", "vaefiretrueblaze", "valfendbrighhelm"},
+		[17] = {"fiercemarwardglow", "sterlsigremarward", "truebrighglowward"},
+		[18] = {"truepykestrongiron", "fayrglenwardsturge", "warsterlstrikeward"},
+		["hasRunes"] = true,
+	},
+
+
+	["Nerubian"] = { -- languageID 307
+		[1] = {"a", "s", "x", "j", "k"},
+		[2] = {"ah", "hz", "ex", "iz", "ox", "uj", "ji", "vx", "xi", "yz", "kz", "zk", "az"},
+		[3] = {"ahj", "tak", "raz", "rak", "nix", "xin", "xor", "ohx", "ahn", "toz", "iko", "ozu", "xif"},
+		[4] = {"xizy", "anub", "ixxo", "zish", "xini", "oxin"},
+		[5] = {"kahet", "nerub", "tyzix", "xinox", "rakaz"},
+		[6] = {"ik'tik", "itzkal"},
+		[7] = {"ohj'xin", "tak'ral", "jinitiz"},
+		[8] = {"ahz'tazi", "oxitazij"},
+		[9] = {"zinixitik"},
+		[10] = {"Kraxizinaz"},
+		["hasRunes"] = false,
+	},
+
 	["Sprite"] = { -- languageID 168
 		[1] = {"E"},
 		[2] = {"ki", "uk"},
@@ -1009,6 +1049,8 @@ local languagelist = {
 	["^%[Broker%]"] = "[Broker]",
 	["^%[Cypher%]"] = "[Cypher]",
 	
+	["^%[Arathi%]"] = "[Arathi]",
+	["^%[Nerubian%]"] = "[Nerubian]",
 	["^%[Sprite%]"] = "[Sprite]",
 	["^%[Nerglish%]"] = "[Nerglish]",
 	["^%[Moonkin%]"] = "[Moonkin]",
@@ -1042,6 +1084,8 @@ local languageNoBrackets = {
 	["^%[Broker%]"] = "Broker",
 	["^%[Cypher%]"] = "Cypher",
 
+	["^%[Arathi%]"] = "Arathi",
+	["^%[Nerubian%]"] = "Nerubian",
 	["^%[Sprite%]"] = "Sprite",
 	["^%[Nerglish%]"] = "Nerglish",
 	["^%[Moonkin%]"] = "Moonkin",
@@ -1078,6 +1122,8 @@ local languageBasicList = {
 	"Broker",
 	"Cypher",
 
+	"Arathi",
+	"Nerubian",
 	"Sprite",
 	"Nerglish",
 	"Moonkin",

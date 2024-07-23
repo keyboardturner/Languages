@@ -1,6 +1,10 @@
 # 0.1.1
 
-Addition of Dwarvish and Taur-Ahe runes. (https://feyawen.carrd.co/)
+Addition of Dwarvish and Taur-Ahe runes. (https://feyawen.carrd.co/).
+
+Additionally added Arathi and Arathi runes (thanks to Vodraalus for the font converted from ingame assets).
+
+Added Nerubian words, as per the ingame language data.
 
 # 0.1.0
 
