@@ -594,7 +594,7 @@ local LANGUAGE_REPLACEMENTS = {
 		[13] = {"gimil-thumane", "gol'gethrunon", "haldji-drugan"},
 		[14] = {"gosh-algaz-dun", "scyld-modor-ok"},
 		[15] = {"haldren-lo-modoss"},
-		["hasRunes"] = false,
+		["hasRunes"] = true,
 	},
 
 	["Gnomish"] = {
@@ -674,7 +674,7 @@ local LANGUAGE_REPLACEMENTS = {
 		[13] = {"ishne'awahalo", "neashushahmen"},
 		[14] = {"awakeeahmenalo"},
 		[15] = {"ishne'alo'porah"},
-		["hasRunes"] = false,
+		["hasRunes"] = true,
 	},
 
 	["Gutterspeak"] = {

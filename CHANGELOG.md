@@ -1,3 +1,7 @@
+# 0.1.1
+
+Addition of Dwarvish and Taur-Ahe runes. (https://feyawen.carrd.co/)
+
 # 0.1.0
 
 TOC updates for TWW
