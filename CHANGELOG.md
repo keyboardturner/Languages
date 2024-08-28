@@ -1,3 +1,7 @@
+# 0.1.2
+
+Fix to language list frame height, fix library load order
+
 # 0.1.1
 
 Addition of Dwarvish and Taur-Ahe runes. (https://feyawen.carrd.co/).

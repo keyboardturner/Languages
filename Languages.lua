@@ -1386,7 +1386,7 @@ StaticPopupDialogs["LANGUAGES_CHAR_PRESET_GAMEPLAY"] = {
 
 mainFrame.LangList_Frame = CreateFrame("Frame", nil, content1, "BackdropTemplate")
 mainFrame.LangList_Frame:SetPoint("TOP", content1, "TOP", 0, -95)
-mainFrame.LangList_Frame:SetSize(300,780)
+mainFrame.LangList_Frame:SetSize(300,30)
 mainFrame.LangList_Frame:SetBackdrop(mainFrame.backdropInfo)
 mainFrame.LangList_Frame:SetBackdropColor(0,0,0,.5)
 
@@ -1661,6 +1661,7 @@ for k, v in ipairs(languageBasicList) do
 	mainFrame[k]:SetPoint("TOPLEFT", mainFrame.LangList_Frame, "TOPLEFT", 10, -30*k)
 	mainFrame[k]:SetSize(110,25)
 	mainFrame[k]:SetText(v)
+	mainFrame.LangList_Frame:SetHeight(mainFrame.LangList_Frame:GetHeight()+30)
 
 
 	mainFrame[k]:SetScript("OnEnter", function(self)
