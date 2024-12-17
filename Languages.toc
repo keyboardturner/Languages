@@ -1,4 +1,4 @@
-## Interface: 110002, 110005
+## Interface: 110005, 110007
 ## Title: Languages
 ## Notes: A roleplaying addon that aims to bring in "speakable" ingame languages in a lightweight and accessible way.
 ## IconTexture: Interface/AddOns/Languages/Languages_Icon_Small.blp
