@@ -32,6 +32,18 @@
 ## X-WoWI-ID: 26633
 ## X-Wago-ID: 4N2mbQGL
 
+## Category-enUS: Chat
+## Category-deDE: Chat
+## Category-esES: Chat
+## Category-esMX: Chat
+## Category-frFR: Discussion
+## Category-itIT: Chat
+## Category-koKR: 대화
+## Category-ptBR: Bate-papo
+## Category-ruRU: Чат
+## Category-zhCN: 聊天
+## Category-zhTW: 對話
+
 Libs\LibDBIcon-1.0\LibStub\LibStub.lua
 Libs\LibDBIcon-1.0\CallbackHandler-1.0\CallbackHandler-1.0.lua
 Libs\Ace3\AceAddon-3.0\AceAddon-3.0.lua
