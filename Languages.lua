@@ -270,11 +270,11 @@ end
 
 function mainFrame.enablePrefix()
 
-	-- Hook the ChatEdit_InsertLink() function that is called when the user SHIFT-Click a player name
+	-- Hook function that is called when the user SHIFT-Click a player name
 	-- in the chat frame to insert it into a text field.
 	-- We can replace the name inserted by the complete RP name of the player if we have it.
 
-	hooksecurefunc("ChatEdit_ParseText", function(editBox, send)
+	local function ParseTokens(editBox, send)
 		if lang.combatCheck() then
 			return
 		else
@@ -307,10 +307,14 @@ function mainFrame.enablePrefix()
 				end
 			end
 		end
-	end);
+	end;
+
+	for i = 1, Constants.ChatFrameConstants.MaxChatWindows do
+		hooksecurefunc(_G["ChatFrame" .. i .. "EditBox"], "ParseText", ParseTokens);
+	end
 
 	-- Restore the text without substitution before it's stored in the chat history
-	hooksecurefunc("SubstituteChatMessageBeforeSend", function()
+	hooksecurefunc(ChatFrameUtil, "SubstituteChatMessageBeforeSend", function()
 		if parsedEditBox and textBeforeParse then
 			parsedEditBox:SetText(textBeforeParse);
 			parsedEditBox = nil;
@@ -1948,9 +1952,8 @@ local function eventFilterStuff(frame, event, message, sender, ...)
 
 end
 
-
-ChatFrame_AddMessageEventFilter("CHAT_MSG_SAY", eventFilterStuff)
-ChatFrame_AddMessageEventFilter("CHAT_MSG_YELL", eventFilterStuff)
+ChatFrameUtil.AddMessageEventFilter("CHAT_MSG_SAY", eventFilterStuff);
+ChatFrameUtil.AddMessageEventFilter("CHAT_MSG_YELL", eventFilterStuff);
 
 local function testScriptHeader()
 	mainFrame.setMaxLetters()
@@ -1993,9 +1996,9 @@ local function testScriptHeader()
 end
 
 --hooksecurefunc("ChatEdit_ResetChatType", function()  isFocused = true; RunNextFrame(testScriptHeader); end)
-hooksecurefunc("ChatEdit_OnEditFocusGained", function() RunNextFrame(testScriptHeader); end) -- idk
-hooksecurefunc("ChatEdit_OnSpacePressed", function()  RunNextFrame(testScriptHeader); end) -- initial opening
-hooksecurefunc("ChatEdit_OnTextChanged", function() RunNextFrame(testScriptHeader); end) -- every key press
+--hooksecurefunc("ChatEdit_OnEditFocusGained", function() RunNextFrame(testScriptHeader); end) -- idk
+--hooksecurefunc("ChatEdit_OnSpacePressed", function()  RunNextFrame(testScriptHeader); end) -- initial opening
+--hooksecurefunc("ChatEdit_OnTextChanged", function() RunNextFrame(testScriptHeader); end) -- every key press
 
 mainFrame.PHTRP3Text = content3:CreateFontString()
 mainFrame.PHTRP3Text:SetFont("Fonts\\FRIZQT__.TTF", 11)
@@ -2210,6 +2213,8 @@ end
 
 function lang.addonLoaded(self, event, arg1) -- table, event, addonName
 	if event == "ADDON_LOADED" and arg1 == "Languages" then
+
+		hooksecurefunc(ChatFrame1EditBox, "ParseText", function() RunNextFrame(testScriptHeader); end)
 
 		if Languages_DB.settings == nil then
 			Languages_DB.settings = CopyTable(defaultsTableAcc);
