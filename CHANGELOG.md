@@ -1,3 +1,9 @@
+# 0.2.0
+
+Adjustments for new ChatFrameUtil  API as old functions were deprecated 
+
+11.2.7 toc update
+
 # 0.1.9
 
 11.2.5 toc update
