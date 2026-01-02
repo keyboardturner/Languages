@@ -26,6 +26,7 @@
 ## Notes-zhCN: 一个角色扮演插件，旨在以轻量级且易于访问的方式引入“可说的”游戏语言。
 ## Title-zhTW: Languages：語言
 ## Notes-zhTW: 一個角色扮演插件，旨在以輕量級且易於訪問的方式引入“可說的”遊戲語言。
+## LoadSavedVariablesFirst: 1
 ## SavedVariables: Languages_DB
 ## OptionalDeps: LibDBIcon, Ace3, TotalRP3
 ## X-Curse-Project-ID: 872452
@@ -53,4 +54,7 @@ Libs\LibDBIcon-1.0\LibDataBroker-1.1\LibDataBroker-1.1.lua
 Libs\LibDBIcon-1.0\LibDBIcon-1.0\lib.xml
 
 Localization.lua
+Primer.lua
+Dictionaries.lua
+Dialects.lua
 Languages.lua

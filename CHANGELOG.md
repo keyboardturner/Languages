@@ -1,3 +1,13 @@
+# 0.2.1
+
+Reworked the language list code
+
+certain proper nouns / words remain untranslated in their respective language, while certain words translate properly to lore-established terms
+
+Capitalization is now retained, and certain characters such as periods, commas, and hyphens will pass through untranslated
+
+
+
 # 0.2.0
 
 Adjustments for new ChatFrameUtil API as old functions were deprecated 
