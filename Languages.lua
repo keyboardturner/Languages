@@ -1057,7 +1057,7 @@ StaticPopupDialogs["LANGUAGES_CHAR_PRESET_GAMEPLAY"] = CreatePresetPopup("gamepl
 mainFrame.LangList_Frame = CreateFrame("Frame", nil, content1, "BackdropTemplate")
 mainFrame.LangList_Frame:SetPoint("TOPLEFT", content1, "TOPLEFT", 0, -115)
 mainFrame.LangList_Frame:SetPoint("TOPRIGHT", content1, "TOPRIGHT", -25, -115)
-mainFrame.LangList_Frame:SetHeight(250)
+mainFrame.LangList_Frame:SetHeight(300)
 mainFrame.LangList_Frame:SetBackdrop(mainFrame.backdropInfo)
 mainFrame.LangList_Frame:SetBackdropColor(0,0,0,.5)
 
