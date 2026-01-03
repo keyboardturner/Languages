@@ -1246,11 +1246,7 @@ local function LanguageRowInitializer(button, data)
 				PlaySound(857)
 			end
 
-			if Languages_DB.profiles[charKey].TRP3 and TRP3_API then
-				Languages_DB.profiles["TRP3_" .. TRP3_API.profile.getPlayerCurrentProfile().profileName].understandLanguage[langKey] = isChecked
-			else
-				Languages_DB.profiles[charKey].understandLanguage[langKey] = isChecked
-			end
+			GetActiveProfile().understandLanguage[langKey] = isChecked
 			
 			lang.checkSettings()
 		end)
@@ -1583,23 +1579,12 @@ end);
 mainFrame.shapeshiftFormsCB = CreateFrame("CheckButton", nil, mainFrame.trp3ProfileCB, "UICheckButtonTemplate");
 mainFrame.shapeshiftFormsCB:SetPoint("TOPRIGHT", mainFrame.trp3ProfileCB, "TOPRIGHT", 0, -30);
 mainFrame.shapeshiftFormsCB:SetScript("OnClick", function(self)
-	if self:GetChecked() then
-		if Languages_DB.profiles[charKey].TRP3 and TRP3_API then
-			Languages_DB.profiles["TRP3_" .. TRP3_API.profile.getPlayerCurrentProfile().profileName].shapeshift = true;
-		else
-			Languages_DB.profiles[charKey].shapeshift = true;
-		end
-		PlaySound(856);
-	else
-		if Languages_DB.profiles[charKey].TRP3 and TRP3_API then
-			Languages_DB.profiles["TRP3_" .. TRP3_API.profile.getPlayerCurrentProfile().profileName].shapeshift = false;
-		else
-			Languages_DB.profiles[charKey].shapeshift = false;
-		end
-		PlaySound(857);
-	end
-	lang.checkSettings();
-end);
+	local isChecked = self:GetChecked()
+	GetActiveProfile().shapeshift = isChecked
+
+	if isChecked then PlaySound(856) else PlaySound(857) end
+	lang.checkSettings()
+end)
 mainFrame.shapeshiftFormsCB.text = mainFrame.Char_Frame:CreateFontString()
 mainFrame.shapeshiftFormsCB.text:SetFont(STANDARD_TEXT_FONT, 11)
 mainFrame.shapeshiftFormsCB.text:SetPoint("RIGHT", mainFrame.shapeshiftFormsCB, "LEFT", -5, 0)
@@ -1618,19 +1603,11 @@ mainFrame.onlyInCharacterCB = CreateFrame("CheckButton", nil, mainFrame.shapeshi
 mainFrame.onlyInCharacterCB:SetPoint("TOPRIGHT", mainFrame.shapeshiftFormsCB, "TOPRIGHT", 0, -30);
 mainFrame.onlyInCharacterCB:SetScript("OnClick", function(self)
 	local isChecked = self:GetChecked()
-	if isChecked then
-		PlaySound(856);
-	else
-		PlaySound(857);
-	end
+	GetActiveProfile().onlyInCharacter = isChecked
 
-	if Languages_DB.profiles[charKey].TRP3 and TRP3_API then
-		Languages_DB.profiles["TRP3_" .. TRP3_API.profile.getPlayerCurrentProfile().profileName].onlyInCharacter = isChecked;
-	else
-		Languages_DB.profiles[charKey].onlyInCharacter = isChecked;
-	end
-	lang.checkSettings();
-end);
+	if isChecked then PlaySound(856) else PlaySound(857) end
+	lang.checkSettings()
+end)
 
 mainFrame.onlyInCharacterCB.text = mainFrame.Char_Frame:CreateFontString()
 mainFrame.onlyInCharacterCB.text:SetFont(STANDARD_TEXT_FONT, 11)
@@ -2022,7 +1999,7 @@ local function eventFilterStuff(frame, event, message, sender, ...)
 				local bracketName = "[" .. displayLanguageName .. "]"
 
 				if Languages_DB.profiles[charKey].TRP3 and TRP3_API then
-					if Languages_DB.profiles["TRP3_" .. TRP3_API.profile.getPlayerCurrentProfile().profileName].understandLanguage[internalKey] then
+					if profile.understandLanguage[internalKey] then
 						return false, "|c" .. textColor .. bracketName .. "|r " .. message, sender, ...
 					else
 						if event == "CHAT_MSG_SAY" then
@@ -2210,14 +2187,8 @@ end
 
 
 function lang.shapeshiftProfileCheck()
-	if Languages_DB.profiles[charKey].TRP3 == true and TRP3_API then
-		if Languages_DB.profiles["TRP3_" .. TRP3_API.profile.getPlayerCurrentProfile().profileName].shapeshift == true then
-			lang.shapeshiftForm()
-		end
-	else
-		if Languages_DB.profiles[charKey].shapeshift == true then
-			lang.shapeshiftForm()
-		end
+	if GetActiveProfile().shapeshift == true then
+		lang.shapeshiftForm()
 	end
 end
 
@@ -2325,7 +2296,9 @@ local function ChatBubble_OnUpdate(eventFrame, elapsed)
 							local bracketName = "[" .. displayLanguageName .. "]"
 							
 							if Languages_DB.profiles[charKey].TRP3 == true and TRP3_API then
-								if Languages_DB.profiles["TRP3_" .. TRP3_API.profile.getPlayerCurrentProfile().profileName].understandLanguage[internalKey] == true then
+								local profile = GetActiveProfile()
+								if profile.understandLanguage[internalKey] == true then
+									return
 								else
 									SomeTranslatedText = "|c" .. textColor .. bracketName .. "|r " .. ReplaceLanguage(badabingus, internalKey)
 									holder.String:SetText(SomeTranslatedText)
