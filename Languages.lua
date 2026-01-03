@@ -1999,6 +1999,7 @@ local function eventFilterStuff(frame, event, message, sender, ...)
 				local bracketName = "[" .. displayLanguageName .. "]"
 
 				if Languages_DB.profiles[charKey].TRP3 and TRP3_API then
+					local profile = GetActiveProfile()
 					if profile.understandLanguage[internalKey] then
 						return false, "|c" .. textColor .. bracketName .. "|r " .. message, sender, ...
 					else
