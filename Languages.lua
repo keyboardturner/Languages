@@ -8,6 +8,7 @@ local Dictionaries = Lang.Dictionaries
 local defaultsTableAcc = {
 	
 	glyphs = true, glyphSizeX = 15, glyphSizeY = 15,
+	runeScale = 1.0,
 	characterSpecific = true,
 	debug = false,
 
@@ -96,7 +97,7 @@ function mainFrame:tooltip_OnEnter(frame, text)
 	end
 	GameTooltip:ClearAllPoints();
 	GameTooltip:SetText(text, 1, 1, 1, 1, true);
-	GameTooltip:SetPoint("BOTTOMLEFT", frame, "TOPRIGHT", 0, 0);
+	GameTooltip:SetPoint("BOTTOM", frame, "TOP", 0, 0);
 	GameTooltip:Show();
 end
 function mainFrame.tooltip_OnLeave()
@@ -249,7 +250,7 @@ function mainFrame.TogglePrefix()
 		if currentLanguage.lang == nil then
 			currentLanguage.lang = ""
 		end
-		mainFrame.ButtonTest:SetText(L["TogglePrefixOn"] .. "\n" .. L["CurrentlySpeaking"] .. " " .. currentLanguage.lang);
+		mainFrame.ButtonTest:SetText(L["TogglePrefixOn"] .. "\n" .. L["CurrentlySpeaking"] .. " " .. (L[currentLanguage.lang] or currentLanguage.lang));
 		--Print(L["TogglePrefixTextOn"]);
 	end
 end
@@ -324,7 +325,8 @@ function mainFrame.setMaxLetters()
 				return
 			else
 				local maxLetters = 255
-				local subtractLetters = string.len("[" .. currentLanguage.lang .. "]" .. " ")
+				local langName = L[currentLanguage.lang] or currentLanguage.lang
+				local subtractLetters = string.len("[" .. langName .. "]" .. " ")
 
 				if mainFrame.prefix ~= true or not ShouldProcessLanguage() then
 					subtractLetters = 0
@@ -347,7 +349,7 @@ function mainFrame.enablePrefix()
 		if lang.combatCheck() then
 			return
 		else
-			-- NEW CHECK: If not speaking default language, do not apply addon logic
+			-- if not speaking default language, do not apply addon logic
 			local _, defaultLangID = GetDefaultLanguage("player")
 			if editBox.languageID ~= defaultLangID then
 				return
@@ -374,7 +376,8 @@ function mainFrame.enablePrefix()
 							and currentLanguage.lang ~= nil
 							and (chatType == "SAY" or chatType == "YELL")
 						then
-							local prefix = string.format("[%s]", currentLanguage.lang)
+							local langName = L[currentLanguage.lang] or currentLanguage.lang
+							local prefix = string.format("[%s]", langName)
 
 							if editBox:GetMaxBytes() ~= 1280 then
 								if C_AddOns.IsAddOnLoaded("EmoteSplitter") == true then
@@ -463,7 +466,7 @@ mainFrame.commands = {
 	["prefix"] = function()
 		mainFrame.TogglePrefix();
 		if mainFrame.prefix == true then
-			Print(L["CurrentlySpeaking"] .. currentLanguage.lang)
+			Print(L["CurrentlySpeaking"] .. (L[currentLanguage.lang] or currentLanguage.lang))
 		else
 			Print(L["TogglePrefixOff"])
 		end
@@ -487,35 +490,35 @@ mainFrame.commands = {
 
 };
 
+
 function mainFrame.HandleSlashCommands(str)
 	if (#str == 0) then
 		mainFrame.commands.help();
 		return;
-		end
+	end
 
-		local args = {};
-		for _dummy, arg in ipairs({ string.split(' ', str) }) do
+	local args = {};
+	for _dummy, arg in ipairs({ string.split(' ', str) }) do
 		if (#arg > 0) then
 			table.insert(args, arg);
-			end
-			end
+		end
+	end
 
-			local path = mainFrame.commands; -- required for updating found table.
+	local path = mainFrame.commands; 
 
-			for id, arg in ipairs(args) do
-
-			if (#arg > 0) then --if string length is greater than 0
-			arg = arg:lower();          
-			if (path[arg]) then
-				if (type(path[arg]) == "function") then
-					-- all remaining args passed to our function!
-					path[arg](select(id + 1, unpack(args))); 
+	for id, arg in ipairs(args) do
+		if (#arg > 0) then
+			local lowerArg = arg:lower();
+			
+			if (path[lowerArg]) then
+				if (type(path[lowerArg]) == "function") then
+					path[lowerArg](select(id + 1, unpack(args))); 
 					return;                 
-				elseif (type(path[arg]) == "table") then
-					path = path[arg]; -- another sub-table found!
+				elseif (type(path[lowerArg]) == "table") then
+					path = path[lowerArg];
 				end
-				else
-					mainFrame.commands.help();
+			else
+				mainFrame.commands.help();
 				return;
 			end
 		end
@@ -525,39 +528,6 @@ end
 ----------------------------------------
 -- Tables
 ----------------------------------------
-
-local thingsToHide = {
-	"^%[Common%]",
-	"^%[Darnassian%]",
-	"^%[Dwarven%]",
-	"^%[Gnomish%]",
-	"^%[Draenei%]",
-	"^%[Orcish%]",
-	"^%[Zandali%]",
-	"^%[Taurahe%]",
-	"^%[Gutterspeak%]",
-	"^%[Thalassian%]",
-	"^%[Goblin%]",
-	"^%[Shalassian%]",
-	"^%[Vulpera%]",
-	"^%[Pandaren%]",
-	--"^%[Ancient Pandaren%]",
-	"^%[Draconic%]",
-
-	"^%[Demonic%]",
-	"^%[Titan%]",
-	"^%[Kalimag%]",
-	"^%[Shath'Yar%]",
-	"^%[Broker%]",
-	"^%[Cypher%]",
-
-	"^%[Arathi%]",
-	"^%[Nerubian%]",
-	"^%[Sprite%]",
-	"^%[Nerglish%]",
-	"^%[Moonkin%]",
-	"^%[Furbolg%]",
-};
 
 --[[ -- this could be used to calculate the atlas coords
 local function CalculateSides(number)
@@ -638,113 +608,68 @@ local atlas = {
 -- Table of characters to keep as they are
 local doNotTranslate = { ".", ",", "-", "¤", "0", "1", };
 
-
-local languagelist = {
-	["^%[Common%]"] = "[Common]",
-	["^%[Darnassian%]"] = "[Darnassian]",
-	["^%[Dwarven%]"] = "[Dwarven]",
-	["^%[Gnomish%]"] = "[Gnomish]",
-	["^%[Draenei%]"] = "[Draenei]",
-	["^%[Orcish%]"] = "[Orcish]",
-	["^%[Zandali%]"] = "[Zandali]",
-	["^%[Taurahe%]"] = "[Taurahe]",
-	["^%[Gutterspeak%]"] = "[Gutterspeak]",
-	["^%[Thalassian%]"] = "[Thalassian]",
-	["^%[Goblin%]"] = "[Goblin]",
-	["^%[Shalassian%]"] = "[Shalassian]",
-	["^%[Vulpera%]"] = "[Vulpera]",
-	["^%[Pandaren%]"] = "[Pandaren]",
-	--["^%[Ancient Pandaren%]"] = "[Ancient Pandaren]",
-	["^%[Draconic%]"] = "[Draconic]",
-
-	["^%[Demonic%]"] = "[Demonic]",
-	["^%[Titan%]"] = "[Titan]",
-	["^%[Kalimag%]"] = "[Kalimag]",
-	["^%[Shath'Yar%]"] = "[Shath'Yar]",
-	["^%[Cypher%]"] = "[Cypher]",
-	["^%[Nerubian%]"] = "[Nerubian]",
-	["^%[Sprite%]"] = "[Sprite]",
-	["^%[Nerglish%]"] = "[Nerglish]",
-	["^%[Moonkin%]"] = "[Moonkin]",
-	["^%[Furbolg%]"] = "[Furbolg]",
-	
-	["^%[Broker%]"] = "[Broker]",
-	["^%[Arathi%]"] = "[Arathi]",
-	--["^%[Mogu%]"] = "[Mogu]",
-
-};
-
-local languageNoBrackets = {
-	["^%[Common%]"] = "Common",
-	["^%[Darnassian%]"] = "Darnassian",
-	["^%[Dwarven%]"] = "Dwarven",
-	["^%[Gnomish%]"] = "Gnomish",
-	["^%[Draenei%]"] = "Draenei",
-	["^%[Orcish%]"] = "Orcish",
-	["^%[Zandali%]"] = "Zandali",
-	["^%[Taurahe%]"] = "Taurahe",
-	["^%[Gutterspeak%]"] = "Gutterspeak",
-	["^%[Thalassian%]"] = "Thalassian",
-	["^%[Goblin%]"] = "Goblin",
-	["^%[Shalassian%]"] = "Shalassian",
-	["^%[Vulpera%]"] = "Vulpera",
-	["^%[Pandaren%]"] = "Pandaren",
-	--["^%[Ancient Pandaren%]"] = "Ancient Pandaren",
-	["^%[Draconic%]"] = "Draconic",
-
-	["^%[Demonic%]"] = "Demonic",
-	["^%[Titan%]"] = "Titan",
-	["^%[Kalimag%]"] = "Kalimag",
-	["^%[Shath'Yar%]"] = "Shath'Yar",
-	["^%[Cypher%]"] = "Cypher",
-	["^%[Nerubian%]"] = "Nerubian",
-	["^%[Sprite%]"] = "Sprite",
-	["^%[Nerglish%]"] = "Nerglish",
-	["^%[Moonkin%]"] = "Moonkin",
-	["^%[Furbolg%]"] = "Furbolg",
-
-	["^%[Broker%]"] = "Broker",
-	["^%[Arathi%]"] = "Arathi",
-	--["^%[Mogu%]"] = "Mogu",
-
-};
-
-
-local understandLanguage = {
-};
-
 local languageBasicList = {
 	"Common",
 	"Darnassian",
-	"Dwarven",
+	"Dwarvish",
 	"Gnomish",
 	"Draenei",
 	"Orcish",
 	"Zandali",
 	"Taurahe",
+	"Forsaken", 
 	"Gutterspeak",
 	"Thalassian",
 	"Goblin",
 	"Shalassian",
 	"Vulpera",
 	"Pandaren",
-	--"Ancient Pandaren",
 	"Draconic",
 	
 	"Demonic",
 	"Titan",
 	"Kalimag",
 	"Shath'Yar",
-	"Cypher",
 	"Nerubian",
 	"Sprite",
 	"Nerglish",
 	"Moonkin",
 	"Furbolg",
+	
+	--"Hara'ni",
+
+	"Cypher",
+	
+	-- [fanmade]
+	"Arathi",
 
 	"Broker",
-	"Arathi",
+	--"Ethereal",
+	--"K'areshi",
+
+	--[NYI]
+	--"Mogu",
+	--"Ancient Pandaren",
+	--"Earthen", -- in DB2, is not used
 };
+
+local thingsToHide = {};
+local languagelist = {};
+local languageNoBrackets = {};
+
+for _, langKey in ipairs(languageBasicList) do
+	local localizedName = L[langKey] or langKey
+	local bracketPattern = "^%[" .. localizedName .. "%]"
+	local bracketName = "[" .. localizedName .. "]"
+	
+	table.insert(thingsToHide, bracketPattern)
+	languagelist[bracketPattern] = bracketName
+	languageNoBrackets[bracketPattern] = langKey
+end
+
+local understandLanguage = {
+};
+
 
 local LANGPRESET_CLASS_LANGUAGE_DEFAULT = {
 	gameplay = {
@@ -765,21 +690,21 @@ local LANGPRESET_CLASS_LANGUAGE_DEFAULT = {
 local LANGPRESET_RACE_LANGUAGE_DEFAULT = {
 	gameplay = {
 		[1] = {["Common"] = true}, -- 1 human 
-		[3] = {["Common"] = true, ["Dwarven"] = true}, -- 3 dwarf
+		[3] = {["Common"] = true, ["Dwarvish"] = true}, -- 3 dwarf
 		[4] = {["Common"] = true, ["Darnassian"] = true}, -- 4 night elf
 		[7] = {["Common"] = true, ["Gnomish"] = true}, -- 7 gnome
 		[11] = {["Common"] = true, ["Draenei"] = true}, -- 11 draenei
 		[22] = {["Common"] = true}, -- 22 worgen
 		[29] = {["Common"] = true, ["Thalassian"] = true}, -- 29 void elf
 		[30] = {["Common"] = true, ["Draenei"] = true}, -- 30 lightforged
-		[34] = {["Common"] = true, ["Dwarven"] = true}, -- 34 dark iron
+		[34] = {["Common"] = true, ["Dwarvish"] = true}, -- 34 dark iron
 		[32] = {["Common"] = true}, -- 32 kul tiran
 		[37] = {["Common"] = true, ["Gnomish"] = true}, -- 37 mechagnome
 		[24] = {["Pandaren"] = true}, -- 24 pandaren neutral
 		[25] = {["Common"] = true, ["Pandaren"] = true}, -- 25 pandaren alliance
 		[26] = {["Orcish"] = true, ["Pandaren"] = true}, -- 26 pandaren horde
 		[2] = {["Orcish"] = true}, -- 2 orc
-		[5] = {["Orcish"] = true, ["Gutterspeak"] = true}, -- 5 forsaken
+		[5] = {["Orcish"] = true, ["Forsaken"] = true}, -- 5 forsaken
 		[6] = {["Orcish"] = true, ["Taurahe"] = true}, -- 6 tauren
 		[8] = {["Orcish"] = true, ["Zandali"] = true}, -- 8 troll
 		[10] = {["Orcish"] = true, ["Thalassian"] = true}, -- 10 blood elf
@@ -792,24 +717,26 @@ local LANGPRESET_RACE_LANGUAGE_DEFAULT = {
 		--dracthyrN = {"Draconic"}, -- 
 		[52] = {["Common"] = true, ["Draconic"] = true}, -- 52 dracthyr alliance
 		[70] = {["Orcish"] = true, ["Draconic"] = true}, -- 70 dracthyr horde
+		[84] = {["Common"] = true, ["Titan"] = true}, -- 84 earthen alliance
+		[85] = {["Orcish"] = true, ["Titan"] = true}, -- 85 earthen horde
 	},
 	recommended = {
 		[1] = {["Common"] = true}, -- 1 human
-		[3] = {["Common"] = true, ["Dwarven"] = true, ["Gnomish"] = true}, -- 3 dwarf
+		[3] = {["Common"] = true, ["Dwarvish"] = true, ["Gnomish"] = true}, -- 3 dwarf
 		[4] = {["Common"] = true, ["Darnassian"] = true}, -- 4 night elf
-		[7] = {["Common"] = true, ["Gnomish"] = true, ["Dwarven"] = true}, -- 7 dwarf
+		[7] = {["Common"] = true, ["Gnomish"] = true, ["Dwarvish"] = true}, -- 7 dwarf
 		[11] = {["Common"] = true, ["Draenei"] = true, ["Orcish"] = true}, -- 11 draenei
 		[22] = {["Common"] = true}, -- 22 worgen
 		[29] = {["Common"] = true, ["Thalassian"] = true}, -- 29 void elf
 		[30] = {["Common"] = true, ["Draenei"] = true}, -- 30 lightforged
-		[34] = {["Common"] = true, ["Dwarven"] = true}, -- 34 dark iron
+		[34] = {["Common"] = true, ["Dwarvish"] = true}, -- 34 dark iron
 		[32] = {["Common"] = true}, -- 32 kul tiran 
 		[37] = {["Common"] = true, ["Gnomish"] = true}, -- 37 mechagnome
 		[24] = {["Pandaren"] = true}, -- 24 pandaren neutral
 		[25] = {["Common"] = true, ["Pandaren"] = true}, -- 25 pandaren alliance
 		[26] = {["Orcish"] = true, ["Pandaren"] = true}, -- 26 pandaren horde
 		[2] = {["Orcish"] = true, ["Common"] = true}, -- 2 orc
-		[5] = {["Orcish"] = true, ["Gutterspeak"] = true, ["Common"] = true}, -- 5 forsaken
+		[5] = {["Orcish"] = true, ["Gutterspeak"] = true, ["Common"] = true, ["Forsaken"] = true}, -- 5 forsaken
 		[6] = {["Orcish"] = true, ["Taurahe"] = true}, -- 6 tauren
 		[8] = {["Orcish"] = true, ["Zandali"] = true}, -- 8 troll
 		[10] = {["Orcish"] = true, ["Thalassian"] = true, ["Common"] = true}, -- 10 blood elf
@@ -822,6 +749,8 @@ local LANGPRESET_RACE_LANGUAGE_DEFAULT = {
 		--dracthyrN = {"Draconic", "Common", "Orcish"}, -- 
 		[52] = {["Common"] = true, ["Draconic"] = true, ["Orcish"] = true}, -- 52 dracthyr alliance
 		[70] = {["Orcish"] = true, ["Draconic"] = true, ["Common"] = true}, -- 70 dracthyr horde
+		[84] = {["Common"] = true, ["Dwarvish"] = true, ["Titan"] = true}, -- 84 earthen alliance
+		[85] = {["Orcish"] = true, ["Dwarvish"] = true, ["Titan"] = true}, -- 85 earthen horde
 	},
 };
 
@@ -972,7 +901,7 @@ mainFrame.LangList_Frame:SetBackdropColor(0,0,0,.5)
 
 mainFrame.DialectList_Frame = CreateFrame("Frame", nil, content1, "BackdropTemplate")
 mainFrame.DialectList_Frame:SetPoint("TOP", mainFrame.LangList_Frame, "BOTTOM", 0, -20) 
-mainFrame.DialectList_Frame:SetSize(300, 100)
+mainFrame.DialectList_Frame:SetSize(300, 70)
 mainFrame.DialectList_Frame:SetBackdrop(mainFrame.backdropInfo)
 mainFrame.DialectList_Frame:SetBackdropColor(0,0,0,.5)
 
@@ -981,15 +910,6 @@ LangSearchBox:SetPoint("BOTTOMLEFT", mainFrame.LangList_Frame, "TOPLEFT", 10, 5)
 LangSearchBox:SetPoint("BOTTOMRIGHT", mainFrame.LangList_Frame, "TOPRIGHT", -25, 5)
 LangSearchBox:SetHeight(20)
 LangSearchBox:SetAutoFocus(false)
-
-LangSearchBox:HookScript("OnEnter", function(self)
-	GameTooltip:SetOwner(self, "ANCHOR_TOP")
-	GameTooltip:AddLine(L["SearchLanguages"], 1, 1, 1)
-	GameTooltip:Show()
-end)
-LangSearchBox:HookScript("OnLeave", function()
-	GameTooltip:Hide()
-end)
 
 local function CleanSearchString(str)
 	if not str then return "" end
@@ -1033,6 +953,24 @@ local function UpdateLanguageHighlights()
 			button.selectedTex:SetShown(currentLanguage.lang == data.key)
 		end
 	end)
+end
+
+function mainFrame.SetLanguage(langKey)
+	local displayName = L[langKey] or langKey
+	
+	currentLanguage.lang = langKey
+	preserveLanguage.lang = langKey
+	
+	Print(L["SettingLanguageTo"] .. " " .. displayName)
+	
+	mainFrame.prefix = false 
+	mainFrame.TogglePrefix()
+	
+	PlaySound(857)
+	
+	if mainFrame:IsShown() then
+		UpdateLanguageHighlights()
+	end
 end
 
 local function LanguageRowInitializer(button, data)
@@ -1090,20 +1028,13 @@ local function LanguageRowInitializer(button, data)
 			profile.favoriteLanguages[langKey] = not profile.favoriteLanguages[langKey]
 			
 			if profile.favoriteLanguages[langKey] then
-				Print(L[langKey] .. " " .. (L["AddedToFavorites"]))
 				PlaySound(856)
 			else
-				Print(L[langKey] .. " " .. (L["RemovedFromFavorites"]))
 				PlaySound(857)
 			end
 			
 			mainFrame.RefreshLanguageList()
 		end)
-		
-		button.favoriteButton:SetScript("OnEnter", function(self)
-			mainFrame:tooltip_OnEnter(self, L["ToggleFavoriteTT"]);
-		end)
-		button.favoriteButton:SetScript("OnLeave", mainFrame.tooltip_OnLeave)
 	end
 
 	if data.isFavorite then
@@ -1115,15 +1046,16 @@ local function LanguageRowInitializer(button, data)
 	if not button.runeIcon then
 		button.runeIcon = button:CreateTexture(nil, "OVERLAY")
 		button.runeIcon:SetSize(18, 18)
-		button.runeIcon:SetPoint("RIGHT", button.text, "RIGHT", 20, 0)
+		button.runeIcon:SetPoint("RIGHT", button.text, "RIGHT", 15, 0)
 		button.runeIcon:SetAtlas("Rune-01-light")
 		
 		button.runeFrame = CreateFrame("Frame", nil, button)
 		button.runeFrame:SetAllPoints(button.runeIcon)
-		button.runeFrame:SetScript("OnEnter", function(self)
+
+		button.runeIcon:SetScript("OnEnter", function(self)
 			mainFrame:tooltip_OnEnter(self, L["ThisLangHasRunesTT"]);
 		end)
-		button.runeFrame:SetScript("OnLeave", mainFrame.tooltip_OnLeave)
+		button.runeIcon:SetScript("OnLeave", mainFrame.tooltip_OnLeave)
 	end
 	button.runeIcon:SetShown(data.hasRunes)
 	button.runeFrame:SetShown(data.hasRunes)
@@ -1140,10 +1072,10 @@ local function LanguageRowInitializer(button, data)
 			understandLanguage[langKey] = isChecked
 			
 			if isChecked then
-				Print(L["EnableUnderstand"] .. " " .. L[langKey])
+				Print(L["EnableUnderstand"] .. " " .. (L[langKey] or langKey))
 				PlaySound(856)
 			else
-				Print(L["DisableUnderstand"] .. " " .. L[langKey])
+				Print(L["DisableUnderstand"] .. " " .. (L[langKey] or langKey))
 				PlaySound(857)
 			end
 
@@ -1205,7 +1137,7 @@ function mainFrame.RefreshLanguageList()
 	local searchText = CleanSearchString(LangSearchBox:GetText())
 	
 	for _, langKey in ipairs(languageBasicList) do
-		local name = L[langKey]
+		local name = L[langKey] or langKey
 
 		if searchText == "" or string.find(string.lower(name), searchText, 1, true) then
 
@@ -1255,12 +1187,12 @@ end
 
 mainFrame.Acc_Frame = CreateFrame("Frame", nil, content2, "BackdropTemplate")
 mainFrame.Acc_Frame:SetPoint("TOP", content2, "TOP", 0, -75)
-mainFrame.Acc_Frame:SetSize(300,170)
+mainFrame.Acc_Frame:SetSize(300,220)
 mainFrame.Acc_Frame:SetBackdrop(mainFrame.backdropInfo)
 mainFrame.Acc_Frame:SetBackdropColor(0,0,0,.5)
 
 mainFrame.header1 = content2:CreateFontString()
-mainFrame.header1:SetFont(STANDARD_TEXT_FONT, 11)
+mainFrame.header1:SetFont(STANDARD_TEXT_FONT, 15)
 mainFrame.header1:SetPoint("BOTTOMLEFT", mainFrame.Acc_Frame, "TOPLEFT", 0, 0)
 mainFrame.header1:SetText(L["AccountSettings"])
 
@@ -1279,12 +1211,12 @@ mainFrame.resetAccSettings:SetScript("OnLeave", mainFrame.tooltip_OnLeave);
 
 mainFrame.Char_Frame = CreateFrame("Frame", nil, mainFrame.Acc_Frame, "BackdropTemplate")
 mainFrame.Char_Frame:SetPoint("TOP", mainFrame.Acc_Frame, "BOTTOM", 0, -55)
-mainFrame.Char_Frame:SetSize(300,80)
+mainFrame.Char_Frame:SetSize(300,110)
 mainFrame.Char_Frame:SetBackdrop(mainFrame.backdropInfo)
 mainFrame.Char_Frame:SetBackdropColor(0,0,0,.5)
 
 mainFrame.header2 = content2:CreateFontString()
-mainFrame.header2:SetFont(STANDARD_TEXT_FONT, 11)
+mainFrame.header2:SetFont(STANDARD_TEXT_FONT, 15)
 mainFrame.header2:SetPoint("BOTTOMLEFT", mainFrame.Char_Frame, "TOPLEFT", 0, 0)
 mainFrame.header2:SetText(L["CharacterSettings"])
 
@@ -1324,7 +1256,7 @@ end);
 mainFrame.glyphsCB:SetScript("OnLeave", mainFrame.tooltip_OnLeave);
 
 mainFrame.prefixColorPickerButton = CreateFrame("Button", nil, mainFrame.glyphsCB, "SharedButtonSmallTemplate")
-mainFrame.prefixColorPickerButton:SetPoint("TOPRIGHT", mainFrame.glyphsCB, "TOPRIGHT", 0, -30)
+mainFrame.prefixColorPickerButton:SetPoint("TOPRIGHT", mainFrame.glyphsCB, "TOPRIGHT", 0, -60)
 mainFrame.prefixColorPickerButton:SetSize(110,25)
 mainFrame.prefixColorPickerButton:SetText(COLOR_PICKER)
 mainFrame.prefixColorPickerButton.text = mainFrame.Acc_Frame:CreateFontString()
@@ -1403,6 +1335,25 @@ mainFrame.factionLangCB:SetScript("OnEnter", function(self)
 	mainFrame:tooltip_OnEnter(self, L["FactionOptionTT"])
 end);
 mainFrame.factionLangCB:SetScript("OnLeave", mainFrame.tooltip_OnLeave);
+
+mainFrame.runeScaleSlider = CreateFrame("Frame", nil, mainFrame.Acc_Frame, "MinimalSliderWithSteppersTemplate")
+mainFrame.runeScaleSlider:SetPoint("TOPRIGHT", mainFrame.Acc_Frame, "TOPRIGHT", -40, -40)
+mainFrame.runeScaleSlider:SetWidth(160)
+
+mainFrame.runeScaleSlider.Title = mainFrame.runeScaleSlider:CreateFontString(nil, "OVERLAY", "GameFontHighlight")
+mainFrame.runeScaleSlider.Title:SetPoint("RIGHT", mainFrame.runeScaleSlider, "LEFT", 0, 0)
+mainFrame.runeScaleSlider.Title:SetText(L["RuneSize"])
+
+local sliderOptions = Settings.CreateSliderOptions(0.1, 1.5, 0.05)
+sliderOptions:SetLabelFormatter(MinimalSliderWithSteppersMixin.Label.Right, function(value) 
+	return string.format("%d%%", value * 100);
+end)
+
+mainFrame.runeScaleSlider:Init(1.0, sliderOptions.minValue, sliderOptions.maxValue, sliderOptions.steps, sliderOptions.formatters)
+
+mainFrame.runeScaleSlider:RegisterCallback("OnValueChanged", function(self, value)
+	Languages_DB.settings.runeScale = value
+end)
 
 mainFrame.trp3ProfileCB = CreateFrame("CheckButton", nil, mainFrame.Char_Frame, "UICheckButtonTemplate");
 mainFrame.trp3ProfileCB:SetPoint("TOPRIGHT", mainFrame.Char_Frame, "TOPRIGHT", -15, -15);
@@ -1490,7 +1441,7 @@ end);
 mainFrame.onlyInCharacterCB.text = mainFrame.Char_Frame:CreateFontString()
 mainFrame.onlyInCharacterCB.text:SetFont(STANDARD_TEXT_FONT, 11)
 mainFrame.onlyInCharacterCB.text:SetPoint("RIGHT", mainFrame.onlyInCharacterCB, "LEFT", -5, 0)
-mainFrame.onlyInCharacterCB.text:SetText(L["OnlyInCharacter"] or "Only In Character")
+mainFrame.onlyInCharacterCB.text:SetText(L["OnlyInCharacter"])
 mainFrame.onlyInCharacterCB:SetScript("OnEnter", function(self)
 	mainFrame:tooltip_OnEnter(self, L["OnlyInCharacterTT"]);
 end);
@@ -1530,12 +1481,12 @@ mainFrame.preset_gameplay:SetScript("OnLeave", mainFrame.tooltip_OnLeave);
 ----------------------------------------
 
 mainFrame.Dialect = mainFrame.DialectList_Frame:CreateFontString()
-mainFrame.Dialect:SetFont(STANDARD_TEXT_FONT, 11)
+mainFrame.Dialect:SetFont(STANDARD_TEXT_FONT, 15)
 mainFrame.Dialect:SetPoint("TOPLEFT", mainFrame.DialectList_Frame, "TOPLEFT", 10, -5)
 mainFrame.Dialect:SetText(L["Dialect"])
 
 mainFrame.DialectDropdown = CreateFrame("DropdownButton", nil, mainFrame.DialectList_Frame, "WowStyle1DropdownTemplate")
-mainFrame.DialectDropdown:SetPoint("TOPLEFT", mainFrame.DialectList_Frame, "TOPLEFT", 10, -30)
+mainFrame.DialectDropdown:SetPoint("TOP", mainFrame.DialectList_Frame, "TOP", 10, -30)
 mainFrame.DialectDropdown:SetWidth(150)
 mainFrame.DialectDropdown:SetDefaultText(L["Select Dialect"] or "Select Dialect")
 
@@ -1659,8 +1610,9 @@ local function GetRuneString(text, language)
 	end
 
 	local runeString = ""
-	local fontSize = select(2, ChatFrame1:GetFont())*.5 -- add manual override setting, some chat addons / default settings are weird.
-	local atlasPath = AddonPath .. language .. "\\" 
+	local scale = Languages_DB.settings.runeScale or 1.0
+	local fontSize = select(2, ChatFrame1:GetFont()) * scale 
+	local atlasPath = AddonPath .. language .. "\\"
 
 	for character in string.gmatch(text, "([%z\1-\127\194-\244][\128-\191]*)") do
 		if character == " " or character == "\t" or character == "\n" or character == "\r" then
@@ -1829,30 +1781,33 @@ local function eventFilterStuff(frame, event, message, sender, ...)
 				message = message:gsub(v, "")
 
 				local textColor = CreateColor(Languages_DB.settings.colors.prefix.r, Languages_DB.settings.colors.prefix.g, Languages_DB.settings.colors.prefix.b):GenerateHexColor()
-
+				
+				local internalKey = languageNoBrackets[v]
+				local displayLanguageName = L[internalKey] or internalKey
+				local bracketName = "[" .. displayLanguageName .. "]"
 
 				if Languages_DB.profiles[charKey].TRP3 == true and TRP3_API then
-					if Languages_DB.profiles["TRP3_" .. TRP3_API.profile.getPlayerCurrentProfile().profileName].understandLanguage[languageNoBrackets[v]] == true then
-						return false, "|c" .. textColor .. languagelist[v] .. "|r " .. message, sender, ...
+					if Languages_DB.profiles["TRP3_" .. TRP3_API.profile.getPlayerCurrentProfile().profileName].understandLanguage[internalKey] == true then
+						return false, "|c" .. textColor .. bracketName .. "|r " .. message, sender, ...
 					else
 						if event == "CHAT_MSG_SAY" then
 							chatTypeBingus = ChatTypeInfo["SAY"];
 						elseif event == "CHAT_MSG_YELL" then
 							chatTypeBingus = ChatTypeInfo["YELL"];
 						end
-						return false, "|c" .. textColor .. languagelist[v] .. "|r " .. ReplaceLanguage(message, languageNoBrackets[v]), sender, ...
+						return false, "|c" .. textColor .. bracketName .. "|r " .. ReplaceLanguage(message, internalKey), sender, ...
 					end
 
 				else
-					if Languages_DB.profiles[charKey].understandLanguage[languageNoBrackets[v]] == true then
-						return false, "|c" .. textColor .. languagelist[v] .. "|r " .. message, sender, ...
+					if Languages_DB.profiles[charKey].understandLanguage[internalKey] == true then
+						return false, "|c" .. textColor .. bracketName .. "|r " .. message, sender, ...
 					else
 						if event == "CHAT_MSG_SAY" then
 							chatTypeBingus = ChatTypeInfo["SAY"];
 						elseif event == "CHAT_MSG_YELL" then
 							chatTypeBingus = ChatTypeInfo["YELL"];
 						end
-						return false, "|c" .. textColor .. languagelist[v] .. "|r " .. ReplaceLanguage(message, languageNoBrackets[v]), sender, ...
+						return false, "|c" .. textColor .. bracketName .. "|r " .. ReplaceLanguage(message, internalKey), sender, ...
 					end
 				end
 
@@ -1894,7 +1849,8 @@ local function testScriptHeader()
 		end
 	elseif mainFrame.prefix == true and currentLanguage.lang ~= "" and currentLanguage.lang ~= nil then
 		if lang.factionCheck() == true and ShouldProcessLanguage() then
-			suffixText = "[" .. currentLanguage.lang .. "]"
+			local langName = L[currentLanguage.lang] or currentLanguage.lang
+			suffixText = "[" .. langName .. "]"
 			useAddonColor = true
 		end
 	end
@@ -2038,6 +1994,13 @@ function lang.checkSettings()
 	mainFrame.combatCB:SetChecked(Languages_DB.settings.combat);
 	mainFrame.factionLangCB:SetChecked(Languages_DB.settings.faction);
 
+	mainFrame.combatCB:SetChecked(Languages_DB.settings.combat);
+	mainFrame.factionLangCB:SetChecked(Languages_DB.settings.faction);
+
+	if mainFrame.runeScaleSlider then
+		mainFrame.runeScaleSlider:SetValue(Languages_DB.settings.runeScale or 0.5);
+	end
+
 	mainFrame.trp3ProfileCB:SetChecked(profile.TRP3);
 	mainFrame.shapeshiftFormsCB:SetChecked(profile.shapeshift);
 	mainFrame.onlyInCharacterCB:SetChecked(profile.onlyInCharacter)
@@ -2076,18 +2039,23 @@ local function ChatBubble_OnUpdate(eventFrame, elapsed)
 						if holder.String:GetText():find(v) ~= nil then
 							local badabingus = holder.String:GetText():gsub(v, "")
 							local textColor = CreateColor(Languages_DB.settings.colors.prefix.r, Languages_DB.settings.colors.prefix.g, Languages_DB.settings.colors.prefix.b):GenerateHexColor()
+							
+							local internalKey = languageNoBrackets[v]
+							local displayLanguageName = L[internalKey] or internalKey
+							local bracketName = "[" .. displayLanguageName .. "]"
+							
 							if Languages_DB.profiles[charKey].TRP3 == true and TRP3_API then
-								if Languages_DB.profiles["TRP3_" .. TRP3_API.profile.getPlayerCurrentProfile().profileName].understandLanguage[languageNoBrackets[v]] == true then
+								if Languages_DB.profiles["TRP3_" .. TRP3_API.profile.getPlayerCurrentProfile().profileName].understandLanguage[internalKey] == true then
 									return
 								else
-									SomeTranslatedText = "|c" .. textColor .. languagelist[v] .. "|r " .. ReplaceLanguage(badabingus, languageNoBrackets[v])
+									SomeTranslatedText = "|c" .. textColor .. bracketName .. "|r " .. ReplaceLanguage(badabingus, internalKey)
 									holder.String:SetText(SomeTranslatedText)
 								end
 							else
-								if Languages_DB.profiles[charKey].understandLanguage[languageNoBrackets[v]] == true then
+								if Languages_DB.profiles[charKey].understandLanguage[internalKey] == true then
 									return
 								else
-									SomeTranslatedText = "|c" .. textColor .. languagelist[v] .. "|r " .. ReplaceLanguage(badabingus, languageNoBrackets[v])
+									SomeTranslatedText = "|c" .. textColor .. bracketName .. "|r " .. ReplaceLanguage(badabingus, internalKey)
 									holder.String:SetText(SomeTranslatedText)
 								end
 							end
@@ -2175,9 +2143,24 @@ function lang.addonLoaded(self, event, arg1) -- table, event, addonName
 		lang.checkSettings();
 		lang.trp3Check();
 
-		SLASH_LANG1 = "/languages"
-		SLASH_LANG2 = "/language"
-		SLASH_LANG3 = "/lang"
+		SLASH_LANG1 = L["SLASH_1"]
+		SLASH_LANG2 = L["SLASH_2"]
+		SLASH_LANG3 = L["SLASH_3"]
+		SLASH_LANG4 = L["SLASH_4"] -- non-localized slash
+		SLASH_LANG3 = L["SLASH_5"] -- non-localized slash
+		SLASH_LANG4 = L["SLASH_6"] -- non-localized slash
+
+		for _, langKey in ipairs(languageBasicList) do
+			local cleanCommand = langKey:gsub("[%s%p]", ""):upper()
+			
+			_G["SLASH_LANG_" .. cleanCommand .. "1"] = "/" .. langKey:lower()
+			
+			SlashCmdList["LANG_" .. cleanCommand] = function()
+				mainFrame.SetLanguage(langKey)
+			end
+		end
+		
+		
 		SlashCmdList.LANG = mainFrame.HandleSlashCommands;
 
 		mainFrame.init();

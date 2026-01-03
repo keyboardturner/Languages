@@ -21,6 +21,12 @@ if LOCALE == "enUS" then
 -- uses the US English locale code.
 	L["Languages"] = "Languages"
 	L["Language"] = "Language"
+	L["SLASH_1"] = "/languages"
+	L["SLASH_2"] = "/language"
+	L["SLASH_3"] = "/lang"
+	L["SLASH_4"] = "/languages" -- non-localized slash
+	L["SLASH_5"] = "/language"
+	L["SLASH_6"] = "/lang"
 	L["Understand"] = "Understand"
 	L["TogglePrefixOff"] = "Language Prefix: Off"
 	L["TogglePrefixOn"] = "Language Prefix: On"
@@ -62,14 +68,11 @@ if LOCALE == "enUS" then
 	L["SettingLanguageTo"] = "Setting language to:"
 	L["EnableUnderstand"] = "Enable Understand"
 	L["DisableUnderstand"] = "Disable Understand"
-	L["Dialect"] = "Dialect (Coming Soon)"
+	L["Dialect"] = "Dialect"
 	L["DialectOff"] = "Dialect: Off"
 	L["DialectOn"] = "Dialect: On"
 	L["UseDialectTT"] = "Controls if the user currently speaks with a dialect while speaking, e.g. \"What do you want\" becomes \"Waschu wan'?\"."
 	L["SettingDialectTo"] = "Setting dialect to:"
-	L["Dwarvish"] = "Dwarvish"
-	L["Draenic"] = "Draenic"
-	L["Zandali"] = "Zandali"
 	L["CurrentlySpeaking"] = "Currently speaking:"
 	L["NoPrefixBaseLang"] = "Don't use the prefix if speaking your faction's base language (Common/Orcish as Alliance/Horde respectively)."
 	L["LanguagePreset"] = "Learn Language Presets"
@@ -89,7 +92,10 @@ if LOCALE == "enUS" then
 	"\n"..colorThingS.."prefix"..colorThingE.." - toggle the [Language] prefix on/off."..
 	"\n"..colorThingS.."open"..colorThingE.." - open the options frame."..
 	"\n"..colorThingS.."minimap"..colorThingE.." - toggle the minimap button on/off."..
-	"\nAdditionally, you can set a language, such as for example "..colorThingS.."/lang Darnassian"..colorThingE.." or "..colorThingS.."/Darnassian"..colorThingE.."."
+	"\nAdditionally, you can set a language, such as for example "..colorThingS.."/Darnassian"..colorThingE.."."
+	L["OnlyInCharacter"] = "Only In Character"
+	L["OnlyInCharacterTT"] = "Only Enable Prefix / Dialect while 'In Character'.\nRequires the addon Total RP 3"
+	L["RuneSize"] = "Glyph Size"
 
 	-- official languages
 	L["Common"] = 		"Common"			--7
@@ -253,6 +259,12 @@ if LOCALE == "esMX" then
 -- Spanish translations go here
 	L["Languages"] = "Idiomas"
 	L["Language"] = "Idioma"
+	L["SLASH_1"] = "/idiomas"
+	L["SLASH_2"] = "/idiomas"
+	L["SLASH_3"] = "/idiomas"
+	L["SLASH_4"] = "/languages" -- non-localized slash
+	L["SLASH_5"] = "/language"
+	L["SLASH_6"] = "/lang"
 	L["Understand"] = "Entender"
 	L["TogglePrefixOff"] = "Prefijo de idioma: desactivado"
 	L["TogglePrefixOn"] = "Prefijo de idioma: activado"
@@ -294,14 +306,11 @@ if LOCALE == "esMX" then
 	L["SettingLanguageTo"] = "Configuración del idioma en:"
 	L["EnableUnderstand"] = "Habilitar comprensión"
 	L["DisableUnderstand"] = "Deshabilitar entender"
-	L["Dialect"] = "Dialecto (próximamente)"
+	L["Dialect"] = "Dialecto"
 	L["DialectOff"] = "Dialecto: Desactivado"
 	L["DialectOn"] = "Dialecto: encendido"
 	L["UseDialectTT"] = "Controla si el usuario actualmente habla con un dialecto mientras habla, p. \"¿Qué quieres\" se convierte en \"Waschu wan'?\"."
 	L["SettingDialectTo"] = "Configurando el dialecto en:"
-	L["Dwarvish"] = "enano"
-	L["Draenic"] = "draénico"
-	L["Zandali"] = "Zandalí"
 	L["CurrentlySpeaking"] = "Actualmente hablando:"
 	L["NoPrefixBaseLang"] = "No uses el prefijo si hablas el idioma base de tu facción (Común/Orco como Alianza/Horda respectivamente)."
 	L["LanguagePreset"] = "Aprender ajustes preestablecidos de idioma"
@@ -317,11 +326,14 @@ if LOCALE == "esMX" then
 	L["UseAutoShapeshift"] = "Idioma de cambio de forma automático"
 	L["UseAutoShapeshiftTT"] = "Cambiar de forma a una forma cambiará automáticamente su idioma a su asociación.\nRequiere: Forma de sombra, Metamorfosis."
 	L["LoadingProfile"] = "Cargando perfil"
-	L["Help"] = "Puede utilizar "..colorThingS.."/languages"..colorThingE..", "..colorThingS.."/language"..colorThingE..", o "..colorThingS.."/lang"..colorThingE.." para acceder a los comandos de barra diagonal. La lista de subopciones de comandos de barra diagonal disponibles:"..
+	L["Help"] = "Puede utilizar "..colorThingS.."/languages"..colorThingE..", "..colorThingS.."/idiomas"..colorThingE..", o "..colorThingS.."/lang"..colorThingE.." para acceder a los comandos de barra diagonal. La lista de subopciones de comandos de barra diagonal disponibles:"..
 	"\n"..colorThingS.."prefix"..colorThingE.." - activa o desactiva el prefijo [Language]."..
 	"\n"..colorThingS.."open"..colorThingE.." - abre el marco de opciones."..
 	"\n"..colorThingS.."minimap"..colorThingE.." - activa o desactiva el botón del minimapa."..
-	"\nAdemás, puede configurar un idioma, como por ejemplo "..colorThingS.."/lang Darnassian"..colorThingE.." o "..colorThingS.."/Darnassian"..colorThingE.."."
+	"\nAdemás, puede configurar un idioma, como por ejemplo "..colorThingS.."/Darnassiano"..colorThingE.."."
+	L["OnlyInCharacter"] = "Solo en personaje"
+	L["OnlyInCharacterTT"] = "Solo activa el prefijo / dialecto mientras estás \"En personaje\".\nRequiere el addon Total RP 3"
+	L["RuneSize"] = "Tamaño del glifo"
 
 	L["Common"] = 		"Lengua común"		--7
 	L["Darnassian"] = 	"Darnassiano"		--2
@@ -365,6 +377,12 @@ if LOCALE == "esES" then
 -- Spanish translations go here
 	L["Languages"] = "Idiomas"
 	L["Language"] = "Idioma"
+	L["SLASH_1"] = "/idiomas"
+	L["SLASH_2"] = "/idiomas"
+	L["SLASH_3"] = "/idiomas"
+	L["SLASH_4"] = "/languages" -- non-localized slash
+	L["SLASH_5"] = "/language"
+	L["SLASH_6"] = "/lang"
 	L["Understand"] = "Entender"
 	L["TogglePrefixOff"] = "Prefijo de idioma: desactivado"
 	L["TogglePrefixOn"] = "Prefijo de idioma: activado"
@@ -406,14 +424,11 @@ if LOCALE == "esES" then
 	L["SettingLanguageTo"] = "Configuración del idioma en:"
 	L["EnableUnderstand"] = "Habilitar comprensión"
 	L["DisableUnderstand"] = "Deshabilitar entender"
-	L["Dialect"] = "Dialecto (próximamente)"
+	L["Dialect"] = "Dialecto"
 	L["DialectOff"] = "Dialecto: Desactivado"
 	L["DialectOn"] = "Dialecto: encendido"
 	L["UseDialectTT"] = "Controla si el usuario actualmente habla con un dialecto mientras habla, p. \"¿Qué quieres\" se convierte en \"Waschu wan'?\"."
 	L["SettingDialectTo"] = "Configurando el dialecto en:"
-	L["Dwarvish"] = "enano"
-	L["Draenic"] = "draénico"
-	L["Zandali"] = "Zandalí"
 	L["CurrentlySpeaking"] = "Actualmente hablando:"
 	L["NoPrefixBaseLang"] = "No uses el prefijo si hablas el idioma base de tu facción (Común/Orco como Alianza/Horda respectivamente)."
 	L["LanguagePreset"] = "Aprender ajustes preestablecidos de idioma"
@@ -429,11 +444,14 @@ if LOCALE == "esES" then
 	L["UseAutoShapeshift"] = "Idioma de cambio de forma automático"
 	L["UseAutoShapeshiftTT"] = "Cambiar de forma a una forma cambiará automáticamente su idioma a su asociación.\nRequiere: Forma de sombra, Metamorfosis."
 	L["LoadingProfile"] = "Cargando perfil"
-	L["Help"] = "Puede utilizar "..colorThingS.."/languages"..colorThingE..", "..colorThingS.."/language"..colorThingE..", o "..colorThingS.."/lang"..colorThingE.." para acceder a los comandos de barra diagonal. La lista de subopciones de comandos de barra diagonal disponibles:"..
+	L["Help"] = "Puede utilizar "..colorThingS.."/languages"..colorThingE..", "..colorThingS.."/idiomas"..colorThingE..", o "..colorThingS.."/lang"..colorThingE.." para acceder a los comandos de barra diagonal. La lista de subopciones de comandos de barra diagonal disponibles:"..
 	"\n"..colorThingS.."prefix"..colorThingE.." - activa o desactiva el prefijo [Language]."..
 	"\n"..colorThingS.."open"..colorThingE.." - abre el marco de opciones."..
 	"\n"..colorThingS.."minimap"..colorThingE.." - activa o desactiva el botón del minimapa."..
-	"\nAdemás, puede configurar un idioma, como por ejemplo "..colorThingS.."/lang Darnassian"..colorThingE.." o "..colorThingS.."/Darnassian"..colorThingE.."."
+	"\nAdemás, puede configurar un idioma, como por ejemplo "..colorThingS.."/Darnassiano"..colorThingE.."."
+	L["OnlyInCharacter"] = "Solo en personaje"
+	L["OnlyInCharacterTT"] = "Solo activa el prefijo / dialecto mientras estás \"En personaje\".\nRequiere el addon Total RP 3"
+	L["RuneSize"] = "Tamaño del glifo"
 
 	L["Common"] = 		"Lengua común"		--7
 	L["Darnassian"] = 	"Darnassiano"		--2
@@ -477,6 +495,12 @@ if LOCALE == "deDE" then
 -- German translations go here
 	L["Languages"] = "Sprachen"
 	L["Language"] = "Sprache"
+	L["SLASH_1"] = "/sprachen"
+	L["SLASH_2"] = "/sprachen"
+	L["SLASH_3"] = "/sprachen"
+	L["SLASH_4"] = "/languages" -- non-localized slash
+	L["SLASH_5"] = "/language"
+	L["SLASH_6"] = "/lang"
 	L["Understand"] = "Verstehen"
 	L["TogglePrefixOff"] = "Sprachpräfix: Aus"
 	L["TogglePrefixOn"] = "Sprachpräfix: Ein"
@@ -518,14 +542,11 @@ if LOCALE == "deDE" then
 	L["SettingLanguageTo"] = "Sprache einstellen auf:"
 	L["EnableUnderstand"] = "Aktivieren Sie „Verstehen“."
 	L["DisableUnderstand"] = "Deaktivieren Sie „Verstehen“."
-	L["Dialect"] = "Dialekt (bald erhältlich)"
+	L["Dialect"] = "Dialekt"
 	L["DialectOff"] = "Dialekt: Aus"
 	L["DialectOn"] = "Dialekt: Ein"
 	L["UseDialectTT"] = "Steuert, ob der Benutzer beim Sprechen derzeit mit einem Dialekt spricht, z. Aus „Was willst du“ wird „Waschu wan‘?“."
 	L["SettingDialectTo"] = "„Dialekt einstellen auf:“"
-	L["Dwarvish"] = "Zwergisch"
-	L["Draenic"] = "Draenisch"
-	L["Zandali"] = "Zandali"
 	L["CurrentlySpeaking"] = "Derzeit spricht:"
 	L["NoPrefixBaseLang"] = "Verwenden Sie das Präfix nicht, wenn Sie die Basissprache Ihrer Fraktion sprechen (gemeinsam/Orkisch als Allianz/Horde)."
 	L["LanguagePreset"] = "Lernen Sie Sprachvoreinstellungen"
@@ -541,11 +562,14 @@ if LOCALE == "deDE" then
 	L["UseAutoShapeshift"] = "Automatische Shapeshift-Sprache"
 	L["UseAutoShapeshiftTT"] = "Durch die Gestaltwandlung in eine Form wird Ihre Sprache automatisch an die entsprechende Assoziation angepasst.\nErfordert: Schattenform, Metamorphose."
 	L["LoadingProfile"] = "Profil wird geladen"
-	L["Help"] = "Sie können "..colorThingS.."/languages"..colorThingE..", "..colorThingS.."/language"..colorThingE..", oder "..colorThingS.."/lang"..colorThingE.." verwenden, um auf Schrägstrich-Befehle zuzugreifen. Die Liste der verfügbaren Unteroptionen für Schrägstrich-Befehle:"..
+	L["Help"] = "Sie können "..colorThingS.."/languages"..colorThingE..", "..colorThingS.."/sprachen"..colorThingE..", oder "..colorThingS.."/lang"..colorThingE.." verwenden, um auf Schrägstrich-Befehle zuzugreifen. Die Liste der verfügbaren Unteroptionen für Schrägstrich-Befehle:"..
 	"\n"..colorThingS.."prefix"..colorThingE.." - Schaltet das [Language]-Präfix ein/aus."..
 	"\n"..colorThingS.."open"..colorThingE.." - Öffnet den Optionsrahmen."..
 	"\n"..colorThingS.."minimap"..colorThingE.." - Schaltet die Minikarten-Schaltfläche ein/aus."..
-	"\nZusätzlich können Sie eine Sprache festlegen, beispielsweise "..colorThingS.."/lang Darnassian"..colorThingE.." oder "..colorThingS.."/Darnassian"..colorThingE.."."
+	"\nZusätzlich können Sie eine Sprache festlegen, beispielsweise "..colorThingS.."/Darnassisch"..colorThingE.."."
+	L["OnlyInCharacter"] = "Nur im Charakter"
+	L["OnlyInCharacterTT"] = "Aktiviert Präfix / Dialekt nur, wenn du \"Im Charakter\" bist.\nErfordert das Addon Total RP 3"
+	L["RuneSize"] = "Glyphengröße"
 
 	L["Common"] = 		"Gemeinsprache"		--7
 	L["Darnassian"] = 	"Darnassisch"		--2
@@ -589,9 +613,15 @@ if LOCALE == "frFR" then
 -- French translations go here
 	L["Languages"] = "Langues"
 	L["Language"] = "Langue"
+	L["SLASH_1"] = "/langues"
+	L["SLASH_2"] = "/langues"
+	L["SLASH_3"] = "/langues"
+	L["SLASH_4"] = "/languages" -- non-localized slash
+	L["SLASH_5"] = "/language"
+	L["SLASH_6"] = "/lang"
 	L["Understand"] = "Comprendre"
-	L["TogglePrefixOff"] = "Préfixe de langue : Désactivé"
-	L["TogglePrefixOn"] = "Préfixe de langue : activé"
+	L["TogglePrefixOff"] = "Préfixe de langue : Désactivé"
+	L["TogglePrefixOn"] = "Préfixe de langue : activé"
 	L["TogglePrefixTextOff"] = "Désactivation du préfixe de langue automatisé."
 	L["TogglePrefixTextOn"] = "Désactivation du préfixe de langue automatisé."
 	L["TogglePrefixTT"] = "Contrôle si la langue actuellement sélectionnée préfixe automatiquement le message de l'utilisateur."
@@ -600,9 +630,9 @@ if LOCALE == "frFR" then
 	L["Profiles"] = "Profils"
 	L["ResetAccSettings"] = "Réinitialise tous les paramètres spécifiques à la section compte. Cela ne réinitialisera pas les paramètres spécifiques au personnage."
 	L["ResetCharSettings"] = "Réinitialise tous les paramètres spécifiques à la section personnage. Cela ne réinitialisera pas les paramètres spécifiques au compte."
-	L["ResetAccSettingsConfirm"] = "Êtes-vous sûr de vouloir réinitialiser les paramètres spécifiques au compte pour les langues ?"
-	L["ResetCharSettingsConfirm"] = "Êtes-vous sûr de vouloir réinitialiser les paramètres spécifiques de langue de ce personnage ?"
-	L["ApplyPresetConfirm"] = "Etes-vous sûr de vouloir écraser vos langues apprises actuellement ?"
+	L["ResetAccSettingsConfirm"] = "Êtes-vous sûr de vouloir réinitialiser les paramètres spécifiques au compte pour les langues ?"
+	L["ResetCharSettingsConfirm"] = "Êtes-vous sûr de vouloir réinitialiser les paramètres spécifiques de langue de ce personnage ?"
+	L["ApplyPresetConfirm"] = "Etes-vous sûr de vouloir écraser vos langues apprises actuellement ?"
 	L["AddonPrefixColor"] = "Couleur du préfixe des langues"
 	L["AccountSettings"] = "Paramètres du compte"
 	L["CharacterSettings"] = "Paramètres des personnages"
@@ -627,18 +657,15 @@ if LOCALE == "frFR" then
 	L["LinkToTotalRP3On"] = "Lien Total RP 3 activé pour ce personnage."
 	L["LinkToTotalRP3"] = "Lien vers le profil Total RP 3"
 	L["LinkToTotalRP3TT"] = "Modifiez automatiquement le profil du personnage en fonction du profil Total RP 3. Si plusieurs personnages utilisent le même profil, celui-ci devrait conserver les paramètres de ces personnages.\nNécessite l'addon Total RP 3"
-	L["SettingLanguageTo"] = "Définir la langue sur :"
+	L["SettingLanguageTo"] = "Définir la langue sur :"
 	L["EnableUnderstand"] = "Activer Comprendre"
 	L["DisableUnderstand"] = "Désactiver Comprendre"
-	L["Dialect"] = "Dialecte (à venir)"
-	L["DialectOff"] = "Dialecte : Désactivé"
-	L["DialectOn"] = "Dialecte : Activé"
+	L["Dialect"] = "Dialecte"
+	L["DialectOff"] = "Dialecte : Désactivé"
+	L["DialectOn"] = "Dialecte : Activé"
 	L["UseDialectTT"] = "Contrôle si l'utilisateur parle actuellement avec un dialecte tout en parlant, par ex. \"Qu'est-ce que tu veux\" devient \"Waschu wan'?\"."
-	L["SettingDialectTo"] = "« Définir le dialecte sur : »"
-	L["Dwarvish"] = "Nain"
-	L["Draenic"] = "Draenique"
-	L["Zandali"] = "Zandali"
-	L["CurrentlySpeaking"] = "Parlant actuellement :"
+	L["SettingDialectTo"] = "« Définir le dialecte sur : »"
+	L["CurrentlySpeaking"] = "Parlant actuellement :"
 	L["NoPrefixBaseLang"] = "N'utilisez pas le préfixe si vous parlez la langue de base de votre faction (respectivement commun/orque comme Alliance/Horde)."
 	L["LanguagePreset"] = "Apprendre les préréglages de langue"
 	L["ImportGameplay"] = "Gameplay"
@@ -651,13 +678,16 @@ if LOCALE == "frFR" then
 	L["UseAutoShapeshiftOff"] = "Langue Shapeshift automatique désactivée pour ce personnage."
 	L["UseAutoShapeshiftOn"] = "Langage Shapeshift automatique activé pour ce personnage."
 	L["UseAutoShapeshift"] = "Langage Shapeshift automatique"
-	L["UseAutoShapeshiftTT"] = "Le changement de forme dans un formulaire changera automatiquement votre langue en son association.\nNécessite : Forme d'Ombre, Métamorphose."
+	L["UseAutoShapeshiftTT"] = "Le changement de forme dans un formulaire changera automatiquement votre langue en son association.\nNécessite : Forme d'Ombre, Métamorphose."
 	L["LoadingProfile"] = "Chargement du profil"
-	L["Help"] = "Vous pouvez utiliser "..colorThingS.."/languages"..colorThingE..", "..colorThingS.."/language"..colorThingE..", ou "..colorThingS.."/lang"..colorThingE.." pour accéder aux commandes slash. La liste des sous-options de commande slash disponibles:"..
+	L["Help"] = "Vous pouvez utiliser "..colorThingS.."/languages"..colorThingE..", "..colorThingS.."/langues"..colorThingE..", ou "..colorThingS.."/lang"..colorThingE.." pour accéder aux commandes slash. La liste des sous-options de commande slash disponibles:"..
 	"\n"..colorThingS.."prefix"..colorThingE.." - active/désactive le préfixe [Language]."..
 	"\n"..colorThingS.."open"..colorThingE.." - ouvre le cadre des options."..
 	"\n"..colorThingS.."minimap"..colorThingE.." - active/désactive le bouton de la mini-carte."..
-	"\nDe plus, vous pouvez définir une langue, comme par exemple "..colorThingS.."/lang Darnassian"..colorThingE.." ou "..colorThingS.."/Darnassian"..colorThingE.."."
+	"\nDe plus, vous pouvez définir une langue, comme par exemple "..colorThingS.."/Darnassien"..colorThingE.."."
+	L["OnlyInCharacter"] = "Uniquement en personnage"
+	L["OnlyInCharacterTT"] = "Active le préfixe / dialecte uniquement lorsque vous êtes « en personnage ».\nNécessite l’addon Total RP 3"
+	L["RuneSize"] = "Taille du glyphe"
 
 	L["Common"] = 		"Commun"		--7
 	L["Darnassian"] = 	"Darnassien"	--2
@@ -701,6 +731,12 @@ if LOCALE == "itIT" then
 -- French translations go here
 	L["Languages"] = "Le lingue"
 	L["Language"] = "Lingua"
+	L["SLASH_1"] = "/lingue"
+	L["SLASH_2"] = "/lingue"
+	L["SLASH_3"] = "/lingue"
+	L["SLASH_4"] = "/languages" -- non-localized slash
+	L["SLASH_5"] = "/language"
+	L["SLASH_6"] = "/lang"
 	L["Understand"] = "Capire"
 	L["TogglePrefixOff"] = "Prefisso lingua: disattivato"
 	L["TogglePrefixOn"] = "Prefisso lingua: attivato"
@@ -742,14 +778,11 @@ if LOCALE == "itIT" then
 	L["SettingLanguageTo"] = "Impostazione della lingua su:"
 	L["EnableUnderstand"] = "Abilita Capire"
 	L["DisableUnderstand"] = "Disabilita Capire"
-	L["Dialect"] = "Dialetto (disponibile a breve)"
+	L["Dialect"] = "Dialetto"
 	L["DialectOff"] = "Dialetto: spento"
 	L["DialectOn"] = "Dialetto: acceso"
 	L["UseDialectTT"] = "Controlla se l'utente parla attualmente con un dialetto mentre parla, ad es. \"Cosa vuoi\" diventa \"Waschu wan'?\"."
 	L["SettingDialectTo"] = "Impostazione dialetto su:"
-	L["Dwarvish"] = "Nanesco"
-	L["Draenic"] = "Draenico"
-	L["Zandali"] = "Zandali"
 	L["CurrentlySpeaking"] = "Attualmente si parla:"
 	L["NoPrefixBaseLang"] = "Non utilizzare il prefisso se parli la lingua base della tua fazione (rispettivamente Comune/Orco come Alleanza/Orda)."
 	L["LanguagePreset"] = "Impara le lingue preimpostate"
@@ -765,11 +798,14 @@ if LOCALE == "itIT" then
 	L["UseAutoShapeshift"] = "Linguaggio Shapeshift automatico"
 	L["UseAutoShapeshiftTT"] = "Trasformarti in una forma cambierà automaticamente la tua lingua in base alla sua associazione.\nRichiede: Forma d'Ombra, Metamorfosi."
 	L["LoadingProfile"] = "Caricamento profilo"
-	L["Help"] = "È possibile utilizzare "..colorThingS.."/languages"..colorThingE..", "..colorThingS.."/language"..colorThingE..", o "..colorThingS.."/lang"..colorThingE.." per accedere ai comandi slash. L'elenco delle opzioni secondarie dei comandi slash disponibili:"..
+	L["Help"] = "È possibile utilizzare "..colorThingS.."/languages"..colorThingE..", "..colorThingS.."/lingue"..colorThingE..", o "..colorThingS.."/lang"..colorThingE.." per accedere ai comandi slash. L'elenco delle opzioni secondarie dei comandi slash disponibili:"..
 	"\n"..colorThingS.."prefix"..colorThingE.." - attiva/disattiva il prefisso [Language]."..
 	"\n"..colorThingS.."open"..colorThingE.." - apre il riquadro delle opzioni."..
 	"\n"..colorThingS.."minimap"..colorThingE.." - attiva/disattiva il pulsante della minimappa."..
-	"\nAdditionally, you can set a language, such as for examplInoltre è possibile impostare una lingua, come ad esempio "..colorThingS.."/lang Darnassian"..colorThingE.." o "..colorThingS.."/Darnassian"..colorThingE.."."
+	"\nAdditionally, you can set a language, such as for examplInoltre è possibile impostare una lingua, come ad esempio "..colorThingS.."/Darnassiano"..colorThingE.."."
+	L["OnlyInCharacter"] = "Solo in personaggio"
+	L["OnlyInCharacterTT"] = "Attiva il prefisso / dialetto solo quando sei \"In personaggio\".\nRichiede l'addon Total RP 3"
+	L["RuneSize"] = "Dimensione del glifo"
 
 	L["Common"] = 		"Comune"		--7
 	L["Darnassian"] = 	"Darnassiano"	--2
@@ -813,6 +849,12 @@ if LOCALE == "ptBR" then
 -- Brazilian Portuguese translations go here
 	L["Languages"] = "línguas"
 	L["Language"] = "Linguagem"
+	L["SLASH_1"] = "/idiomas"
+	L["SLASH_2"] = "/idioma"
+	L["SLASH_3"] = "/lingua"
+	L["SLASH_4"] = "/languages" -- non-localized slash
+	L["SLASH_5"] = "/language"
+	L["SLASH_6"] = "/lang"
 	L["Understand"] = "Entender"
 	L["TogglePrefixOff"] = "Prefixo de idioma: desativado"
 	L["TogglePrefixOn"] = "Prefixo de idioma: ativado"
@@ -854,14 +896,11 @@ if LOCALE == "ptBR" then
 	L["SettingLanguageTo"] = "Configurando o idioma para:"
 	L["EnableUnderstand"] = "Ativar compreensão"
 	L["DisableUnderstand"] = "Desativar compreensão"
-	L["Dialect"] = "Dialeto (em breve)"
+	L["Dialect"] = "Dialeto"
 	L["DialectOff"] = "Dialeto: desligado"
 	L["DialectOn"] = "Dialeto: Ligado"
 	L["UseDialectTT"] = "Controla se o usuário fala atualmente com um dialeto enquanto fala, por exemplo. \"O que você quer\" se torna \"Waschu wan'?\"."
 	L["SettingDialectTo"] = "Definindo dialeto para:"
-	L["Dwarvish"] = "Anão"
-	L["Draenic"] = "Draenico"
-	L["Zandali"] = "Zandali"
 	L["CurrentlySpeaking"] = "Atualmente falando:"
 	L["NoPrefixBaseLang"] = "Não use o prefixo se estiver falando o idioma base da sua facção (Comum/Orcish como Alliance/Horde respectivamente)."
 	L["LanguagePreset"] = "Aprenda predefinições de idioma"
@@ -877,11 +916,14 @@ if LOCALE == "ptBR" then
 	L["UseAutoShapeshift"] = "Linguagem de mudança de forma automática"
 	L["UseAutoShapeshiftTT"] = "Mudar de forma para uma forma mudará automaticamente seu idioma para sua associação.\nRequer: Shadowform, Metamorphosis."
 	L["LoadingProfile"] = "Carregando perfil"
-	L["Help"] = "Você pode usar "..colorThingS.."/languages"..colorThingE..", "..colorThingS.."/language"..colorThingE..", ou "..colorThingS.."/lang"..colorThingE.." para acessar comandos de barra. A lista de subopções de comando de barra disponíveis:"..
+	L["Help"] = "Você pode usar "..colorThingS.."/languages"..colorThingE..", "..colorThingS.."/idiomas"..colorThingE..", ou "..colorThingS.."/lang"..colorThingE.." para acessar comandos de barra. A lista de subopções de comando de barra disponíveis:"..
 	"\n"..colorThingS.."prefix"..colorThingE.." - ativa/desativa o prefixo [Language]."..
 	"\n"..colorThingS.."open"..colorThingE.." - abre o quadro de opções."..
 	"\n"..colorThingS.."minimap"..colorThingE.." - ativa/desativa o botão do minimapa."..
-	"\nAlém disso, você pode definir um idioma, como por exemplo "..colorThingS.."/lang Darnassian"..colorThingE.." ou "..colorThingS.."/Darnassian"..colorThingE.."."
+	"\nAlém disso, você pode definir um idioma, como por exemplo "..colorThingS.."/Darnassiano"..colorThingE.."."
+	L["OnlyInCharacter"] = "Apenas em personagem"
+	L["OnlyInCharacterTT"] = "Ativa o prefixo / dialeto apenas quando estiver \"Em personagem\".\nRequer o addon Total RP 3"
+	L["RuneSize"] = "Tamanho do glifo"
 
 	L["Common"] = 		"Língua Comum"	--7
 	L["Darnassian"] = 	"Darnassiano"	--2
@@ -927,6 +969,12 @@ if LOCALE == "ruRU" then
 -- Russian translations go here
 	L["Languages"] = "Языки"
 	L["Language"] = "Язык"
+	L["SLASH_1"] = "/языки"
+	L["SLASH_2"] = "/языки"
+	L["SLASH_3"] = "/языки"
+	L["SLASH_4"] = "/languages" -- non-localized slash
+	L["SLASH_5"] = "/language"
+	L["SLASH_6"] = "/lang"
 	L["Understand"] = "Понимать"
 	L["TogglePrefixOff"] = "Префикс языка: Выкл."
 	L["TogglePrefixOn"] = "Префикс языка: Вкл."
@@ -964,18 +1012,15 @@ if LOCALE == "ruRU" then
 	L["LinkToTotalRP3Off"] = "Ссылка на общий RP 3 отключена для этого персонажа."
 	L["LinkToTotalRP3On"] = "Для этого персонажа включена ссылка на общий RP 3."
 	L["LinkToTotalRP3"] = "Ссылка на профиль Total RP 3"
-	L["LinkToTotalRP3TT"] = "Автоматически менять профиль персонажа в соответствии с профилем Total RP 3. Если несколько персонажей используют один и тот же профиль, настройки этих персонажей должны сохраниться.\nТребуется дополнение. Всего RP 3."
+	L["LinkToTotalRP3TT"] = "Автоматически менять профиль персонажа в соответствии с профилем Total RP 3. Если несколько персонажей используют один и тот же профиль, настройки этих персонажей должны сохраниться.\nТребуется дополнение. Total RP 3."
 	L["SettingLanguageTo"] = "Установка языка:"
 	L["EnableUnderstand"] = "Включить понимание"
 	L["DisableUnderstand"] = "Отключить понимание"
-	L["Dialect"] = "Диалект (скоро)"
+	L["Dialect"] = "Диалект"
 	L["DialectOff"] = "Диалект: Выкл."
 	L["DialectOn"] = "Диалект: Вкл."
 	L["UseDialectTT"] = "Определяет, говорит ли пользователь в настоящее время на диалекте, например «Чего вы хотите» превращается в «Вашу ван»?"
 	L["SettingDialectTo"] = "Установка диалекта:"
-	L["Dwarvish"] = "гномий"
-	L["Draenic"] = "Дренорский"
-	L["Zandali"] = "Зандали"
 	L["CurrentlySpeaking"] = "Сейчас говорю:"
 	L["NoPrefixBaseLang"] = "Не используйте префикс, если говорите на базовом языке вашей фракции (общий/орочий как Альянс/Орда соответственно)."
 	L["LanguagePreset"] = "Изучите языковые пресеты"
@@ -991,11 +1036,14 @@ if LOCALE == "ruRU" then
 	L["UseAutoShapeshift"] = "Язык автоматического изменения формы"
 	L["UseAutoShapeshiftTT"] = "Преобразование в форму автоматически изменит ваш язык в соответствии с ассоциацией.\nТребуется: Теневая форма, Метаморфоза."
 	L["LoadingProfile"] = "Загрузка профиля"
-	L["Help"] = "Вы можете использовать "..colorThingS.."/languages"..colorThingE..", "..colorThingS.."/language"..colorThingE..", или "..colorThingS.."/lang"..colorThingE.." для доступа к командам с косой чертой. Список доступных подопций команды с косой чертой:"..
+	L["Help"] = "Вы можете использовать "..colorThingS.."/languages"..colorThingE..", "..colorThingS.."/языки"..colorThingE..", или "..colorThingS.."/lang"..colorThingE.." для доступа к командам с косой чертой. Список доступных подопций команды с косой чертой:"..
 	"\n"..colorThingS.."prefix"..colorThingE.." - включение/выключение префикса [Language]."..
 	"\n"..colorThingS.."open"..colorThingE.." - открыть рамку опций."..
 	"\n"..colorThingS.."minimap"..colorThingE.." - включение/выключение кнопки миникарты."..
-	"\nКроме того, вы можете установить язык, например "..colorThingS.."/lang Darnassian"..colorThingE.." или "..colorThingS.."/Darnassian"..colorThingE.."."
+	"\nКроме того, вы можете установить язык, например "..colorThingS.."/дарнасский"..colorThingE.."."
+	L["OnlyInCharacter"] = "Только в образе"
+	L["OnlyInCharacterTT"] = "Включает префикс / диалект только в режиме «В образе».\nТребуется аддон Total RP 3"
+	L["RuneSize"] = "Размер глифа"
 
 	L["Common"] = 		"всеобщий"				--7
 	L["Darnassian"] = 	"дарнасский"			--2
@@ -1039,6 +1087,12 @@ if LOCALE == "koKR" then
 -- Korean translations go here
 	L["Languages"] = "언어"
 	L["Language"] = "언어"
+	L["SLASH_1"] = "/언어"
+	L["SLASH_2"] = "/언어"
+	L["SLASH_3"] = "/언어"
+	L["SLASH_4"] = "/languages" -- non-localized slash
+	L["SLASH_5"] = "/language"
+	L["SLASH_6"] = "/lang"
 	L["Understand"] = "이해하다"
 	L["TogglePrefixOff"] = "언어 접두어: 꺼짐"
 	L["TogglePrefixOn"] = "언어 접두사: 켜짐"
@@ -1076,18 +1130,15 @@ if LOCALE == "koKR" then
 	L["LinkToTotalRP3Off"] = "이 캐릭터에 대한 총 RP 3 링크가 비활성화되었습니다."
 	L["LinkToTotalRP3On"] = "이 캐릭터에 총 RP 3 링크가 활성화되었습니다."
 	L["LinkToTotalRP3"] = "Total RP 3 프로필 링크"
-	L["LinkToTotalRP3TT"] = "토탈 RP 3 프로필에 따라 캐릭터의 프로필을 자동으로 변경합니다. 여러 캐릭터가 동일한 프로필을 사용하는 경우 해당 캐릭터에 대한 설정이 유지됩니다.\n총 RP 3 애드온이 필요합니다."
+	L["LinkToTotalRP3TT"] = "Total RP 3 프로필에 따라 캐릭터 프로필을 자동으로 변경합니다. 여러 캐릭터가 동일한 프로필을 사용하는 경우 해당 캐릭터들의 설정이 유지됩니다.\nTotal RP 3 애드온이 필요합니다."
 	L["SettingLanguageTo"] = "언어 설정:"
 	L["EnableUnderstand"] = "이해 활성화"
 	L["DisableUnderstand"] = "이해 비활성화"
-	L["Dialect"] = "방언(출시 예정)"
+	L["Dialect"] = "방언"
 	L["DialectOff"] = "방언: 꺼짐"
 	L["DialectOn"] = "방언: 켜짐"
 	L["UseDialectTT"] = "사용자가 현재 말하는 동안 방언으로 말하는지 여부를 제어합니다. \"무엇을 원하시나요\"는 \"Waschu wan'?\"이 됩니다."
 	L["SettingDialectTo"] = "방언을 다음으로 설정:"
-	L["Dwarvish"] = "드워프어"
-	L["Draenic"] = "드레나이"
-	L["Zandali"] = "잔달리"
 	L["CurrentlySpeaking"] = "현재 말하고 있는 것:"
 	L["NoPrefixBaseLang"] = "해당 세력의 기본 언어(각각 얼라이언스/호드와 같이 일반/오키어)를 사용하는 경우 접두사를 사용하지 마세요."
 	L["LanguagePreset"] = "언어 사전 설정 알아보기"
@@ -1103,11 +1154,14 @@ if LOCALE == "koKR" then
 	L["UseAutoShapeshift"] = "자동 변신 언어"
 	L["UseAutoShapeshiftTT"] = "형태로 변신하면 자동으로 언어가 연관되어 변경됩니다.\n필요 사항: Shadowform, Metamorphosis."
 	L["LoadingProfile"] = "프로필 로드 중"
-	L["Help"] = colorThingS.."/languages"..colorThingE..", "..colorThingS.."/language"..colorThingE..", 또는 "..colorThingS.."/lang"..colorThingE.." 사용하여 슬래시 명령에 액세스할 수 있습니다. 사용 가능한 슬래시 명령 하위 옵션 목록은 다음과 같습니다:"..
+	L["Help"] = colorThingS.."/languages"..colorThingE..", "..colorThingS.."/언어"..colorThingE..", 또는 "..colorThingS.."/lang"..colorThingE.." 사용하여 슬래시 명령에 액세스할 수 있습니다. 사용 가능한 슬래시 명령 하위 옵션 목록은 다음과 같습니다:"..
 	"\n"..colorThingS.."prefix"..colorThingE.." - [언어] 접두어를 켜거나 끕니다."..
 	"\n"..colorThingS.."open"..colorThingE.." - 옵션 프레임을 엽니다."..
 	"\n"..colorThingS.."minimap"..colorThingE.." - 미니맵 버튼을 켜거나 끕니다."..
-	"\n또한 "..colorThingS.."/lang Darnassian"..colorThingE.." 또는 "..colorThingS.."/Darnassian"..colorThingE.." 과 같은 언어를 설정할 수 있습니다."
+	"\n또한 "..colorThingS.."/나이트 엘프어"..colorThingE.." 과 같은 언어를 설정할 수 있습니다."
+	L["OnlyInCharacter"] = "캐릭터 상태에서만"
+	L["OnlyInCharacterTT"] = "\"캐릭터 상태\"일 때만 접두사 / 방언을 활성화합니다.\nTotal RP 3 애드온이 필요합니다"
+	L["RuneSize"] = "문양 크기"
 
 	L["Common"] = 		"공용어"			--7
 	L["Darnassian"] = 	"나이트 엘프어"	--2
@@ -1151,6 +1205,12 @@ if LOCALE == "zhCN" then
 -- Simplified Chinese translations go here
 	L["Languages"] = "语言"
 	L["Language"] = "语言"
+	L["SLASH_1"] = "/语言"
+	L["SLASH_2"] = "/语言"
+	L["SLASH_3"] = "/语言"
+	L["SLASH_4"] = "/languages" -- non-localized slash
+	L["SLASH_5"] = "/language"
+	L["SLASH_6"] = "/lang"
 	L["Understand"] = "理解"
 	L["TogglePrefixOff"] = "语言前缀：关"
 	L["TogglePrefixOn"] = "语言前缀：开"
@@ -1192,14 +1252,11 @@ if LOCALE == "zhCN" then
 	L["SettingLanguageTo"] = "将语言设置为："
 	L["EnableUnderstand"] = "启用理解"
 	L["DisableUnderstand"] = "禁用理解"
-	L["Dialect"] = "方言（即将推出）"
+	L["Dialect"] = "方言"
 	L["DialectOff"] = "方言：关闭"
 	L["DialectOn"] = "方言：开"
 	L["UseDialectTT"] = "控制用户当前说话时是否使用方言，例如方言。 “你想要什么”变成“Waschu wan'？”。"
 	L["SettingDialectTo"] = "“将方言设置为：”"
-	L["Dwarvish"] = "矮人语"
-	L["Draenic"] = "德拉诺语"
-	L["Zandali"] = "赞达利"
 	L["CurrentlySpeaking"] = "目前正在讲："
 	L["NoPrefixBaseLang"] = "如果您使用派系的基本语言（通用/兽人语分别为联盟/部落），请勿使用前缀。"
 	L["LanguagePreset"] = "学习语言预设"
@@ -1215,11 +1272,14 @@ if LOCALE == "zhCN" then
 	L["UseAutoShapeshift"] = "自动变形语言"
 	L["UseAutoShapeshiftTT"] = "变形为某种形态会自动改变你的语言与其关联。\n需要：暗影形态、变形。"
 	L["LoadingProfile"] = "加载配置文件"
-	L["Help"] = "您可以使用 "..colorThingS.."/languages"..colorThingE..", "..colorThingS.."/language"..colorThingE..", 或 "..colorThingS.."/lang"..colorThingE.." t来访问斜杠命令。可用的斜杠命令子选项列表:"..
+	L["Help"] = "您可以使用 "..colorThingS.."/languages"..colorThingE..", "..colorThingS.."/语言"..colorThingE..", 或 "..colorThingS.."/lang"..colorThingE.." t来访问斜杠命令。可用的斜杠命令子选项列表:"..
 	"\n"..colorThingS.."prefix"..colorThingE.." - 打开/关闭 [Language] 前缀。"..
 	"\n"..colorThingS.."open"..colorThingE.." - 打开选项框架。"..
 	"\n"..colorThingS.."minimap"..colorThingE.." - 打开/关闭小地图按钮。"..
-	"\n此外，您还可以设置语言，例如 "..colorThingS.."/lang Darnassian"..colorThingE.." 或 "..colorThingS.."/Darnassian"..colorThingE.."。"
+	"\n此外，您还可以设置语言，例如 "..colorThingS.."/达纳苏斯语"..colorThingE.."。"
+	L["OnlyInCharacter"] = "仅角色状态"
+	L["OnlyInCharacterTT"] = "仅在“角色状态”下启用前缀 / 方言。\n需要 Total RP 3 插件"
+	L["RuneSize"] = "雕文大小"
 
 	L["Common"] = 		"通用语"			--7
 	L["Darnassian"] = 	"达纳苏斯语"		--2
@@ -1263,6 +1323,12 @@ if LOCALE == "zhTW" then
 -- Traditional Chinese translations go here
 	L["Languages"] = "語言"
 	L["Language"] = "語言"
+	L["SLASH_1"] = "/語言"
+	L["SLASH_2"] = "/語言"
+	L["SLASH_3"] = "/語言"
+	L["SLASH_4"] = "/languages" -- non-localized slash
+	L["SLASH_5"] = "/language"
+	L["SLASH_6"] = "/lang"
 	L["Understand"] = "理解"
 	L["TogglePrefixOff"] = "語言前綴：關閉"
 	L["TogglePrefixOn"] = "語言前綴：開"
@@ -1304,14 +1370,11 @@ if LOCALE == "zhTW" then
 	L["SettingLanguageTo"] = "將語言設定為："
 	L["EnableUnderstand"] = "啟用理解"
 	L["DisableUnderstand"] = "禁用理解"
-	L["Dialect"] = "方言（即將推出）"
+	L["Dialect"] = "方言"
 	L["DialectOff"] = "方言：關閉"
 	L["DialectOn"] = "方言：開"
 	L["UseDialectTT"] = "控制使用者目前說話時是否使用方言，例如方言。 「你想要什麼」變成「Waschu wan'？」。"
 	L["SettingDialectTo"] = "“將方言設定為：”"
-	L["Dwarvish"] = "矮人語"
-	L["Draenic"] = "德拉諾語"
-	L["Zandali"] = "贊達利"
 	L["CurrentlySpeaking"] = "目前正在講："
 	L["NoPrefixBaseLang"] = "如果您使用派系的基本語言（通用/獸人語分別為聯盟/部落），請勿使用前綴。"
 	L["LanguagePreset"] = "學習語言預設"
@@ -1327,11 +1390,14 @@ if LOCALE == "zhTW" then
 	L["UseAutoShapeshift"] = "自動變形語言"
 	L["UseAutoShapeshiftTT"] = "變形為某種形態會自動改變你的語言與其關聯。\n需要：暗影形態、變形。"
 	L["LoadingProfile"] = "載入設定檔"
-	L["Help"] = "您可以使用 "..colorThingS.."/languages"..colorThingE..", "..colorThingS.."/language"..colorThingE..", 或 "..colorThingS.."/lang"..colorThingE.." 來存取斜杠命令。可用的斜杠命令子選項清單:"..
+	L["Help"] = "您可以使用 "..colorThingS.."/languages"..colorThingE..", "..colorThingS.."/語言"..colorThingE..", 或 "..colorThingS.."/lang"..colorThingE.." 來存取斜杠命令。可用的斜杠命令子選項清單:"..
 	"\n"..colorThingS.."prefix"..colorThingE.." - 開啟/關閉 [Language] 前綴。"..
 	"\n"..colorThingS.."open"..colorThingE.." - 開啟選項框架。"..
 	"\n"..colorThingS.."minimap"..colorThingE.." - 開啟/關閉小地圖按鈕。"..
-	"\n此外，您還可以設定語言，例如 "..colorThingS.."/lang Darnassian"..colorThingE.." 或 "..colorThingS.."/Darnassian"..colorThingE.."。"
+	"\n此外，您還可以設定語言，例如 "..colorThingS.."/達納蘇斯語"..colorThingE.."。"
+	L["OnlyInCharacter"] = "僅角色狀態"
+	L["OnlyInCharacterTT"] = "僅在「角色狀態」下啟用前綴 / 方言。\n需要 Total RP 3 外掛"
+	L["RuneSize"] = "雕文大小"
 
 	L["Common"] = 		"通用語"			--7
 	L["Darnassian"] = 	"達納蘇斯語"		--2

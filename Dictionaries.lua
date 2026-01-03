@@ -35,7 +35,7 @@ local Dictionaries = {
 		["nagrand"] = "nagrand", ["nelghor"] = "nelghor", ["nelghor-shomash"] = "nelghor-shomash", ["no'ku kil zil'nok ha tar"] = "no'ku kil zil'nok ha tar", ["om'gora"] = "om'gora", ["oshu'gun"] = "oshu'gun", ["ur'gora"] = "ur'gora",
 		["wor'gol"] = "wor'gol", ["zug-zug"] = "zug-zug", ["zug zug"] = "zug zug",
 	},
-	["Dwarven"] = {
+	["Dwarvish"] = {
 		["dragonheart"] = "draig'cyfaill", ["star bow"] = "dwyar'hun", ["trust"] = "khadgar", ["mountain of khaz"] = "Khaz Modan",
 		["protector"] = "Magna",
 
