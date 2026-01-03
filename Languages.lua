@@ -77,6 +77,28 @@ local function Print(text)
 	return DEFAULT_CHAT_FRAME:AddMessage(text, 1, 1, 1)
 end
 
+local function GetActiveProfile()
+	if C_AddOns.IsAddOnLoaded("totalRP3") and TRP3_API then
+		local trpProfile = TRP3_API.profile.getPlayerCurrentProfile()
+		if trpProfile and trpProfile.profileName then
+			local key = "TRP3_" .. trpProfile.profileName
+			
+			if not Languages_DB.profiles[key] then
+				Languages_DB.profiles[key] = CopyTable(defaultsTableChar)
+			end
+			
+			if Languages_DB.profiles[charKey].TRP3 then
+				return Languages_DB.profiles[key]
+			end
+		end
+	end
+
+	if not Languages_DB.profiles[charKey] then
+		Languages_DB.profiles[charKey] = CopyTable(defaultsTableChar)
+	end
+	return Languages_DB.profiles[charKey]
+end
+
 local mainFrame = CreateFrame("Frame", "LanguagesMainFrame", UIParent, "PortraitFrameTemplateMinimizable")
 mainFrame:SetPortraitTextureRaw("Interface\\AddOns\\Languages\\Languages_Icon_Small")
 --mainFrame.PortraitContainer.portrait:SetTexture("Interface\\AddOns\\Languages\\Languages_Icon_Small")
@@ -264,10 +286,7 @@ end
 ---------------------------------------------------------------------------------------------------------------------------------------------------------
 
 local function ShouldProcessLanguage()
-	local profile = Languages_DB.profiles[charKey]
-	if C_AddOns.IsAddOnLoaded("totalrp3") and profile.TRP3 and TRP3_API then
-		profile = Languages_DB.profiles["TRP3_" .. TRP3_API.profile.getPlayerCurrentProfile().profileName]
-	end
+	local profile = GetActiveProfile()
 
 	if C_AddOns.IsAddOnLoaded("totalrp3") and profile.onlyInCharacter then
 		if TRP3_API and AddOn_TotalRP3 then
@@ -290,10 +309,7 @@ local function ApplyDialectToText(text)
 		return text
 	end
 	
-	local profile = Languages_DB.profiles[charKey]
-	if profile.TRP3 and TRP3_API then
-		profile = Languages_DB.profiles["TRP3_" .. TRP3_API.profile.getPlayerCurrentProfile().profileName]
-	end
+	local profile = GetActiveProfile()
 
 	local dialectName = profile.dialect
 	
@@ -766,10 +782,7 @@ local LANGPRESET_RACE_LANGUAGE_DEFAULT = {
 
 function lang.SaveButtonPosition(self)
 	local point, _, relativePoint, x, y = self:GetPoint()
-	local profile = Languages_DB.profiles[charKey]
-	if profile.TRP3 and TRP3_API then
-		profile = Languages_DB.profiles["TRP3_" .. TRP3_API.profile.getPlayerCurrentProfile().profileName]
-	end
+	local profile = GetActiveProfile()
 	
 	if not profile.selectionButton then profile.selectionButton = {} end
 	profile.selectionButton.point = point
@@ -812,10 +825,7 @@ function lang.SelectionButtonGenerator(owner, rootDescription)
 		mainFrame.SetLanguage(langKey)
 	end
 
-	local profile = Languages_DB.profiles[charKey]
-	if profile.TRP3 and TRP3_API then
-		profile = Languages_DB.profiles["TRP3_" .. TRP3_API.profile.getPlayerCurrentProfile().profileName]
-	end
+	local profile = GetActiveProfile()
 
 	local availableLanguages = {}
 	
@@ -1172,11 +1182,7 @@ local function LanguageRowInitializer(button, data)
 		
 		button.favoriteButton:SetScript("OnClick", function(self)
 			local langKey = button:GetElementData().key
-			local profile = Languages_DB.profiles[charKey]
-			
-			if profile.TRP3 and TRP3_API then
-				profile = Languages_DB.profiles["TRP3_" .. TRP3_API.profile.getPlayerCurrentProfile().profileName]
-			end
+			local profile = GetActiveProfile()
 			
 			if not profile.favoriteLanguages then
 				profile.favoriteLanguages = {}
@@ -1289,11 +1295,7 @@ LangScrollView:SetPadding(5, 5, 5, 5, 2)
 
 function mainFrame.RefreshLanguageList()
 	local dataProvider = CreateDataProvider()
-	local profile = Languages_DB.profiles[charKey]
-	
-	if profile.TRP3 and TRP3_API and TRP3_API.profile and TRP3_API.profile.getPlayerCurrentProfile() and TRP3_API.profile.getPlayerCurrentProfile().profileName then
-		profile = Languages_DB.profiles["TRP3_" .. TRP3_API.profile.getPlayerCurrentProfile().profileName]
-	end
+	local profile = GetActiveProfile()
 	
 	if not profile.favoriteLanguages then
 		profile.favoriteLanguages = {}
@@ -1649,10 +1651,7 @@ mainFrame.selectionButtonCB:SetPoint("TOPRIGHT", mainFrame.onlyInCharacterCB, "T
 mainFrame.selectionButtonCB:SetScript("OnClick", function(self)
 	local isChecked = self:GetChecked()
 	
-	local profile = Languages_DB.profiles[charKey]
-	if profile.TRP3 and TRP3_API then
-		profile = Languages_DB.profiles["TRP3_" .. TRP3_API.profile.getPlayerCurrentProfile().profileName]
-	end
+	local profile = GetActiveProfile()
 	
 	if not profile.selectionButton then profile.selectionButton = {} end
 	profile.selectionButton.shown = isChecked
@@ -1733,18 +1732,12 @@ mainFrame.DialectDropdown:SetWidth(150)
 mainFrame.DialectDropdown:SetDefaultText(L["Dialect"])
 
 local function IsDialectSelected(dialectName)
-	local profile = Languages_DB.profiles[charKey]
-	if profile.TRP3 and TRP3_API then
-		profile = Languages_DB.profiles["TRP3_" .. TRP3_API.profile.getPlayerCurrentProfile().profileName]
-	end
+	local profile = GetActiveProfile()
 	return profile.dialect == dialectName
 end
 
 local function SetDialect(dialectName)
-	local profile = Languages_DB.profiles[charKey]
-	if profile.TRP3 and TRP3_API then
-		profile = Languages_DB.profiles["TRP3_" .. TRP3_API.profile.getPlayerCurrentProfile().profileName]
-	end
+	local profile = GetActiveProfile()
 	profile.dialect = dialectName
 	mainFrame.DialectDropdown:GenerateMenu() 
 end
@@ -2141,10 +2134,7 @@ function lang.trp3ProfileName()
 			mainFrame.trp3ProfileCB:Enable();
 			mainFrame.trp3ProfileCB.text:SetTextColor(1,1,1);
 
-			local profile = Languages_DB.profiles[charKey]
-			if profile.TRP3 and TRP3_API and TRP3_API.profile and TRP3_API.profile.getPlayerCurrentProfile() and TRP3_API.profile.getPlayerCurrentProfile().profileName then
-				profile = Languages_DB.profiles["TRP3_" .. TRP3_API.profile.getPlayerCurrentProfile().profileName]
-			end
+			local profile = GetActiveProfile()
 
 			local shouldShow = profile.selectionButton.shown
 	
@@ -2232,10 +2222,7 @@ function lang.shapeshiftProfileCheck()
 end
 
 function lang.checkSettings()
-	local profile = Languages_DB.profiles[charKey]
-	if profile.TRP3 and TRP3_API and TRP3_API.profile and TRP3_API.profile.getPlayerCurrentProfile() and TRP3_API.profile.getPlayerCurrentProfile().profileName then
-		profile = Languages_DB.profiles["TRP3_" .. TRP3_API.profile.getPlayerCurrentProfile().profileName]
-	end
+	local profile = GetActiveProfile()
 
 	mainFrame.glyphsCB:SetChecked(Languages_DB.settings.glyphs);
 	mainFrame.speechbubCB:SetChecked(Languages_DB.settings.speechBubbles);
