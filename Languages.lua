@@ -98,19 +98,6 @@ function mainFrame.minMaxFunc()
 	end
 end
 
-function mainFrame:tooltip_OnEnter(frame, text)
-	if GameTooltip:IsShown() == false then
-		GameTooltip_SetDefaultAnchor(GameTooltip, frame);
-	end
-	GameTooltip:ClearAllPoints();
-	GameTooltip:SetText(text, 1, 1, 1, 1, true);
-	GameTooltip:SetPoint("BOTTOM", frame, "TOP", 0, 0);
-	GameTooltip:Show();
-end
-function mainFrame.tooltip_OnLeave()
-	GameTooltip:Hide();
-end
-
 function mainFrame:ShowColorPickerText(r, g, b, callbackFunc)
 	if ColorPickerFrame.SetupColorPickerAndShow then
 		local options = {
@@ -852,7 +839,7 @@ end
 
 function lang.CreateSelectionButton()
 	local f = CreateFrame("Button", "LanguagesSelectionButton", UIParent, "BackdropTemplate")
-	f:SetSize(140, 30)
+	f:SetSize(140, 32)
 	f:SetMovable(true)
 	f:EnableMouse(true)
 	
@@ -906,15 +893,17 @@ function lang.CreateSelectionButton()
 	end)
 	
 	f:SetScript("OnEnter", function(self)
-		local tooltipText = (L["SelectLanguage"]) .. "\n" ..  -- something really must be done about these horrendous tooltips... soon(tm)
-							"|cffFFFFFF" .. (L["LeftClickToSelect"]) .. "|r\n" ..
-							"|cffFFFFFF" .. (L["RightClickToOptions"]) .. "|r\n" ..
-							"|cffFFFFFF" .. (L["ShiftClickToDrag"]) .. "|r"
-
-		mainFrame:tooltip_OnEnter(self, tooltipText)
+		GameTooltip:SetOwner(self, "ANCHOR_TOP")
+		GameTooltip:AddLine(L["SelectLanguage"])
+		GameTooltip:AddDoubleLine(L["LeftClick"]..":", L["SelectLanguage"], 1, 1, 1, 1, 1, 1)
+		GameTooltip:AddDoubleLine(L["RightClick"]..":", L["OpenMenu"], 1, 1, 1, 1, 1, 1)
+		GameTooltip:AddDoubleLine(L["ShiftDrag"]..":", L["DragFrame"], 1, 1, 1, 1, 1, 1)
+		GameTooltip:Show()
 	end)
 	
-	f:SetScript("OnLeave", mainFrame.tooltip_OnLeave)
+	f:SetScript("OnLeave", function()
+		GameTooltip:Hide()
+	end)
 	
 	f:Hide()
 	
@@ -1221,9 +1210,13 @@ local function LanguageRowInitializer(button, data)
 		button.runeFrame:SetAllPoints(button.runeIcon)
 
 		button.runeIcon:SetScript("OnEnter", function(self)
-			mainFrame:tooltip_OnEnter(self, L["ThisLangHasRunesTT"]);
+			GameTooltip:SetOwner(self, "ANCHOR_TOP")
+			GameTooltip:AddLine(L["ThisLangHasRunesTT"], 1, 1, 1, true)
+			GameTooltip:Show()
 		end)
-		button.runeIcon:SetScript("OnLeave", mainFrame.tooltip_OnLeave)
+		button.runeIcon:SetScript("OnLeave", function()
+			GameTooltip:Hide()
+		end)
 	end
 	button.runeIcon:SetShown(data.hasRunes)
 	button.runeFrame:SetShown(data.hasRunes)
@@ -1257,9 +1250,13 @@ local function LanguageRowInitializer(button, data)
 		end)
 
 		button.checkbox:SetScript("OnEnter", function(self)
-			mainFrame:tooltip_OnEnter(self, L["ToggleLanguageLearnedTT"]);
+			GameTooltip:SetOwner(self, "ANCHOR_TOP")
+			GameTooltip:AddLine(L["ToggleLanguageLearnedTT"], 1, 1, 1, true)
+			GameTooltip:Show()
 		end)
-		button.checkbox:SetScript("OnLeave", mainFrame.tooltip_OnLeave)
+		button.checkbox:SetScript("OnLeave", function()
+			GameTooltip:Hide()
+		end)
 	end
 	
 	button.checkbox:SetChecked(data.isLearned)
@@ -1277,9 +1274,13 @@ local function LanguageRowInitializer(button, data)
 	end)
 
 	button:SetScript("OnEnter", function(self)
-		mainFrame:tooltip_OnEnter(self, L["ToggleLanguageSpokenTT"]);
+		GameTooltip:SetOwner(self, "ANCHOR_TOP")
+		GameTooltip:AddLine(L["ToggleLanguageSpokenTT"], 1, 1, 1, true)
+		GameTooltip:Show()
 	end)
-	button:SetScript("OnLeave", mainFrame.tooltip_OnLeave)
+	button:SetScript("OnLeave", function()
+		GameTooltip:Hide()
+	end)
 end
 
 LangScrollView:SetElementInitializer("Button", LanguageRowInitializer)
@@ -1371,9 +1372,13 @@ mainFrame.resetAccSettings:SetScript("OnClick", function(self, button)
 	StaticPopup_Show("LANGUAGES_ACC_RESET_SETTINGS");
 end);
 mainFrame.resetAccSettings:SetScript("OnEnter", function(self)
-	mainFrame:tooltip_OnEnter(self, L["ResetAccSettings"]);
+	GameTooltip:SetOwner(self, "ANCHOR_TOP");
+	GameTooltip:AddLine(L["ResetAccSettings"], 1, 1, 1, true);
+	GameTooltip:Show();
 end);
-mainFrame.resetAccSettings:SetScript("OnLeave", mainFrame.tooltip_OnLeave);
+mainFrame.resetAccSettings:SetScript("OnLeave", function()
+	GameTooltip:Hide();
+end);
 
 
 mainFrame.Char_Frame = CreateFrame("Frame", nil, mainFrame.Acc_Frame, "BackdropTemplate")
@@ -1395,9 +1400,13 @@ mainFrame.resetCharSettings:SetScript("OnClick", function(self, button)
 	StaticPopup_Show("LANGUAGES_CHAR_RESET_SETTINGS");
 end);
 mainFrame.resetCharSettings:SetScript("OnEnter", function(self)
-	mainFrame:tooltip_OnEnter(self, L["ResetCharSettings"]);
+	GameTooltip:SetOwner(self, "ANCHOR_TOP");
+	GameTooltip:AddLine(L["ResetCharSettings"], 1, 1, 1, true);
+	GameTooltip:Show();
 end);
-mainFrame.resetCharSettings:SetScript("OnLeave", mainFrame.tooltip_OnLeave);
+mainFrame.resetCharSettings:SetScript("OnLeave", function()
+	GameTooltip:Hide();
+end);
 
 mainFrame.glyphsCB = CreateFrame("CheckButton", nil, mainFrame.Acc_Frame, "UICheckButtonTemplate");
 mainFrame.glyphsCB:SetPoint("TOPRIGHT", mainFrame.Acc_Frame, "TOPRIGHT", -15, -15);
@@ -1416,9 +1425,14 @@ mainFrame.glyphsCB.text:SetFont(STANDARD_TEXT_FONT, 11)
 mainFrame.glyphsCB.text:SetPoint("RIGHT", mainFrame.glyphsCB, "LEFT", -5, 0)
 mainFrame.glyphsCB.text:SetText(L["UseGlyphs"])
 mainFrame.glyphsCB:SetScript("OnEnter", function(self)
-	mainFrame:tooltip_OnEnter(self, L["UseGlyphsTT"])
+	GameTooltip:SetOwner(self, "ANCHOR_TOP");
+	GameTooltip:AddLine(L["UseGlyphs"]);
+	GameTooltip:AddLine(L["UseGlyphsTT"], 1, 1, 1, true);
+	GameTooltip:Show();
 end);
-mainFrame.glyphsCB:SetScript("OnLeave", mainFrame.tooltip_OnLeave);
+mainFrame.glyphsCB:SetScript("OnLeave", function()
+	GameTooltip:Hide();
+end);
 
 mainFrame.prefixColorPickerButton = CreateFrame("Button", nil, mainFrame.glyphsCB, "SharedButtonSmallTemplate")
 mainFrame.prefixColorPickerButton:SetPoint("TOPRIGHT", mainFrame.glyphsCB, "TOPRIGHT", 0, -60)
@@ -1449,9 +1463,14 @@ mainFrame.speechbubCB.text:SetFont(STANDARD_TEXT_FONT, 11)
 mainFrame.speechbubCB.text:SetPoint("RIGHT", mainFrame.speechbubCB, "LEFT", -5, 0)
 mainFrame.speechbubCB.text:SetText(L["SpeechBubbles"])
 mainFrame.speechbubCB:SetScript("OnEnter", function(self)
-	mainFrame:tooltip_OnEnter(self, L["SpeechBubblesTT"])
+	GameTooltip:SetOwner(self, "ANCHOR_TOP");
+	GameTooltip:AddLine(L["SpeechBubbles"]);
+	GameTooltip:AddLine(L["SpeechBubblesTT"], 1, 1, 1, true);
+	GameTooltip:Show();
 end);
-mainFrame.speechbubCB:SetScript("OnLeave", mainFrame.tooltip_OnLeave);
+mainFrame.speechbubCB:SetScript("OnLeave", function()
+	GameTooltip:Hide();
+end);
 
 mainFrame.combatCB = CreateFrame("CheckButton", nil, mainFrame.speechbubCB, "UICheckButtonTemplate");
 mainFrame.combatCB:SetPoint("TOPRIGHT", mainFrame.speechbubCB, "TOPRIGHT", 0, -30);
@@ -1470,9 +1489,14 @@ mainFrame.combatCB.text:SetFont(STANDARD_TEXT_FONT, 11)
 mainFrame.combatCB.text:SetPoint("RIGHT", mainFrame.combatCB, "LEFT", -5, 0)
 mainFrame.combatCB.text:SetText(L["CombatOption"])
 mainFrame.combatCB:SetScript("OnEnter", function(self)
-	mainFrame:tooltip_OnEnter(self, L["CombatOptionTT"])
+	GameTooltip:SetOwner(self, "ANCHOR_TOP");
+	GameTooltip:AddLine(L["CombatOption"]);
+	GameTooltip:AddLine(L["CombatOptionTT"], 1, 1, 1, true);
+	GameTooltip:Show();
 end);
-mainFrame.combatCB:SetScript("OnLeave", mainFrame.tooltip_OnLeave);
+mainFrame.combatCB:SetScript("OnLeave", function()
+	GameTooltip:Hide();
+end);
 
 mainFrame.factionLangCB = CreateFrame("CheckButton", nil, mainFrame.combatCB, "UICheckButtonTemplate");
 mainFrame.factionLangCB:SetPoint("TOPRIGHT", mainFrame.combatCB, "TOPRIGHT", 0, -30);
@@ -1491,9 +1515,14 @@ mainFrame.factionLangCB.text:SetFont(STANDARD_TEXT_FONT, 11)
 mainFrame.factionLangCB.text:SetPoint("RIGHT", mainFrame.factionLangCB, "LEFT", -5, 0)
 mainFrame.factionLangCB.text:SetText(L["FactionOption"])
 mainFrame.factionLangCB:SetScript("OnEnter", function(self)
-	mainFrame:tooltip_OnEnter(self, L["FactionOptionTT"])
+	GameTooltip:SetOwner(self, "ANCHOR_TOP");
+	GameTooltip:AddLine(L["FactionOption"]);
+	GameTooltip:AddLine(L["FactionOptionTT"], 1, 1, 1, true);
+	GameTooltip:Show();
 end);
-mainFrame.factionLangCB:SetScript("OnLeave", mainFrame.tooltip_OnLeave);
+mainFrame.factionLangCB:SetScript("OnLeave", function()
+	GameTooltip:Hide();
+end);
 
 mainFrame.runeScaleSlider = CreateFrame("Frame", nil, mainFrame.Acc_Frame, "MinimalSliderWithSteppersTemplate")
 mainFrame.runeScaleSlider:SetPoint("TOPRIGHT", mainFrame.Acc_Frame, "TOPRIGHT", -40, -40)
@@ -1539,9 +1568,14 @@ mainFrame.trp3ProfileCB.text:SetPoint("RIGHT", mainFrame.trp3ProfileCB, "LEFT", 
 mainFrame.trp3ProfileCB.text:SetText(L["LinkToTotalRP3"])
 mainFrame.trp3ProfileCB.text:SetTextColor(.5,.5,.5)
 mainFrame.trp3ProfileCB:SetScript("OnEnter", function(self)
-	mainFrame:tooltip_OnEnter(self, L["LinkToTotalRP3TT"]);
+	GameTooltip:SetOwner(self, "ANCHOR_TOP");
+	GameTooltip:AddLine(L["LinkToTotalRP3"]);
+	GameTooltip:AddLine(L["LinkToTotalRP3TT"], 1, 1, 1, true);
+	GameTooltip:Show();
 end);
-mainFrame.trp3ProfileCB:SetScript("OnLeave", mainFrame.tooltip_OnLeave);
+mainFrame.trp3ProfileCB:SetScript("OnLeave", function()
+	GameTooltip:Hide();
+end);
 
 
 mainFrame.shapeshiftFormsCB = CreateFrame("CheckButton", nil, mainFrame.trp3ProfileCB, "UICheckButtonTemplate");
@@ -1569,19 +1603,22 @@ mainFrame.shapeshiftFormsCB.text:SetFont(STANDARD_TEXT_FONT, 11)
 mainFrame.shapeshiftFormsCB.text:SetPoint("RIGHT", mainFrame.shapeshiftFormsCB, "LEFT", -5, 0)
 mainFrame.shapeshiftFormsCB.text:SetText(L["UseAutoShapeshift"])
 mainFrame.shapeshiftFormsCB:SetScript("OnEnter", function(self)
-	mainFrame:tooltip_OnEnter(self, L["UseAutoShapeshiftTT"]);
+	GameTooltip:SetOwner(self, "ANCHOR_TOP");
+	GameTooltip:AddLine(L["UseAutoShapeshift"]);
+	GameTooltip:AddLine(L["UseAutoShapeshiftTT"], 1, 1, 1, true);
+	GameTooltip:Show();
 end);
-mainFrame.shapeshiftFormsCB:SetScript("OnLeave", mainFrame.tooltip_OnLeave);
+mainFrame.shapeshiftFormsCB:SetScript("OnLeave", function()
+	GameTooltip:Hide();
+end);
 
 mainFrame.onlyInCharacterCB = CreateFrame("CheckButton", nil, mainFrame.shapeshiftFormsCB, "UICheckButtonTemplate");
 mainFrame.onlyInCharacterCB:SetPoint("TOPRIGHT", mainFrame.shapeshiftFormsCB, "TOPRIGHT", 0, -30);
 mainFrame.onlyInCharacterCB:SetScript("OnClick", function(self)
 	local isChecked = self:GetChecked()
 	if isChecked then
-		Print(L["OnlyInCharacterOn"]);
 		PlaySound(856);
 	else
-		Print(L["OnlyInCharacterOff"]);
 		PlaySound(857);
 	end
 
@@ -1598,9 +1635,14 @@ mainFrame.onlyInCharacterCB.text:SetFont(STANDARD_TEXT_FONT, 11)
 mainFrame.onlyInCharacterCB.text:SetPoint("RIGHT", mainFrame.onlyInCharacterCB, "LEFT", -5, 0)
 mainFrame.onlyInCharacterCB.text:SetText(L["OnlyInCharacter"])
 mainFrame.onlyInCharacterCB:SetScript("OnEnter", function(self)
-	mainFrame:tooltip_OnEnter(self, L["OnlyInCharacterTT"]);
+	GameTooltip:SetOwner(self, "ANCHOR_TOP");
+	GameTooltip:AddLine(L["OnlyInCharacter"]);
+	GameTooltip:AddLine(L["OnlyInCharacterTT"], 1, 1, 1, true);
+	GameTooltip:Show();
 end);
-mainFrame.onlyInCharacterCB:SetScript("OnLeave", mainFrame.tooltip_OnLeave);
+mainFrame.onlyInCharacterCB:SetScript("OnLeave", function()
+	GameTooltip:Hide();
+end);
 
 mainFrame.selectionButtonCB = CreateFrame("CheckButton", nil, mainFrame.onlyInCharacterCB, "UICheckButtonTemplate");
 mainFrame.selectionButtonCB:SetPoint("TOPRIGHT", mainFrame.onlyInCharacterCB, "TOPRIGHT", 0, -30);
@@ -1628,9 +1670,14 @@ mainFrame.selectionButtonCB.text:SetFont(STANDARD_TEXT_FONT, 11)
 mainFrame.selectionButtonCB.text:SetPoint("RIGHT", mainFrame.selectionButtonCB, "LEFT", -5, 0)
 mainFrame.selectionButtonCB.text:SetText(L["ShowSelectionButton"])
 mainFrame.selectionButtonCB:SetScript("OnEnter", function(self)
-	mainFrame:tooltip_OnEnter(self, L["ShowSelectionButtonTT"]);
+	GameTooltip:SetOwner(self, "ANCHOR_TOP");
+	GameTooltip:AddLine(L["ShowSelectionButton"]);
+	GameTooltip:AddLine(L["ShowSelectionButtonTT"], 1, 1, 1, true);
+	GameTooltip:Show();
 end);
-mainFrame.selectionButtonCB:SetScript("OnLeave", mainFrame.tooltip_OnLeave);
+mainFrame.selectionButtonCB:SetScript("OnLeave", function()
+	GameTooltip:Hide();
+end);
 
 ----------------------------------------
 -- content 3 - Profiles
@@ -1644,9 +1691,14 @@ mainFrame.preset_recommended:SetScript("OnClick", function(self, button)
 	StaticPopup_Show("LANGUAGES_CHAR_PRESET_RECOMMENDED");
 end);
 mainFrame.preset_recommended:SetScript("OnEnter", function(self)
-	mainFrame:tooltip_OnEnter(self, L["ImportRecommendedTT"]);
+	GameTooltip:SetOwner(self, "ANCHOR_TOP");
+	GameTooltip:AddLine(L["ImportRecommended"]);
+	GameTooltip:AddLine(L["ImportRecommendedTT"], 1, 1, 1, true);
+	GameTooltip:Show();
 end);
-mainFrame.preset_recommended:SetScript("OnLeave", mainFrame.tooltip_OnLeave);
+mainFrame.preset_recommended:SetScript("OnLeave", function()
+	GameTooltip:Hide();
+end);
 
 mainFrame.preset_gameplay = CreateFrame("Button", nil, content3, "SharedButtonSmallTemplate")
 mainFrame.preset_gameplay:SetPoint("TOPRIGHT", mainFrame.preset_recommended, "TOPRIGHT", 0, -30)
@@ -1656,9 +1708,14 @@ mainFrame.preset_gameplay:SetScript("OnClick", function(self, button)
 	StaticPopup_Show("LANGUAGES_CHAR_PRESET_GAMEPLAY");
 end);
 mainFrame.preset_gameplay:SetScript("OnEnter", function(self)
-	mainFrame:tooltip_OnEnter(self, L["ImportGameplayTT"]);
+	GameTooltip:SetOwner(self, "ANCHOR_TOP");
+	GameTooltip:AddLine(L["ImportGameplay"]);
+	GameTooltip:AddLine(L["ImportGameplayTT"], 1, 1, 1, true);
+	GameTooltip:Show();
 end);
-mainFrame.preset_gameplay:SetScript("OnLeave", mainFrame.tooltip_OnLeave);
+mainFrame.preset_gameplay:SetScript("OnLeave", function()
+	GameTooltip:Hide();
+end);
 
 
 ----------------------------------------

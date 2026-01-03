@@ -101,9 +101,11 @@ if LOCALE == "enUS" then
 	L["ShowSelectionButton"] = "Show Languages Mini-Button"
 	L["ShowSelectionButtonTT"] = "Toggles a small button on screen from which to access learned language selection."
 	L["SelectLanguage"] = "Select Language"
-	L["LeftClickToSelect"] = "Left-Click to Select Language"
-	L["RightClickToOptions"] = "Right-Click to Open Menu"
-	L["ShiftClickToDrag"] = "Shift-Click to Drag"
+	L["OpenMenu"] = "Open Menu"
+	L["DragFrame"] = "Drag Frame"
+	L["LeftClick"] = "Left-Click"
+	L["RightClick"] = "Right-Click"
+	L["ShiftDrag"] = "Shift-Drag"
 
 	-- official languages
 	L["Common"] = 		"Common"			--7
@@ -347,9 +349,12 @@ if LOCALE == "esMX" then
 	L["ShowSelectionButton"] = "Mostrar minibotón de idiomas"
 	L["ShowSelectionButtonTT"] = "Activa un pequeño botón en pantalla para acceder a la selección de idiomas aprendidos."
 	L["SelectLanguage"] = "Seleccionar idioma"
-	L["LeftClickToSelect"] = "Clic izquierdo para seleccionar idioma"
-	L["RightClickToOptions"] = "Clic derecho para abrir el menú"
-	L["ShiftClickToDrag"] = "Mayús + clic para arrastrar"
+	L["OpenMenu"] = "Abrir menú"
+	L["DragFrame"] = "Arrastrar marco"
+	L["LeftClick"] = "Clic izquierdo"
+	L["RightClick"] = "Clic derecho"
+	L["ShiftDrag"] = "MAYÚS + arrastrar"
+
 
 	L["Common"] = 		"Lengua común"		--7
 	L["Darnassian"] = 	"Darnassiano"		--2
@@ -473,9 +478,12 @@ if LOCALE == "esES" then
 	L["ShowSelectionButton"] = "Mostrar minibotón de idiomas"
 	L["ShowSelectionButtonTT"] = "Activa un pequeño botón en pantalla para acceder a la selección de idiomas aprendidos."
 	L["SelectLanguage"] = "Seleccionar idioma"
-	L["LeftClickToSelect"] = "Clic izquierdo para seleccionar idioma"
-	L["RightClickToOptions"] = "Clic derecho para abrir el menú"
-	L["ShiftClickToDrag"] = "Mayús + clic para arrastrar"
+	L["OpenMenu"] = "Abrir menú"
+	L["DragFrame"] = "Arrastrar marco"
+	L["LeftClick"] = "Clic izquierdo"
+	L["RightClick"] = "Clic derecho"
+	L["ShiftDrag"] = "MAYÚS + arrastrar"
+
 
 	L["Common"] = 		"Lengua común"		--7
 	L["Darnassian"] = 	"Darnassiano"		--2
@@ -599,9 +607,12 @@ if LOCALE == "deDE" then
 	L["ShowSelectionButton"] = "Mini-Schaltfläche für Sprachen anzeigen"
 	L["ShowSelectionButtonTT"] = "Blendet eine kleine Schaltfläche ein, über die die Auswahl erlernter Sprachen geöffnet werden kann."
 	L["SelectLanguage"] = "Sprache auswählen"
-	L["LeftClickToSelect"] = "Links-Klick zum Auswählen der Sprache"
-	L["RightClickToOptions"] = "Rechts-Klick zum Öffnen des Menüs"
-	L["ShiftClickToDrag"] = "UMSCHALT + Klick zum Verschieben"
+	L["OpenMenu"] = "Menü öffnen"
+	L["DragFrame"] = "Fenster verschieben"
+	L["LeftClick"] = "Links-Klick"
+	L["RightClick"] = "Rechts-Klick"
+	L["ShiftDrag"] = "UMSCHALT + Ziehen"
+
 
 	L["Common"] = 		"Gemeinsprache"		--7
 	L["Darnassian"] = 	"Darnassisch"		--2
@@ -725,9 +736,12 @@ if LOCALE == "frFR" then
 	L["ShowSelectionButton"] = "Afficher le mini-bouton des langues"
 	L["ShowSelectionButtonTT"] = "Affiche un petit bouton à l’écran permettant d’accéder à la sélection des langues apprises."
 	L["SelectLanguage"] = "Sélectionner la langue"
-	L["LeftClickToSelect"] = "Clic gauche pour sélectionner la langue"
-	L["RightClickToOptions"] = "Clic droit pour ouvrir le menu"
-	L["ShiftClickToDrag"] = "MAJ + clic pour déplacer"
+	L["OpenMenu"] = "Ouvrir le menu"
+	L["DragFrame"] = "Déplacer le cadre"
+	L["LeftClick"] = "Clic gauche"
+	L["RightClick"] = "Clic droit"
+	L["ShiftDrag"] = "MAJ + déplacer"
+
 
 	L["Common"] = 		"Commun"		--7
 	L["Darnassian"] = 	"Darnassien"	--2
@@ -851,9 +865,12 @@ if LOCALE == "itIT" then
 	L["ShowSelectionButton"] = "Mostra mini-pulsante delle lingue"
 	L["ShowSelectionButtonTT"] = "Attiva un piccolo pulsante sullo schermo per accedere alla selezione delle lingue apprese."
 	L["SelectLanguage"] = "Seleziona lingua"
-	L["LeftClickToSelect"] = "Clic sinistro per selezionare la lingua"
-	L["RightClickToOptions"] = "Clic destro per aprire il menu"
-	L["ShiftClickToDrag"] = "MAIUSC + clic per trascinare"
+	L["OpenMenu"] = "Apri menu"
+	L["DragFrame"] = "Trascina riquadro"
+	L["LeftClick"] = "Clic sinistro"
+	L["RightClick"] = "Clic destro"
+	L["ShiftDrag"] = "MAIUSC + trascina"
+
 
 	L["Common"] = 		"Comune"		--7
 	L["Darnassian"] = 	"Darnassiano"	--2
@@ -977,9 +994,12 @@ if LOCALE == "ptBR" then
 	L["ShowSelectionButton"] = "Mostrar mini-botão de idiomas"
 	L["ShowSelectionButtonTT"] = "Ativa um pequeno botão na tela para acessar a seleção de idiomas aprendidos."
 	L["SelectLanguage"] = "Selecionar idioma"
-	L["LeftClickToSelect"] = "Clique esquerdo para selecionar o idioma"
-	L["RightClickToOptions"] = "Clique direito para abrir o menu"
-	L["ShiftClickToDrag"] = "SHIFT + clique para arrastar"
+	L["OpenMenu"] = "Abrir menu"
+	L["DragFrame"] = "Arrastar quadro"
+	L["LeftClick"] = "Clique esquerdo"
+	L["RightClick"] = "Clique direito"
+	L["ShiftDrag"] = "SHIFT + arrastar"
+
 
 	L["Common"] = 		"Língua Comum"	--7
 	L["Darnassian"] = 	"Darnassiano"	--2
@@ -1105,9 +1125,12 @@ if LOCALE == "ruRU" then
 	L["ShowSelectionButton"] = "Показать мини-кнопку языков"
 	L["ShowSelectionButtonTT"] = "Включает небольшую кнопку на экране для доступа к выбору изученных языков."
 	L["SelectLanguage"] = "Выбрать язык"
-	L["LeftClickToSelect"] = "ЛКМ - выбрать язык"
-	L["RightClickToOptions"] = "ПКМ - открыть меню"
-	L["ShiftClickToDrag"] = "SHIFT + щелчок - переместить"
+	L["OpenMenu"] = "Открыть меню"
+	L["DragFrame"] = "Переместить окно"
+	L["LeftClick"] = "ЛКМ"
+	L["RightClick"] = "ПКМ"
+	L["ShiftDrag"] = "SHIFT + перетаскивание"
+
 
 	L["Common"] = 		"всеобщий"				--7
 	L["Darnassian"] = 	"дарнасский"			--2
@@ -1231,9 +1254,12 @@ if LOCALE == "koKR" then
 	L["ShowSelectionButton"] = "언어 미니 버튼 표시"
 	L["ShowSelectionButtonTT"] = "학습한 언어 선택에 접근할 수 있는 작은 버튼을 화면에 표시합니다."
 	L["SelectLanguage"] = "언어 선택"
-	L["LeftClickToSelect"] = "좌클릭으로 언어 선택"
-	L["RightClickToOptions"] = "우클릭으로 메뉴 열기"
-	L["ShiftClickToDrag"] = "SHIFT + 클릭으로 드래그"
+	L["OpenMenu"] = "메뉴 열기"
+	L["DragFrame"] = "프레임 이동"
+	L["LeftClick"] = "좌클릭"
+	L["RightClick"] = "우클릭"
+	L["ShiftDrag"] = "SHIFT + 드래그"
+
 
 	L["Common"] = 		"공용어"			--7
 	L["Darnassian"] = 	"나이트 엘프어"	--2
@@ -1357,9 +1383,13 @@ if LOCALE == "zhCN" then
 	L["ShowSelectionButton"] = "显示语言迷你按钮"
 	L["ShowSelectionButtonTT"] = "在屏幕上显示一个小按钮，用于访问已学习语言的选择。"
 	L["SelectLanguage"] = "选择语言"
-	L["LeftClickToSelect"] = "左键选择语言"
-	L["RightClickToOptions"] = "右键打开菜单"
-	L["ShiftClickToDrag"] = "Shift + 单击拖动"
+	L["OpenMenu"] = "打开菜单"
+	L["DragFrame"] = "拖动框体"
+	L["LeftClick"] = "左键点击"
+	L["RightClick"] = "右键点击"
+	L["ShiftDrag"] = "SHIFT + 拖动"
+
+
 
 	L["Common"] = 		"通用语"			--7
 	L["Darnassian"] = 	"达纳苏斯语"		--2
@@ -1483,9 +1513,12 @@ if LOCALE == "zhTW" then
 	L["ShowSelectionButton"] = "顯示語言迷你按鈕"
 	L["ShowSelectionButtonTT"] = "在畫面上顯示一個小按鈕，用於存取已學會的語言選擇。"
 	L["SelectLanguage"] = "選擇語言"
-	L["LeftClickToSelect"] = "左鍵選擇語言"
-	L["RightClickToOptions"] = "右鍵開啟選單"
-	L["ShiftClickToDrag"] = "Shift + 點擊拖曳"
+	L["OpenMenu"] = "開啟選單"
+	L["DragFrame"] = "拖曳框架"
+	L["LeftClick"] = "左鍵點擊"
+	L["RightClick"] = "右鍵點擊"
+	L["ShiftDrag"] = "SHIFT + 拖曳"
+
 
 	L["Common"] = 		"通用語"			--7
 	L["Darnassian"] = 	"達納蘇斯語"		--2
