@@ -34,6 +34,7 @@ local defaultsTableChar = {
 	understandLanguage = {
 	},
 	dialect = nil,
+	favoriteLanguages = {},
 };
 
 local lang = CreateFrame("Frame");
@@ -42,6 +43,24 @@ local chatTypeBingus = ChatTypeInfo["SAY"];
 local realmKey = GetRealmName()
 local charKey = UnitName("player") .. " - " .. realmKey
 local MatchCasing
+
+local function GetPlayerRaceID()
+	return select(3, UnitRace("player"))
+end
+
+local function GetPlayerClassID()
+	return select(3, UnitClass("player"))
+end
+
+local function GetLanguageNameByID(langID) -- default languages
+	for i = 1, GetNumLanguages() do
+		local name, id = GetLanguageByIndex(i)
+		if id == langID then
+			return name
+		end
+	end
+	return nil
+end
 
 local function Print(text)
 	local textColor = CreateColor(Languages_DB.settings.colors.prefix.r, Languages_DB.settings.colors.prefix.g, Languages_DB.settings.colors.prefix.b):GenerateHexColor()
@@ -58,19 +77,7 @@ mainFrame:SetSize(438,524)
 mainFrame:SetPoint("CENTER", UIParent, "CENTER")
 mainFrame:SetMovable(true)
 mainFrame:SetClampedToScreen(true)
-mainFrame:SetScript("OnMouseDown", function(self, button)
-	self:StartMoving()
-end);
-mainFrame:SetScript("OnMouseUp", function(self, button)
-	mainFrame:StopMovingOrSizing()
-end);
 mainFrame:Hide()
-mainFrame:SetScript("OnShow", function()
-	PlaySound(74421)
-end);
-mainFrame:SetScript("OnHide", function()
-	PlaySound(74423)
-end);
 mainFrame.minMax = true;
 
 function mainFrame.minMaxFunc()
@@ -185,7 +192,7 @@ function mainFrame.SetTabs(frame,numTabs, ...)
 		mainFrame.TabButtonTest:SetScript("OnClick", mainFrame.Tab_OnClick)
 
 		mainFrame.TabButtonTest.content = CreateFrame("Frame", nil, mainFrame.ScrollFrame)
-		mainFrame.TabButtonTest.content:SetSize(334, 10)
+		mainFrame.TabButtonTest.content:SetSize(frame:GetWidth(), 10)
 		mainFrame.TabButtonTest.content:Hide()
 
 		--mainFrame.TabButtonTest.content.bg = mainFrame.TabButtonTest.content:CreateTexture(nil, "BACKGROUND")
@@ -252,10 +259,33 @@ end
 -- Prefix Handling
 ---------------------------------------------------------------------------------------------------------------------------------------------------------
 
+local function ShouldProcessLanguage()
+	local profile = Languages_DB.profiles[charKey]
+	if C_AddOns.IsAddOnLoaded("totalrp3") and profile.TRP3 and TRP3_API then
+		profile = Languages_DB.profiles["TRP3_" .. TRP3_API.profile.getPlayerCurrentProfile().profileName]
+	end
+
+	if C_AddOns.IsAddOnLoaded("totalrp3") and profile.onlyInCharacter then
+		if TRP3_API and AddOn_TotalRP3 then
+			local user = AddOn_TotalRP3.Player.GetCurrentUser()
+			if user and user.IsInCharacter and not user:IsInCharacter() then
+				return false
+			end
+		end
+	end
+
+	return true
+end
+
+
 local textBeforeParse, parsedEditBox;
 local gopherPadding;
 
 local function ApplyDialectToText(text)
+	if not ShouldProcessLanguage() then
+		return text
+	end
+	
 	local profile = Languages_DB.profiles[charKey]
 	if profile.TRP3 and TRP3_API then
 		profile = Languages_DB.profiles["TRP3_" .. TRP3_API.profile.getPlayerCurrentProfile().profileName]
@@ -295,9 +325,11 @@ function mainFrame.setMaxLetters()
 			else
 				local maxLetters = 255
 				local subtractLetters = string.len("[" .. currentLanguage.lang .. "]" .. " ")
-				if mainFrame.prefix ~= true then
+
+				if mainFrame.prefix ~= true or not ShouldProcessLanguage() then
 					subtractLetters = 0
 				end
+
 				editBox:SetVisibleTextByteLimit(maxLetters - subtractLetters)
 				subtractLetters = 0
 			end
@@ -315,6 +347,12 @@ function mainFrame.enablePrefix()
 		if lang.combatCheck() then
 			return
 		else
+			-- NEW CHECK: If not speaking default language, do not apply addon logic
+			local _, defaultLangID = GetDefaultLanguage("player")
+			if editBox.languageID ~= defaultLangID then
+				return
+			end
+
 			local text = editBox:GetText();
 			if text and send == 1 then
 				if text ~= "" and text ~= nil then
@@ -330,18 +368,24 @@ function mainFrame.enablePrefix()
 						text = ApplyDialectToText(text) 
 					end
 					
-					if lang.factionCheck() == true then
-						if mainFrame.prefix == true and currentLanguage.lang ~= "" and currentLanguage.lang ~= nil and (chatType == "SAY" or chatType == "YELL") then
+					if lang.factionCheck() == true and ShouldProcessLanguage() then
+						if mainFrame.prefix == true
+							and currentLanguage.lang ~= ""
+							and currentLanguage.lang ~= nil
+							and (chatType == "SAY" or chatType == "YELL")
+						then
+							local prefix = string.format("[%s]", currentLanguage.lang)
+
 							if editBox:GetMaxBytes() ~= 1280 then
 								if C_AddOns.IsAddOnLoaded("EmoteSplitter") == true then
 									gopherPadding = LibGopher.GetPadding()
-									LibGopher.SetPadding( "[" .. currentLanguage.lang .. "]" )
-									text = " " .. text
+									LibGopher.SetPadding(prefix)
+									text = string.format(" %s", text)
 								else
-									text = "[" .. currentLanguage.lang .. "]" .. " " .. text;
+									text = string.format("%s %s", prefix, text)
 								end
 							else
-								text = "[" .. currentLanguage.lang .. "]" .. " " .. text;
+								text = string.format("%s %s", prefix, text)
 								editBox:SetVisibleTextByteLimit(255)
 							end
 						end
@@ -702,7 +746,23 @@ local languageBasicList = {
 	"Arathi",
 };
 
-local RaceDefaults = {
+local LANGPRESET_CLASS_LANGUAGE_DEFAULT = {
+	gameplay = {
+		[12] = { "Demonic" },			-- Demon Hunter
+	},
+	recommended = {
+		[12] = { "Demonic" },			-- Demon Hunter
+		[5]  = { "Shath'Yar" },			-- Priest
+		[9]  = { "Demonic" },			-- Warlock
+		[4]  = { "Gutterspeak" },		-- Rogue
+		[7]  = { "Kalimag" },			-- Shaman
+		[8]  = { "Titan" },				-- Mage
+		[10] = { "Pandaren" },			-- Monk
+		[13] = { "Draconic" },			-- Evoker
+	},
+};
+
+local LANGPRESET_RACE_LANGUAGE_DEFAULT = {
 	gameplay = {
 		[1] = {["Common"] = true}, -- 1 human 
 		[3] = {["Common"] = true, ["Dwarven"] = true}, -- 3 dwarf
@@ -781,23 +841,23 @@ mainFrame.backgroundTex:SetAtlas("dragonriding-talents-background")
 
 --some test text
 mainFrame.PHText1 = content1:CreateFontString()
-mainFrame.PHText1:SetFont("Fonts\\FRIZQT__.TTF", 11)
+mainFrame.PHText1:SetFont(STANDARD_TEXT_FONT, 11)
 mainFrame.PHText1:SetPoint("CENTER", content1, "CENTER", 0, -500)
 mainFrame.PHText1:SetText(L["Diction"])
 mainFrame.PHText1:Hide()
 
 mainFrame.PHText2 = content2:CreateFontString()
-mainFrame.PHText2:SetFont("Fonts\\FRIZQT__.TTF", 20)
+mainFrame.PHText2:SetFont(STANDARD_TEXT_FONT, 20)
 mainFrame.PHText2:SetPoint("TOPLEFT", content2, "TOPLEFT", 55, -25)
 mainFrame.PHText2:SetText(L["Settings"])
 
 mainFrame.PHText3 = content3:CreateFontString()
-mainFrame.PHText3:SetFont("Fonts\\FRIZQT__.TTF", 20)
+mainFrame.PHText3:SetFont(STANDARD_TEXT_FONT, 20)
 mainFrame.PHText3:SetPoint("TOPLEFT", content3, "TOPLEFT", 55, -25)
 mainFrame.PHText3:SetText(L["Profiles"])
 
 mainFrame.ButtonTest = CreateFrame("Button", nil, content1, "SharedGoldRedButtonSmallTemplate")
-mainFrame.ButtonTest:SetPoint("CENTER", content1, "CENTER", 0,-50)
+mainFrame.ButtonTest:SetPoint("TOPLEFT", content1, "TOPLEFT", 55,-25)
 mainFrame.ButtonTest:SetSize(230,50)
 mainFrame.ButtonTest:SetText(L["TogglePrefixOff"])
 mainFrame.ButtonTest:SetScript("OnClick", function(self, button)
@@ -805,14 +865,6 @@ mainFrame.ButtonTest:SetScript("OnClick", function(self, button)
 	PlaySound(857);
 end);
 
-
-----------------------------------------
--- content 1 - Diction
-----------------------------------------
-
-----------------------------------------
--- content 2 - Settings
-----------------------------------------
 
 mainFrame.backdropInfo = {
 	bgFile = "Interface\\Tooltips\\UI-Tooltip-Background",
@@ -858,107 +910,63 @@ StaticPopupDialogs["LANGUAGES_CHAR_RESET_SETTINGS"] = {
 };
 
 
+local function ApplyLanguagePreset(targetProfile, presetKey)
+	local raceID  = GetPlayerRaceID()
+	local classID = GetPlayerClassID()
 
-StaticPopupDialogs["LANGUAGES_CHAR_PRESET_RECOMMENDED"] = {
-	text = L["ApplyPresetConfirm"],
-	button1 = YES,
-	button2 = NO,
-	OnAccept = function()
-		if Languages_DB.profiles[charKey].TRP3 == true and TRP3_API then
-			Languages_DB.profiles["TRP3_" .. TRP3_API.profile.getPlayerCurrentProfile().profileName].understandLanguage = CopyTable(RaceDefaults.recommended[select(3, UnitRace("player"))]);
-			if select(3, UnitClass("player")) ==  12 then
-				Languages_DB.profiles["TRP3_" .. TRP3_API.profile.getPlayerCurrentProfile().profileName].understandLanguage["Demonic"] = true;
-			end
-			if select(3, UnitClass("player")) == 5 then
-				Languages_DB.profiles["TRP3_" .. TRP3_API.profile.getPlayerCurrentProfile().profileName].understandLanguage["Shath'Yar"] = true;
-			end
-			if select(3, UnitClass("player")) == 9 then
-				Languages_DB.profiles["TRP3_" .. TRP3_API.profile.getPlayerCurrentProfile().profileName].understandLanguage["Demonic"] = true;
-			end
-			if select(3, UnitClass("player")) == 4 then
-				Languages_DB.profiles["TRP3_" .. TRP3_API.profile.getPlayerCurrentProfile().profileName].understandLanguage["Gutterspeak"] = true;
-			end
-			if select(3, UnitClass("player")) == 7 then
-				Languages_DB.profiles["TRP3_" .. TRP3_API.profile.getPlayerCurrentProfile().profileName].understandLanguage["Kalimag"] = true;
-			end
-			if select(3, UnitClass("player")) == 8 then
-				Languages_DB.profiles["TRP3_" .. TRP3_API.profile.getPlayerCurrentProfile().profileName].understandLanguage["Titan"] = true;
-			end
-			if select(3, UnitClass("player")) == 10 then
-				Languages_DB.profiles["TRP3_" .. TRP3_API.profile.getPlayerCurrentProfile().profileName].understandLanguage["Pandaren"] = true;
-			end
-			if select(3, UnitClass("player")) == 13 then
-				Languages_DB.profiles["TRP3_" .. TRP3_API.profile.getPlayerCurrentProfile().profileName].understandLanguage["Draconic"] = true;
+	local raceDefaults  = LANGPRESET_RACE_LANGUAGE_DEFAULT[presetKey]
+	local classDefaults = LANGPRESET_CLASS_LANGUAGE_DEFAULT[presetKey]
+
+	targetProfile.understandLanguage = CopyTable((raceDefaults and raceDefaults[raceID]) or {})
+
+	local bonuses = classDefaults and classDefaults[classID]
+	if bonuses then
+		for _, language in ipairs(bonuses) do
+			targetProfile.understandLanguage[language] = true
+		end
+	end
+end
+
+local function GetTRP3Profile()
+	if not (Languages_DB.profiles[charKey].TRP3 and TRP3_API) then
+		return nil
+	end
+
+	local profileName = TRP3_API.profile.getPlayerCurrentProfile().profileName
+	return Languages_DB.profiles["TRP3_" .. profileName]
+end
+
+local function CreatePresetPopup(presetKey)
+	return {
+		text = L["ApplyPresetConfirm"],
+		button1 = YES,
+		button2 = NO,
+		timeout = 0,
+		whileDead = true,
+		hideOnEscape = true,
+
+		OnAccept = function()
+			local trp3Profile = GetTRP3Profile()
+			if trp3Profile then
+				ApplyLanguagePreset(trp3Profile, presetKey)
 			end
 
-		end
-		Languages_DB.profiles[charKey].understandLanguage = CopyTable(RaceDefaults.recommended[select(3, UnitRace("player"))]);
-		if select(3, UnitClass("player")) ==  12 then
-			Languages_DB.profiles[charKey].understandLanguage["Demonic"] = true;
-		end
-		if select(3, UnitClass("player")) == 5 then
-			Languages_DB.profiles[charKey].understandLanguage["Shath'Yar"] = true;
-		end
-		if select(3, UnitClass("player")) == 9 then
-			Languages_DB.profiles[charKey].understandLanguage["Demonic"] = true;
-		end
-		if select(3, UnitClass("player")) == 4 then
-			Languages_DB.profiles[charKey].understandLanguage["Gutterspeak"] = true;
-		end
-		if select(3, UnitClass("player")) == 7 then
-			Languages_DB.profiles[charKey].understandLanguage["Kalimag"] = true;
-		end
-		if select(3, UnitClass("player")) == 8 then
-			Languages_DB.profiles[charKey].understandLanguage["Titan"] = true;
-		end
-		if select(3, UnitClass("player")) == 10 then
-			Languages_DB.profiles[charKey].understandLanguage["Pandaren"] = true;
-		end
-		if select(3, UnitClass("player")) == 13 then
-			Languages_DB.profiles[charKey].understandLanguage["Draconic"] = true;
-		end
-		lang.checkSettings();
-	end,
-	timeout = 0,
-	whileDead = true,
-	hideOnEscape = true,
-};
+			ApplyLanguagePreset(Languages_DB.profiles[charKey], presetKey)
+			lang.checkSettings()
+		end,
+	}
+end
 
+StaticPopupDialogs["LANGUAGES_CHAR_PRESET_RECOMMENDED"] = CreatePresetPopup("recommended")
 
-
-StaticPopupDialogs["LANGUAGES_CHAR_PRESET_GAMEPLAY"] = {
-	text = L["ApplyPresetConfirm"],
-	button1 = YES,
-	button2 = NO,
-	OnAccept = function()
-		if Languages_DB.profiles[charKey].TRP3 == true and TRP3_API then
-			Languages_DB.profiles["TRP3_" .. TRP3_API.profile.getPlayerCurrentProfile().profileName].understandLanguage = CopyTable(RaceDefaults.gameplay[select(3, UnitRace("player"))]);
-			if select(3, UnitClass("player")) ==  12 then
-				Languages_DB.profiles["TRP3_" .. TRP3_API.profile.getPlayerCurrentProfile().profileName].understandLanguage["Demonic"] = true;
-			end
-			if select(3, UnitClass("player")) == 5 then
-				Languages_DB.profiles["TRP3_" .. TRP3_API.profile.getPlayerCurrentProfile().profileName].understandLanguage["Shath'Yar"] = true;
-			end
-		end
-		Languages_DB.profiles[charKey].understandLanguage = CopyTable(RaceDefaults.gameplay[select(3, UnitRace("player"))]);
-		if select(3, UnitClass("player")) ==  12 then
-			Languages_DB.profiles[charKey].understandLanguage["Demonic"] = true;
-		end
-		if select(3, UnitClass("player")) == 5 then
-			Languages_DB.profiles[charKey].understandLanguage["Shath'Yar"] = true;
-		end
-		lang.checkSettings();
-	end,
-	timeout = 0,
-	whileDead = true,
-	hideOnEscape = true,
-};
+StaticPopupDialogs["LANGUAGES_CHAR_PRESET_GAMEPLAY"] = CreatePresetPopup("gameplay")
 
 
 
 mainFrame.LangList_Frame = CreateFrame("Frame", nil, content1, "BackdropTemplate")
-mainFrame.LangList_Frame:SetPoint("TOP", content1, "TOP", 0, -95)
-mainFrame.LangList_Frame:SetSize(300, 250)
+mainFrame.LangList_Frame:SetPoint("TOPLEFT", content1, "TOPLEFT", 0, -115)
+mainFrame.LangList_Frame:SetPoint("TOPRIGHT", content1, "TOPRIGHT", -25, -115)
+mainFrame.LangList_Frame:SetHeight(250)
 mainFrame.LangList_Frame:SetBackdrop(mainFrame.backdropInfo)
 mainFrame.LangList_Frame:SetBackdropColor(0,0,0,.5)
 
@@ -968,15 +976,44 @@ mainFrame.DialectList_Frame:SetSize(300, 100)
 mainFrame.DialectList_Frame:SetBackdrop(mainFrame.backdropInfo)
 mainFrame.DialectList_Frame:SetBackdropColor(0,0,0,.5)
 
-mainFrame.ColumnLanguage = mainFrame.LangList_Frame:CreateFontString()
-mainFrame.ColumnLanguage:SetFont("Fonts\\FRIZQT__.TTF", 11)
-mainFrame.ColumnLanguage:SetPoint("BOTTOMLEFT", mainFrame.LangList_Frame, "TOPLEFT", 10, 5)
-mainFrame.ColumnLanguage:SetText(L["Language"])
+local LangSearchBox = CreateFrame("EditBox", nil, mainFrame.LangList_Frame, "SearchBoxTemplate")
+LangSearchBox:SetPoint("BOTTOMLEFT", mainFrame.LangList_Frame, "TOPLEFT", 10, 5)
+LangSearchBox:SetPoint("BOTTOMRIGHT", mainFrame.LangList_Frame, "TOPRIGHT", -25, 5)
+LangSearchBox:SetHeight(20)
+LangSearchBox:SetAutoFocus(false)
 
-mainFrame.ColumnUnderstand = mainFrame.LangList_Frame:CreateFontString()
-mainFrame.ColumnUnderstand:SetFont("Fonts\\FRIZQT__.TTF", 11)
-mainFrame.ColumnUnderstand:SetPoint("BOTTOMLEFT", mainFrame.LangList_Frame, "TOPLEFT", 220, 5)
-mainFrame.ColumnUnderstand:SetText(L["Understand"])
+LangSearchBox:HookScript("OnEnter", function(self)
+	GameTooltip:SetOwner(self, "ANCHOR_TOP")
+	GameTooltip:AddLine(L["SearchLanguages"], 1, 1, 1)
+	GameTooltip:Show()
+end)
+LangSearchBox:HookScript("OnLeave", function()
+	GameTooltip:Hide()
+end)
+
+local function CleanSearchString(str)
+	if not str then return "" end
+	str = str:lower()
+	str = str:gsub("[_%s]+", " ")
+	str = str:match("^%s*(.-)%s*$")
+	return str
+end
+
+local function LangSearchBox_OnUpdate(self, elapsed)
+	self.t = self.t + elapsed
+	if self.t >= 0.2 then
+		self.t = 0
+		self:SetScript("OnUpdate", nil)
+		mainFrame.RefreshLanguageList()
+	end
+end
+
+local function LangSearchBox_OnTextChanged(self)
+	self.t = 0
+	self:SetScript("OnUpdate", LangSearchBox_OnUpdate)
+end
+
+LangSearchBox:HookScript("OnTextChanged", LangSearchBox_OnTextChanged)
 
 local LangScrollBox = CreateFrame("Frame", nil, mainFrame.LangList_Frame, "WowScrollBoxList")
 LangScrollBox:SetPoint("TOPLEFT", 5, -5)
@@ -1023,12 +1060,57 @@ local function LanguageRowInitializer(button, data)
 	button.selectedTex:SetShown(currentLanguage.lang == data.key)
 
 	if not button.text then
-		button.text = button:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
-		button.text:SetPoint("LEFT", 10, 0)
+		button.text = button:CreateFontString(nil, "OVERLAY", "GameFontHighlight")
+		button.text:SetPoint("LEFT", 30, 0)
 		button.text:SetPoint("RIGHT", -50, 0)
 		button.text:SetJustifyH("LEFT")
 	end
 	button.text:SetText(data.name)
+
+	if not button.favoriteButton then
+		button.favoriteButton = CreateFrame("Button", nil, button)
+		button.favoriteButton:SetSize(20, 20)
+		button.favoriteButton:SetPoint("LEFT", button, "LEFT", 5, 0)
+		
+		button.favoriteButton.icon = button.favoriteButton:CreateTexture(nil, "ARTWORK")
+		button.favoriteButton.icon:SetAllPoints()
+		
+		button.favoriteButton:SetScript("OnClick", function(self)
+			local langKey = button:GetElementData().key
+			local profile = Languages_DB.profiles[charKey]
+			
+			if profile.TRP3 and TRP3_API then
+				profile = Languages_DB.profiles["TRP3_" .. TRP3_API.profile.getPlayerCurrentProfile().profileName]
+			end
+			
+			if not profile.favoriteLanguages then
+				profile.favoriteLanguages = {}
+			end
+			
+			profile.favoriteLanguages[langKey] = not profile.favoriteLanguages[langKey]
+			
+			if profile.favoriteLanguages[langKey] then
+				Print(L[langKey] .. " " .. (L["AddedToFavorites"]))
+				PlaySound(856)
+			else
+				Print(L[langKey] .. " " .. (L["RemovedFromFavorites"]))
+				PlaySound(857)
+			end
+			
+			mainFrame.RefreshLanguageList()
+		end)
+		
+		button.favoriteButton:SetScript("OnEnter", function(self)
+			mainFrame:tooltip_OnEnter(self, L["ToggleFavoriteTT"]);
+		end)
+		button.favoriteButton:SetScript("OnLeave", mainFrame.tooltip_OnLeave)
+	end
+
+	if data.isFavorite then
+		button.favoriteButton.icon:SetAtlas("auctionhouse-icon-favorite")
+	else
+		button.favoriteButton.icon:SetAtlas("auctionhouse-icon-favorite-off")
+	end
 
 	if not button.runeIcon then
 		button.runeIcon = button:CreateTexture(nil, "OVERLAY")
@@ -1107,31 +1189,63 @@ LangScrollView:SetPadding(5, 5, 5, 5, 2)
 
 function mainFrame.RefreshLanguageList()
 	local dataProvider = CreateDataProvider()
+	local profile = Languages_DB.profiles[charKey]
+	
+	if profile.TRP3 and TRP3_API and TRP3_API.profile and TRP3_API.profile.getPlayerCurrentProfile() and TRP3_API.profile.getPlayerCurrentProfile().profileName then
+		profile = Languages_DB.profiles["TRP3_" .. TRP3_API.profile.getPlayerCurrentProfile().profileName]
+	end
+	
+	if not profile.favoriteLanguages then
+		profile.favoriteLanguages = {}
+	end
+	
+	local favorites = {}
+	local nonFavorites = {}
+
+	local searchText = CleanSearchString(LangSearchBox:GetText())
 	
 	for _, langKey in ipairs(languageBasicList) do
-		local isLearned = false
-		if Languages_DB.profiles[charKey].TRP3 == true and TRP3_API and TRP3_API.profile and TRP3_API.profile.getPlayerCurrentProfile() and TRP3_API.profile.getPlayerCurrentProfile().profileName then
-			 local trpProfile = Languages_DB.profiles["TRP3_" .. TRP3_API.profile.getPlayerCurrentProfile().profileName]
-			 if trpProfile and trpProfile.understandLanguage then
-				 isLearned = trpProfile.understandLanguage[langKey]
-			 end
-		else
-			 if Languages_DB.profiles[charKey].understandLanguage then
-				 isLearned = Languages_DB.profiles[charKey].understandLanguage[langKey]
-			 end
-		end
+		local name = L[langKey]
 
-		local hasRunes = false
-		if LANGUAGE_REPLACEMENTS[langKey] and LANGUAGE_REPLACEMENTS[langKey]["hasRunes"] then
-			hasRunes = true
-		end
+		if searchText == "" or string.find(string.lower(name), searchText, 1, true) then
 
-		dataProvider:Insert({
-			key = langKey,
-			name = L[langKey],
-			hasRunes = hasRunes,
-			isLearned = isLearned
-		})
+			local isLearned = false
+			if profile.understandLanguage then
+				isLearned = profile.understandLanguage[langKey]
+			end
+	
+			local hasRunes = false
+			if LANGUAGE_REPLACEMENTS[langKey] and LANGUAGE_REPLACEMENTS[langKey]["hasRunes"] then
+				hasRunes = true
+			end
+			
+			local isFavorite = profile.favoriteLanguages[langKey] or false
+	
+			local langData = {
+				key = langKey,
+				name = name,
+				hasRunes = hasRunes,
+				isLearned = isLearned,
+				isFavorite = isFavorite
+			}
+			
+			if isFavorite then
+				table.insert(favorites, langData)
+			else
+				table.insert(nonFavorites, langData)
+			end
+		end
+	end
+	
+	table.sort(favorites, function(a, b) return a.name < b.name end)
+	table.sort(nonFavorites, function(a, b) return a.name < b.name end)
+	
+	for _, langData in ipairs(favorites) do
+		dataProvider:Insert(langData)
+	end
+	
+	for _, langData in ipairs(nonFavorites) do
+		dataProvider:Insert(langData)
 	end
 	
 	LangScrollView:SetDataProvider(dataProvider)
@@ -1146,7 +1260,7 @@ mainFrame.Acc_Frame:SetBackdrop(mainFrame.backdropInfo)
 mainFrame.Acc_Frame:SetBackdropColor(0,0,0,.5)
 
 mainFrame.header1 = content2:CreateFontString()
-mainFrame.header1:SetFont("Fonts\\FRIZQT__.TTF", 11)
+mainFrame.header1:SetFont(STANDARD_TEXT_FONT, 11)
 mainFrame.header1:SetPoint("BOTTOMLEFT", mainFrame.Acc_Frame, "TOPLEFT", 0, 0)
 mainFrame.header1:SetText(L["AccountSettings"])
 
@@ -1170,7 +1284,7 @@ mainFrame.Char_Frame:SetBackdrop(mainFrame.backdropInfo)
 mainFrame.Char_Frame:SetBackdropColor(0,0,0,.5)
 
 mainFrame.header2 = content2:CreateFontString()
-mainFrame.header2:SetFont("Fonts\\FRIZQT__.TTF", 11)
+mainFrame.header2:SetFont(STANDARD_TEXT_FONT, 11)
 mainFrame.header2:SetPoint("BOTTOMLEFT", mainFrame.Char_Frame, "TOPLEFT", 0, 0)
 mainFrame.header2:SetText(L["CharacterSettings"])
 
@@ -1201,7 +1315,7 @@ mainFrame.glyphsCB:SetScript("OnClick", function(self)
 	lang.checkSettings();
 end);
 mainFrame.glyphsCB.text = mainFrame.Acc_Frame:CreateFontString()
-mainFrame.glyphsCB.text:SetFont("Fonts\\FRIZQT__.TTF", 11)
+mainFrame.glyphsCB.text:SetFont(STANDARD_TEXT_FONT, 11)
 mainFrame.glyphsCB.text:SetPoint("RIGHT", mainFrame.glyphsCB, "LEFT", -5, 0)
 mainFrame.glyphsCB.text:SetText(L["UseGlyphs"])
 mainFrame.glyphsCB:SetScript("OnEnter", function(self)
@@ -1214,7 +1328,7 @@ mainFrame.prefixColorPickerButton:SetPoint("TOPRIGHT", mainFrame.glyphsCB, "TOPR
 mainFrame.prefixColorPickerButton:SetSize(110,25)
 mainFrame.prefixColorPickerButton:SetText(COLOR_PICKER)
 mainFrame.prefixColorPickerButton.text = mainFrame.Acc_Frame:CreateFontString()
-mainFrame.prefixColorPickerButton.text:SetFont("Fonts\\FRIZQT__.TTF", 11)
+mainFrame.prefixColorPickerButton.text:SetFont(STANDARD_TEXT_FONT, 11)
 mainFrame.prefixColorPickerButton.text:SetPoint("RIGHT", mainFrame.prefixColorPickerButton, "LEFT", -5, 0)
 mainFrame.prefixColorPickerButton.text:SetText(L["AddonPrefixColor"])
 mainFrame.prefixColorPickerButton:SetScript("OnClick", function(self, button)
@@ -1236,7 +1350,7 @@ mainFrame.speechbubCB:SetScript("OnClick", function(self)
 	lang.checkSettings();
 end);
 mainFrame.speechbubCB.text = mainFrame.Acc_Frame:CreateFontString()
-mainFrame.speechbubCB.text:SetFont("Fonts\\FRIZQT__.TTF", 11)
+mainFrame.speechbubCB.text:SetFont(STANDARD_TEXT_FONT, 11)
 mainFrame.speechbubCB.text:SetPoint("RIGHT", mainFrame.speechbubCB, "LEFT", -5, 0)
 mainFrame.speechbubCB.text:SetText(L["SpeechBubbles"])
 mainFrame.speechbubCB:SetScript("OnEnter", function(self)
@@ -1259,7 +1373,7 @@ mainFrame.combatCB:SetScript("OnClick", function(self)
 	lang.checkSettings();
 end);
 mainFrame.combatCB.text = mainFrame.Acc_Frame:CreateFontString()
-mainFrame.combatCB.text:SetFont("Fonts\\FRIZQT__.TTF", 11)
+mainFrame.combatCB.text:SetFont(STANDARD_TEXT_FONT, 11)
 mainFrame.combatCB.text:SetPoint("RIGHT", mainFrame.combatCB, "LEFT", -5, 0)
 mainFrame.combatCB.text:SetText(L["CombatOption"])
 mainFrame.combatCB:SetScript("OnEnter", function(self)
@@ -1282,7 +1396,7 @@ mainFrame.factionLangCB:SetScript("OnClick", function(self)
 	lang.checkSettings();
 end);
 mainFrame.factionLangCB.text = mainFrame.Acc_Frame:CreateFontString()
-mainFrame.factionLangCB.text:SetFont("Fonts\\FRIZQT__.TTF", 11)
+mainFrame.factionLangCB.text:SetFont(STANDARD_TEXT_FONT, 11)
 mainFrame.factionLangCB.text:SetPoint("RIGHT", mainFrame.factionLangCB, "LEFT", -5, 0)
 mainFrame.factionLangCB.text:SetText(L["FactionOption"])
 mainFrame.factionLangCB:SetScript("OnEnter", function(self)
@@ -1312,7 +1426,7 @@ mainFrame.trp3ProfileCB:SetScript("OnClick", function(self)
 end);
 mainFrame.trp3ProfileCB:Disable();
 mainFrame.trp3ProfileCB.text = mainFrame.Char_Frame:CreateFontString()
-mainFrame.trp3ProfileCB.text:SetFont("Fonts\\FRIZQT__.TTF", 11)
+mainFrame.trp3ProfileCB.text:SetFont(STANDARD_TEXT_FONT, 11)
 mainFrame.trp3ProfileCB.text:SetPoint("RIGHT", mainFrame.trp3ProfileCB, "LEFT", -5, 0)
 mainFrame.trp3ProfileCB.text:SetText(L["LinkToTotalRP3"])
 mainFrame.trp3ProfileCB.text:SetTextColor(.5,.5,.5)
@@ -1345,7 +1459,7 @@ mainFrame.shapeshiftFormsCB:SetScript("OnClick", function(self)
 	lang.checkSettings();
 end);
 mainFrame.shapeshiftFormsCB.text = mainFrame.Char_Frame:CreateFontString()
-mainFrame.shapeshiftFormsCB.text:SetFont("Fonts\\FRIZQT__.TTF", 11)
+mainFrame.shapeshiftFormsCB.text:SetFont(STANDARD_TEXT_FONT, 11)
 mainFrame.shapeshiftFormsCB.text:SetPoint("RIGHT", mainFrame.shapeshiftFormsCB, "LEFT", -5, 0)
 mainFrame.shapeshiftFormsCB.text:SetText(L["UseAutoShapeshift"])
 mainFrame.shapeshiftFormsCB:SetScript("OnEnter", function(self)
@@ -1374,7 +1488,7 @@ mainFrame.onlyInCharacterCB:SetScript("OnClick", function(self)
 end);
 
 mainFrame.onlyInCharacterCB.text = mainFrame.Char_Frame:CreateFontString()
-mainFrame.onlyInCharacterCB.text:SetFont("Fonts\\FRIZQT__.TTF", 11)
+mainFrame.onlyInCharacterCB.text:SetFont(STANDARD_TEXT_FONT, 11)
 mainFrame.onlyInCharacterCB.text:SetPoint("RIGHT", mainFrame.onlyInCharacterCB, "LEFT", -5, 0)
 mainFrame.onlyInCharacterCB.text:SetText(L["OnlyInCharacter"] or "Only In Character")
 mainFrame.onlyInCharacterCB:SetScript("OnEnter", function(self)
@@ -1416,7 +1530,7 @@ mainFrame.preset_gameplay:SetScript("OnLeave", mainFrame.tooltip_OnLeave);
 ----------------------------------------
 
 mainFrame.Dialect = mainFrame.DialectList_Frame:CreateFontString()
-mainFrame.Dialect:SetFont("Fonts\\FRIZQT__.TTF", 11)
+mainFrame.Dialect:SetFont(STANDARD_TEXT_FONT, 11)
 mainFrame.Dialect:SetPoint("TOPLEFT", mainFrame.DialectList_Frame, "TOPLEFT", 10, -5)
 mainFrame.Dialect:SetText(L["Dialect"])
 
@@ -1754,46 +1868,56 @@ ChatFrameUtil.AddMessageEventFilter("CHAT_MSG_YELL", eventFilterStuff);
 
 local function testScriptHeader()
 	mainFrame.setMaxLetters()
-	--_G[ACTIVE_CHAT_EDIT_BOX:GetName().."Header"]:GetText()
-	--local header = _G[ACTIVE_CHAT_EDIT_BOX:GetName().."Header"]
-	local editBox
-	local header
-	if ACTIVE_CHAT_EDIT_BOX ~= nil and currentLanguage.lang ~= "" and currentLanguage.lang ~= nil and mainFrame.prefix == true then
-		if lang.combatCheck() then
-			return
-		else
-			if lang.factionCheck() == true then
-				editBox = _G[ACTIVE_CHAT_EDIT_BOX:GetName()]
-				header = _G[ACTIVE_CHAT_EDIT_BOX:GetName().."Header"]
-				if string.find(header:GetText(),currentLanguage.lang) then -- the header already exists
-					return
-				end
-				if editBox:GetAttribute("chatType") == "SAY" then
-					if editBox:IsShown() then
-						local left, right, top, bottom = editBox:GetTextInsets(); -- top/bottom will always be 0
-						header:SetText(header:GetText() .. "[" .. currentLanguage.lang .. "]");
-						editBox:SetTextInsets(left+(header:GetStringWidth()/1.3), right, top, bottom);
-					else
-						return
-					end
-				end
-				if editBox:GetAttribute("chatType") == "YELL" then
-					if editBox:IsShown() then
-						local left, right, top, bottom = editBox:GetTextInsets(); -- top/bottom will always be 0
-						header:SetText(header:GetText() .. "[" .. currentLanguage.lang .. "]");
-						editBox:SetTextInsets(left+(header:GetStringWidth()/1.3), right, top, bottom);
-					else
-						return
-					end
-				end
-			end
+
+	if ACTIVE_CHAT_EDIT_BOX == nil then return end
+
+	local editBox = _G[ACTIVE_CHAT_EDIT_BOX:GetName()]
+	local header = _G[ACTIVE_CHAT_EDIT_BOX:GetName().."Header"]
+	
+	if not editBox:IsShown() then return end
+	if lang.combatCheck() then return end
+	
+	local chatType = editBox:GetAttribute("chatType")
+	if chatType ~= "SAY" and chatType ~= "YELL" then return end
+
+	local defaultLang, defaultLangID = GetDefaultLanguage("player")
+	local currentLangID = editBox.languageID
+
+	local suffixText = ""
+	local useAddonColor = false
+
+	if currentLangID ~= defaultLangID then
+		local langName = GetLanguageNameByID(currentLangID)
+		if langName then
+			suffixText = "[" .. langName .. "]"
+			useAddonColor = false
+		end
+	elseif mainFrame.prefix == true and currentLanguage.lang ~= "" and currentLanguage.lang ~= nil then
+		if lang.factionCheck() == true and ShouldProcessLanguage() then
+			suffixText = "[" .. currentLanguage.lang .. "]"
+			useAddonColor = true
 		end
 	end
-	isFocused = false;
+
+	if suffixText == "" then return end
+
+	local cleanHeader = header:GetText():gsub("|c%x%x%x%x%x%x%x%x", ""):gsub("|r", "")
+	if string.find(cleanHeader, suffixText, 1, true) then return end
+
+	if useAddonColor then
+		local color = Languages_DB.settings.colors.prefix
+		local hex = CreateColor(color.r, color.g, color.b):GenerateHexColor()
+		suffixText = "|c" .. hex .. suffixText .. "|r"
+	end
+
+	local left, right, top, bottom = editBox:GetTextInsets()
+	
+	header:SetText(header:GetText() .. suffixText)
+	editBox:SetTextInsets(left + (header:GetStringWidth()/1.3), right, top, bottom)
 end
 
 mainFrame.PHTRP3Text = content3:CreateFontString()
-mainFrame.PHTRP3Text:SetFont("Fonts\\FRIZQT__.TTF", 11)
+mainFrame.PHTRP3Text:SetFont(STANDARD_TEXT_FONT, 11)
 mainFrame.PHTRP3Text:SetPoint("CENTER", content3, "CENTER", 0, -70)
 mainFrame.PHTRP3Text:SetText("Placeholder TRP3 Profile Name")
 
@@ -1993,10 +2117,50 @@ function mainFrame.init()
 	mainFrame.RefreshLanguageList()
 end
 
+function lang.InitializeDB()
+	if not Languages_DB then Languages_DB = {} end
+
+	if not Languages_DB.settings then 
+		Languages_DB.settings = CopyTable(defaultsTableAcc) 
+	else
+		for key, value in pairs(defaultsTableAcc) do
+			if Languages_DB.settings[key] == nil then
+				Languages_DB.settings[key] = value
+			elseif type(value) == "table" and type(Languages_DB.settings[key]) == "table" then
+				for subKey, subValue in pairs(value) do
+					if Languages_DB.settings[key][subKey] == nil then
+						Languages_DB.settings[key][subKey] = subValue
+					end
+				end
+			end
+		end
+	end
+
+	if not Languages_DB.profiles then Languages_DB.profiles = {} end
+	
+	if not Languages_DB.profiles[charKey] then 
+		Languages_DB.profiles[charKey] = CopyTable(defaultsTableChar) 
+	end
+
+	for profileName, profileData in pairs(Languages_DB.profiles) do
+		for key, value in pairs(defaultsTableChar) do
+			if profileData[key] == nil then
+				if type(value) == "table" then
+					profileData[key] = CopyTable(value)
+				else
+					profileData[key] = value
+				end
+			end
+		end
+	end
+end
+
 function lang.addonLoaded(self, event, arg1) -- table, event, addonName
 	if event == "ADDON_LOADED" and arg1 == "Languages" then
 
 		hooksecurefunc(ChatFrame1EditBox, "ParseText", function() RunNextFrame(testScriptHeader); end)
+
+		lang.InitializeDB()
 
 		if Languages_DB.settings == nil then
 			Languages_DB.settings = CopyTable(defaultsTableAcc);
@@ -2017,6 +2181,26 @@ function lang.addonLoaded(self, event, arg1) -- table, event, addonName
 		SlashCmdList.LANG = mainFrame.HandleSlashCommands;
 
 		mainFrame.init();
+
+
+		tinsert(UISpecialFrames, mainFrame:GetName())
+
+		mainFrame:SetScript("OnMouseDown", function(self, button)
+			self:SetToplevel(true);
+			self:StartMoving();
+		end);
+		mainFrame:SetScript("OnMouseUp", function(self, button)
+			mainFrame:StopMovingOrSizing()
+		end);
+
+		mainFrame:SetScript("OnShow", function()
+			lang.checkSettings()
+			PlaySound(SOUNDKIT.IG_CHARACTER_INFO_OPEN, "SFX");
+		end);
+		mainFrame:SetScript("OnHide", function()
+			lang.checkSettings()
+			PlaySound(SOUNDKIT.IG_CHARACTER_INFO_CLOSE, "SFX");
+		end);
 	end
 	if event == "UNIT_AURA" and arg1 == "player" then
 		lang.shapeshiftProfileCheck()
