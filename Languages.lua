@@ -37,7 +37,7 @@ local defaultsTableChar = {
 	dialect = nil,
 	favoriteLanguages = {},
 	selectionButton = {
-		shown = false,
+		shown = true,
 		point = "CENTER",
 		relativePoint = "CENTER",
 		x = 0,
@@ -1247,7 +1247,7 @@ local function LanguageRowInitializer(button, data)
 				PlaySound(857)
 			end
 
-			if Languages_DB.profiles[charKey].TRP3 == true and TRP3_API then
+			if Languages_DB.profiles[charKey].TRP3 and TRP3_API then
 				Languages_DB.profiles["TRP3_" .. TRP3_API.profile.getPlayerCurrentProfile().profileName].understandLanguage[langKey] = isChecked
 			else
 				Languages_DB.profiles[charKey].understandLanguage[langKey] = isChecked
@@ -1518,7 +1518,7 @@ mainFrame.trp3ProfileCB = CreateFrame("CheckButton", nil, mainFrame.Char_Frame, 
 mainFrame.trp3ProfileCB:SetPoint("TOPRIGHT", mainFrame.Char_Frame, "TOPRIGHT", -15, -15);
 mainFrame.trp3ProfileCB:SetScript("OnClick", function(self)
 	if self:GetChecked() then
-		if C_AddOns.IsAddOnLoaded("totalRP3") == true and TRP3_API then
+		if C_AddOns.IsAddOnLoaded("totalRP3") and TRP3_API then
 			Print(L["LoadingProfile"] .. ": " .. "TRP3_" .. TRP3_API.profile.getPlayerCurrentProfile().profileName);
 		else
 			Print(L["LoadingProfile"] .. ": " .. charKey);
@@ -1548,14 +1548,14 @@ mainFrame.shapeshiftFormsCB = CreateFrame("CheckButton", nil, mainFrame.trp3Prof
 mainFrame.shapeshiftFormsCB:SetPoint("TOPRIGHT", mainFrame.trp3ProfileCB, "TOPRIGHT", 0, -30);
 mainFrame.shapeshiftFormsCB:SetScript("OnClick", function(self)
 	if self:GetChecked() then
-		if Languages_DB.profiles[charKey].TRP3 == true and TRP3_API then
+		if Languages_DB.profiles[charKey].TRP3 and TRP3_API then
 			Languages_DB.profiles["TRP3_" .. TRP3_API.profile.getPlayerCurrentProfile().profileName].shapeshift = true;
 		else
 			Languages_DB.profiles[charKey].shapeshift = true;
 		end
 		PlaySound(856);
 	else
-		if Languages_DB.profiles[charKey].TRP3 == true and TRP3_API then
+		if Languages_DB.profiles[charKey].TRP3 and TRP3_API then
 			Languages_DB.profiles["TRP3_" .. TRP3_API.profile.getPlayerCurrentProfile().profileName].shapeshift = false;
 		else
 			Languages_DB.profiles[charKey].shapeshift = false;
@@ -1585,7 +1585,7 @@ mainFrame.onlyInCharacterCB:SetScript("OnClick", function(self)
 		PlaySound(857);
 	end
 
-	if Languages_DB.profiles[charKey].TRP3 == true and TRP3_API then
+	if Languages_DB.profiles[charKey].TRP3 and TRP3_API then
 		Languages_DB.profiles["TRP3_" .. TRP3_API.profile.getPlayerCurrentProfile().profileName].onlyInCharacter = isChecked;
 	else
 		Languages_DB.profiles[charKey].onlyInCharacter = isChecked;
@@ -1971,8 +1971,8 @@ local function eventFilterStuff(frame, event, message, sender, ...)
 				local displayLanguageName = L[internalKey] or internalKey
 				local bracketName = "[" .. displayLanguageName .. "]"
 
-				if Languages_DB.profiles[charKey].TRP3 == true and TRP3_API then
-					if Languages_DB.profiles["TRP3_" .. TRP3_API.profile.getPlayerCurrentProfile().profileName].understandLanguage[internalKey] == true then
+				if Languages_DB.profiles[charKey].TRP3 and TRP3_API then
+					if Languages_DB.profiles["TRP3_" .. TRP3_API.profile.getPlayerCurrentProfile().profileName].understandLanguage[internalKey] then
 						return false, "|c" .. textColor .. bracketName .. "|r " .. message, sender, ...
 					else
 						if event == "CHAT_MSG_SAY" then
@@ -1984,7 +1984,7 @@ local function eventFilterStuff(frame, event, message, sender, ...)
 					end
 
 				else
-					if Languages_DB.profiles[charKey].understandLanguage[internalKey] == true then
+					if Languages_DB.profiles[charKey].understandLanguage[internalKey] then
 						return false, "|c" .. textColor .. bracketName .. "|r " .. message, sender, ...
 					else
 						if event == "CHAT_MSG_SAY" then
@@ -2009,7 +2009,7 @@ ChatFrameUtil.AddMessageEventFilter("CHAT_MSG_YELL", eventFilterStuff);
 local function testScriptHeader()
 	mainFrame.setMaxLetters()
 
-	if ACTIVE_CHAT_EDIT_BOX == nil then return end
+	if not ACTIVE_CHAT_EDIT_BOX then return end
 
 	local editBox = _G[ACTIVE_CHAT_EDIT_BOX:GetName()]
 	local header = _G[ACTIVE_CHAT_EDIT_BOX:GetName().."Header"]
