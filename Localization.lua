@@ -88,7 +88,7 @@ if LOCALE == "enUS" then
 	L["UseAutoShapeshift"] = "Automatic Shapeshift language"
 	L["UseAutoShapeshiftTT"] = "Shapeshifting into a form will automatically change your language to its association.\nRequires: Shadowform, Metamorphosis." --  Druid Forms, Ghost Wolf are planned maybe later 
 	L["LoadingProfile"] = "Loading Profile"
-	L["Help"] = "You can use "..colorThingS.."/languages"..colorThingE..", "..colorThingS.."/language"..colorThingE..", or "..colorThingS.."/lang"..colorThingE.." to access slash commands. The list of slash command sub-options available:"..
+	L["HelpCMD"] = "You can use "..colorThingS.."/languages"..colorThingE..", "..colorThingS.."/language"..colorThingE..", or "..colorThingS.."/lang"..colorThingE.." to access slash commands. The list of slash command sub-options available:"..
 	"\n"..colorThingS.."prefix"..colorThingE.." - toggle the [Language] prefix on/off."..
 	"\n"..colorThingS.."open"..colorThingE.." - open the options frame."..
 	"\n"..colorThingS.."minimap"..colorThingE.." - toggle the minimap button on/off."..
@@ -96,6 +96,14 @@ if LOCALE == "enUS" then
 	L["OnlyInCharacter"] = "Only In Character"
 	L["OnlyInCharacterTT"] = "Only Enable Prefix / Dialect while 'In Character'.\nRequires the addon Total RP 3"
 	L["RuneSize"] = "Glyph Size"
+	L["DisablePrefix"] = "Disable Prefix"
+	L["EnablePrefix"] = "Enable Prefix"
+	L["ShowSelectionButton"] = "Show Languages Mini-Button"
+	L["ShowSelectionButtonTT"] = "Toggles a small button on screen from which to access learned language selection."
+	L["SelectLanguage"] = "Select Language"
+	L["LeftClickToSelect"] = "Left-Click to Select Language"
+	L["RightClickToOptions"] = "Right-Click to Open Menu"
+	L["ShiftClickToDrag"] = "Shift-Click to Drag"
 
 	-- official languages
 	L["Common"] = 		"Common"			--7
@@ -326,7 +334,7 @@ if LOCALE == "esMX" then
 	L["UseAutoShapeshift"] = "Idioma de cambio de forma automático"
 	L["UseAutoShapeshiftTT"] = "Cambiar de forma a una forma cambiará automáticamente su idioma a su asociación.\nRequiere: Forma de sombra, Metamorfosis."
 	L["LoadingProfile"] = "Cargando perfil"
-	L["Help"] = "Puede utilizar "..colorThingS.."/languages"..colorThingE..", "..colorThingS.."/idiomas"..colorThingE..", o "..colorThingS.."/lang"..colorThingE.." para acceder a los comandos de barra diagonal. La lista de subopciones de comandos de barra diagonal disponibles:"..
+	L["HelpCMD"] = "Puede utilizar "..colorThingS.."/languages"..colorThingE..", "..colorThingS.."/idiomas"..colorThingE..", o "..colorThingS.."/lang"..colorThingE.." para acceder a los comandos de barra diagonal. La lista de subopciones de comandos de barra diagonal disponibles:"..
 	"\n"..colorThingS.."prefix"..colorThingE.." - activa o desactiva el prefijo [Language]."..
 	"\n"..colorThingS.."open"..colorThingE.." - abre el marco de opciones."..
 	"\n"..colorThingS.."minimap"..colorThingE.." - activa o desactiva el botón del minimapa."..
@@ -334,6 +342,14 @@ if LOCALE == "esMX" then
 	L["OnlyInCharacter"] = "Solo en personaje"
 	L["OnlyInCharacterTT"] = "Solo activa el prefijo / dialecto mientras estás \"En personaje\".\nRequiere el addon Total RP 3"
 	L["RuneSize"] = "Tamaño del glifo"
+	L["DisablePrefix"] = "Desactivar prefijo"
+	L["EnablePrefix"] = "Activar prefijo"
+	L["ShowSelectionButton"] = "Mostrar minibotón de idiomas"
+	L["ShowSelectionButtonTT"] = "Activa un pequeño botón en pantalla para acceder a la selección de idiomas aprendidos."
+	L["SelectLanguage"] = "Seleccionar idioma"
+	L["LeftClickToSelect"] = "Clic izquierdo para seleccionar idioma"
+	L["RightClickToOptions"] = "Clic derecho para abrir el menú"
+	L["ShiftClickToDrag"] = "Mayús + clic para arrastrar"
 
 	L["Common"] = 		"Lengua común"		--7
 	L["Darnassian"] = 	"Darnassiano"		--2
@@ -444,7 +460,7 @@ if LOCALE == "esES" then
 	L["UseAutoShapeshift"] = "Idioma de cambio de forma automático"
 	L["UseAutoShapeshiftTT"] = "Cambiar de forma a una forma cambiará automáticamente su idioma a su asociación.\nRequiere: Forma de sombra, Metamorfosis."
 	L["LoadingProfile"] = "Cargando perfil"
-	L["Help"] = "Puede utilizar "..colorThingS.."/languages"..colorThingE..", "..colorThingS.."/idiomas"..colorThingE..", o "..colorThingS.."/lang"..colorThingE.." para acceder a los comandos de barra diagonal. La lista de subopciones de comandos de barra diagonal disponibles:"..
+	L["HelpCMD"] = "Puede utilizar "..colorThingS.."/languages"..colorThingE..", "..colorThingS.."/idiomas"..colorThingE..", o "..colorThingS.."/lang"..colorThingE.." para acceder a los comandos de barra diagonal. La lista de subopciones de comandos de barra diagonal disponibles:"..
 	"\n"..colorThingS.."prefix"..colorThingE.." - activa o desactiva el prefijo [Language]."..
 	"\n"..colorThingS.."open"..colorThingE.." - abre el marco de opciones."..
 	"\n"..colorThingS.."minimap"..colorThingE.." - activa o desactiva el botón del minimapa."..
@@ -452,6 +468,14 @@ if LOCALE == "esES" then
 	L["OnlyInCharacter"] = "Solo en personaje"
 	L["OnlyInCharacterTT"] = "Solo activa el prefijo / dialecto mientras estás \"En personaje\".\nRequiere el addon Total RP 3"
 	L["RuneSize"] = "Tamaño del glifo"
+	L["DisablePrefix"] = "Desactivar prefijo"
+	L["EnablePrefix"] = "Activar prefijo"
+	L["ShowSelectionButton"] = "Mostrar minibotón de idiomas"
+	L["ShowSelectionButtonTT"] = "Activa un pequeño botón en pantalla para acceder a la selección de idiomas aprendidos."
+	L["SelectLanguage"] = "Seleccionar idioma"
+	L["LeftClickToSelect"] = "Clic izquierdo para seleccionar idioma"
+	L["RightClickToOptions"] = "Clic derecho para abrir el menú"
+	L["ShiftClickToDrag"] = "Mayús + clic para arrastrar"
 
 	L["Common"] = 		"Lengua común"		--7
 	L["Darnassian"] = 	"Darnassiano"		--2
@@ -562,7 +586,7 @@ if LOCALE == "deDE" then
 	L["UseAutoShapeshift"] = "Automatische Shapeshift-Sprache"
 	L["UseAutoShapeshiftTT"] = "Durch die Gestaltwandlung in eine Form wird Ihre Sprache automatisch an die entsprechende Assoziation angepasst.\nErfordert: Schattenform, Metamorphose."
 	L["LoadingProfile"] = "Profil wird geladen"
-	L["Help"] = "Sie können "..colorThingS.."/languages"..colorThingE..", "..colorThingS.."/sprachen"..colorThingE..", oder "..colorThingS.."/lang"..colorThingE.." verwenden, um auf Schrägstrich-Befehle zuzugreifen. Die Liste der verfügbaren Unteroptionen für Schrägstrich-Befehle:"..
+	L["HelpCMD"] = "Sie können "..colorThingS.."/languages"..colorThingE..", "..colorThingS.."/sprachen"..colorThingE..", oder "..colorThingS.."/lang"..colorThingE.." verwenden, um auf Schrägstrich-Befehle zuzugreifen. Die Liste der verfügbaren Unteroptionen für Schrägstrich-Befehle:"..
 	"\n"..colorThingS.."prefix"..colorThingE.." - Schaltet das [Language]-Präfix ein/aus."..
 	"\n"..colorThingS.."open"..colorThingE.." - Öffnet den Optionsrahmen."..
 	"\n"..colorThingS.."minimap"..colorThingE.." - Schaltet die Minikarten-Schaltfläche ein/aus."..
@@ -570,6 +594,14 @@ if LOCALE == "deDE" then
 	L["OnlyInCharacter"] = "Nur im Charakter"
 	L["OnlyInCharacterTT"] = "Aktiviert Präfix / Dialekt nur, wenn du \"Im Charakter\" bist.\nErfordert das Addon Total RP 3"
 	L["RuneSize"] = "Glyphengröße"
+	L["DisablePrefix"] = "Präfix deaktivieren"
+	L["EnablePrefix"] = "Präfix aktivieren"
+	L["ShowSelectionButton"] = "Mini-Schaltfläche für Sprachen anzeigen"
+	L["ShowSelectionButtonTT"] = "Blendet eine kleine Schaltfläche ein, über die die Auswahl erlernter Sprachen geöffnet werden kann."
+	L["SelectLanguage"] = "Sprache auswählen"
+	L["LeftClickToSelect"] = "Links-Klick zum Auswählen der Sprache"
+	L["RightClickToOptions"] = "Rechts-Klick zum Öffnen des Menüs"
+	L["ShiftClickToDrag"] = "UMSCHALT + Klick zum Verschieben"
 
 	L["Common"] = 		"Gemeinsprache"		--7
 	L["Darnassian"] = 	"Darnassisch"		--2
@@ -680,7 +712,7 @@ if LOCALE == "frFR" then
 	L["UseAutoShapeshift"] = "Langage Shapeshift automatique"
 	L["UseAutoShapeshiftTT"] = "Le changement de forme dans un formulaire changera automatiquement votre langue en son association.\nNécessite : Forme d'Ombre, Métamorphose."
 	L["LoadingProfile"] = "Chargement du profil"
-	L["Help"] = "Vous pouvez utiliser "..colorThingS.."/languages"..colorThingE..", "..colorThingS.."/langues"..colorThingE..", ou "..colorThingS.."/lang"..colorThingE.." pour accéder aux commandes slash. La liste des sous-options de commande slash disponibles:"..
+	L["HelpCMD"] = "Vous pouvez utiliser "..colorThingS.."/languages"..colorThingE..", "..colorThingS.."/langues"..colorThingE..", ou "..colorThingS.."/lang"..colorThingE.." pour accéder aux commandes slash. La liste des sous-options de commande slash disponibles:"..
 	"\n"..colorThingS.."prefix"..colorThingE.." - active/désactive le préfixe [Language]."..
 	"\n"..colorThingS.."open"..colorThingE.." - ouvre le cadre des options."..
 	"\n"..colorThingS.."minimap"..colorThingE.." - active/désactive le bouton de la mini-carte."..
@@ -688,6 +720,14 @@ if LOCALE == "frFR" then
 	L["OnlyInCharacter"] = "Uniquement en personnage"
 	L["OnlyInCharacterTT"] = "Active le préfixe / dialecte uniquement lorsque vous êtes « en personnage ».\nNécessite l’addon Total RP 3"
 	L["RuneSize"] = "Taille du glyphe"
+	L["DisablePrefix"] = "Désactiver le préfixe"
+	L["EnablePrefix"] = "Activer le préfixe"
+	L["ShowSelectionButton"] = "Afficher le mini-bouton des langues"
+	L["ShowSelectionButtonTT"] = "Affiche un petit bouton à l’écran permettant d’accéder à la sélection des langues apprises."
+	L["SelectLanguage"] = "Sélectionner la langue"
+	L["LeftClickToSelect"] = "Clic gauche pour sélectionner la langue"
+	L["RightClickToOptions"] = "Clic droit pour ouvrir le menu"
+	L["ShiftClickToDrag"] = "MAJ + clic pour déplacer"
 
 	L["Common"] = 		"Commun"		--7
 	L["Darnassian"] = 	"Darnassien"	--2
@@ -798,7 +838,7 @@ if LOCALE == "itIT" then
 	L["UseAutoShapeshift"] = "Linguaggio Shapeshift automatico"
 	L["UseAutoShapeshiftTT"] = "Trasformarti in una forma cambierà automaticamente la tua lingua in base alla sua associazione.\nRichiede: Forma d'Ombra, Metamorfosi."
 	L["LoadingProfile"] = "Caricamento profilo"
-	L["Help"] = "È possibile utilizzare "..colorThingS.."/languages"..colorThingE..", "..colorThingS.."/lingue"..colorThingE..", o "..colorThingS.."/lang"..colorThingE.." per accedere ai comandi slash. L'elenco delle opzioni secondarie dei comandi slash disponibili:"..
+	L["HelpCMD"] = "È possibile utilizzare "..colorThingS.."/languages"..colorThingE..", "..colorThingS.."/lingue"..colorThingE..", o "..colorThingS.."/lang"..colorThingE.." per accedere ai comandi slash. L'elenco delle opzioni secondarie dei comandi slash disponibili:"..
 	"\n"..colorThingS.."prefix"..colorThingE.." - attiva/disattiva il prefisso [Language]."..
 	"\n"..colorThingS.."open"..colorThingE.." - apre il riquadro delle opzioni."..
 	"\n"..colorThingS.."minimap"..colorThingE.." - attiva/disattiva il pulsante della minimappa."..
@@ -806,6 +846,14 @@ if LOCALE == "itIT" then
 	L["OnlyInCharacter"] = "Solo in personaggio"
 	L["OnlyInCharacterTT"] = "Attiva il prefisso / dialetto solo quando sei \"In personaggio\".\nRichiede l'addon Total RP 3"
 	L["RuneSize"] = "Dimensione del glifo"
+	L["DisablePrefix"] = "Disattiva prefisso"
+	L["EnablePrefix"] = "Attiva prefisso"
+	L["ShowSelectionButton"] = "Mostra mini-pulsante delle lingue"
+	L["ShowSelectionButtonTT"] = "Attiva un piccolo pulsante sullo schermo per accedere alla selezione delle lingue apprese."
+	L["SelectLanguage"] = "Seleziona lingua"
+	L["LeftClickToSelect"] = "Clic sinistro per selezionare la lingua"
+	L["RightClickToOptions"] = "Clic destro per aprire il menu"
+	L["ShiftClickToDrag"] = "MAIUSC + clic per trascinare"
 
 	L["Common"] = 		"Comune"		--7
 	L["Darnassian"] = 	"Darnassiano"	--2
@@ -916,7 +964,7 @@ if LOCALE == "ptBR" then
 	L["UseAutoShapeshift"] = "Linguagem de mudança de forma automática"
 	L["UseAutoShapeshiftTT"] = "Mudar de forma para uma forma mudará automaticamente seu idioma para sua associação.\nRequer: Shadowform, Metamorphosis."
 	L["LoadingProfile"] = "Carregando perfil"
-	L["Help"] = "Você pode usar "..colorThingS.."/languages"..colorThingE..", "..colorThingS.."/idiomas"..colorThingE..", ou "..colorThingS.."/lang"..colorThingE.." para acessar comandos de barra. A lista de subopções de comando de barra disponíveis:"..
+	L["HelpCMD"] = "Você pode usar "..colorThingS.."/languages"..colorThingE..", "..colorThingS.."/idiomas"..colorThingE..", ou "..colorThingS.."/lang"..colorThingE.." para acessar comandos de barra. A lista de subopções de comando de barra disponíveis:"..
 	"\n"..colorThingS.."prefix"..colorThingE.." - ativa/desativa o prefixo [Language]."..
 	"\n"..colorThingS.."open"..colorThingE.." - abre o quadro de opções."..
 	"\n"..colorThingS.."minimap"..colorThingE.." - ativa/desativa o botão do minimapa."..
@@ -924,6 +972,14 @@ if LOCALE == "ptBR" then
 	L["OnlyInCharacter"] = "Apenas em personagem"
 	L["OnlyInCharacterTT"] = "Ativa o prefixo / dialeto apenas quando estiver \"Em personagem\".\nRequer o addon Total RP 3"
 	L["RuneSize"] = "Tamanho do glifo"
+	L["DisablePrefix"] = "Desativar prefixo"
+	L["EnablePrefix"] = "Ativar prefixo"
+	L["ShowSelectionButton"] = "Mostrar mini-botão de idiomas"
+	L["ShowSelectionButtonTT"] = "Ativa um pequeno botão na tela para acessar a seleção de idiomas aprendidos."
+	L["SelectLanguage"] = "Selecionar idioma"
+	L["LeftClickToSelect"] = "Clique esquerdo para selecionar o idioma"
+	L["RightClickToOptions"] = "Clique direito para abrir o menu"
+	L["ShiftClickToDrag"] = "SHIFT + clique para arrastar"
 
 	L["Common"] = 		"Língua Comum"	--7
 	L["Darnassian"] = 	"Darnassiano"	--2
@@ -1036,7 +1092,7 @@ if LOCALE == "ruRU" then
 	L["UseAutoShapeshift"] = "Язык автоматического изменения формы"
 	L["UseAutoShapeshiftTT"] = "Преобразование в форму автоматически изменит ваш язык в соответствии с ассоциацией.\nТребуется: Теневая форма, Метаморфоза."
 	L["LoadingProfile"] = "Загрузка профиля"
-	L["Help"] = "Вы можете использовать "..colorThingS.."/languages"..colorThingE..", "..colorThingS.."/языки"..colorThingE..", или "..colorThingS.."/lang"..colorThingE.." для доступа к командам с косой чертой. Список доступных подопций команды с косой чертой:"..
+	L["HelpCMD"] = "Вы можете использовать "..colorThingS.."/languages"..colorThingE..", "..colorThingS.."/языки"..colorThingE..", или "..colorThingS.."/lang"..colorThingE.." для доступа к командам с косой чертой. Список доступных подопций команды с косой чертой:"..
 	"\n"..colorThingS.."prefix"..colorThingE.." - включение/выключение префикса [Language]."..
 	"\n"..colorThingS.."open"..colorThingE.." - открыть рамку опций."..
 	"\n"..colorThingS.."minimap"..colorThingE.." - включение/выключение кнопки миникарты."..
@@ -1044,6 +1100,14 @@ if LOCALE == "ruRU" then
 	L["OnlyInCharacter"] = "Только в образе"
 	L["OnlyInCharacterTT"] = "Включает префикс / диалект только в режиме «В образе».\nТребуется аддон Total RP 3"
 	L["RuneSize"] = "Размер глифа"
+	L["DisablePrefix"] = "Отключить префикс"
+	L["EnablePrefix"] = "Включить префикс"
+	L["ShowSelectionButton"] = "Показать мини-кнопку языков"
+	L["ShowSelectionButtonTT"] = "Включает небольшую кнопку на экране для доступа к выбору изученных языков."
+	L["SelectLanguage"] = "Выбрать язык"
+	L["LeftClickToSelect"] = "ЛКМ - выбрать язык"
+	L["RightClickToOptions"] = "ПКМ - открыть меню"
+	L["ShiftClickToDrag"] = "SHIFT + щелчок - переместить"
 
 	L["Common"] = 		"всеобщий"				--7
 	L["Darnassian"] = 	"дарнасский"			--2
@@ -1154,7 +1218,7 @@ if LOCALE == "koKR" then
 	L["UseAutoShapeshift"] = "자동 변신 언어"
 	L["UseAutoShapeshiftTT"] = "형태로 변신하면 자동으로 언어가 연관되어 변경됩니다.\n필요 사항: Shadowform, Metamorphosis."
 	L["LoadingProfile"] = "프로필 로드 중"
-	L["Help"] = colorThingS.."/languages"..colorThingE..", "..colorThingS.."/언어"..colorThingE..", 또는 "..colorThingS.."/lang"..colorThingE.." 사용하여 슬래시 명령에 액세스할 수 있습니다. 사용 가능한 슬래시 명령 하위 옵션 목록은 다음과 같습니다:"..
+	L["HelpCMD"] = colorThingS.."/languages"..colorThingE..", "..colorThingS.."/언어"..colorThingE..", 또는 "..colorThingS.."/lang"..colorThingE.." 사용하여 슬래시 명령에 액세스할 수 있습니다. 사용 가능한 슬래시 명령 하위 옵션 목록은 다음과 같습니다:"..
 	"\n"..colorThingS.."prefix"..colorThingE.." - [언어] 접두어를 켜거나 끕니다."..
 	"\n"..colorThingS.."open"..colorThingE.." - 옵션 프레임을 엽니다."..
 	"\n"..colorThingS.."minimap"..colorThingE.." - 미니맵 버튼을 켜거나 끕니다."..
@@ -1162,6 +1226,14 @@ if LOCALE == "koKR" then
 	L["OnlyInCharacter"] = "캐릭터 상태에서만"
 	L["OnlyInCharacterTT"] = "\"캐릭터 상태\"일 때만 접두사 / 방언을 활성화합니다.\nTotal RP 3 애드온이 필요합니다"
 	L["RuneSize"] = "문양 크기"
+	L["DisablePrefix"] = "접두사 비활성화"
+	L["EnablePrefix"] = "접두사 활성화"
+	L["ShowSelectionButton"] = "언어 미니 버튼 표시"
+	L["ShowSelectionButtonTT"] = "학습한 언어 선택에 접근할 수 있는 작은 버튼을 화면에 표시합니다."
+	L["SelectLanguage"] = "언어 선택"
+	L["LeftClickToSelect"] = "좌클릭으로 언어 선택"
+	L["RightClickToOptions"] = "우클릭으로 메뉴 열기"
+	L["ShiftClickToDrag"] = "SHIFT + 클릭으로 드래그"
 
 	L["Common"] = 		"공용어"			--7
 	L["Darnassian"] = 	"나이트 엘프어"	--2
@@ -1272,7 +1344,7 @@ if LOCALE == "zhCN" then
 	L["UseAutoShapeshift"] = "自动变形语言"
 	L["UseAutoShapeshiftTT"] = "变形为某种形态会自动改变你的语言与其关联。\n需要：暗影形态、变形。"
 	L["LoadingProfile"] = "加载配置文件"
-	L["Help"] = "您可以使用 "..colorThingS.."/languages"..colorThingE..", "..colorThingS.."/语言"..colorThingE..", 或 "..colorThingS.."/lang"..colorThingE.." t来访问斜杠命令。可用的斜杠命令子选项列表:"..
+	L["HelpCMD"] = "您可以使用 "..colorThingS.."/languages"..colorThingE..", "..colorThingS.."/语言"..colorThingE..", 或 "..colorThingS.."/lang"..colorThingE.." t来访问斜杠命令。可用的斜杠命令子选项列表:"..
 	"\n"..colorThingS.."prefix"..colorThingE.." - 打开/关闭 [Language] 前缀。"..
 	"\n"..colorThingS.."open"..colorThingE.." - 打开选项框架。"..
 	"\n"..colorThingS.."minimap"..colorThingE.." - 打开/关闭小地图按钮。"..
@@ -1280,6 +1352,14 @@ if LOCALE == "zhCN" then
 	L["OnlyInCharacter"] = "仅角色状态"
 	L["OnlyInCharacterTT"] = "仅在“角色状态”下启用前缀 / 方言。\n需要 Total RP 3 插件"
 	L["RuneSize"] = "雕文大小"
+	L["DisablePrefix"] = "禁用前缀"
+	L["EnablePrefix"] = "启用前缀"
+	L["ShowSelectionButton"] = "显示语言迷你按钮"
+	L["ShowSelectionButtonTT"] = "在屏幕上显示一个小按钮，用于访问已学习语言的选择。"
+	L["SelectLanguage"] = "选择语言"
+	L["LeftClickToSelect"] = "左键选择语言"
+	L["RightClickToOptions"] = "右键打开菜单"
+	L["ShiftClickToDrag"] = "Shift + 单击拖动"
 
 	L["Common"] = 		"通用语"			--7
 	L["Darnassian"] = 	"达纳苏斯语"		--2
@@ -1390,7 +1470,7 @@ if LOCALE == "zhTW" then
 	L["UseAutoShapeshift"] = "自動變形語言"
 	L["UseAutoShapeshiftTT"] = "變形為某種形態會自動改變你的語言與其關聯。\n需要：暗影形態、變形。"
 	L["LoadingProfile"] = "載入設定檔"
-	L["Help"] = "您可以使用 "..colorThingS.."/languages"..colorThingE..", "..colorThingS.."/語言"..colorThingE..", 或 "..colorThingS.."/lang"..colorThingE.." 來存取斜杠命令。可用的斜杠命令子選項清單:"..
+	L["HelpCMD"] = "您可以使用 "..colorThingS.."/languages"..colorThingE..", "..colorThingS.."/語言"..colorThingE..", 或 "..colorThingS.."/lang"..colorThingE.." 來存取斜杠命令。可用的斜杠命令子選項清單:"..
 	"\n"..colorThingS.."prefix"..colorThingE.." - 開啟/關閉 [Language] 前綴。"..
 	"\n"..colorThingS.."open"..colorThingE.." - 開啟選項框架。"..
 	"\n"..colorThingS.."minimap"..colorThingE.." - 開啟/關閉小地圖按鈕。"..
@@ -1398,6 +1478,14 @@ if LOCALE == "zhTW" then
 	L["OnlyInCharacter"] = "僅角色狀態"
 	L["OnlyInCharacterTT"] = "僅在「角色狀態」下啟用前綴 / 方言。\n需要 Total RP 3 外掛"
 	L["RuneSize"] = "雕文大小"
+	L["DisablePrefix"] = "停用前綴"
+	L["EnablePrefix"] = "啟用前綴"
+	L["ShowSelectionButton"] = "顯示語言迷你按鈕"
+	L["ShowSelectionButtonTT"] = "在畫面上顯示一個小按鈕，用於存取已學會的語言選擇。"
+	L["SelectLanguage"] = "選擇語言"
+	L["LeftClickToSelect"] = "左鍵選擇語言"
+	L["RightClickToOptions"] = "右鍵開啟選單"
+	L["ShiftClickToDrag"] = "Shift + 點擊拖曳"
 
 	L["Common"] = 		"通用語"			--7
 	L["Darnassian"] = 	"達納蘇斯語"		--2

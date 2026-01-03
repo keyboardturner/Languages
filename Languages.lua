@@ -36,6 +36,13 @@ local defaultsTableChar = {
 	},
 	dialect = nil,
 	favoriteLanguages = {},
+	selectionButton = {
+		shown = false,
+		point = "CENTER",
+		relativePoint = "CENTER",
+		x = 0,
+		y = 0,
+	},
 };
 
 local lang = CreateFrame("Frame");
@@ -245,13 +252,22 @@ function mainFrame.TogglePrefix()
 		mainFrame.prefix = false;
 		mainFrame.ButtonTest:SetText(L["TogglePrefixOff"]);
 		--Print(L["TogglePrefixTextOff"]);
-	elseif mainFrame.prefix == false then
-		mainFrame.prefix = true;
-		if currentLanguage.lang == nil then
-			currentLanguage.lang = ""
+
+		if lang.SelectionButton then
+			lang.SelectionButton:SetBackdropBorderColor(0.6, 0.0, 0.0, 1)
 		end
-		mainFrame.ButtonTest:SetText(L["TogglePrefixOn"] .. "\n" .. L["CurrentlySpeaking"] .. " " .. (L[currentLanguage.lang] or currentLanguage.lang));
+	else
+		mainFrame.prefix = true;
+		if currentLanguage.lang then
+			mainFrame.ButtonTest:SetText(L["TogglePrefixOn"] .. "\n" .. L["CurrentlySpeaking"] .. " " .. (L[currentLanguage.lang] or currentLanguage.lang));
+		else
+			mainFrame.ButtonTest:SetText(L["TogglePrefixOn"] .. "\n" .. L["CurrentlySpeaking"] .. " " .. "");
+		end
 		--Print(L["TogglePrefixTextOn"]);
+
+		if lang.SelectionButton then
+			lang.SelectionButton:SetBackdropBorderColor(0.6, 0.6, 0.6, 1)
+		end
 	end
 end
 
@@ -283,7 +299,7 @@ local textBeforeParse, parsedEditBox;
 local gopherPadding;
 
 local function ApplyDialectToText(text)
-	if not ShouldProcessLanguage() then
+	if not ShouldProcessLanguage() or not mainFrame.prefix then
 		return text
 	end
 	
@@ -473,7 +489,7 @@ mainFrame.commands = {
 	end,
 
 	["help"] = function()
-		Print(L["Help"])
+		Print(L["HelpCMD"])
 	end,
 
 	["open"] = function()
@@ -760,6 +776,152 @@ local LANGPRESET_RACE_LANGUAGE_DEFAULT = {
 ----------------------------------------
 
 
+
+function lang.SaveButtonPosition(self)
+	local point, _, relativePoint, x, y = self:GetPoint()
+	local profile = Languages_DB.profiles[charKey]
+	if profile.TRP3 and TRP3_API then
+		profile = Languages_DB.profiles["TRP3_" .. TRP3_API.profile.getPlayerCurrentProfile().profileName]
+	end
+	
+	if not profile.selectionButton then profile.selectionButton = {} end
+	profile.selectionButton.point = point
+	profile.selectionButton.relativePoint = relativePoint
+	profile.selectionButton.x = x
+	profile.selectionButton.y = y
+end
+
+function lang.SelectionButtonGenerator(owner, rootDescription)
+	local prefixToggleText = mainFrame.prefix and L["DisablePrefix"] or L["EnablePrefix"]
+	local prefixToggle = rootDescription:CreateButton(prefixToggleText, function()
+		mainFrame.TogglePrefix()
+
+		local factionText
+		if UnitFactionGroup("player") == "Alliance" then
+			factionText = L["Common"]
+		elseif UnitFactionGroup("player") == "Horde" then
+			factionText = L["Orcish"]
+		elseif UnitFactionGroup("player") == "Neutral" then
+			factionText = L["Pandaren"]
+		end
+		
+		if lang.SelectionButton and currentLanguage.lang then
+			local langName = L[currentLanguage.lang] or currentLanguage.lang
+			lang.SelectionButton.Text:SetText(langName)
+		else
+			lang.SelectionButton.Text:SetText(factionText)
+		end
+	end)
+	
+	rootDescription:CreateDivider()
+
+	rootDescription:CreateTitle(L["SelectLanguage"])
+
+	local function IsSelected(langKey)
+		return currentLanguage.lang == langKey
+	end
+
+	local function SetSelected(langKey)
+		mainFrame.SetLanguage(langKey)
+	end
+
+	local profile = Languages_DB.profiles[charKey]
+	if profile.TRP3 and TRP3_API then
+		profile = Languages_DB.profiles["TRP3_" .. TRP3_API.profile.getPlayerCurrentProfile().profileName]
+	end
+
+	local availableLanguages = {}
+	
+	for _, langKey in ipairs(languageBasicList) do
+		local isLearned = false
+		if profile.understandLanguage then
+			isLearned = profile.understandLanguage[langKey]
+		end
+		
+		if isLearned then
+			table.insert(availableLanguages, { key = langKey, name = L[langKey] or langKey })
+		end
+	end
+
+	table.sort(availableLanguages, function(a, b) return a.name < b.name end)
+
+	for _, langData in ipairs(availableLanguages) do
+		rootDescription:CreateRadio(langData.name, IsSelected, SetSelected, langData.key)
+	end
+end
+
+function lang.CreateSelectionButton()
+	local f = CreateFrame("Button", "LanguagesSelectionButton", UIParent, "BackdropTemplate")
+	f:SetSize(140, 30)
+	f:SetMovable(true)
+	f:EnableMouse(true)
+	
+	f:RegisterForClicks("AnyUp")
+	f:RegisterForDrag("LeftButton")
+	f:SetClampedToScreen(true)
+	
+	f:SetBackdrop({
+		bgFile = "Interface\\Tooltips\\UI-Tooltip-Background",
+		edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border",
+		tile = true, tileSize = 16, edgeSize = 16,
+		insets = { left = 4, right = 4, top = 4, bottom = 4 }
+	})
+	f:SetBackdropColor(0, 0, 0, 0.8)
+	f:SetBackdropBorderColor(0.6, 0.0, 0.0, 1)
+
+	local factionText
+	if UnitFactionGroup("player") == "Alliance" then
+		factionText = L["Common"]
+	elseif UnitFactionGroup("player") == "Horde" then
+		factionText = L["Orcish"]
+	elseif UnitFactionGroup("player") == "Neutral" then
+		factionText = L["Pandaren"]
+	end
+
+	f.Text = f:CreateFontString(nil, "OVERLAY", "GameFontHighlight")
+	f.Text:SetPoint("CENTER", 0, 0)
+	f.Text:SetText(factionText)
+	
+	f:SetScript("OnDragStart", function(self)
+		if IsShiftKeyDown() then
+			self:StartMoving()
+		end
+	end)
+	
+	f:SetScript("OnDragStop", function(self)
+		self:StopMovingOrSizing()
+		lang.SaveButtonPosition(self)
+	end)
+
+	f:SetScript("OnClick", function(self, button)
+		if button == "RightButton" then
+			if mainFrame:IsShown() then
+				mainFrame:Hide()
+			else
+				mainFrame:Show()
+			end
+		else
+			MenuUtil.CreateContextMenu(self, lang.SelectionButtonGenerator)
+		end
+	end)
+	
+	f:SetScript("OnEnter", function(self)
+		local tooltipText = (L["SelectLanguage"]) .. "\n" ..  -- something really must be done about these horrendous tooltips... soon(tm)
+							"|cffFFFFFF" .. (L["LeftClickToSelect"]) .. "|r\n" ..
+							"|cffFFFFFF" .. (L["RightClickToOptions"]) .. "|r\n" ..
+							"|cffFFFFFF" .. (L["ShiftClickToDrag"]) .. "|r"
+
+		mainFrame:tooltip_OnEnter(self, tooltipText)
+	end)
+	
+	f:SetScript("OnLeave", mainFrame.tooltip_OnLeave)
+	
+	f:Hide()
+	
+	lang.SelectionButton = f
+end
+
+
 ---------------------------------------------------------------------------------------------------------------------------------------------------------
 -- GUI Buttons
 ---------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -956,20 +1118,26 @@ local function UpdateLanguageHighlights()
 end
 
 function mainFrame.SetLanguage(langKey)
-	local displayName = L[langKey] or langKey
-	
-	currentLanguage.lang = langKey
-	preserveLanguage.lang = langKey
-	
-	Print(L["SettingLanguageTo"] .. " " .. displayName)
-	
-	mainFrame.prefix = false 
-	mainFrame.TogglePrefix()
-	
-	PlaySound(857)
-	
-	if mainFrame:IsShown() then
-		UpdateLanguageHighlights()
+	if langKey then
+		local displayName = L[langKey] or langKey
+		
+		currentLanguage.lang = langKey
+		preserveLanguage.lang = langKey
+		
+		Print(L["SettingLanguageTo"] .. " " .. displayName)
+
+		if lang.SelectionButton then
+			lang.SelectionButton.Text:SetText(displayName)
+		end
+		
+		mainFrame.prefix = false 
+		mainFrame.TogglePrefix()
+		
+		PlaySound(857)
+		
+		if mainFrame:IsShown() then
+			UpdateLanguageHighlights()
+		end
 	end
 end
 
@@ -1099,8 +1267,7 @@ local function LanguageRowInitializer(button, data)
 	button:SetScript("OnClick", function(self)
 		currentLanguage.lang = data.key
 		preserveLanguage.lang = data.key
-		
-		Print(L["SettingLanguageTo"] .. " " .. data.name)
+		mainFrame.SetLanguage(currentLanguage.lang)
 		
 		mainFrame.prefix = false
 		mainFrame.TogglePrefix()
@@ -1211,7 +1378,7 @@ mainFrame.resetAccSettings:SetScript("OnLeave", mainFrame.tooltip_OnLeave);
 
 mainFrame.Char_Frame = CreateFrame("Frame", nil, mainFrame.Acc_Frame, "BackdropTemplate")
 mainFrame.Char_Frame:SetPoint("TOP", mainFrame.Acc_Frame, "BOTTOM", 0, -55)
-mainFrame.Char_Frame:SetSize(300,110)
+mainFrame.Char_Frame:SetSize(300,140)
 mainFrame.Char_Frame:SetBackdrop(mainFrame.backdropInfo)
 mainFrame.Char_Frame:SetBackdropColor(0,0,0,.5)
 
@@ -1236,11 +1403,9 @@ mainFrame.glyphsCB = CreateFrame("CheckButton", nil, mainFrame.Acc_Frame, "UIChe
 mainFrame.glyphsCB:SetPoint("TOPRIGHT", mainFrame.Acc_Frame, "TOPRIGHT", -15, -15);
 mainFrame.glyphsCB:SetScript("OnClick", function(self)
 	if self:GetChecked() then
-		Print(L["GlyphsOn"]);
 		Languages_DB.settings.glyphs = true;
 		PlaySound(856);
 	else
-		Print(L["GlyphsOff"]);
 		Languages_DB.settings.glyphs = false;
 		PlaySound(857);
 	end
@@ -1271,11 +1436,9 @@ mainFrame.speechbubCB = CreateFrame("CheckButton", nil, mainFrame.prefixColorPic
 mainFrame.speechbubCB:SetPoint("TOPRIGHT", mainFrame.prefixColorPickerButton, "TOPRIGHT", 0, -30);
 mainFrame.speechbubCB:SetScript("OnClick", function(self)
 	if self:GetChecked() then
-		Print(L["SpeechBubblesOn"]);
 		Languages_DB.settings.speechBubbles = true;
 		PlaySound(856);
 	else
-		Print(L["SpeechBubblesOff"]);
 		Languages_DB.settings.speechBubbles = false;
 		PlaySound(857);
 	end
@@ -1294,11 +1457,9 @@ mainFrame.combatCB = CreateFrame("CheckButton", nil, mainFrame.speechbubCB, "UIC
 mainFrame.combatCB:SetPoint("TOPRIGHT", mainFrame.speechbubCB, "TOPRIGHT", 0, -30);
 mainFrame.combatCB:SetScript("OnClick", function(self)
 	if self:GetChecked() then
-		Print(L["CombatOptionOn"]);
 		Languages_DB.settings.combat = true;
 		PlaySound(856);
 	else
-		Print(L["CombatOptionOff"]);
 		Languages_DB.settings.combat = false;
 		PlaySound(857);
 	end
@@ -1317,11 +1478,9 @@ mainFrame.factionLangCB = CreateFrame("CheckButton", nil, mainFrame.combatCB, "U
 mainFrame.factionLangCB:SetPoint("TOPRIGHT", mainFrame.combatCB, "TOPRIGHT", 0, -30);
 mainFrame.factionLangCB:SetScript("OnClick", function(self)
 	if self:GetChecked() then
-		Print(L["FactionOptionOn"]);
 		Languages_DB.settings.faction = true;
 		PlaySound(856);
 	else
-		Print(L["FactionOptionOff"]);
 		Languages_DB.settings.faction = false;
 		PlaySound(857);
 	end
@@ -1359,7 +1518,6 @@ mainFrame.trp3ProfileCB = CreateFrame("CheckButton", nil, mainFrame.Char_Frame, 
 mainFrame.trp3ProfileCB:SetPoint("TOPRIGHT", mainFrame.Char_Frame, "TOPRIGHT", -15, -15);
 mainFrame.trp3ProfileCB:SetScript("OnClick", function(self)
 	if self:GetChecked() then
-		Print(L["LinkToTotalRP3On"]);
 		if C_AddOns.IsAddOnLoaded("totalRP3") == true and TRP3_API then
 			Print(L["LoadingProfile"] .. ": " .. "TRP3_" .. TRP3_API.profile.getPlayerCurrentProfile().profileName);
 		else
@@ -1368,7 +1526,6 @@ mainFrame.trp3ProfileCB:SetScript("OnClick", function(self)
 		Languages_DB.profiles[charKey].TRP3 = true;
 		PlaySound(856);
 	else
-		Print(L["LinkToTotalRP3Off"]);
 		Print(L["LoadingProfile"] .. ": " .. charKey);
 		Languages_DB.profiles[charKey].TRP3 = false;
 		PlaySound(857);
@@ -1391,7 +1548,6 @@ mainFrame.shapeshiftFormsCB = CreateFrame("CheckButton", nil, mainFrame.trp3Prof
 mainFrame.shapeshiftFormsCB:SetPoint("TOPRIGHT", mainFrame.trp3ProfileCB, "TOPRIGHT", 0, -30);
 mainFrame.shapeshiftFormsCB:SetScript("OnClick", function(self)
 	if self:GetChecked() then
-		Print(L["UseAutoShapeshiftOn"]);
 		if Languages_DB.profiles[charKey].TRP3 == true and TRP3_API then
 			Languages_DB.profiles["TRP3_" .. TRP3_API.profile.getPlayerCurrentProfile().profileName].shapeshift = true;
 		else
@@ -1399,7 +1555,6 @@ mainFrame.shapeshiftFormsCB:SetScript("OnClick", function(self)
 		end
 		PlaySound(856);
 	else
-		Print(L["UseAutoShapeshiftOff"]);
 		if Languages_DB.profiles[charKey].TRP3 == true and TRP3_API then
 			Languages_DB.profiles["TRP3_" .. TRP3_API.profile.getPlayerCurrentProfile().profileName].shapeshift = false;
 		else
@@ -1447,6 +1602,36 @@ mainFrame.onlyInCharacterCB:SetScript("OnEnter", function(self)
 end);
 mainFrame.onlyInCharacterCB:SetScript("OnLeave", mainFrame.tooltip_OnLeave);
 
+mainFrame.selectionButtonCB = CreateFrame("CheckButton", nil, mainFrame.onlyInCharacterCB, "UICheckButtonTemplate");
+mainFrame.selectionButtonCB:SetPoint("TOPRIGHT", mainFrame.onlyInCharacterCB, "TOPRIGHT", 0, -30);
+mainFrame.selectionButtonCB:SetScript("OnClick", function(self)
+	local isChecked = self:GetChecked()
+	
+	local profile = Languages_DB.profiles[charKey]
+	if profile.TRP3 and TRP3_API then
+		profile = Languages_DB.profiles["TRP3_" .. TRP3_API.profile.getPlayerCurrentProfile().profileName]
+	end
+	
+	if not profile.selectionButton then profile.selectionButton = {} end
+	profile.selectionButton.shown = isChecked
+	
+	if isChecked then
+		PlaySound(856);
+	else
+		PlaySound(857);
+	end
+	lang.checkSettings();
+end);
+
+mainFrame.selectionButtonCB.text = mainFrame.Char_Frame:CreateFontString()
+mainFrame.selectionButtonCB.text:SetFont(STANDARD_TEXT_FONT, 11)
+mainFrame.selectionButtonCB.text:SetPoint("RIGHT", mainFrame.selectionButtonCB, "LEFT", -5, 0)
+mainFrame.selectionButtonCB.text:SetText(L["ShowSelectionButton"])
+mainFrame.selectionButtonCB:SetScript("OnEnter", function(self)
+	mainFrame:tooltip_OnEnter(self, L["ShowSelectionButtonTT"]);
+end);
+mainFrame.selectionButtonCB:SetScript("OnLeave", mainFrame.tooltip_OnLeave);
+
 ----------------------------------------
 -- content 3 - Profiles
 ----------------------------------------
@@ -1488,7 +1673,7 @@ mainFrame.Dialect:SetText(L["Dialect"])
 mainFrame.DialectDropdown = CreateFrame("DropdownButton", nil, mainFrame.DialectList_Frame, "WowStyle1DropdownTemplate")
 mainFrame.DialectDropdown:SetPoint("TOP", mainFrame.DialectList_Frame, "TOP", 10, -30)
 mainFrame.DialectDropdown:SetWidth(150)
-mainFrame.DialectDropdown:SetDefaultText(L["Select Dialect"] or "Select Dialect")
+mainFrame.DialectDropdown:SetDefaultText(L["Dialect"])
 
 local function IsDialectSelected(dialectName)
 	local profile = Languages_DB.profiles[charKey]
@@ -1508,7 +1693,7 @@ local function SetDialect(dialectName)
 end
 
 local function DialectMenuGenerator(owner, rootDescription)
-	rootDescription:CreateRadio(L["None"] or "None", IsDialectSelected, SetDialect, nil)
+	rootDescription:CreateRadio(NONE, IsDialectSelected, SetDialect, nil)
 	
 	local sortedDialects = {}
 	if Dialects then
@@ -1887,7 +2072,6 @@ function lang.trp3ProfileName()
 				Languages_DB.profiles["TRP3_" .. TRP3_API.profile.getPlayerCurrentProfile().profileName] = CopyTable(defaultsTableChar);
 			end
 
-
 			if Languages_DB.profiles[charKey].TRP3 == true then
 				mainFrame.PHTRP3Text:SetText("TRP3_" .. TRP3_API.profile.getPlayerCurrentProfile().profileName);
 				mainFrame.RefreshLanguageList()
@@ -1899,6 +2083,19 @@ function lang.trp3ProfileName()
 
 			mainFrame.trp3ProfileCB:Enable();
 			mainFrame.trp3ProfileCB.text:SetTextColor(1,1,1);
+
+			local profile = Languages_DB.profiles[charKey]
+			if profile.TRP3 and TRP3_API and TRP3_API.profile and TRP3_API.profile.getPlayerCurrentProfile() and TRP3_API.profile.getPlayerCurrentProfile().profileName then
+				profile = Languages_DB.profiles["TRP3_" .. TRP3_API.profile.getPlayerCurrentProfile().profileName]
+			end
+
+			local shouldShow = profile.selectionButton.shown
+	
+			if shouldShow and profile.onlyInCharacter and C_AddOns.IsAddOnLoaded("totalRP3") and TRP3_API then
+				if not AddOn_TotalRP3.Player.GetCurrentUser():IsInCharacter() then
+					lang.SelectionButton:Hide()
+				end
+			end
 		end
 	end
 end
@@ -1977,12 +2174,6 @@ function lang.shapeshiftProfileCheck()
 	end
 end
 
-function lang.trp3Check()
-	if C_AddOns.IsAddOnLoaded("totalRP3") == true then
-		TRP3_API.RegisterCallback(TRP3_Addon, "REGISTER_DATA_UPDATED", lang.trp3ProfileName);
-	end
-end
-
 function lang.checkSettings()
 	local profile = Languages_DB.profiles[charKey]
 	if profile.TRP3 and TRP3_API and TRP3_API.profile and TRP3_API.profile.getPlayerCurrentProfile() and TRP3_API.profile.getPlayerCurrentProfile().profileName then
@@ -2005,6 +2196,45 @@ function lang.checkSettings()
 	mainFrame.shapeshiftFormsCB:SetChecked(profile.shapeshift);
 	mainFrame.onlyInCharacterCB:SetChecked(profile.onlyInCharacter)
 
+	if not lang.SelectionButton then
+		lang.CreateSelectionButton()
+	end
+	
+	if not profile.selectionButton then 
+		profile.selectionButton = CopyTable(defaultsTableChar.selectionButton) 
+	end
+
+	mainFrame.selectionButtonCB:SetChecked(profile.selectionButton.shown)
+	
+	lang.SelectionButton:ClearAllPoints()
+	if profile.selectionButton.point then
+		lang.SelectionButton:SetPoint(profile.selectionButton.point, UIParent, profile.selectionButton.relativePoint, profile.selectionButton.x, profile.selectionButton.y)
+	else
+		lang.SelectionButton:SetPoint("CENTER", UIParent, "CENTER", 0, 0)
+	end
+	
+	local shouldShow = profile.selectionButton.shown
+	
+	if shouldShow then
+		lang.SelectionButton:Show()
+		local factionText
+		if UnitFactionGroup("player") == "Alliance" then
+			factionText = L["Common"]
+		elseif UnitFactionGroup("player") == "Horde" then
+			factionText = L["Orcish"]
+		elseif UnitFactionGroup("player") == "Neutral" then
+			factionText = L["Pandaren"]
+		end
+		if currentLanguage.lang then
+			local langName = L[currentLanguage.lang] or currentLanguage.lang
+			lang.SelectionButton.Text:SetText(langName)
+		else
+			lang.SelectionButton.Text:SetText(factionText)
+		end
+	else
+		lang.SelectionButton:Hide()
+	end
+
 	if C_AddOns.IsAddOnLoaded("totalRP3") then
 		mainFrame.trp3ProfileCB:Enable()
 		mainFrame.trp3ProfileCB.text:SetTextColor(1, 1, 1)
@@ -2020,6 +2250,12 @@ function lang.checkSettings()
 	mainFrame.RefreshLanguageList()
 	mainFrame.PHTRP3Text:SetText(charKey);
 	lang.trp3ProfileName();
+end
+
+function lang.trp3Check()
+	if C_AddOns.IsAddOnLoaded("totalRP3") then
+		TRP3_API.RegisterCallback(TRP3_Addon, "REGISTER_DATA_UPDATED", function() lang.checkSettings(); end);
+	end
 end
 
 local function ChatBubble_OnUpdate(eventFrame, elapsed)
@@ -2046,7 +2282,6 @@ local function ChatBubble_OnUpdate(eventFrame, elapsed)
 							
 							if Languages_DB.profiles[charKey].TRP3 == true and TRP3_API then
 								if Languages_DB.profiles["TRP3_" .. TRP3_API.profile.getPlayerCurrentProfile().profileName].understandLanguage[internalKey] == true then
-									return
 								else
 									SomeTranslatedText = "|c" .. textColor .. bracketName .. "|r " .. ReplaceLanguage(badabingus, internalKey)
 									holder.String:SetText(SomeTranslatedText)
@@ -2080,6 +2315,8 @@ end
 
 lang:RegisterEvent("ADDON_LOADED")
 lang:RegisterEvent("UNIT_AURA")
+--lang:RegisterEvent("PLAYER_ENTERING_WORLD")
+
 
 function mainFrame.init()
 	mainFrame.RefreshLanguageList()
@@ -2137,8 +2374,12 @@ function lang.addonLoaded(self, event, arg1) -- table, event, addonName
 		if Languages_DB.profiles[charKey] == nil then
 			Languages_DB.profiles[charKey] = CopyTable(defaultsTableChar);
 		end
-		lang:LoadChatBubbles()
+		
+		if not lang.SelectionButton then
+			lang.CreateSelectionButton()
+		end
 
+		lang:LoadChatBubbles()
 
 		lang.checkSettings();
 		lang.trp3Check();
@@ -2152,19 +2393,15 @@ function lang.addonLoaded(self, event, arg1) -- table, event, addonName
 
 		for _, langKey in ipairs(languageBasicList) do
 			local cleanCommand = langKey:gsub("[%s%p]", ""):upper()
-			
 			_G["SLASH_LANG_" .. cleanCommand .. "1"] = "/" .. langKey:lower()
-			
 			SlashCmdList["LANG_" .. cleanCommand] = function()
 				mainFrame.SetLanguage(langKey)
 			end
 		end
 		
-		
 		SlashCmdList.LANG = mainFrame.HandleSlashCommands;
 
 		mainFrame.init();
-
 
 		tinsert(UISpecialFrames, mainFrame:GetName())
 
