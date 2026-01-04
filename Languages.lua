@@ -92,11 +92,15 @@ local function GetActiveProfile()
 			end
 		end
 	end
-
-	if not Languages_DB.profiles[charKey] then
+	if not Languages_DB then
+		Languages_DB = {}
+	end
+	if Languages_DB and charKey and Languages_DB.profiles and not Languages_DB.profiles[charKey] then
 		Languages_DB.profiles[charKey] = CopyTable(defaultsTableChar)
 	end
-	return Languages_DB.profiles[charKey]
+	if Languages_DB and charKey and Languages_DB.profiles and Languages_DB.profiles[charKey] then
+		return Languages_DB.profiles[charKey]
+	end
 end
 
 local mainFrame = CreateFrame("Frame", "LanguagesMainFrame", UIParent, "PortraitFrameTemplateMinimizable")
@@ -1191,9 +1195,9 @@ local function LanguageRowInitializer(button, data)
 			profile.favoriteLanguages[langKey] = not profile.favoriteLanguages[langKey]
 			
 			if profile.favoriteLanguages[langKey] then
-				PlaySound(856)
+				PlaySound(SOUNDKIT.UI_70_ARTIFACT_FORGE_APPEARANCE_APPEARANCE_CHANGE, "SFX");
 			else
-				PlaySound(857)
+				PlaySound(SOUNDKIT.UI_70_ARTIFACT_FORGE_APPEARANCE_LOCKED, "SFX");
 			end
 			
 			mainFrame.RefreshLanguageList()
@@ -1710,7 +1714,9 @@ mainFrame.DialectDropdown:SetDefaultText(L["Dialect"])
 
 local function IsDialectSelected(dialectName)
 	local profile = GetActiveProfile()
-	return profile.dialect == dialectName
+	if profile then
+		return profile.dialect == dialectName
+	end
 end
 
 local function SetDialect(dialectName)
