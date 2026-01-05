@@ -4,7 +4,7 @@ local L = Lang.L
 
 
 local Dictionaries = {
-	["Common"] = {
+	[L["Common"]] = {
 		-- translations
 		["by blood and honor we serve"] = "esarus thar no'darador", ["troll slayer"] = "trol'kalar",
 		["in"] = "a'l", ["long live the king"] = "an karanir Thanagor", ["killer"] = "kalar",
@@ -20,7 +20,7 @@ local Dictionaries = {
 		["strom'kar"] = "Strom'kar", ["stromgarde"] = "Stromgarde", ["theramore"] = "Theramore", ["tiragarde"] = "Tiragarde",
 		["tol barad"] = "Tol Barad", ["lordaeron"] = "Lordaeron", ["lordamere"] = "Lordamere", ["darrowmere"] = "Darrowmere",
 	},
-	["Orcish"] = {
+	[L["Orcish"]] = {
 		["i'll protect you"] = "bin mog g'thazag cha", ["i will protect you"] = "bin mog g'thazag cha", ["me protect you"] = "bin mog g'thazag cha", ["twisted soul"] = "dae'mon", ["demon"] = "dae'mon", 
 		["draenor's honor"] = "Dra'gora", ["draenor's honor"] = "Dra'gora", ["draenors honor"] = "Dra'gora", ["draenors' honor"] = "Dra'gora", ["honor of draenor"] = "Dra'gora", ["draenor's heart"] = "dranosh",
 		["heart of draenor"] = "dranosh", ["draenors heart"] = "dranosh", ["draenors' heart"] = "dranosh", ["warrior's heart"] = "garrosh", ["warriors heart"] = "garrosh", ["warriors' heart"] = "garrosh", ["heart of the warrior"] = "garrosh", 
@@ -35,7 +35,7 @@ local Dictionaries = {
 		["nagrand"] = "nagrand", ["nelghor"] = "nelghor", ["nelghor-shomash"] = "nelghor-shomash", ["no'ku kil zil'nok ha tar"] = "no'ku kil zil'nok ha tar", ["om'gora"] = "om'gora", ["oshu'gun"] = "oshu'gun", ["ur'gora"] = "ur'gora",
 		["wor'gol"] = "wor'gol", ["zug-zug"] = "zug-zug", ["zug zug"] = "zug zug",
 	},
-	["Dwarvish"] = {
+	[L["Dwarvish"]] = {
 		["dragonheart"] = "draig'cyfaill", ["star bow"] = "dwyar'hun", ["trust"] = "khadgar", ["mountain of khaz"] = "Khaz Modan",
 		["protector"] = "Magna",
 
@@ -48,7 +48,7 @@ local Dictionaries = {
 	},
 
 
-	["Darnassian"] = {
+	[L["Darnassian"]] = {
 		["frostsoul"] = "al'anath", ["finding beauty in imperfection"] = "alara'shinu", ["venom and storm"] = "alash'anir",
 		["lover's leaf"] = "alor'el", ["crown of harmony"] = "Amirdrassil", [ "papa"] = "an'da", ["father"] = "an'da", ["dad"] = "an'da",
 		["crown of the snow"] = "Andrassil", ["crown of snow"] = "Andrassil", ["may your troubles be diminished"] = "ande'thoras-ethil",
@@ -108,7 +108,7 @@ local Dictionaries = {
 		["vashj'ir"] = "Vashj'ir", ["zarkhenar"] = "Zarkhenar", ["zin-malor"] = "Zin-Malor", ["zoram"] = "Zoram",
 
 	},
-	["Draenei"] = {
+	[L["Draenei"]] = {
 
 		-- Aar-don'sha, ki kahl'dos.
 		["in the light we triumph"] = "aar-don'sha, ki kahl'dos", ["in light we triumph"] = "aar-don'sha, ki kahl'dos", ["light we triumph"] = "aar-don'sha, ki kahl'dos",
@@ -166,7 +166,7 @@ local Dictionaries = {
 		["telaar"] = "Telaar", ["telhamat"] = "Telhamat", ["telmor"] = "Telmor", ["telredor"] = "Telredor", ["tuurem"] = "Tuurem",
 	},
 
-	["Thalassian"] = {
+	[L["Thalassian"]] = {
 		-- Alar'annalas
 		["ranger lord"] = "alar'annalas",
 		-- Al diel shala
@@ -269,7 +269,7 @@ local Dictionaries = {
 		["thalas'din belore"] = "Thalas'din belore", ["thori'dal"] = "Thori'dal", ["varillian"] = "Varillian"
 	},
 
-	["Zandali"] = {
+	[L["Zandali"]] = {
 
 		-- Atal'ai
 		["devoted ones"] = "atal'ai",
@@ -454,7 +454,7 @@ local Dictionaries = {
 
 	},
 
-	["Taurahe"] = {
+	[L["Taurahe"]] = {
 		-- An'she
 		["the sun"] = "an'she", ["sun"] = "an'she",
 		-- Apa'ro
@@ -511,7 +511,7 @@ local Dictionaries = {
 		["taurajo"] = "Taurajo"
 	},
 
-	["Shalassian"] = {
+	[L["Shalassian"]] = {
 		-- Erana-dora isil
 		["a thousand thanks upon you"] = "erana-dora isil", ["thousand thanks upon you"] = "erana-dora isil", ["many thanks"] = "erana-dora isil",
 		-- Quel'vala thonos
@@ -558,7 +558,7 @@ local Dictionaries = {
 	},
 
 
-	["Draconic"] = {
+	[L["Draconic"]] = {
 		-- Abela
 		["once"] = "abela",
 		-- Am dakana
@@ -599,13 +599,13 @@ local Dictionaries = {
 
 	},
 
-	["Pandaren"] = {
+	[L["Pandaren"]] = {
 		["spirit"] = "chi", ["counselor"] = "chu'shao", ["judge"] = "fa'shua",
 
 		["tan-chao"] = "tan-chao",
 	},
 
-	["Titan"] = {
+	[L["Titan"]] = {
 		["storm giants"] = "aesir", ["land of eternal starlight"] = "Kalimdor", ["vessel"] = "midnir", ["serpent"] = "nalak",
 		["earth giants"] = "vanir",
 
@@ -620,7 +620,7 @@ local Dictionaries = {
 
 	},
 
-	["Kalimag"] = {
+	[L["Kalimag"]] = {
 		["burn"] = "reth",
 
 
@@ -629,7 +629,7 @@ local Dictionaries = {
 		["sulfuras"] = "sulfuras",
 	},
 
-	["Shath'Yar"] = {
+	[L["Shath'Yar"]] = {
 		-- Aglathrax hig' thrixa
 		["i reside within your lungs"] = "aglathrax hig thrixa",
 		-- Ak'agthshi ma uhnish...
@@ -725,7 +725,7 @@ local Dictionaries = {
 		["yrr n'lyeth... shuul anagg!"] = "Yrr n'lyeth... shuul anagg!", ["y'knath k'th'rygg k'yi mrr'ungha gr'mula."] = "Y'knath k'th'rygg k'yi mrr'ungha gr'mula."
 	},
 
-	["Nerubian"] = {
+	[L["Nerubian"]] = {
 		["the servant bows to the master's authority"] = "Shabtir bakh sokhen",
 
 		--untranslated
@@ -763,7 +763,7 @@ local Dictionaries = {
 		["zeramas"] = "Zeramas",
 	},
 
-	["Nerglish"] = {
+	[L["Nerglish"]] = {
 		-- Aaaaaughibbrgubugbugrguburgle!
 		["aaaaaughibbrgubugbugrguburgle"] = "aaaaaughibbrgubugbugrguburgle", ["rwl rwl rwl rwl"] = "aaaaaughibbrgubugbugrguburgle",
 		-- Flllurlog
@@ -835,7 +835,7 @@ local Dictionaries = {
 
 	},
 
-	["Furbolg"] = {
+	[L["Furbolg"]] = {
 		["justice"] = "vark", ["furbolg"] = "ursa",
 	},
 

@@ -4,7 +4,7 @@ local L = Lang.L
 
 local Dialects = {
 
-	["Gilnean"] = {
+	[L["Gilnean"]] = {
 		-- common speech
 		["talk"]			= "gab",
 		["talking"]			= "gabbin'",
@@ -106,7 +106,7 @@ local Dialects = {
 
 	},
 
-	["Dwarven"] = {
+	[L["Dwarvish"]] = {
 		-- greetings, farewells, & social speech
 		["hello"]			= "hullo",
 		["hi"]				= "haye",
@@ -197,7 +197,7 @@ local Dialects = {
 		["afraid"]			= "uneasy",
 	},
 
-	["Draenei"] = {
+	[L["Draenei"]] = {
 		-- endings
 		["thinking"]		= "thinkink",
 		["talking"]			= "talkink",
@@ -214,7 +214,7 @@ local Dialects = {
 	},
 
 
-	["Thalassian"] = {
+	[L["Thalassian"]] = {
 		-- de-contract, overly formal
 		["gonna"]			= "going to",
 		["'em"]				= "them",
@@ -429,7 +429,7 @@ local Dialects = {
 		["well met"]				= "sinu a'manore",
 	},
 
-	["Darnassian"] = {
+	[L["Darnassian"]] = {
 		-- shared elven
 		["blood elf"]				= "sin'dorei",
 		["blood elves"]				= "sin'dorei",
@@ -499,7 +499,7 @@ local Dialects = {
 		["the white lady"]					= "Elune",
 	},
 
-	["Mechagnome"] = {
+	[L["Mechagnome"]] = {
 		-- de-contract, overly formal
 		["gonna"]			= "going to",
 		["'em"]				= "them",
@@ -676,7 +676,7 @@ local Dialects = {
 		["crazy"]			= "creatively unstable",
 	},
 
-	["Darkspear"] = {
+	[L["DarkspearTrolls"]] = {
 		-- contractions (review these later)
 		["going to"]		= "gonna",
 		["them"]			= "'em",
@@ -878,7 +878,7 @@ local Dialects = {
 
 	},
 
-	["Goblin"] = {
+	[L["Goblin"]] = {
 		["about"]			= "'bout",
 		["around"]			= "'round",
 
@@ -905,7 +905,7 @@ local Dialects = {
 		["fool"]			= "chump",
 	},
 
-	["Sailor"] = { -- pirate and sailor kul tiran
+	[L["Sailor"]] = { -- pirate and sailor kul tiran
 		-- core grammar & pronouns
 		["i am"]			= "i be",
 		["i was"]			= "i were",
@@ -978,14 +978,14 @@ local Dialects = {
 
 	},
 
-	["Kul Tiran Noble"] = { -- interior southern boralus has more of this
+	[L["KulTiranNoble"]] = { -- interior southern boralus has more of this
 		["cup of"]			= "cuppa",
 
 		["ma'am"]			 = "madam",
 		["maam"]			 = "madam",
 	},
 
-	["Highborne"] = {
+	[L["Highborne"]] = {
 		-- de-contract, overly formal
 		["gonna"]			= "going to",
 		["'em"]				= "them",
@@ -1191,7 +1191,7 @@ local Dialects = {
 
 	},
 
-	["Nightborne"] = {
+	[L["Nightborne"]] = {
 		-- de-contract, overly formal
 		["gonna"]			= "going to",
 		["'em"]				= "them",
@@ -1397,7 +1397,7 @@ local Dialects = {
 
 	},
 
-	["Zandalari"] = {
+	[L["Zandalari"]] = {
 		-- de-contract, overly formal
 		["gonna"]			= "going to",
 		["'em"]				= "them",

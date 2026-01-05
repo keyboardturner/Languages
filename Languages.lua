@@ -756,41 +756,41 @@ local atlas = {
 local doNotTranslate = { ".", ",", "-", "¤", "0", "1", };
 
 local languageBasicList = {
-	"Common",
-	"Darnassian",
-	"Dwarvish",
-	"Gnomish",
-	"Draenei",
-	"Orcish",
-	"Zandali",
-	"Taurahe",
-	"Forsaken", 
-	"Gutterspeak",
-	"Thalassian",
-	"Goblin",
-	"Shalassian",
-	"Vulpera",
-	"Pandaren",
-	"Draconic",
+	L["Common"],
+	L["Darnassian"],
+	L["Dwarvish"],
+	L["Gnomish"],
+	L["Draenei"],
+	L["Orcish"],
+	L["Zandali"],
+	L["Taurahe"],
+	L["Forsaken"], 
+	L["Gutterspeak"],
+	L["Thalassian"],
+	L["Goblin"],
+	L["Shalassian"],
+	L["Vulpera"],
+	L["Pandaren"],
+	L["Draconic"],
 	
-	"Demonic",
-	"Titan",
-	"Kalimag",
-	"Shath'Yar",
-	"Nerubian",
-	"Sprite",
-	"Nerglish",
-	"Moonkin",
-	"Furbolg",
+	L["Demonic"],
+	L["Titan"],
+	L["Kalimag"],
+	L["Shath'Yar"],
+	L["Nerubian"],
+	L["Sprite"],
+	L["Nerglish"],
+	L["Moonkin"],
+	L["Furbolg"],
 	
 	--"Hara'ni",
 
-	"Cypher",
+	L["Cypher"],
 	
 	-- [fanmade]
-	"Arathi",
+	L["Arathi"],
 
-	"Broker",
+	L["Broker"],
 	--"Ethereal",
 	--"K'areshi",
 
@@ -820,84 +820,84 @@ local understandLanguage = {
 
 local LANGPRESET_CLASS_LANGUAGE_DEFAULT = {
 	gameplay = {
-		[12] = { "Demonic" },			-- Demon Hunter
+		[12] = { L["Demonic"] },			-- Demon Hunter
 	},
 	recommended = {
-		[12] = { "Demonic" },			-- Demon Hunter
-		[5]  = { "Shath'Yar" },			-- Priest
-		[9]  = { "Demonic" },			-- Warlock
-		[4]  = { "Gutterspeak" },		-- Rogue
-		[7]  = { "Kalimag" },			-- Shaman
-		[8]  = { "Titan" },				-- Mage
-		[10] = { "Pandaren" },			-- Monk
-		[13] = { "Draconic" },			-- Evoker
+		[12] = { L["Demonic"] },			-- Demon Hunter
+		[5]  = { L["Shath'Yar"] },			-- Priest
+		[9]  = { L["Demonic"] },			-- Warlock
+		[4]  = { L["Gutterspeak"] },		-- Rogue
+		[7]  = { L["Kalimag"] },			-- Shaman
+		[8]  = { L["Titan"] },				-- Mage
+		[10] = { L["Pandaren"] },			-- Monk
+		[13] = { L["Draconic"] },			-- Evoker
 	},
 };
 
 local LANGPRESET_RACE_LANGUAGE_DEFAULT = {
 	gameplay = {
-		[1] = {["Common"] = true}, -- 1 human 
-		[3] = {["Common"] = true, ["Dwarvish"] = true}, -- 3 dwarf
-		[4] = {["Common"] = true, ["Darnassian"] = true}, -- 4 night elf
-		[7] = {["Common"] = true, ["Gnomish"] = true}, -- 7 gnome
-		[11] = {["Common"] = true, ["Draenei"] = true}, -- 11 draenei
-		[22] = {["Common"] = true}, -- 22 worgen
-		[29] = {["Common"] = true, ["Thalassian"] = true}, -- 29 void elf
-		[30] = {["Common"] = true, ["Draenei"] = true}, -- 30 lightforged
-		[34] = {["Common"] = true, ["Dwarvish"] = true}, -- 34 dark iron
-		[32] = {["Common"] = true}, -- 32 kul tiran
-		[37] = {["Common"] = true, ["Gnomish"] = true}, -- 37 mechagnome
-		[24] = {["Pandaren"] = true}, -- 24 pandaren neutral
-		[25] = {["Common"] = true, ["Pandaren"] = true}, -- 25 pandaren alliance
-		[26] = {["Orcish"] = true, ["Pandaren"] = true}, -- 26 pandaren horde
-		[2] = {["Orcish"] = true}, -- 2 orc
-		[5] = {["Orcish"] = true, ["Forsaken"] = true}, -- 5 forsaken
-		[6] = {["Orcish"] = true, ["Taurahe"] = true}, -- 6 tauren
-		[8] = {["Orcish"] = true, ["Zandali"] = true}, -- 8 troll
-		[10] = {["Orcish"] = true, ["Thalassian"] = true}, -- 10 blood elf
-		[9] = {["Orcish"] = true, ["Goblin"] = true}, -- 9 goblin
-		[27] = {["Orcish"] = true, ["Shalassian"] = true}, -- 27 nightborne
-		[28] = {["Orcish"] = true, ["Taurahe"] = true}, -- 28 highmountain
-		[36] = {["Orcish"] = true}, -- 36 mag'har
-		[31] = {["Orcish"] = true, ["Zandali"] = true}, -- 31 zandalari
-		[35] = {["Orcish"] = true, ["Vulpera"] = true}, -- 35 vulpera
-		--dracthyrN = {"Draconic"}, -- 
-		[52] = {["Common"] = true, ["Draconic"] = true}, -- 52 dracthyr alliance
-		[70] = {["Orcish"] = true, ["Draconic"] = true}, -- 70 dracthyr horde
-		[84] = {["Common"] = true, ["Titan"] = true}, -- 84 earthen alliance
-		[85] = {["Orcish"] = true, ["Titan"] = true}, -- 85 earthen horde
+		[1] = {[L["Common"]] = true}, -- 1 human 
+		[3] = {[L["Common"]] = true, [L["Dwarvish"]] = true}, -- 3 dwarf
+		[4] = {[L["Common"]] = true, [L["Darnassian"]] = true}, -- 4 night elf
+		[7] = {[L["Common"]] = true, [L["Gnomish"]] = true}, -- 7 gnome
+		[11] = {[L["Common"]] = true, [L["Draenei"]] = true}, -- 11 draenei
+		[22] = {[L["Common"]] = true}, -- 22 worgen
+		[29] = {[L["Common"]] = true, [L["Thalassian"]] = true}, -- 29 void elf
+		[30] = {[L["Common"]] = true, [L["Draenei"]] = true}, -- 30 lightforged
+		[34] = {[L["Common"]] = true, [L["Dwarvish"]] = true}, -- 34 dark iron
+		[32] = {[L["Common"]] = true}, -- 32 kul tiran
+		[37] = {[L["Common"]] = true, [L["Gnomish"]] = true}, -- 37 mechagnome
+		[24] = {[L["Pandaren"]] = true}, -- 24 pandaren neutral
+		[25] = {[L["Common"]] = true, [L["Pandaren"]] = true}, -- 25 pandaren alliance
+		[26] = {[L["Orcish"]] = true, [L["Pandaren"]] = true}, -- 26 pandaren horde
+		[2] = {[L["Orcish"]] = true}, -- 2 orc
+		[5] = {[L["Orcish"]] = true, [L["Forsaken"]] = true}, -- 5 forsaken
+		[6] = {[L["Orcish"]] = true, [L["Taurahe"]] = true}, -- 6 tauren
+		[8] = {[L["Orcish"]] = true, [L["Zandali"]] = true}, -- 8 troll
+		[10] = {[L["Orcish"]] = true, [L["Thalassian"]] = true}, -- 10 blood elf
+		[9] = {[L["Orcish"]] = true, [L["Goblin"]] = true}, -- 9 goblin
+		[27] = {[L["Orcish"]] = true, [L["Shalassian"]] = true}, -- 27 nightborne
+		[28] = {[L["Orcish"]] = true, [L["Taurahe"]] = true}, -- 28 highmountain
+		[36] = {[L["Orcish"]] = true}, -- 36 mag'har
+		[31] = {[L["Orcish"]] = true, [L["Zandali"]] = true}, -- 31 zandalari
+		[35] = {[L["Orcish"]] = true, [L["Vulpera"]] = true}, -- 35 vulpera
+		--dracthyrN = {L["Draconic"]}, -- 
+		[52] = {[L["Common"]] = true, [L["Draconic"]] = true}, -- 52 dracthyr alliance
+		[70] = {[L["Orcish"]] = true, [L["Draconic"]] = true}, -- 70 dracthyr horde
+		[84] = {[L["Common"]] = true, [L["Titan"]] = true}, -- 84 earthen alliance
+		[85] = {[L["Orcish"]] = true, [L["Titan"]] = true}, -- 85 earthen horde
 	},
 	recommended = {
-		[1] = {["Common"] = true}, -- 1 human
-		[3] = {["Common"] = true, ["Dwarvish"] = true, ["Gnomish"] = true}, -- 3 dwarf
-		[4] = {["Common"] = true, ["Darnassian"] = true}, -- 4 night elf
-		[7] = {["Common"] = true, ["Gnomish"] = true, ["Dwarvish"] = true}, -- 7 dwarf
-		[11] = {["Common"] = true, ["Draenei"] = true, ["Orcish"] = true}, -- 11 draenei
-		[22] = {["Common"] = true}, -- 22 worgen
-		[29] = {["Common"] = true, ["Thalassian"] = true}, -- 29 void elf
-		[30] = {["Common"] = true, ["Draenei"] = true}, -- 30 lightforged
-		[34] = {["Common"] = true, ["Dwarvish"] = true}, -- 34 dark iron
-		[32] = {["Common"] = true}, -- 32 kul tiran 
-		[37] = {["Common"] = true, ["Gnomish"] = true}, -- 37 mechagnome
-		[24] = {["Pandaren"] = true}, -- 24 pandaren neutral
-		[25] = {["Common"] = true, ["Pandaren"] = true}, -- 25 pandaren alliance
-		[26] = {["Orcish"] = true, ["Pandaren"] = true}, -- 26 pandaren horde
-		[2] = {["Orcish"] = true, ["Common"] = true}, -- 2 orc
-		[5] = {["Orcish"] = true, ["Gutterspeak"] = true, ["Common"] = true, ["Forsaken"] = true}, -- 5 forsaken
-		[6] = {["Orcish"] = true, ["Taurahe"] = true}, -- 6 tauren
-		[8] = {["Orcish"] = true, ["Zandali"] = true}, -- 8 troll
-		[10] = {["Orcish"] = true, ["Thalassian"] = true, ["Common"] = true}, -- 10 blood elf
-		[9] = {["Orcish"] = true, ["Goblin"] = true, ["Common"] = true}, -- 9 goblin
-		[27] = {["Orcish"] = true, ["Shalassian"] = true}, -- 27 nightborne
-		[28] = {["Orcish"] = true, ["Taurahe"] = true}, -- 28 highmountain
-		[36] = {["Orcish"] = true}, --36 mag'har
-		[31] = {["Orcish"] = true, ["Zandali"] = true}, -- 31 zandalari
-		[35] = {["Orcish"] = true, ["Vulpera"] = true}, -- 35 vulpera
-		--dracthyrN = {"Draconic", "Common", "Orcish"}, -- 
-		[52] = {["Common"] = true, ["Draconic"] = true, ["Orcish"] = true}, -- 52 dracthyr alliance
-		[70] = {["Orcish"] = true, ["Draconic"] = true, ["Common"] = true}, -- 70 dracthyr horde
-		[84] = {["Common"] = true, ["Dwarvish"] = true, ["Titan"] = true}, -- 84 earthen alliance
-		[85] = {["Orcish"] = true, ["Dwarvish"] = true, ["Titan"] = true}, -- 85 earthen horde
+		[1] = {[L["Common"]] = true}, -- 1 human
+		[3] = {[L["Common"]] = true, [L["Dwarvish"]] = true, [L["Gnomish"]] = true}, -- 3 dwarf
+		[4] = {[L["Common"]] = true, [L["Darnassian"]] = true}, -- 4 night elf
+		[7] = {[L["Common"]] = true, [L["Gnomish"]] = true, [L["Dwarvish"]] = true}, -- 7 dwarf
+		[11] = {[L["Common"]] = true, [L["Draenei"]] = true, [L["Orcish"]] = true}, -- 11 draenei
+		[22] = {[L["Common"]] = true}, -- 22 worgen
+		[29] = {[L["Common"]] = true, [L["Thalassian"]] = true}, -- 29 void elf
+		[30] = {[L["Common"]] = true, [L["Draenei"]] = true}, -- 30 lightforged
+		[34] = {[L["Common"]] = true, [L["Dwarvish"]] = true}, -- 34 dark iron
+		[32] = {[L["Common"]] = true}, -- 32 kul tiran 
+		[37] = {[L["Common"]] = true, [L["Gnomish"]] = true}, -- 37 mechagnome
+		[24] = {[L["Pandaren"]] = true}, -- 24 pandaren neutral
+		[25] = {[L["Common"]] = true, [L["Pandaren"]] = true}, -- 25 pandaren alliance
+		[26] = {[L["Orcish"]] = true, [L["Pandaren"]] = true}, -- 26 pandaren horde
+		[2] = {[L["Orcish"]] = true, [L["Common"]] = true}, -- 2 orc
+		[5] = {[L["Orcish"]] = true, [L["Gutterspeak"]] = true, [L["Common"]] = true, [L["Forsaken"]] = true}, -- 5 forsaken
+		[6] = {[L["Orcish"]] = true, [L["Taurahe"]] = true}, -- 6 tauren
+		[8] = {[L["Orcish"]] = true, [L["Zandali"]] = true}, -- 8 troll
+		[10] = {[L["Orcish"]] = true, [L["Thalassian"]] = true, [L["Common"]] = true}, -- 10 blood elf
+		[9] = {[L["Orcish"]] = true, [L["Goblin"]] = true, [L["Common"]] = true}, -- 9 goblin
+		[27] = {[L["Orcish"]] = true, [L["Shalassian"]] = true}, -- 27 nightborne
+		[28] = {[L["Orcish"]] = true, [L["Taurahe"]] = true}, -- 28 highmountain
+		[36] = {[L["Orcish"]] = true}, --36 mag'har
+		[31] = {[L["Orcish"]] = true, [L["Zandali"]] = true}, -- 31 zandalari
+		[35] = {[L["Orcish"]] = true, [L["Vulpera"]] = true}, -- 35 vulpera
+		--dracthyrN = {L["Draconic"], L["Common"], L["Orcish"]}, -- 
+		[52] = {[L["Common"]] = true, [L["Draconic"]] = true, [L["Orcish"]] = true}, -- 52 dracthyr alliance
+		[70] = {[L["Orcish"]] = true, [L["Draconic"]] = true, [L["Common"]] = true}, -- 70 dracthyr horde
+		[84] = {[L["Common"]] = true, [L["Dwarvish"]] = true, [L["Titan"]] = true}, -- 84 earthen alliance
+		[85] = {[L["Orcish"]] = true, [L["Dwarvish"]] = true, [L["Titan"]] = true}, -- 85 earthen horde
 	},
 };
 
@@ -2283,19 +2283,19 @@ function lang.factionCheck()
 		return true
 	else
 		if UnitFactionGroup("player") == "Alliance" then
-			if currentLanguage.lang == "Common" then
+			if currentLanguage.lang == L["Common"] then
 				return false
 			else
 				return true
 			end
 		elseif UnitFactionGroup("player") == "Horde" then
-			if currentLanguage.lang == "Orcish" then
+			if currentLanguage.lang == L["Orcish"] then
 				return false
 			else
 				return true
 			end
 		elseif UnitFactionGroup("player") == "Neutral" then
-			if currentLanguage.lang == "Pandaren" then
+			if currentLanguage.lang == L["Pandaren"] then
 				return false
 			else
 				return true

@@ -264,6 +264,103 @@ if LOCALE == "enUS" then
 
 
 
+	L["Gilnean"] =					"Gilnean"
+	--deDE		Gilnearisch
+	--esES		gilneano
+	--esMX		gilneano
+	--frFR		gilnéen
+	--itIT		Gilneano
+	--ptBR		Guilneana
+	--ruRU		гилнеасский
+	--koKR		길니아스어
+	--zhCN		吉尔尼斯语
+	--zhTW		吉爾尼斯
+
+	L["KulTiranNoble"] =			"Kul Tiran Noble"
+	--deDE		Adliger von Kul Tiras
+	--esES		Noble de Kul Tiras
+	--esMX		Noble kultirano
+	--frFR		Noble de Kul Tiras
+	--itIT		Nobile di Kul Tiras
+	--ptBR		Nobre Kultireno
+	--ruRU		Кул-тирасский аристократ
+	--koKR		쿨 티란 귀족
+	--zhCN		库尔提拉斯贵族
+	--zhTW		庫爾提拉斯貴族
+
+	L["Mechagnome"] =				"Mechagnome"
+	--deDE		Mechagnom
+	--esES		Mecagnomo
+	--esMX		Mecagnomo
+	--frFR		Mécagnome
+	--itIT		Meccagnomo
+	--ptBR		Gnomecânico
+	--ruRU		Механогном
+	--koKR		기계노움
+	--zhCN		机械侏儒
+	--zhTW		機械地精
+
+	L["DarkspearTrolls"] =				"Darkspear Troll"
+	--deDE		Dunkelspeertroll
+	--esES		Trol Lanza Negra
+	--esMX		Trol Lanza Negra
+	--frFR		Troll sombrelances
+	--itIT		Troll Lanciascura
+	--ptBR		Troll Lançanegra
+	--ruRU		Племя Черного Копья
+	--koKR		검은창 트롤
+	--zhCN		暗矛巨魔
+	--zhTW		暗矛食人妖
+
+	L["Sailor"] =						"Sailor"
+	--deDE		Matrose
+	--esES		Marinero
+	--esMX		Marinero
+	--frFR		Marin
+	--itIT		Marinaio
+	--ptBR		Marinheiro
+	--ruRU		Матрос
+	--koKR		선원
+	--zhCN		水手
+	--zhTW		水手
+
+	L["Highborne"] =					"Highborne"
+	--deDE		Hochgeborene
+	--esES		Altonato
+	--esMX		Altonato
+	--frFR		Bien-né
+	--itIT		Alto Nobile
+	--ptBR		Altaneiro
+	--ruRU		Высокорожденный
+	--koKR		명가
+	--zhCN		上层精灵
+	--zhTW		精靈貴族
+
+	L["Nightborne"] =					"Nightborne"
+	--deDE		Nachtgeborener
+	--esES		Nocheterna
+	--esMX		Natonocturno
+	--frFR		Sacrenuit
+	--itIT		Nobile Oscuro
+	--ptBR		Filho da Noite
+	--ruRU		Ночнорожденный
+	--koKR		나이트본
+	--zhCN		夜之子
+	--zhTW		夜裔精靈
+
+	L["Zandalari"] =					"Zandalari Troll"
+	--deDE		Zandalaritroll
+	--esES		Trol Zandalari
+	--esMX		Trol zandalari
+	--frFR		Troll zandalari
+	--itIT		Troll Zandalari
+	--ptBR		Troll Zandalari
+	--ruRU		Зандалар
+	--koKR		잔달라 트롤
+	--zhCN		赞达拉巨魔
+	--zhTW		贊達拉食人妖
+
+
 
 return end
 
@@ -395,6 +492,15 @@ if LOCALE == "esMX" then
 	L["Ethereal"] = 			"Etéreo"
 	L["K'areshi"] = 			"K'areshi"
 
+	L["Gilnean"] = "gilneano"
+	L["KulTiranNoble"] = "Noble kultirano"
+	L["Mechagnome"] = "Mecagnomo"
+	L["DarkspearTrolls"] = "Trol Lanza Negra"
+	L["Sailor"] = "Marinero"
+	L["Highborne"] = "Altonato"
+	L["Nightborne"] = "Natonocturno"
+	L["Zandalari"] = "Trol zandalari"
+
 return end
 
 if LOCALE == "esES" then
@@ -524,6 +630,15 @@ if LOCALE == "esES" then
 	L["Mogu"] = 				"Mogu"
 	L["Ethereal"] = 			"Etéreo"
 	L["K'areshi"] = 			"K'areshi"
+
+	L["Gilnean"] = "gilneano"
+	L["KulTiranNoble"] = "Noble de Kul Tiras"
+	L["Mechagnome"] = "Mecagnomo"
+	L["DarkspearTrolls"] = "Trol Lanza Negra"
+	L["Sailor"] = "Marinero"
+	L["Highborne"] = "Altonato"
+	L["Nightborne"] = "Nocheterna"
+	L["Zandalari"] = "Trol Zandalari"
 
 return end
 
@@ -655,6 +770,15 @@ if LOCALE == "deDE" then
 	L["Ethereal"] = 			"Astral"
 	L["K'areshi"] = 			"K'areshi"
 
+	L["Gilnean"] = "Gilnearisch"
+	L["KulTiranNoble"] = "Adliger von Kul Tiras"
+	L["Mechagnome"] = "Mechagnom"
+	L["DarkspearTrolls"] = "Dunkelspeertroll"
+	L["Sailor"] = "Matrose"
+	L["Highborne"] = "Hochgeborene"
+	L["Nightborne"] = "Nachtgeborener"
+	L["Zandalari"] = "Zandalaritroll"
+
 return end
 
 if LOCALE == "frFR" then
@@ -784,6 +908,15 @@ if LOCALE == "frFR" then
 	L["Mogu"] = 				"Mogu"
 	L["Ethereal"] = 			"Éthérien"
 	L["K'areshi"] = 			"K'areshi"
+
+	L["Gilnean"] = "gilnéen"
+	L["KulTiranNoble"] = "Noble de Kul Tiras"
+	L["Mechagnome"] = "Mécagnome"
+	L["DarkspearTrolls"] = "Troll sombrelances"
+	L["Sailor"] = "Marin"
+	L["Highborne"] = "Bien-né"
+	L["Nightborne"] = "Sacrenuit"
+	L["Zandalari"] = "Troll zandalari"
 
 return end
 
@@ -915,6 +1048,15 @@ if LOCALE == "itIT" then
 	L["Ethereal"] = 			"Etereo"
 	L["K'areshi"] = 			"K'areshi"
 
+	L["Gilnean"] = "Gilneano"
+	L["KulTiranNoble"] = "Nobile di Kul Tiras"
+	L["Mechagnome"] = "Meccagnomo"
+	L["DarkspearTrolls"] = "Troll Lanciascura"
+	L["Sailor"] = "Marinaio"
+	L["Highborne"] = "Alto Nobile"
+	L["Nightborne"] = "Nobile Oscuro"
+	L["Zandalari"] = "Troll Zandalari"
+
 return end
 
 if LOCALE == "ptBR" then
@@ -1044,6 +1186,15 @@ if LOCALE == "ptBR" then
 	L["Mogu"] = 				"Mogu"
 	L["Ethereal"] = 			"Etéreo"
 	L["K'areshi"] = 			"K'areshi"
+
+	L["Gilnean"] = "Guilneana"
+	L["KulTiranNoble"] = "Nobre Kultireno"
+	L["Mechagnome"] = "Gnomecânico"
+	L["DarkspearTrolls"] = "Troll Lançanegra"
+	L["Sailor"] = "Marinheiro"
+	L["Highborne"] = "Altaneiro"
+	L["Nightborne"] = "Filho da Noite"
+	L["Zandalari"] = "Troll Zandalari"
 
 -- Note that the EU Portuguese WoW client also
 -- uses the Brazilian Portuguese locale code.
@@ -1177,6 +1328,15 @@ if LOCALE == "ruRU" then
 	L["Ethereal"] = 			"Эфириал"
 	L["K'areshi"] = 			"К'ареши"
 
+	L["Gilnean"] = "гилнеасский"
+	L["KulTiranNoble"] = "Кул-тирасский аристократ"
+	L["Mechagnome"] = "Механогном"
+	L["DarkspearTrolls"] = "Племя Черного Копья"
+	L["Sailor"] = "Матрос"
+	L["Highborne"] = "Высокорожденный"
+	L["Nightborne"] = "Ночнорожденный"
+	L["Zandalari"] = "Зандалар"
+
 return end
 
 if LOCALE == "koKR" then
@@ -1306,6 +1466,15 @@ if LOCALE == "koKR" then
 	L["Mogu"] = 				"모구"
 	L["Ethereal"] = 			"에테리얼"
 	L["K'areshi"] = 			"크아레쉬"
+
+	L["Gilnean"] = "길니아스어"
+	L["KulTiranNoble"] = "쿨 티란 귀족"
+	L["Mechagnome"] = "기계노움"
+	L["DarkspearTrolls"] = "검은창 트롤"
+	L["Sailor"] = "선원"
+	L["Highborne"] = "명가"
+	L["Nightborne"] = "나이트본"
+	L["Zandalari"] = "잔달라 트롤"
 
 return end
 
@@ -1437,6 +1606,15 @@ if LOCALE == "zhCN" then
 	L["Ethereal"] = 			"虚灵"
 	L["K'areshi"] = 			"卡雷什"
 
+	L["Gilnean"] = "吉尔尼斯语"
+	L["KulTiranNoble"] = "库尔提拉斯贵族"
+	L["Mechagnome"] = "机械侏儒"
+	L["DarkspearTrolls"] = "暗矛巨魔"
+	L["Sailor"] = "水手"
+	L["Highborne"] = "上层精灵"
+	L["Nightborne"] = "夜之子"
+	L["Zandalari"] = "赞达拉巨魔"
+
 return end
 
 if LOCALE == "zhTW" then
@@ -1566,5 +1744,14 @@ if LOCALE == "zhTW" then
 	L["Mogu"] = 				"魔古"
 	L["Ethereal"] = 			"以太"
 	L["K'areshi"] = 			"凱瑞西"
+
+	L["Gilnean"] = "吉爾尼斯"
+	L["KulTiranNoble"] = "庫爾提拉斯貴族"
+	L["Mechagnome"] = "機械地精"
+	L["DarkspearTrolls"] = "暗矛食人妖"
+	L["Sailor"] = "水手"
+	L["Highborne"] = "精靈貴族"
+	L["Nightborne"] = "夜裔精靈"
+	L["Zandalari"] = "贊達拉食人妖"
 
 return end

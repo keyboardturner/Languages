@@ -3,7 +3,7 @@ local _, Lang = ...;
 local L = Lang.L
 
 local LANGUAGE_REPLACEMENTS = {
-	["Common"] = {
+	[L["Common"]] = {
 		[1] = {"a", "e", "i", "o", "u", "y"},
 		[2] = {"an", "ko", "lo", "lu", "me", "ne", "re", "ru", "se", "ti", "va", "ve"},
 		[3] = {"ash", "bor", "bur", "far", "gol", "hir", "lon", "mod", "nud", "ras", "ver", "vil", "vos"},
@@ -19,7 +19,7 @@ local LANGUAGE_REPLACEMENTS = {
 		["hasRunes"] = true,
 	},
 
-	["Darnassian"] = {
+	[L["Darnassian"]] = {
 		[1] = {"a", "d", "e", "i", "n", "o"},
 		[2] = {"al", "an", "da", "do", "lo", "ni", "no", "ri", "su"},
 		[3] = {"ala", "ano", "anu", "ash", "dor", "dur", "fal", "nei", "nor", "osa", "tal", "tur"},
@@ -39,7 +39,7 @@ local LANGUAGE_REPLACEMENTS = {
 		["hasRunes"] = true,
 	},
 
-	["Dwarvish"] = {
+	[L["Dwarvish"]] = {
 		[1] = {"a"},
 		[2] = {"am", "ga", "go", "ke", "lo", "ok", "ta", "um", "we", "zu"},
 		[3] = {"ahz", "dum", "dun", "eft", "gar", "gor", "hor", "kha", "mok", "mos", "red", "ruk"},
@@ -58,7 +58,7 @@ local LANGUAGE_REPLACEMENTS = {
 		["hasRunes"] = true,
 	},
 
-	["Gnomish"] = {
+	[L["Gnomish"]] = {
 		[1] = {"a", "c", "d", "e", "f", "g", "i", "o", "t"},
 		[2] = {"am", "ga", "ke", "lo", "ok", "so", "ti", "um", "va", "we"},
 		[3] = {"bur", "dun", "fez", "giz", "gal", "gar", "her", "mik", "mor", "mos", "nid", "rod", "zah"},
@@ -73,7 +73,7 @@ local LANGUAGE_REPLACEMENTS = {
 		["hasRunes"] = false,
 	},
 
-	["Draenei"] = {
+	[L["Draenei"]] = {
 		[1] = {"e", "g", "o", "x", "y"},
 		[2] = {"az", "il", "me", "no", "re", "te", "ul", "ur", "xi", "za", "ze"},
 		[3] = {"daz", "gul", "kar", "laz", "lek", "lok", "maz", "ril", "ruk", "shi", "tor", "zar"},
@@ -89,7 +89,7 @@ local LANGUAGE_REPLACEMENTS = {
 		["hasRunes"] = true,
 	},
 
-	["Orcish"] = {
+	[L["Orcish"]] = {
 		[1] = {"a", "n", "g", "o", "l"},
 		[2] = {"ha", "ko", "no", "mu", "ag", "ka", "gi", "il"},
 		[3] = {"lok", "tar", "kaz", "ruk", "kek", "mog", "zug", "gul", "nuk", "aaz", "kil", "ogg"},
@@ -106,7 +106,7 @@ local LANGUAGE_REPLACEMENTS = {
 		["hasRunes"] = true,
 	},
 
-	["Zandali"] = {
+	[L["Zandali"]] = {
 		[1] = {"a", "e", "h", "j", "m", "n", "o", "s", "u"},
 		[2] = {"di", "fi", "fu", "im", "ir", "is", "ju", "so", "wi", "yu"},
 		[3] = {"deh", "dim", "fus", "han", "mek", "noh", "sca", "tor", "weh", "wha"},
@@ -119,7 +119,7 @@ local LANGUAGE_REPLACEMENTS = {
 		["hasRunes"] = true,
 	},
 
-	["Taurahe"] = {
+	[L["Taurahe"]] = {
 		[1] = {"a", "e", "i", "n", "o"},
 		[2] = {"ba", "ki", "lo", "ne", "ni", "no", "po", "ta", "te", "tu", "wa"},
 		[3] = {"aki", "alo", "awa", "chi", "ich", "ish", "kee", "owa", "paw", "rah", "uku", "zhi"},
@@ -138,7 +138,7 @@ local LANGUAGE_REPLACEMENTS = {
 		["hasRunes"] = true,
 	},
 
-	["Gutterspeak"] = {
+	[L["Gutterspeak"]] = {
 		[1] = {"a", "e", "i", "o", "u", "y"},
 		[2] = {"an", "ko", "lo", "lu", "me", "ne", "re", "ru", "se", "ti", "va", "ve"},
 		[3] = {"ash", "bor", "bur", "far", "gol", "hir", "lon", "mos", "nud", "ras", "ver", "vil", "wos"},
@@ -154,7 +154,7 @@ local LANGUAGE_REPLACEMENTS = {
 		["hasRunes"] = false,
 	},
 
-	["Forsaken"] = {
+	[L["Forsaken"]] = {
 		[1] = {"a", "e", "i", "o", "u", "y"},
 		[2] = {"an", "ko", "lo", "lu", "me", "ne", "re", "ru", "se", "ti", "va", "ve"},
 		[3] = {"ash", "bor", "bur", "far", "gol", "hir", "lon", "mos", "nud", "ras", "ver", "vil", "wos"},
@@ -170,7 +170,7 @@ local LANGUAGE_REPLACEMENTS = {
 		["hasRunes"] = false,
 	},
 
-	["Thalassian"] = {
+	[L["Thalassian"]] = {
 		[1] = {"a", "n", "i", "o", "e", "d"},
 		[2] = {"da", "lo", "an", "ni", "al", "do", "ri", "su", "no"},
 		[3] = {"ano", "dur", "tal", "nei", "ash", "dor", "anu", "fal", "tur", "ala", "nor", "osa"},
@@ -191,7 +191,7 @@ local LANGUAGE_REPLACEMENTS = {
 		["hasRunes"] = true,
 	},
 
-	["Goblin"] = { -- languageID 40
+	[L["Goblin"]] = { -- languageID 40
 		[1] = {"z"},
 		[2] = {"ak", "rt", "ik", "um", "fr", "bl", "zz", "ap", "un", "ek"},
 		[3] = {"eet", "paf", "gak", "erk", "gip", "nap", "kik", "bap", "ikk", "grk"},
@@ -206,7 +206,7 @@ local LANGUAGE_REPLACEMENTS = {
 		["hasRunes"] = false,
 	},
 
-	["Shalassian"] = { -- languageID 181
+	[L["Shalassian"]] = { -- languageID 181
 		[1] = {"a", "e", "n", "i", "o", "d"},
 		[2] = {"an", "do", "da", "lo", "ni", "al", "ri", "su", "no", "in"},
 		[3] = {"nei", "anu", "ala", "ano", "dur", "tal", "ash", "dor", "fal", "tur", "nor", "osa", "vas", "anu", "tel"},
@@ -226,7 +226,7 @@ local LANGUAGE_REPLACEMENTS = {
 		["hasRunes"] = true,
 	},
 
-	["Vulpera"] = { -- languageID 285
+	[L["Vulpera"]] = { -- languageID 285
 		[1] = {"u", "i", "o", "y"},
 		[2] = {"wa", "pa", "ho", "yi", "oo", "da", "aw", "au", "ii", "yy", "ak", "ik", "uk"},
 		[3] = {"pow", "aoo", "woo", "wan", "bau", "gav", "arf", "yip", "yap", "bow", "hau", "haf", "vuf", "iiy", "iyw"},
@@ -241,7 +241,7 @@ local LANGUAGE_REPLACEMENTS = {
 
 	},
 
-	["Pandaren"] = { -- reworked entirely, a truncated list of random names
+	[L["Pandaren"]] = { -- reworked entirely, a truncated list of random names
 		[1] = {"a", "i", "u", "e", "o", "n"},
 		[2] = {"bu", "ji", "yu", "bo", "ji", "le", "lu", "li", "he", "qi", "tu", "fu", "an", "wu", "nu", "xi", "da", "yi", "qu", "za"},
 		[3] = {"zhu", "jin", "chi", "shi", "zen", "bei", "ren", "zhu", "wei", "hao", "zai", "gao", "mei", "dao", "yun", "xin", "wen", "jue", "zan"},
@@ -258,7 +258,7 @@ local LANGUAGE_REPLACEMENTS = {
 		["hasRunes"] = true,
 	},
 
-	["Ancient Pandaren"] = { -- extended/expanded list of truncated NameGen, reformatted. Complete: 1,2
+	[L["Ancient Pandaren"]] = { -- extended/expanded list of truncated NameGen, reformatted. Complete: 1,2
 		[1] = {"a", "i", "u", "e", "o", "n"},
 		[2] = {"ai", "an", "bo", "bu", "di", "fu", "go", "gu", "gi", "ho", "hu", "ji", "ke", "ko", "ku", "li", "lo", "lu", "ma", "mi", "mu", "ni", "pa", "pu", "qi", "ri", "ru", "so", "si", "su", "ta", "to", "ti", "tu", "um", "wi", "wu", "xi", "xu", "ye", "yi", "yu", "zi"},
 		[3] = {"zhu", "jin", "chi", "shi", "zen", "bei", "ren", "zhu", "wei", "hao", "zai", "gao", "mei", "dao", "yun", "xin", "wen", "jue", "zan"},
@@ -275,7 +275,7 @@ local LANGUAGE_REPLACEMENTS = {
 		["hasRunes"] = true,
 	},
 
-	["Draconic"] = { -- languageID 11
+	[L["Draconic"]] = { -- languageID 11
 		[1] = {"a", "e", "i", "o", "u", "y", "g", "x"},
 		[2] = {"il", "no", "az", "te", "ur", "za", "ze", "re", "ul", "me", "xi"},
 		[3] = {"tor", "gul", "lok", "asj", "kar", "lek", "daz", "maz", "ril", "ruk", "laz", "shi", "zar"},
@@ -294,7 +294,7 @@ local LANGUAGE_REPLACEMENTS = {
 
 	--NPC-based languages
 
-	["Demonic"] = { -- languageID 8
+	[L["Demonic"]] = { -- languageID 8
 		[1] = {"a", "e", "i", "o", "u", "y", "g", "x"},
 		[2] = {"il", "no", "az", "te", "ur", "za", "ze", "re", "ul", "me", "xi"},
 		[3] = {"tor", "gul", "lok", "asj", "kar", "lek", "daz", "maz", "ril", "ruk", "laz", "shi", "zar"},
@@ -310,7 +310,7 @@ local LANGUAGE_REPLACEMENTS = {
 		["hasRunes"] = false,
 	},
 
-	["Titan"] = { -- languageID 9
+	[L["Titan"]] = { -- languageID 9
 		[1] = {"a", "e", "i", "o", "u", "y", "g", "x"},
 		[2] = {"il", "no", "az", "te", "ur", "za", "ze", "re", "ul", "me", "xi"},
 		[3] = {"tor", "gul", "lok", "asj", "kar", "lek", "daz", "maz", "ril", "ruk", "laz", "shi", "zar"},
@@ -326,7 +326,7 @@ local LANGUAGE_REPLACEMENTS = {
 		["hasRunes"] = false,
 	},
 
-	["Kalimag"] = { -- languageID 12
+	[L["Kalimag"]] = { -- languageID 12
 		[1] = {"a", "o", "k", "t", "g", "u"},
 		[2] = {"ko", "ta", "gi", "ka", "tu", "os", "ma", "ra"},
 		[3] = {"fel", "rok", "kir", "dor", "von", "nuk", "tor", "kan", "tas", "gun", "dra", "sto"},
@@ -343,7 +343,7 @@ local LANGUAGE_REPLACEMENTS = {
 		["hasRunes"] = false,
 	},
 
-	["Shath'Yar"] = { -- languageID 178
+	[L["Shath'Yar"]] = { -- languageID 178
 		[1] = {"i"},
 		[2] = {"ez", "ga", "ky", "ma", "ni", "og", "za", "zz"},
 		[3] = {"gag", "hoq", "lal", "maq", "nuq", "oou", "qam", "shn", "vaz", "vra", "yrr", "zuq"},
@@ -358,7 +358,7 @@ local LANGUAGE_REPLACEMENTS = {
 		["hasRunes"] = false,
 	},
 
-	["Broker"] = { -- no languageID, fanmade
+	[L["Broker"]] = { -- no languageID, fanmade
 		[1] = {"a", "o", "k", "t", "z", "u", "j", "x", "r", "h", "s", "q", "f", "y"},
 		[2] = {"au", "ba", "by", "fe", "ko", "ku", "so", "ta", "tu", "ve", "xy", "zo", "za", "ve", "sh", "ul", "al", "da", "an", "mi", "ri", "xa", "ha", "ji", "si", "ra", "fa", "nu", "ya"},
 		[3] = {"taa", "baa", "xaa", "haa", "jii", "daa", "sii", "zay", "raa", "dha", "saa", "shi", "faa", "gha", "ayn", "mii", "lam", "kaa", "qaa", "yaa", "waa", "nuu", "ara", "dal", "mox", "bic", "dul", "khe", "lla", "mba", "rim", "pyr", "qil", "sha", "til", "van", "vol", "eru", "ruu"},
@@ -371,7 +371,7 @@ local LANGUAGE_REPLACEMENTS = {
 		["hasRunes"] = true,
 	},
 
-	["Cypher"] = { -- languageID 287
+	[L["Cypher"]] = { -- languageID 287
 		[1] = {"a", "i", "u"},
 		[2] = {"ba", "se", "ri", "la", "et", "ex"},
 		[3] = {"han", "lee", "pho", "qua", "pax", "ars"},
@@ -383,7 +383,7 @@ local LANGUAGE_REPLACEMENTS = {
 		["hasRunes"] = true,
 	},
 
-	["Arathi"] = { -- no languageID, fanmade
+	[L["Arathi"]] = { -- no languageID, fanmade
 
 		[1] = {"a", "d", "e", "n", "p", "s", "y"},
 		[2] = {"ae", "al", "am", "an", "ar", "as", "au", "ch", "da", "ea", "ed", "eh", "el", "en", "es", "ez", "ge", "ja", "je", "jo", "ke", "la", "lo", "ma", "mi", "na", "ne", "on", "ra", "ro", "ru", "so", "th", "ve", "vi", "we", "yl", "za", "zo"},
@@ -407,7 +407,7 @@ local LANGUAGE_REPLACEMENTS = {
 	},
 
 
-	["Nerubian"] = { -- languageID 307
+	[L["Nerubian"]] = { -- languageID 307
 		[1] = {"a", "s", "x", "j", "k"},
 		[2] = {"ah", "hz", "ex", "iz", "ox", "uj", "ji", "vx", "xi", "yz", "kz", "zk", "az"},
 		[3] = {"ahj", "tak", "raz", "rak", "nix", "xin", "xor", "ohx", "ahn", "toz", "iko", "ozu", "xif"},
@@ -421,7 +421,7 @@ local LANGUAGE_REPLACEMENTS = {
 		["hasRunes"] = false,
 	},
 
-	["Sprite"] = { -- languageID 168
+	[L["Sprite"]] = { -- languageID 168
 		[1] = {"E"},
 		[2] = {"ki", "uk"},
 		[3] = {"ike", "ika"},
@@ -434,7 +434,7 @@ local LANGUAGE_REPLACEMENTS = {
 		["hasRunes"] = false,
 	},
 
-	["Nerglish"] = { -- languageID 179
+	[L["Nerglish"]] = { -- languageID 179
 		[1] = {"u", "i"},
 		[2] = {"gl", "ih", "uh", "rr"},
 		[3] = {"grl", "mrl", "bhr", "buh", "urr"},
@@ -450,7 +450,7 @@ local LANGUAGE_REPLACEMENTS = {
 		["hasRunes"] = false,
 	},
 
-	["Moonkin"] = { -- languageID 180
+	[L["Moonkin"]] = { -- languageID 180
 		[1] = {"a"},
 		[2] = {"ca", "do", "pa"},
 		[3] = {"caw", "coo"},
@@ -464,7 +464,7 @@ local LANGUAGE_REPLACEMENTS = {
 		["hasRunes"] = false,
 	},
 
-	["Furbolg"] = {
+	[L["Furbolg"]] = {
 		[1] = {"a", "e", "r", "k", "u", "h", "g"},
 		[2] = {"gr", "ra", "er", "ku", "kr", "ga", "re", "rr", "na", "ah", "oh", "eh", "en", "ek", "ka"},
 		[3] = {"hum", "mum", "bur", "ker", "mur", "esh", "grr", "rrf", "bar", "ark", "gli", "ten", "fur", "toe", "paw", "nap", "rum", "fer", "kah", "kan", "err", "rrr", "gar", "rar", "enn", "ehk"},
