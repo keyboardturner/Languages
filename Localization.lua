@@ -106,6 +106,8 @@ if LOCALE == "enUS" then
 	L["LeftClick"] = "Left-Click"
 	L["RightClick"] = "Right-Click"
 	L["ShiftDrag"] = "Shift-Drag"
+	L["DialectsTT"] = "Choosing a Dialect will change certain words you type into other words. For example, turning \"are not\" into \"aren't\". Each language has its own set of words, and each one can be toggled."
+	L["Dialects2TT"] = "Words can have their Dialect form prevented by adding underscores to each side, such as \"_are not_\". This will keep the term in its original spelling, and additionally remove the underscores placed on each side."
 
 	-- official languages
 	L["Common"] = 		"Common"			--7
@@ -354,7 +356,8 @@ if LOCALE == "esMX" then
 	L["LeftClick"] = "Clic izquierdo"
 	L["RightClick"] = "Clic derecho"
 	L["ShiftDrag"] = "MAYÚS + arrastrar"
-
+	L["DialectsTT"] = "Elegir un dialecto cambiará ciertas palabras que escribes por otras. Por ejemplo, convertir \"are not\" en \"aren't\". Cada idioma tiene su propio conjunto de palabras, y cada uno puede activarse o desactivarse."
+	L["Dialects2TT"] = "Las palabras pueden evitar su forma dialectal añadiendo guiones bajos a cada lado, como \"_are not_\". Esto mantendrá el término con su ortografía original y, además, eliminará los guiones bajos colocados a cada lado."
 
 	L["Common"] = 		"Lengua común"		--7
 	L["Darnassian"] = 	"Darnassiano"		--2
@@ -483,7 +486,8 @@ if LOCALE == "esES" then
 	L["LeftClick"] = "Clic izquierdo"
 	L["RightClick"] = "Clic derecho"
 	L["ShiftDrag"] = "MAYÚS + arrastrar"
-
+	L["DialectsTT"] = "Elegir un dialecto cambiará ciertas palabras que escribes por otras. Por ejemplo, convertir \"are not\" en \"aren't\". Cada idioma tiene su propio conjunto de palabras, y cada uno puede activarse o desactivarse."
+	L["Dialects2TT"] = "Las palabras pueden evitar su forma dialectal añadiendo guiones bajos a cada lado, como \"_are not_\". Esto mantendrá el término con su ortografía original y, además, eliminará los guiones bajos colocados a cada lado."
 
 	L["Common"] = 		"Lengua común"		--7
 	L["Darnassian"] = 	"Darnassiano"		--2
@@ -537,7 +541,7 @@ if LOCALE == "deDE" then
 	L["TogglePrefixOff"] = "Sprachpräfix: Aus"
 	L["TogglePrefixOn"] = "Sprachpräfix: Ein"
 	L["TogglePrefixTextOff"] = "Automatisches Sprachpräfix ausschalten."
-	L["TogglePrefixTextOn"] = "„Automatisches Sprachpräfix ausschalten.“"
+	L["TogglePrefixTextOn"] = "\"Automatisches Sprachpräfix ausschalten.\""
 	L["TogglePrefixTT"] = "Steuert, ob die aktuell ausgewählte Sprache der Nachricht des Benutzers automatisch vorangestellt wird."
 	L["Diction"] = "Diktion"
 	L["Settings"] = SETTINGS
@@ -566,19 +570,19 @@ if LOCALE == "deDE" then
 	L["FactionOptionOn"] = "Ignorieren Sie die Fraktionssprache."
 	L["FactionOptionOff"] = "Fraktionssprache ignorieren aus."
 	L["FactionOption"] = "Ignorieren Sie die Sprachen der eigenen Fraktion"
-	L["FactionOptionTT"] = "Steuert, ob das Addon die Präfixoption für „Common“ bei einem Allianz-Charakter oder „Orcish“ bei einem Horde-Charakter ignoriert."
+	L["FactionOptionTT"] = "Steuert, ob das Addon die Präfixoption für \"Common\" bei einem Allianz-Charakter oder \"Orcish\" bei einem Horde-Charakter ignoriert."
 	L["LinkToTotalRP3Off"] = "Gesamt-RP-3-Link für diesen Charakter deaktiviert."
 	L["LinkToTotalRP3On"] = "Gesamt-RP-3-Link für diesen Charakter aktiviert."
 	L["LinkToTotalRP3"] = "Link zum Total RP 3-Profil"
 	L["LinkToTotalRP3TT"] = "Ändere das Profil des Charakters automatisch entsprechend dem Gesamt-RP-3-Profil. Wenn mehrere Charaktere dasselbe Profil verwenden, sollten die Einstellungen für diese Charaktere beibehalten werden.\nErfordert das Add-on Total RP 3"
 	L["SettingLanguageTo"] = "Sprache einstellen auf:"
-	L["EnableUnderstand"] = "Aktivieren Sie „Verstehen“."
-	L["DisableUnderstand"] = "Deaktivieren Sie „Verstehen“."
+	L["EnableUnderstand"] = "Aktivieren Sie \"Verstehen\"."
+	L["DisableUnderstand"] = "Deaktivieren Sie \"Verstehen\"."
 	L["Dialect"] = "Dialekt"
 	L["DialectOff"] = "Dialekt: Aus"
 	L["DialectOn"] = "Dialekt: Ein"
-	L["UseDialectTT"] = "Steuert, ob der Benutzer beim Sprechen derzeit mit einem Dialekt spricht, z. Aus „Was willst du“ wird „Waschu wan‘?“."
-	L["SettingDialectTo"] = "„Dialekt einstellen auf:“"
+	L["UseDialectTT"] = "Steuert, ob der Benutzer beim Sprechen derzeit mit einem Dialekt spricht, z. Aus \"Was willst du\" wird \"Waschu wan‘?\"."
+	L["SettingDialectTo"] = "\"Dialekt einstellen auf:\""
 	L["CurrentlySpeaking"] = "Derzeit spricht:"
 	L["NoPrefixBaseLang"] = "Verwenden Sie das Präfix nicht, wenn Sie die Basissprache Ihrer Fraktion sprechen (gemeinsam/Orkisch als Allianz/Horde)."
 	L["LanguagePreset"] = "Lernen Sie Sprachvoreinstellungen"
@@ -612,7 +616,8 @@ if LOCALE == "deDE" then
 	L["LeftClick"] = "Links-Klick"
 	L["RightClick"] = "Rechts-Klick"
 	L["ShiftDrag"] = "UMSCHALT + Ziehen"
-
+	L["DialectsTT"] = "Die Auswahl eines Dialekts ersetzt bestimmte Wörter, die du eingibst, durch andere. Zum Beispiel wird \"are not\" zu \"aren't\". Jede Sprache hat ihren eigenen Wortschatz, und jeder kann ein- oder ausgeschaltet werden."
+	L["Dialects2TT"] = "Wörter können von ihrer Dialektform ausgenommen werden, indem auf beiden Seiten Unterstriche hinzugefügt werden, wie z. B. \"_are not_\". Dadurch bleibt die ursprüngliche Schreibweise erhalten, und die hinzugefügten Unterstriche werden anschließend entfernt."
 
 	L["Common"] = 		"Gemeinsprache"		--7
 	L["Darnassian"] = 	"Darnassisch"		--2
@@ -741,7 +746,8 @@ if LOCALE == "frFR" then
 	L["LeftClick"] = "Clic gauche"
 	L["RightClick"] = "Clic droit"
 	L["ShiftDrag"] = "MAJ + déplacer"
-
+	L["DialectsTT"] = "Choisir un dialecte remplacera certains mots que vous tapez par d’autres. Par exemple, transformer \"are not\" en \"aren't\". Chaque langue possède son propre ensemble de mots, et chacun peut être activé ou désactivé."
+	L["Dialects2TT"] = "Il est possible d’empêcher la forme dialectale d’un mot en ajoutant des traits de soulignement de chaque côté, comme \"_are not_\". Le terme conserve alors son orthographe d’origine et les traits de soulignement ajoutés sont supprimés."
 
 	L["Common"] = 		"Commun"		--7
 	L["Darnassian"] = 	"Darnassien"	--2
@@ -870,7 +876,8 @@ if LOCALE == "itIT" then
 	L["LeftClick"] = "Clic sinistro"
 	L["RightClick"] = "Clic destro"
 	L["ShiftDrag"] = "MAIUSC + trascina"
-
+	L["DialectsTT"] = "Scegliere un dialetto sostituirà alcune parole che digiti con altre. Ad esempio, trasformando \"are not\" in \"aren't\". Ogni lingua ha il proprio insieme di parole, e ciascuno può essere attivato o disattivato."
+	L["Dialects2TT"] = "È possibile impedire la forma dialettale di una parola aggiungendo dei trattini bassi su entrambi i lati, come \"_are not_\". Questo manterrà il termine nella sua ortografia originale e rimuoverà inoltre i trattini bassi aggiunti."
 
 	L["Common"] = 		"Comune"		--7
 	L["Darnassian"] = 	"Darnassiano"	--2
@@ -999,7 +1006,8 @@ if LOCALE == "ptBR" then
 	L["LeftClick"] = "Clique esquerdo"
 	L["RightClick"] = "Clique direito"
 	L["ShiftDrag"] = "SHIFT + arrastar"
-
+	L["DialectsTT"] = "Escolher um dialeto substituirá certas palavras digitadas por outras. Por exemplo, transformando \"are not\" em \"aren't\". Cada idioma possui seu próprio conjunto de palavras, e cada um pode ser ativado ou desativado."
+	L["Dialects2TT"] = "É possível impedir a forma dialetal de uma palavra adicionando sublinhados em ambos os lados, como \"_are not_\". Isso mantém o termo com sua grafia original e também remove os sublinhados adicionados."
 
 	L["Common"] = 		"Língua Comum"	--7
 	L["Darnassian"] = 	"Darnassiano"	--2
@@ -1130,7 +1138,8 @@ if LOCALE == "ruRU" then
 	L["LeftClick"] = "ЛКМ"
 	L["RightClick"] = "ПКМ"
 	L["ShiftDrag"] = "SHIFT + перетаскивание"
-
+	L["DialectsTT"] = "Выбор диалекта заменяет некоторые вводимые слова другими. Например, \"are not\" превращается в \"aren't\". У каждого языка есть собственный набор слов, и каждый из них можно включать или отключать."
+	L["Dialects2TT"] = "Можно предотвратить использование диалектной формы слова, добавив символы подчёркивания с обеих сторон, например \"_are not_\". Это сохранит исходное написание слова, а добавленные символы подчёркивания будут удалены."
 
 	L["Common"] = 		"всеобщий"				--7
 	L["Darnassian"] = 	"дарнасский"			--2
@@ -1259,7 +1268,8 @@ if LOCALE == "koKR" then
 	L["LeftClick"] = "좌클릭"
 	L["RightClick"] = "우클릭"
 	L["ShiftDrag"] = "SHIFT + 드래그"
-
+	L["DialectsTT"] = "방언을 선택하면 입력한 일부 단어가 다른 단어로 변경됩니다. 예를 들어 \"are not\"이 \"aren't\"로 바뀝니다. 각 언어에는 고유한 단어 목록이 있으며, 각각 켜거나 끌 수 있습니다."
+	L["Dialects2TT"] = "단어 양쪽에 밑줄을 추가하면 방언 형태로 변환되는 것을 막을 수 있습니다. 예: \"_are not_\". 이렇게 하면 단어는 원래 철자를 유지하며, 양쪽에 추가된 밑줄은 자동으로 제거됩니다."
 
 	L["Common"] = 		"공용어"			--7
 	L["Darnassian"] = 	"나이트 엘프어"	--2
@@ -1313,7 +1323,7 @@ if LOCALE == "zhCN" then
 	L["TogglePrefixOff"] = "语言前缀：关"
 	L["TogglePrefixOn"] = "语言前缀：开"
 	L["TogglePrefixTextOff"] = "关闭自动语言前缀。"
-	L["TogglePrefixTextOn"] = "“关闭自动语言前缀。”"
+	L["TogglePrefixTextOn"] = "\"关闭自动语言前缀。\""
 	L["TogglePrefixTT"] = "控制当前选择的语言是否自动为用户消息添加前缀。"
 	L["Diction"] = "措辞"
 	L["Settings"] = SETTINGS
@@ -1353,8 +1363,8 @@ if LOCALE == "zhCN" then
 	L["Dialect"] = "方言"
 	L["DialectOff"] = "方言：关闭"
 	L["DialectOn"] = "方言：开"
-	L["UseDialectTT"] = "控制用户当前说话时是否使用方言，例如方言。 “你想要什么”变成“Waschu wan'？”。"
-	L["SettingDialectTo"] = "“将方言设置为：”"
+	L["UseDialectTT"] = "控制用户当前说话时是否使用方言，例如方言。 \"你想要什么\"变成\"Waschu wan'？\"。"
+	L["SettingDialectTo"] = "\"将方言设置为：\""
 	L["CurrentlySpeaking"] = "目前正在讲："
 	L["NoPrefixBaseLang"] = "如果您使用派系的基本语言（通用/兽人语分别为联盟/部落），请勿使用前缀。"
 	L["LanguagePreset"] = "学习语言预设"
@@ -1376,7 +1386,7 @@ if LOCALE == "zhCN" then
 	"\n"..colorThingS.."minimap"..colorThingE.." - 打开/关闭小地图按钮。"..
 	"\n此外，您还可以设置语言，例如 "..colorThingS.."/达纳苏斯语"..colorThingE.."。"
 	L["OnlyInCharacter"] = "仅角色状态"
-	L["OnlyInCharacterTT"] = "仅在“角色状态”下启用前缀 / 方言。\n需要 Total RP 3 插件"
+	L["OnlyInCharacterTT"] = "仅在\"角色状态\"下启用前缀 / 方言。\n需要 Total RP 3 插件"
 	L["RuneSize"] = "雕文大小"
 	L["DisablePrefix"] = "禁用前缀"
 	L["EnablePrefix"] = "启用前缀"
@@ -1388,8 +1398,8 @@ if LOCALE == "zhCN" then
 	L["LeftClick"] = "左键点击"
 	L["RightClick"] = "右键点击"
 	L["ShiftDrag"] = "SHIFT + 拖动"
-
-
+	L["DialectsTT"] = "选择一种方言会将你输入的某些词语替换为其他词语。例如，将\"are not\"转换为\"aren't\"。每种语言都有自己的一组词语，并且都可以单独启用或禁用。"
+	L["Dialects2TT"] = "在单词两侧添加下划线可以阻止其被转换为方言形式，例如\"_are not_\"。这样可以保留该词的原始拼写，并会自动移除两侧添加的下划线。"
 
 	L["Common"] = 		"通用语"			--7
 	L["Darnassian"] = 	"达纳苏斯语"		--2
@@ -1443,7 +1453,7 @@ if LOCALE == "zhTW" then
 	L["TogglePrefixOff"] = "語言前綴：關閉"
 	L["TogglePrefixOn"] = "語言前綴：開"
 	L["TogglePrefixTextOff"] = "關閉自動語言前綴。"
-	L["TogglePrefixTextOn"] = "“關閉自動語言前綴。”"
+	L["TogglePrefixTextOn"] = "\"關閉自動語言前綴。\""
 	L["TogglePrefixTT"] = "控制目前選擇的語言是否自動為使用者訊息添加前綴。"
 	L["Diction"] = "措辭"
 	L["Settings"] = SETTINGS
@@ -1484,7 +1494,7 @@ if LOCALE == "zhTW" then
 	L["DialectOff"] = "方言：關閉"
 	L["DialectOn"] = "方言：開"
 	L["UseDialectTT"] = "控制使用者目前說話時是否使用方言，例如方言。 「你想要什麼」變成「Waschu wan'？」。"
-	L["SettingDialectTo"] = "“將方言設定為：”"
+	L["SettingDialectTo"] = "\"將方言設定為：\""
 	L["CurrentlySpeaking"] = "目前正在講："
 	L["NoPrefixBaseLang"] = "如果您使用派系的基本語言（通用/獸人語分別為聯盟/部落），請勿使用前綴。"
 	L["LanguagePreset"] = "學習語言預設"
@@ -1518,7 +1528,8 @@ if LOCALE == "zhTW" then
 	L["LeftClick"] = "左鍵點擊"
 	L["RightClick"] = "右鍵點擊"
 	L["ShiftDrag"] = "SHIFT + 拖曳"
-
+	L["DialectsTT"] = "選擇一種方言會將你輸入的某些詞語替換為其他詞語。例如，將「are not」轉換為「aren't」。每種語言都有自己的一組詞語，並且都可以個別啟用或停用。"
+	L["Dialects2TT"] = "在單詞兩側加上下劃線可以防止其被轉換為方言形式，例如「_are not_」。這會保留該詞的原始拼寫，並同時移除兩側加入的下劃線。"
 
 	L["Common"] = 		"通用語"			--7
 	L["Darnassian"] = 	"達納蘇斯語"		--2

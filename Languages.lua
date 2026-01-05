@@ -35,6 +35,7 @@ local defaultsTableChar = {
 	understandLanguage = {
 	},
 	dialect = nil,
+	dialectWordToggles = {},
 	favoriteLanguages = {},
 	selectionButton = {
 		shown = true,
@@ -251,7 +252,96 @@ end
 
 local currentLanguage = {};
 local preserveLanguage = {};
-local content1, content2, content3 = mainFrame.SetTabs(mainFrame, 3, L["Diction"], L["Settings"], L["Profiles"])
+local content1, contentDialect, content2, content3 = mainFrame.SetTabs(mainFrame, 4, L["Diction"], L["Dialect"], L["Settings"], L["Profiles"])
+
+mainFrame.DialectWordList_Frame = CreateFrame("Frame", nil, contentDialect, "BackdropTemplate")
+mainFrame.DialectWordList_Frame:SetPoint("TOPLEFT", contentDialect, "TOPLEFT", 10, -50)
+mainFrame.DialectWordList_Frame:SetPoint("TOPRIGHT", contentDialect, "TOPRIGHT", -25, -50)
+mainFrame.DialectWordList_Frame:SetHeight(435)
+mainFrame.DialectWordList_Frame:SetBackdrop(mainFrame.backdropInfo)
+mainFrame.DialectWordList_Frame:SetBackdropColor(0,0,0,.5)
+
+local DialectScrollBox = CreateFrame("Frame", nil, mainFrame.DialectWordList_Frame, "WowScrollBoxList")
+DialectScrollBox:SetPoint("TOPLEFT", 5, -35)
+DialectScrollBox:SetPoint("BOTTOMRIGHT", -25, 5)
+
+local DialectScrollBar = CreateFrame("EventFrame", nil, mainFrame.DialectWordList_Frame, "MinimalScrollBar")
+DialectScrollBar:SetPoint("TOPLEFT", DialectScrollBox, "TOPRIGHT", 5, 0)
+DialectScrollBar:SetPoint("BOTTOMLEFT", DialectScrollBox, "BOTTOMRIGHT", 5, 0)
+
+local DialectScrollView = CreateScrollBoxListLinearView()
+ScrollUtil.InitScrollBoxListWithScrollBar(DialectScrollBox, DialectScrollBar, DialectScrollView)
+
+local function DialectRowInitializer(button, data)
+	if not button.bg then
+		button.bg = button:CreateTexture(nil, "BACKGROUND")
+		button.bg:SetAllPoints()
+		button.bg:SetAtlas("ClickCastList-ButtonBackground")
+		button.bg:SetAlpha(0.3)
+	end
+
+	if not button.checkbox then
+		button.checkbox = CreateFrame("CheckButton", nil, button, "UICheckButtonTemplate")
+		button.checkbox:SetSize(24, 24)
+		button.checkbox:SetPoint("LEFT", button, "LEFT", 5, 0)
+	end
+
+	if not button.text then
+		button.text = button:CreateFontString(nil, "OVERLAY", "GameFontHighlight")
+		button.text:SetPoint("LEFT", button.checkbox, "RIGHT", 5, 0)
+		button.text:SetPoint("RIGHT", -5, 0)
+		button.text:SetJustifyH("LEFT")
+	end
+	
+	button.text:SetText(string.format("%s |cFF888888->|r %s", data.word, data.replacement))
+	
+	local profile = GetActiveProfile()
+	local isEnabled = true
+	if profile.dialectWordToggles and profile.dialectWordToggles[profile.dialect] then
+		local val = profile.dialectWordToggles[profile.dialect][data.word]
+		if val == false then isEnabled = false end
+	end
+	
+	button.checkbox:SetChecked(isEnabled)
+
+	button.checkbox:SetScript("OnClick", function(self)
+		local isChecked = self:GetChecked()
+		local profile = GetActiveProfile()
+		local dialect = profile.dialect
+		
+		if not profile.dialectWordToggles then profile.dialectWordToggles = {} end
+		if not profile.dialectWordToggles[dialect] then profile.dialectWordToggles[dialect] = {} end
+		
+		profile.dialectWordToggles[dialect][data.word] = isChecked
+		
+		if isChecked then PlaySound(856) else PlaySound(857) end
+	end)
+end
+
+DialectScrollView:SetElementInitializer("Button", DialectRowInitializer)
+DialectScrollView:SetElementExtent(30)
+DialectScrollView:SetPadding(5, 5, 5, 5, 2)
+
+function mainFrame.RefreshDialectWordList()
+	local dataProvider = CreateDataProvider()
+	local profile = GetActiveProfile()
+	local currentDialect = profile.dialect
+
+	if currentDialect and Dialects and Dialects[currentDialect] then
+		local sortedWords = {}
+		for word, replacement in pairs(Dialects[currentDialect]) do
+			table.insert(sortedWords, {word = word, replacement = replacement})
+		end
+		
+		table.sort(sortedWords, function(a,b) return a.word < b.word end)
+		
+		for _, data in ipairs(sortedWords) do
+			dataProvider:Insert(data)
+		end
+	end
+	
+	DialectScrollView:SetDataProvider(dataProvider)
+end
 
 function lang.combatCheck()
 	if UnitAffectingCombat("player") == true and Languages_DB.settings.combat == false then
@@ -314,7 +404,6 @@ local function ApplyDialectToText(text)
 	end
 	
 	local profile = GetActiveProfile()
-
 	local dialectName = profile.dialect
 	
 	if not dialectName or not Dialects or not Dialects[dialectName] then
@@ -322,15 +411,50 @@ local function ApplyDialectToText(text)
 	end
 	
 	local dictionary = Dialects[dialectName]
+	
+	local toggles = nil
+	if profile.dialectWordToggles then
+		toggles = profile.dialectWordToggles[dialectName]
+	end
+
+	local protectedMap = {}
+	local protectedCount = 0
 
 	for targetWord, replacementWord in pairs(dictionary) do
-		text = text:gsub("(%f[%a])" .. targetWord .. "(%f[%A])", function(boundaryA, boundaryB)
-			return boundaryA .. MatchCasing(targetWord, replacementWord) .. boundaryB
-		end)
-		
-		local titleTarget = targetWord:gsub("^%l", string.upper)
-		text = text:gsub("(%f[%a])" .. titleTarget .. "(%f[%A])", function(boundaryA, boundaryB)
-			return boundaryA .. MatchCasing(titleTarget, replacementWord) .. boundaryB
+		if not (toggles and toggles[targetWord] == false) then
+
+			local function Protect(match)
+				protectedCount = protectedCount + 1
+				local token = "{P_LANG_" .. protectedCount .. "}"
+				local cleanWord = match:sub(2, -2) 
+				protectedMap[token] = cleanWord
+				return token
+			end
+
+			local escapedTarget = "_" .. targetWord .. "_"
+			if string.find(text, escapedTarget, 1, true) then
+				text = text:gsub(escapedTarget, Protect)
+			end
+
+			local titleTarget = targetWord:gsub("^%l", string.upper)
+			local escapedTitleTarget = "_" .. titleTarget .. "_"
+			if string.find(text, escapedTitleTarget, 1, true) then
+				text = text:gsub(escapedTitleTarget, Protect)
+			end
+
+			text = text:gsub("(%f[%a])" .. targetWord .. "(%f[%A])", function(boundaryA, boundaryB)
+				return boundaryA .. MatchCasing(targetWord, replacementWord) .. boundaryB
+			end)
+			
+			text = text:gsub("(%f[%a])" .. titleTarget .. "(%f[%A])", function(boundaryA, boundaryB)
+				return boundaryA .. MatchCasing(titleTarget, replacementWord) .. boundaryB
+			end)
+		end
+	end
+
+	if protectedCount > 0 then
+		text = text:gsub("{P_LANG_%d+}", function(token)
+			return protectedMap[token] or token
 		end)
 	end
 
@@ -1060,15 +1184,22 @@ StaticPopupDialogs["LANGUAGES_CHAR_PRESET_GAMEPLAY"] = CreatePresetPopup("gamepl
 mainFrame.LangList_Frame = CreateFrame("Frame", nil, content1, "BackdropTemplate")
 mainFrame.LangList_Frame:SetPoint("TOPLEFT", content1, "TOPLEFT", 0, -115)
 mainFrame.LangList_Frame:SetPoint("TOPRIGHT", content1, "TOPRIGHT", -25, -115)
-mainFrame.LangList_Frame:SetHeight(300)
+mainFrame.LangList_Frame:SetHeight(367)
 mainFrame.LangList_Frame:SetBackdrop(mainFrame.backdropInfo)
 mainFrame.LangList_Frame:SetBackdropColor(0,0,0,.5)
 
-mainFrame.DialectList_Frame = CreateFrame("Frame", nil, content1, "BackdropTemplate")
-mainFrame.DialectList_Frame:SetPoint("TOP", mainFrame.LangList_Frame, "BOTTOM", 0, -20) 
-mainFrame.DialectList_Frame:SetSize(300, 70)
+mainFrame.DialectList_Frame = CreateFrame("Frame", nil, contentDialect, "BackdropTemplate")
+mainFrame.DialectList_Frame:SetPoint("TOP", contentDialect, "BOTTOM", 0, -20) 
+mainFrame.DialectList_Frame:SetSize(300, 45)
 mainFrame.DialectList_Frame:SetBackdrop(mainFrame.backdropInfo)
 mainFrame.DialectList_Frame:SetBackdropColor(0,0,0,.5)
+
+mainFrame.DialectList_Backdrop = CreateFrame("Frame", nil, contentDialect, "BackdropTemplate")
+mainFrame.DialectList_Backdrop:SetPoint("TOPLEFT", contentDialect, "TOPLEFT", 0, -82.5)
+mainFrame.DialectList_Backdrop:SetPoint("TOPRIGHT", contentDialect, "TOPRIGHT", -25, -82.5)
+mainFrame.DialectList_Backdrop:SetHeight(400)
+mainFrame.DialectList_Backdrop:SetBackdrop(mainFrame.backdropInfo)
+mainFrame.DialectList_Backdrop:SetBackdropColor(0,0,0,.5)
 
 local LangSearchBox = CreateFrame("EditBox", nil, mainFrame.LangList_Frame, "SearchBoxTemplate")
 LangSearchBox:SetPoint("BOTTOMLEFT", mainFrame.LangList_Frame, "TOPLEFT", 10, 5)
@@ -1704,13 +1835,25 @@ end);
 
 mainFrame.Dialect = mainFrame.DialectList_Frame:CreateFontString()
 mainFrame.Dialect:SetFont(STANDARD_TEXT_FONT, 15)
-mainFrame.Dialect:SetPoint("TOPLEFT", mainFrame.DialectList_Frame, "TOPLEFT", 10, -5)
+mainFrame.Dialect:SetPoint("TOPLEFT", mainFrame.DialectList_Frame, "TOPLEFT", 10, -10)
 mainFrame.Dialect:SetText(L["Dialect"])
 
 mainFrame.DialectDropdown = CreateFrame("DropdownButton", nil, mainFrame.DialectList_Frame, "WowStyle1DropdownTemplate")
-mainFrame.DialectDropdown:SetPoint("TOP", mainFrame.DialectList_Frame, "TOP", 10, -30)
+mainFrame.DialectDropdown:SetPoint("TOP", mainFrame.DialectList_Frame, "TOP", 10, -5)
 mainFrame.DialectDropdown:SetWidth(150)
 mainFrame.DialectDropdown:SetDefaultText(L["Dialect"])
+
+mainFrame.DialectDropdown:HookScript("OnEnter", function(self)
+	GameTooltip:SetOwner(self, "ANCHOR_TOP");
+	GameTooltip:AddLine(L["Dialects"]);
+	GameTooltip:AddLine(L["DialectsTT"], 1, 1, 1, true);
+	GameTooltip:AddLine(" ", 1, 1, 1, true);
+	GameTooltip:AddLine(L["Dialects2TT"], 1, 1, 1, true);
+	GameTooltip:Show();
+end);
+mainFrame.DialectDropdown:HookScript("OnLeave", function()
+	GameTooltip:Hide();
+end);
 
 local function IsDialectSelected(dialectName)
 	local profile = GetActiveProfile()
@@ -1723,6 +1866,10 @@ local function SetDialect(dialectName)
 	local profile = GetActiveProfile()
 	profile.dialect = dialectName
 	mainFrame.DialectDropdown:GenerateMenu() 
+	
+	if mainFrame.RefreshDialectWordList then
+		mainFrame.RefreshDialectWordList()
+	end
 end
 
 local function DialectMenuGenerator(owner, rootDescription)
@@ -2270,6 +2417,16 @@ function lang.checkSettings()
 	end
 
 	mainFrame.RefreshLanguageList()
+	if mainFrame.RefreshDialectWordList then
+		mainFrame.RefreshDialectWordList()
+		
+		if profile.dialect then
+			mainFrame.DialectDropdown:SetText(profile.dialect)
+		else
+			mainFrame.DialectDropdown:SetText(L["Dialect"])
+		end
+	end
+
 	mainFrame.PHTRP3Text:SetText(charKey);
 	lang.trp3ProfileName();
 end
@@ -2344,6 +2501,7 @@ lang:RegisterEvent("UNIT_AURA")
 
 function mainFrame.init()
 	mainFrame.RefreshLanguageList()
+	mainFrame.RefreshDialectWordList()
 end
 
 function lang.InitializeDB()
