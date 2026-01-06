@@ -1009,11 +1009,15 @@ local Dictionaries = {
 
 		["you will be the first of many to glimpse the madness of n'zoth"] = "iilth qi mah'shar fhn oorql N'Zoth",
 		["you will be the first of many to glimpse the madness of nzoth"] = "iilth qi mah'shar fhn oorql N'Zoth",
+		["you will be the first of many to glimpse the madness of"] = "iilth qi mah'shar fhn oorql",
+		["you will be the first of many to glimpse the madness"] = "iilth qi mah'shar fhn oorql",
 		--variants
 		["you will be the first to behold n'zoth's madness"] = "iilth qi mah'shar fhn oorql N'Zoth",
+		["you will be the first to behold n'zoths madness"] = "iilth qi mah'shar fhn oorql N'Zoth",
 		["you will glimpse the madness of n'zoth before all others"] = "iilth qi mah'shar fhn oorql N'Zoth",
 		["you will open your eyes to n'zoth’s madness"] = "iilth qi mah'shar fhn oorql N'Zoth",
 		["you will be the first to behold nzoth's madness"] = "iilth qi mah'shar fhn oorql N'Zoth",
+		["you will be the first to behold nzoths madness"] = "iilth qi mah'shar fhn oorql N'Zoth",
 		["you will glimpse the madness of nzoth before all others"] = "iilth qi mah'shar fhn oorql N'Zoth",
 		["you will open your eyes to nzoth’s madness"] = "iilth qi mah'shar fhn oorql N'Zoth",
 
@@ -1022,9 +1026,11 @@ local Dictionaries = {
 		--variants
 		["n'zoth whispers from the deep"] = "il'zarq N'Zoth phgwa an'zig",
 		["the deep carries n'zoth's whispers"] = "il'zarq N'Zoth phgwa an'zig",
+		["the deep carries n'zoths whispers"] = "il'zarq N'Zoth phgwa an'zig",
 		["from the depths, n'zoth speaks"] = "il'zarq N'Zoth phgwa an'zig",
 		["nzoth whispers from the deep"] = "il'zarq N'Zoth phgwa an'zig",
 		["the deep carries nzoth's whispers"] = "il'zarq N'Zoth phgwa an'zig",
+		["the deep carries nzoths whispers"] = "il'zarq N'Zoth phgwa an'zig",
 		["from the depths, nzoth speaks"] = "il'zarq N'Zoth phgwa an'zig",
 
 		["it sings of unspeakable horrors"] = "il'zarq taag ov'kadaq",
@@ -1038,9 +1044,11 @@ local Dictionaries = {
 		--variants
 		["in n'zoth's shadow, all light withers"] = "mg'uulwi N'Zoth, eth'razzqi worg zz oou",
 		["all light dies beneath n'zoth’s shadow"] = "mg'uulwi N'Zoth, eth'razzqi worg zz oou",
+		["all light dies beneath n'zoths shadow"] = "mg'uulwi N'Zoth, eth'razzqi worg zz oou",
 		["n'zoth’s shadow consumes all light"] = "mg'uulwi N'Zoth, eth'razzqi worg zz oou",
 		["in nzoth's shadow, all light withers"] = "mg'uulwi N'Zoth, eth'razzqi worg zz oou",
 		["all light dies beneath nzoth’s shadow"] = "mg'uulwi N'Zoth, eth'razzqi worg zz oou",
+		["all light dies beneath nzoths shadow"] = "mg'uulwi N'Zoth, eth'razzqi worg zz oou",
 		["nzoth’s shadow consumes all light"] = "mg'uulwi N'Zoth, eth'razzqi worg zz oou",
 
 		["the will of n'zoth is made manifest"] = "N'Zoth iiyoq raz'tal'vsak",
@@ -1049,9 +1057,11 @@ local Dictionaries = {
 		["n'zoth's will is revealed"] = "N'Zoth iiyoq raz'tal'vsak",
 		["the will of n'zoth takes form"] = "N'Zoth iiyoq raz'tal'vsak",
 		["n'zoth’s will is realized"] = "N'Zoth iiyoq raz'tal'vsak",
+		["n'zoths will is realized"] = "N'Zoth iiyoq raz'tal'vsak",
 		["nzoth's will is revealed"] = "N'Zoth iiyoq raz'tal'vsak",
 		["the will of nzoth takes form"] = "N'Zoth iiyoq raz'tal'vsak",
 		["nzoth’s will is realized"] = "N'Zoth iiyoq raz'tal'vsak",
+		["nzoths will is realized"] = "N'Zoth iiyoq raz'tal'vsak",
 
 		["it cannot be contained"] = "iiyoq nel'othk ar'afgh",
 		--variants
@@ -1109,10 +1119,12 @@ local Dictionaries = {
 		["the blood of nzoth runs through me"] = "yeh'glu N'Zoth okom hoq",
 		--variants
 		["n'zoth's blood flows within me"] = "yeh'glu N'Zoth okom hoq",
+		["n'zoths blood flows within me"] = "yeh'glu N'Zoth okom hoq",
 		["i carry the blood of n'zoth"] = "yeh'glu N'Zoth okom hoq",
 		["n'zoth flows through my veins"] = "yeh'glu N'Zoth okom hoq",
 		["i am bound by the blood of n'zoth"] = "yeh'glu N'Zoth okom hoq",
 		["nzoth's blood flows within me"] = "yeh'glu N'Zoth okom hoq",
+		["nzoths blood flows within me"] = "yeh'glu N'Zoth okom hoq",
 		["i carry the blood of nzoth"] = "yeh'glu N'Zoth okom hoq",
 		["nzoth flows through my veins"] = "yeh'glu N'Zoth okom hoq",
 		["i am bound by the blood of nzoth"] = "yeh'glu N'Zoth okom hoq",
@@ -1124,11 +1136,13 @@ local Dictionaries = {
 		["i am beyond death"] = "y'za sythn oou",
 		["i do not die"] = "y'za sythn oou",
 
-		["al'ksh syq iir awan"] = "is this real or an illusion",
+		["is this real or an illusion"] = "al'ksh syq iir awan",
 		--variants
 		["is this real, or merely illusion"] = "al'ksh syq iir awan",
+		["is this real or merely illusion"] = "al'ksh syq iir awan",
 		["is this truth or illusion"] = "al'ksh syq iir awan",
 		["is this reality, or a lie"] = "al'ksh syq iir awan",
+		["is this reality or a lie"] = "al'ksh syq iir awan",
 		["is any of this real"] = "al'ksh syq iir awan",
 
 		["iilth sythn aqev"] = "you are going mad",
@@ -1147,11 +1161,11 @@ local Dictionaries = {
 
 
 		-- Yor'sahj the Unsleeping
-		["o, deathwing"] = "ez, Shuul'wah",
+		["o"] = "ez",
 		--variants
-		["oh, deathwing"] = "ez, Shuul'wah",
-		["hear us, deathwing"] = "ez, Shuul'wah",
-		["we call to you, deathwing"] = "ez, Shuul'wah",
+		["oh"] = "ez",
+		["hear us"] = "ez",
+		["we call to you"] = "ez",
 
 		["your faithful servant has failed you"] = "sk'woth'gl yu'gaz yog'ghyl ilfah",
 		--variants
@@ -1160,12 +1174,12 @@ local Dictionaries = {
 		["your servant has failed in your service"] = "sk'woth'gl yu'gaz yog'ghyl ilfah",
 		["your faithful one has failed you"] = "sk'woth'gl yu'gaz yog'ghyl ilfah",
 
-		["all praise deathwing"] = "h'iwn zaix Shuul'wah",
+		["all praise"] = "h'iwn zaix",
 		--variants
-		["praise deathwing"] = "h'iwn zaix Shuul'wah",
-		["all hail deathwing"] = "h'iwn zaix Shuul'wah",
-		["glory to deathwing"] = "h'iwn zaix Shuul'wah",
-		["honor deathwing"] = "h'iwn zaix Shuul'wah",
+		["praise"] = "h'iwn zaix",
+		["all hail"] = "h'iwn zaix",
+		["glory to"] = "h'iwn zaix",
+		["honor"] = "h'iwn zaix",
 
 		["the destroyer"] = "phquathi",
 		--variants
@@ -1251,6 +1265,7 @@ local Dictionaries = {
 		["when one falls, many rise in its place"] = "iilth vwah, uhn'agth fhssh za",
 		["for every one that falls, many replace it"] = "iilth vwah, uhn'agth fhssh za",
 		["one falls, and many take its place"] = "iilth vwah, uhn'agth fhssh za",
+		["one falls and many take its place"] = "iilth vwah, uhn'agth fhssh za",
 		["they are endless—where one falls, many follow"] = "iilth vwah, uhn'agth fhssh za",
 
 
@@ -1267,6 +1282,7 @@ local Dictionaries = {
 		["from the bleakest depths below"] = "shkul an'zig qvsakf kssh'ga",
 		["from depths most desolate"] = "shkul an'zig qvsakf kssh'ga",
 		["from its deepest, bleakest reaches"] = "shkul an'zig qvsakf kssh'ga",
+		["from its deepest bleakest reaches"] = "shkul an'zig qvsakf kssh'ga",
 
 		["we reclaim this world"] = "ag'thyzak agthu",
 		--variants
@@ -1283,22 +1299,33 @@ local Dictionaries = {
 		["they are the whisper carried on the wind"] = "ywaq ma phgwa'cul hnakf",
 
 		["they drink your fear: it is the blood of life"] = "ywaq puul skshgn on'ma yeh'glu zuq",
+		["they drink your fear it is the blood of life"] = "ywaq puul skshgn on'ma yeh'glu zuq",
 		--variants
-		["they drink your fear—it is the blood of life"] = "ywaq puul skshgn on'ma yeh'glu zuq",
+		["they drink your fear-it is the blood of life"] = "ywaq puul skshgn on'ma yeh'glu zuq",
+		["they drink your fear it is the blood of life"] = "ywaq puul skshgn on'ma yeh'glu zuq",
 		["your fear is their sustenance"] = "ywaq puul skshgn on'ma yeh'glu zuq",
 		["they feed upon fear, the blood of life"] = "ywaq puul skshgn on'ma yeh'glu zuq",
+		["they feed upon fear the blood of life"] = "ywaq puul skshgn on'ma yeh'glu zuq",
 		["fear is the lifeblood they drink"] = "ywaq puul skshgn on'ma yeh'glu zuq",
 
 		-- Warlord Zon'ozz
 		["gaze into the heart of n'zoth"] = "gul'kafh an'qov N'Zoth",
 		["gaze into the heart of nzoth"] = "gul'kafh an'qov N'Zoth",
+		["gaze into the heart of"] = "gul'kafh an'qov",
+		["gaze into the heart"] = "gul'kafh an'qov",
 		--variants
 		["look into the heart of n'zoth"] = "gul'kafh an'qov N'Zoth",
+		["look into the heart of"] = "gul'kafh an'qov",
+		["look into the heart"] = "gul'kafh an'qov",
 		["peer into n'zoth's heart"] = "gul'kafh an'qov N'Zoth",
+		["peer into n'zoths heart"] = "gul'kafh an'qov N'Zoth",
 		["behold the heart of n'zoth"] = "gul'kafh an'qov N'Zoth",
+		["behold the heart of"] = "gul'kafh an'qov",
+		["behold the heart"] = "gul'kafh an'qov",
 		["stare into n'zoth's core"] = "gul'kafh an'qov N'Zoth",
 		["look into the heart of nzoth"] = "gul'kafh an'qov N'Zoth",
 		["peer into nzoth's heart"] = "gul'kafh an'qov N'Zoth",
+		["peer into nzoths heart"] = "gul'kafh an'qov N'Zoth",
 		["behold the heart of nzoth"] = "gul'kafh an'qov N'Zoth",
 		["stare into nzoth's core"] = "gul'kafh an'qov N'Zoth",
 
@@ -1306,12 +1333,17 @@ local Dictionaries = {
 		["the will of nzoth corrupts you"] = "N'Zoth ga zyqtahg iilth",
 		--variants
 		["n'zoth's will corrupts you"] = "N'Zoth ga zyqtahg iilth",
+		["n'zoths will corrupts you"] = "N'Zoth ga zyqtahg iilth",
+		["will corrupts you"] = "ga zyqtahg iilth",
 		["you are corrupted by n'zoth's will"] = "N'Zoth ga zyqtahg iilth",
 		["n'zoth's will seeps into you"] = "N'Zoth ga zyqtahg iilth",
+		["n'zoths will seeps into you"] = "N'Zoth ga zyqtahg iilth",
+		["will seeps into you"] = "ga zyqtahg iilth",
 		["the will of n'zoth twists you"] = "N'Zoth ga zyqtahg iilth",
 		["nzoth's will corrupts you"] = "N'Zoth ga zyqtahg iilth",
 		["you are corrupted by nzoth's will"] = "N'Zoth ga zyqtahg iilth",
 		["nzoth's will seeps into you"] = "N'Zoth ga zyqtahg iilth",
+		["nzoths will seeps into you"] = "N'Zoth ga zyqtahg iilth",
 		["the will of nzoth twists you"] = "N'Zoth ga zyqtahg iilth",
 
 		["your suffering strengthens me"] = "sk'magg yawifk hoq",
@@ -1331,18 +1363,28 @@ local Dictionaries = {
 
 		["your deaths shall sing of n'zoth's unending glory"] = "sk'shuul agth vorzz N'Zoth naggwa'fssh",
 		["your deaths shall sing of nzoth's unending glory"] = "sk'shuul agth vorzz N'Zoth naggwa'fssh",
+		["your deaths shall sing of n'zoths unending glory"] = "sk'shuul agth vorzz N'Zoth naggwa'fssh",
+		["your deaths shall sing of nzoths unending glory"] = "sk'shuul agth vorzz N'Zoth naggwa'fssh",
 		--variants
 		["your deaths will sing of n'zoth's eternal glory"] = "sk'shuul agth vorzz N'Zoth naggwa'fssh",
 		["your deaths will praise n'zoth's endless glory"] = "sk'shuul agth vorzz N'Zoth naggwa'fssh",
+		["your deaths will sing of n'zoths eternal glory"] = "sk'shuul agth vorzz N'Zoth naggwa'fssh",
+		["your deaths will praise n'zoths endless glory"] = "sk'shuul agth vorzz N'Zoth naggwa'fssh",
 		["your dying screams will glorify n'zoth forever"] = "sk'shuul agth vorzz N'Zoth naggwa'fssh",
 		["your deaths will echo n'zoth's undying glory"] = "sk'shuul agth vorzz N'Zoth naggwa'fssh",
 		["your deaths will sing of nzoth's eternal glory"] = "sk'shuul agth vorzz N'Zoth naggwa'fssh",
 		["your deaths will praise nzoth's endless glory"] = "sk'shuul agth vorzz N'Zoth naggwa'fssh",
+		["your deaths will echo n'zoths undying glory"] = "sk'shuul agth vorzz N'Zoth naggwa'fssh",
+		["your deaths will sing of nzoths eternal glory"] = "sk'shuul agth vorzz N'Zoth naggwa'fssh",
+		["your deaths will praise nzoths endless glory"] = "sk'shuul agth vorzz N'Zoth naggwa'fssh",
 		["your dying screams will glorify nzoth forever"] = "sk'shuul agth vorzz N'Zoth naggwa'fssh",
 		["your deaths will echo nzoth's undying glory"] = "sk'shuul agth vorzz N'Zoth naggwa'fssh",
+		["your deaths will echo nzoths undying glory"] = "sk'shuul agth vorzz N'Zoth naggwa'fssh",
 
 		["your skulls shall adorn n'zoth's writhing throne"] = "sk'tek agth nuq N'Zoth yyqzz",
 		["your skulls shall adorn nzoth's writhing throne"] = "sk'tek agth nuq N'Zoth yyqzz",
+		["your skulls shall adorn n'zoths writhing throne"] = "sk'tek agth nuq N'Zoth yyqzz",
+		["your skulls shall adorn nzoths writhing throne"] = "sk'tek agth nuq N'Zoth yyqzz",
 		--variants
 		["your skulls will adorn n'zoth's writhing throne"] = "sk'tek agth nuq N'Zoth yyqzz",
 		["n'zoth's throne will be crowned with your skulls"] = "sk'tek agth nuq N'Zoth yyqzz",
@@ -1352,6 +1394,14 @@ local Dictionaries = {
 		["nzoth's throne will be crowned with your skulls"] = "sk'tek agth nuq N'Zoth yyqzz",
 		["your skulls will decorate nzoth's throne"] = "sk'tek agth nuq N'Zoth yyqzz",
 		["nzoth's throne will writhe beneath your skulls"] = "sk'tek agth nuq N'Zoth yyqzz",
+		["your skulls will adorn n'zoths writhing throne"] = "sk'tek agth nuq N'Zoth yyqzz",
+		["n'zoths throne will be crowned with your skulls"] = "sk'tek agth nuq N'Zoth yyqzz",
+		["your skulls will decorate n'zoths throne"] = "sk'tek agth nuq N'Zoth yyqzz",
+		["n'zoths throne will writhe beneath your skulls"] = "sk'tek agth nuq N'Zoth yyqzz",
+		["your skulls will adorn nzoths writhing throne"] = "sk'tek agth nuq N'Zoth yyqzz",
+		["nzoths throne will be crowned with your skulls"] = "sk'tek agth nuq N'Zoth yyqzz",
+		["your skulls will decorate nzoths throne"] = "sk'tek agth nuq N'Zoth yyqzz",
+		["nzoths throne will writhe beneath your skulls"] = "sk'tek agth nuq N'Zoth yyqzz",
 
 		["your agony sustains me"] = "sk'uuyat guulphg hoq",
 		--variants
@@ -1362,6 +1412,8 @@ local Dictionaries = {
 
 		["your souls shall sate n'zoth's endless hunger"] = "sk'yahf agth huqth N'Zoth qornaus",
 		["your souls shall sate nzoth's endless hunger"] = "sk'yahf agth huqth N'Zoth qornaus",
+		["your souls shall sate n'zoths endless hunger"] = "sk'yahf agth huqth N'Zoth qornaus",
+		["your souls shall sate nzoths endless hunger"] = "sk'yahf agth huqth N'Zoth qornaus",
 		--variants
 		["your souls will sate n'zoth's endless hunger"] = "sk'yahf agth huqth N'Zoth qornaus",
 		["n'zoth's hunger will be fed by your souls"] = "sk'yahf agth huqth N'Zoth qornaus",
@@ -1371,13 +1423,20 @@ local Dictionaries = {
 		["nzoth's hunger will be fed by your souls"] = "sk'yahf agth huqth N'Zoth qornaus",
 		["your souls will feed nzoth's eternal hunger"] = "sk'yahf agth huqth N'Zoth qornaus",
 		["nzoth will feast upon your souls"] = "sk'yahf agth huqth N'Zoth qornaus",
+		["your souls will sate n'zoths endless hunger"] = "sk'yahf agth huqth N'Zoth qornaus",
+		["n'zoths hunger will be fed by your souls"] = "sk'yahf agth huqth N'Zoth qornaus",
+		["your souls will feed n'zoths eternal hunger"] = "sk'yahf agth huqth N'Zoth qornaus",
+		["your souls will sate nzoths endless hunger"] = "sk'yahf agth huqth N'Zoth qornaus",
+		["nzoths hunger will be fed by your souls"] = "sk'yahf agth huqth N'Zoth qornaus",
+		["your souls will feed nzoths eternal hunger"] = "sk'yahf agth huqth N'Zoth qornaus",
 
-		["to have waited so long... for this..."] = "uovssh thyzz... qwaz...",
+		["to have waited so long"] = "uovssh thyzz",
+		["for this"] = "qwaz",
 		--variants
-		["we have waited so long... for this..."] = "uovssh thyzz... qwaz...",
-		["at last... after so long..."] = "uovssh thyzz... qwaz...",
-		["so long we have waited..."] = "uovssh thyzz... qwaz...",
-		["this moment was long awaited..."] = "uovssh thyzz... qwaz...",
+		["after so long"] = "uovssh thyzz",
+		["at last"] = "qwaz",
+		["so long we have waited"] = "uovssh thyzz qwaz",
+		["this moment was long awaited"] = "uovssh thyzz qwaz",
 
 		["once more shall the twisted flesh-banners of n'zoth chitter and howl above the fly-blown corpse of this world"] = "vwyq agth sshoq'meg N'Zoth vra zz shfk qwor ga'halahs agthu",
 		["once more shall the twisted flesh-banners of nzoth chitter and howl above the fly-blown corpse of this world"] = "vwyq agth sshoq'meg N'Zoth vra zz shfk qwor ga'halahs agthu",
@@ -1391,20 +1450,16 @@ local Dictionaries = {
 		["nzoth's writhing banners will once again scream above this rotting world"] = "vwyq agth sshoq'meg N'Zoth vra zz shfk qwor ga'halahs agthu",
 		["the flesh-banners of nzoth will howl again over this world's corpse"] = "vwyq agth sshoq'meg N'Zoth vra zz shfk qwor ga'halahs agthu",
 
-		["after millennia, we have returned"] = "uulg'ma, ag qam",
+		["after millennia"] = "uulg'ma",
+		["we have returned"] = "ag qam",
 		--variants
-		["after ages, we return"] = "uulg'ma, ag qam",
-		["after countless ages, we have returned"] = "uulg'ma, ag qam",
-		["we return after millennia"] = "uulg'ma, ag qam",
-		["after endless time, we return"] = "uulg'ma, ag qam",
+		["after ages"] = "uulg'ma",
+		["we return"] = "ag qam",
+		["after countless ages"] = "uulg'ma",
+		["after endless time"] = "uulg'ma",
 
 
 		["they do not die; they do not live"] = "ywaq maq oou ywaq maq ssaggh",
-		--variants
-		["they exist outside the cycle"] = "ywaq ma shg'fhn",
-		["they stand beyond the cycle"] = "ywaq ma shg'fhn",
-		["they are not bound by the cycle"] = "ywaq ma shg'fhn",
-		["the cycle does not bind them"] = "ywaq ma shg'fhn",
 
 		["they are outside the cycle"] = "ywaq ma shg'fhn",
 		--variants
@@ -1413,24 +1468,24 @@ local Dictionaries = {
 		["they are not bound by the cycle"] = "ywaq ma shg'fhn",
 		["the cycle does not bind them"] = "ywaq ma shg'fhn",
 
-		["victory for Deathwing"] = "zzof Shuul'wah",
+		["victory for"] = "zzof",
 		--variants
-		["victory to Deathwing"] = "zzof Shuul'wah",
-		["triumph for Deathwing"] = "zzof Shuul'wah",
-		["Deathwing is victorious"] = "zzof Shuul'wah",
-		["Deathwing shall triumph"] = "zzof Shuul'wah",
+		["victory to"] = "zzof",
+		["triumph for"] = "zzof",
+		["victorious"] = "zzof",
+		["shall triumph"] = "zzof",
 
 		["for the glory of n'zoth"] = "thoq fssh N'Zoth",
 		["for the glory of nzoth"] = "thoq fssh N'Zoth",
+		["for the glory of"] = "thoq fssh",
+		["for the glory"] = "thoq fssh",
 		--variants
 		["for n'zoth's glory"] = "thoq fssh N'Zoth",
-		["glory to n'zoth"] = "thoq fssh N'Zoth",
 		["in the name of n'zoth's glory"] = "thoq fssh N'Zoth",
-		["all for the glory of n'zoth"] = "thoq fssh N'Zoth",
 		["for nzoth's glory"] = "thoq fssh N'Zoth",
-		["glory to nzoth"] = "thoq fssh N'Zoth",
 		["in the name of nzoth's glory"] = "thoq fssh N'Zoth",
-		["all for the glory of nzoth"] = "thoq fssh N'Zoth",
+		["in the name of"] = "thoq fssh",
+		["in the name"] = "thoq fssh",
 
 		-- Zek'voz
 		["how is this... possible..."] = "hul bala miz rilakich...",
@@ -1780,8 +1835,8 @@ local Dictionaries = {
 		["wing"] = "wah",
 		["wings"] = "wah",
 
-		["deathwing"] = "shuul'wah",
-		["black aspect"] = "shuul'wah",
+		["deathwing"] = "Shuul'wah",
+		["black aspect"] = "Shuul'wah",
 
 
 
