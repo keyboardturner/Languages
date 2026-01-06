@@ -212,7 +212,7 @@ local Dictionaries = {
 		-- Kurenai
 		["redeemed"] = "kurenai",
 
-		-- Ma-no icta!
+		-- Ma-no icta
 		["double your efforts"] = "ma-no icta", ["double efforts"] = "ma-no icta",
 
 		-- Man'ari
@@ -305,7 +305,7 @@ local Dictionaries = {
 		-- shorel'aran
 		["farewell"] = "shorel'aran", ["goodbye"] = "shorel'aran", ["prepare"] = "shorel'aran",
 
-		-- bash'a no falor talah!
+		-- bash'a no falor talah
 		["taste the chill of true death"] = "bash'a no falor talah", ["taste true death"] = "bash'a no falor talah",
 
 		-- belono sil'aru, belore'dorei
@@ -474,7 +474,7 @@ local Dictionaries = {
 		-- Dazdooga
 		["fire"] = "dazdooga", ["flame"] = "dazdooga", ["the flame"] = "dazdooga", ["the fire"] = "dazdooga",
 
-		-- Doba quzhu ta tawbo! Metah bo chu!
+		-- Doba quzhu ta tawbo Metah bo chu
 		["we bring a gift for you great loa of death"] = "doba quzhu ta tawbo metah bo chu",
 		["we bring a gift great loa of death"] = "doba quzhu ta tawbo metah bo chu",
 		["we bring gifts to you great loa of death"] = "doba quzhu ta tawbo metah bo chu",
@@ -583,7 +583,7 @@ local Dictionaries = {
 		["rush'kah"] = "rush'kah",
 		["samedi"] = "Samedi",
 		["sendulo ma'das na khu'das"] = "Sendulo ma'das na khu'das",
-		["kuba zinn awe."] = "kuba zinn awe.",
+		["kuba zinn awe"] = "kuba zinn awe",
 		["sen'jin"] = "Sen'jin",
 		["shango"] = "Shango",
 		["tai'jin"] = "Tai'jin",
@@ -985,6 +985,7 @@ local Dictionaries = {
 		["no light waits after death"] = "en'othk uulg'shuul",
 		["death leads only to darkness"] = "en'othk uulg'shuul",
 		["beyond death, there is no light"] = "en'othk uulg'shuul",
+		["beyond death there is no light"] = "en'othk uulg'shuul",
 		["the dead find no light"] = "en'othk uulg'shuul",
 
 		["only a place where even shadows fear to go"] = "mh'za uulwi skshgn kar",
@@ -1028,10 +1029,12 @@ local Dictionaries = {
 		["the deep carries n'zoth's whispers"] = "il'zarq N'Zoth phgwa an'zig",
 		["the deep carries n'zoths whispers"] = "il'zarq N'Zoth phgwa an'zig",
 		["from the depths, n'zoth speaks"] = "il'zarq N'Zoth phgwa an'zig",
+		["from the depths n'zoth speaks"] = "il'zarq N'Zoth phgwa an'zig",
 		["nzoth whispers from the deep"] = "il'zarq N'Zoth phgwa an'zig",
 		["the deep carries nzoth's whispers"] = "il'zarq N'Zoth phgwa an'zig",
 		["the deep carries nzoths whispers"] = "il'zarq N'Zoth phgwa an'zig",
 		["from the depths, nzoth speaks"] = "il'zarq N'Zoth phgwa an'zig",
+		["from the depths nzoth speaks"] = "il'zarq N'Zoth phgwa an'zig",
 
 		["it sings of unspeakable horrors"] = "il'zarq taag ov'kadaq",
 		--variants
@@ -1041,12 +1044,16 @@ local Dictionaries = {
 
 		["in the writhing shadow of n'zoth, all light fades and dies"] = "mg'uulwi N'Zoth, eth'razzqi worg zz oou",
 		["in the writhing shadow of nzoth, all light fades and dies"] = "mg'uulwi N'Zoth, eth'razzqi worg zz oou",
+		["in the writhing shadow of n'zoth all light fades and dies"] = "mg'uulwi N'Zoth, eth'razzqi worg zz oou",
+		["in the writhing shadow of nzoth all light fades and dies"] = "mg'uulwi N'Zoth, eth'razzqi worg zz oou",
 		--variants
 		["in n'zoth's shadow, all light withers"] = "mg'uulwi N'Zoth, eth'razzqi worg zz oou",
+		["in n'zoth's shadow all light withers"] = "mg'uulwi N'Zoth, eth'razzqi worg zz oou",
 		["all light dies beneath n'zoth’s shadow"] = "mg'uulwi N'Zoth, eth'razzqi worg zz oou",
 		["all light dies beneath n'zoths shadow"] = "mg'uulwi N'Zoth, eth'razzqi worg zz oou",
 		["n'zoth’s shadow consumes all light"] = "mg'uulwi N'Zoth, eth'razzqi worg zz oou",
 		["in nzoth's shadow, all light withers"] = "mg'uulwi N'Zoth, eth'razzqi worg zz oou",
+		["in nzoth's shadow all light withers"] = "mg'uulwi N'Zoth, eth'razzqi worg zz oou",
 		["all light dies beneath nzoth’s shadow"] = "mg'uulwi N'Zoth, eth'razzqi worg zz oou",
 		["all light dies beneath nzoths shadow"] = "mg'uulwi N'Zoth, eth'razzqi worg zz oou",
 		["nzoth’s shadow consumes all light"] = "mg'uulwi N'Zoth, eth'razzqi worg zz oou",
@@ -1073,14 +1080,20 @@ local Dictionaries = {
 		--variants
 		["the eyeless serpent watches from the endless sky"] = "poq'yith mazzka awan ki uhnish'philfgsh",
 		["an eyeless, crooked serpent watches from above"] = "poq'yith mazzka awan ki uhnish'philfgsh",
+		["an eyeless crooked serpent watches from above"] = "poq'yith mazzka awan ki uhnish'philfgsh",
 		["the twisted serpent without eyes gazes from the infinite sky"] = "poq'yith mazzka awan ki uhnish'philfgsh",
 		["from the endless heavens, the eyeless serpent watches"] = "poq'yith mazzka awan ki uhnish'philfgsh",
+		["from the endless heavens the eyeless serpent watches"] = "poq'yith mazzka awan ki uhnish'philfgsh",
 
 		["the black empire once ruled this pitiful world, and it will do so again"] = "shath'mag vwyq shu et'agthu, shath'mag sshk ye",
+		["the black empire once ruled this pitiful world and it will do so again"] = "shath'mag vwyq shu et'agthu, shath'mag sshk ye",
 		--variants
 		["the black empire ruled this world before, and it will rule again"] = "shath'mag vwyq shu et'agthu, shath'mag sshk ye",
 		["this world once belonged to the black empire, and it shall again"] = "shath'mag vwyq shu et'agthu, shath'mag sshk ye",
 		["the black empire has ruled this world before, and will reclaim it"] = "shath'mag vwyq shu et'agthu, shath'mag sshk ye",
+		["the black empire ruled this world before and it will rule again"] = "shath'mag vwyq shu et'agthu, shath'mag sshk ye",
+		["this world once belonged to the black empire and it shall again"] = "shath'mag vwyq shu et'agthu, shath'mag sshk ye",
+		["the black empire has ruled this world before and will reclaim it"] = "shath'mag vwyq shu et'agthu, shath'mag sshk ye",
 		["the black empire’s dominion will return to this wretched world"] = "shath'mag vwyq shu et'agthu, shath'mag sshk ye",
 
 		["we will reforge our dread citadels atop the fly-blown corpse of this kingdom"] = "ag'rr hazz ak'yel ksh ga'halahs pahg",
@@ -1095,13 +1108,16 @@ local Dictionaries = {
 		["your wretched kind will know only despair for countless millennia"] = "krz'ek fhn'z agash zz maqdahl or'kaaxth'ma amqa",
 		["your kind will suffer sorrow and despair for ages unending"] = "krz'ek fhn'z agash zz maqdahl or'kaaxth'ma amqa",
 		["for endless millennia, your kind will know nothing but despair"] = "krz'ek fhn'z agash zz maqdahl or'kaaxth'ma amqa",
+		["for endless millennia your kind will know nothing but despair"] = "krz'ek fhn'z agash zz maqdahl or'kaaxth'ma amqa",
 
 		["your soul will wander roads that twist in endless spirals"] = "sk'yahf qi'magg luk sshoq anagg'qen",
 		--variants
 		["your soul will wander endless, twisting paths"] = "sk'yahf qi'magg luk sshoq anagg'qen",
+		["your soul will wander endless twisting paths"] = "sk'yahf qi'magg luk sshoq anagg'qen",
 		["your spirit will drift through spirals without end"] = "sk'yahf qi'magg luk sshoq anagg'qen",
 		["your soul will be lost upon roads that never straighten"] = "sk'yahf qi'magg luk sshoq anagg'qen",
 		["your essence will roam infinite, coiling paths"] = "sk'yahf qi'magg luk sshoq anagg'qen",
+		["your essence will roam infinite coiling paths"] = "sk'yahf qi'magg luk sshoq anagg'qen",
 
 		["i am not the first"] = "y'za noq mah",
 		--variants
@@ -1261,12 +1277,16 @@ local Dictionaries = {
 		["they exist within endless perpetuity"] = "yoq'al shn ky ywaq nuul",
 
 		["where one falls, many shall take its place"] = "iilth vwah, uhn'agth fhssh za",
+		["where one falls many shall take its place"] = "iilth vwah, uhn'agth fhssh za",
 		--variants
 		["when one falls, many rise in its place"] = "iilth vwah, uhn'agth fhssh za",
 		["for every one that falls, many replace it"] = "iilth vwah, uhn'agth fhssh za",
+		["when one falls many rise in its place"] = "iilth vwah, uhn'agth fhssh za",
+		["for every one that falls many replace it"] = "iilth vwah, uhn'agth fhssh za",
 		["one falls, and many take its place"] = "iilth vwah, uhn'agth fhssh za",
 		["one falls and many take its place"] = "iilth vwah, uhn'agth fhssh za",
 		["they are endless—where one falls, many follow"] = "iilth vwah, uhn'agth fhssh za",
+		["they are endless—where one falls many follow"] = "iilth vwah, uhn'agth fhssh za",
 
 
 		["they who dine on lost souls know only hunger"] = "shgla'yos plahf mh'naus",
@@ -1442,10 +1462,12 @@ local Dictionaries = {
 		["once more shall the twisted flesh-banners of nzoth chitter and howl above the fly-blown corpse of this world"] = "vwyq agth sshoq'meg N'Zoth vra zz shfk qwor ga'halahs agthu",
 		--variants
 		["once more, n'zoth's twisted flesh-banners will howl above this dead world"] = "vwyq agth sshoq'meg N'Zoth vra zz shfk qwor ga'halahs agthu",
+		["once more n'zoth's twisted flesh-banners will howl above this dead world"] = "vwyq agth sshoq'meg N'Zoth vra zz shfk qwor ga'halahs agthu",
 		["again shall n'zoth's flesh-banners shriek over the corpse of this world"] = "vwyq agth sshoq'meg N'Zoth vra zz shfk qwor ga'halahs agthu",
 		["n'zoth's writhing banners will once again scream above this rotting world"] = "vwyq agth sshoq'meg N'Zoth vra zz shfk qwor ga'halahs agthu",
 		["the flesh-banners of n'zoth will howl again over this world's corpse"] = "vwyq agth sshoq'meg N'Zoth vra zz shfk qwor ga'halahs agthu",
 		["once more, nzoth's twisted flesh-banners will howl above this dead world"] = "vwyq agth sshoq'meg N'Zoth vra zz shfk qwor ga'halahs agthu",
+		["once more nzoth's twisted flesh-banners will howl above this dead world"] = "vwyq agth sshoq'meg N'Zoth vra zz shfk qwor ga'halahs agthu",
 		["again shall nzoth's flesh-banners shriek over the corpse of this world"] = "vwyq agth sshoq'meg N'Zoth vra zz shfk qwor ga'halahs agthu",
 		["nzoth's writhing banners will once again scream above this rotting world"] = "vwyq agth sshoq'meg N'Zoth vra zz shfk qwor ga'halahs agthu",
 		["the flesh-banners of nzoth will howl again over this world's corpse"] = "vwyq agth sshoq'meg N'Zoth vra zz shfk qwor ga'halahs agthu",
@@ -1488,12 +1510,12 @@ local Dictionaries = {
 		["in the name"] = "thoq fssh",
 
 		-- Zek'voz
-		["how is this... possible..."] = "hul bala miz rilakich...",
+		["how is this possible"] = "hul bala miz rilakich",
 		--variants
-		["how can this be..."] = "hul bala miz rilakich...",
-		["this is... impossible..."] = "hul bala miz rilakich...",
-		["how could this happen..."] = "hul bala miz rilakich...",
-		["this cannot be..."] = "hul bala miz rilakich...",
+		["how can this be"] = "hul bala miz rilakich",
+		["this is impossible"] = "hul bala miz rilakich",
+		["how could this happen"] = "hul bala miz rilakich",
+		["this cannot be"] = "hul bala miz rilakich",
 
 		["not a single worthy trait among you"] = "naza bul rexil qalic ul'",
 		--variants
@@ -1519,11 +1541,15 @@ local Dictionaries = {
 
 		-- Armageddon (comic)
 		["tremble now, for the slumberer awakens"] = "kulaq w'ajj hwa-ksh brraglac",
+		["tremble now for the slumberer awakens"] = "kulaq w'ajj hwa-ksh brraglac",
 		--variants
 		["tremble, for the sleeper awakens"] = "kulaq w'ajj hwa-ksh brraglac",
+		["tremble for the sleeper awakens"] = "kulaq w'ajj hwa-ksh brraglac",
 		["shudder now—the slumberer rises"] = "kulaq w'ajj hwa-ksh brraglac",
 		["quake, for the sleeper stirs"] = "kulaq w'ajj hwa-ksh brraglac",
 		["fear now, the slumberer awakens"] = "kulaq w'ajj hwa-ksh brraglac",
+		["quake for the sleeper stirs"] = "kulaq w'ajj hwa-ksh brraglac",
+		["fear now the slumberer awakens"] = "kulaq w'ajj hwa-ksh brraglac",
 
 		["they are the howlers in the dark"] = "ywaq ma fvlolf ksht aak vrbl",
 		--variants
@@ -1531,6 +1557,7 @@ local Dictionaries = {
 		["they are the voices that howl in darkness"] = "ywaq ma fvlolf ksht aak vrbl",
 		["they are the howling ones of the dark"] = "ywaq ma fvlolf ksht aak vrbl",
 		["from the darkness, they howl"] = "ywaq ma fvlolf ksht aak vrbl",
+		["from the darkness they howl"] = "ywaq ma fvlolf ksht aak vrbl",
 
 		["the madness without end"] = "shn aglf olbl'nyral",
 		--variants
@@ -1539,43 +1566,51 @@ local Dictionaries = {
 		["a madness that never ends"] = "shn aglf olbl'nyral",
 		["madness eternal"] = "shn aglf olbl'nyral",
 
-		["they are the shadow that feasts on life"] = "ywaq mwual'gyos gag prfakt sjabba zuq...",
+		["they are the shadow that feasts on life"] = "ywaq mwual'gyos gag prfakt sjabba zuq",
 		--variants
-		["they are the shadow that devours life"] = "ywaq mwual'gyos gag prfakt sjabba zuq...",
-		["they are the darkness that feeds on life"] = "ywaq mwual'gyos gag prfakt sjabba zuq...",
-		["they feast upon the living"] = "ywaq mwual'gyos gag prfakt sjabba zuq...",
-		["they are life-devouring shadows"] = "ywaq mwual'gyos gag prfakt sjabba zuq...",
+		["they are the shadow that devours life"] = "ywaq mwual'gyos gag prfakt sjabba zuq",
+		["they are the darkness that feeds on life"] = "ywaq mwual'gyos gag prfakt sjabba zuq",
+		["they feast upon the living"] = "ywaq mwual'gyos gag prfakt sjabba zuq",
+		["they are life-devouring shadows"] = "ywaq mwual'gyos gag prfakt sjabba zuq",
 
 		-- G'huun
 		["children, come and feed"] = "log'loth w'oq Ongg",
+		["children come and feed"] = "log'loth w'oq Ongg",
 		--variants
 		["children, come feast"] = "log'loth w'oq Ongg",
 		["come, children, and feed"] = "log'loth w'oq Ongg",
 		["children, feed now"] = "log'loth w'oq Ongg",
 		["come and feed, my children"] = "log'loth w'oq Ongg",
+		["children come feast"] = "log'loth w'oq Ongg",
+		["come children and feed"] = "log'loth w'oq Ongg",
+		["children feed now"] = "log'loth w'oq Ongg",
+		["come and feed my children"] = "log'loth w'oq Ongg",
 
 
-		["the contagion... has taken root within you"] = "oou thyzz lal ak'uq qwaz Zuq shkul ma sk'tek...",
+		["the contagion has taken root within you"] = "oou thyzz lal ak'uq qwaz Zuq shkul ma sk'tek",
 		--variants
-		["the contagion has taken root in you"] = "oou thyzz lal ak'uq qwaz Zuq shkul ma sk'tek...",
-		["the corruption has rooted itself within you"] = "oou thyzz lal ak'uq qwaz Zuq shkul ma sk'tek...",
-		["the sickness now grows inside you"] = "oou thyzz lal ak'uq qwaz Zuq shkul ma sk'tek...",
-		["it has taken root within you"] = "oou thyzz lal ak'uq qwaz Zuq shkul ma sk'tek...",
+		["the contagion has taken root in you"] = "oou thyzz lal ak'uq qwaz Zuq shkul ma sk'tek",
+		["the corruption has rooted itself within you"] = "oou thyzz lal ak'uq qwaz Zuq shkul ma sk'tek",
+		["the sickness now grows inside you"] = "oou thyzz lal ak'uq qwaz Zuq shkul ma sk'tek",
+		["it has taken root within you"] = "oou thyzz lal ak'uq qwaz Zuq shkul ma sk'tek",
 
 		-- Vol'zith the Whisperer
 		["beneath the tides, your truth awaits"] = "skitsh qi'uthik illith",
+		["beneath the tides your truth awaits"] = "skitsh qi'uthik illith",
 		--variants
 		["your truth waits beneath the tides"] = "skitsh qi'uthik illith",
 		["beneath the waves, your truth lies"] = "skitsh qi'uthik illith",
+		["beneath the waves your truth lies"] = "skitsh qi'uthik illith",
 		["the tides conceal your truth"] = "skitsh qi'uthik illith",
 		["your truth sleeps beneath the sea"] = "skitsh qi'uthik illith",
 
-		["darkness roots. pestilence spreads. the doorway is open"] = "ugalazul bwrxil' qu rax",
+		["darkness roots pestilence spreads the doorway is open"] = "ugalazul bwrxil' qu rax",
 		--variants
-		["darkness takes root. pestilence spreads. the way is open"] = "ugalazul bwrxil' qu rax",
+		["darkness takes root pestilence spreads the way is open"] = "ugalazul bwrxil' qu rax",
 		["the darkness has rooted; the doorway stands open"] = "ugalazul bwrxil' qu rax",
 		["pestilence spreads as the door opens"] = "ugalazul bwrxil' qu rax",
 		["the way is open, and corruption spreads"] = "ugalazul bwrxil' qu rax",
+		["the way is open and corruption spreads"] = "ugalazul bwrxil' qu rax",
 
 		["you are mine"] = "ULL vera skish",
 		--variants
@@ -1591,13 +1626,14 @@ local Dictionaries = {
 		["blood spills endlessly below"] = "xul krass qi' UN skush",
 		["the deep overflows with blood"] = "xul krass qi' UN skush",
 
-		["i will await you... in the dark..."] = "bwixki amala zal qul",
+		["i will await you in the dark"] = "bwixki amala zal qul",
 		--variants
 		["i wait for you in the dark"] = "bwixki amala zal qul",
 		["i await you in darkness"] = "bwixki amala zal qul",
 		["i will wait for you in the dark"] = "bwixki amala zal qul",
 		["i await you within the darkness"] = "bwixki amala zal qul",
 		["in the dark, i wait for you"] = "bwixki amala zal qul",
+		["in the dark i wait for you"] = "bwixki amala zal qul",
 		["i linger for you in the dark"] = "bwixki amala zal qul",
 
 		["i reside within your lungs"] = "aglathrax hig thrixa",
@@ -1641,18 +1677,19 @@ local Dictionaries = {
 		["nothing will escape our gods"] = "Ak yar qi'lwhuk h'iwn",
 		["our gods hunger for all things"] = "Ak yar qi'lwhuk h'iwn",
 
-		["i return to the writhing throne"] = "Y'za qam yyqzz...",
+		["i return to the writhing throne"] = "Y'za qam yyqzz",
 --variants
-		["once more, i return to the throne"] = "Y'za qam yyqzz...",
-		["the writhing throne calls me back"] = "Y'za qam yyqzz...",
-		["i reclaim my throne"] = "Y'za qam yyqzz...",
+		["once more, i return to the throne"] = "Y'za qam yyqzz",
+		["once more i return to the throne"] = "Y'za qam yyqzz",
+		["the writhing throne calls me back"] = "Y'za qam yyqzz",
+		["i reclaim my throne"] = "Y'za qam yyqzz",
 
-		["power unrelenting"] = "Uq naggwa...",
+		["power unrelenting"] = "Uq naggwa",
 --variants
-		["unrelenting power"] = "Uq naggwa...",
-		["power without end"] = "Uq naggwa...",
-		["power that never wanes"] = "Uq naggwa...",
-		["endless power"] = "Uq naggwa...",
+		["unrelenting power"] = "Uq naggwa",
+		["power without end"] = "Uq naggwa",
+		["power that never wanes"] = "Uq naggwa",
+		["endless power"] = "Uq naggwa",
 
 -- Deep Watcher
 		["the eye sees all"] = "Ma sk'magg ni arwi",
@@ -1662,23 +1699,25 @@ local Dictionaries = {
 		["all is seen by the eye"] = "Ma sk'magg ni arwi",
 		["the eye misses nothing"] = "Ma sk'magg ni arwi",
 
-		["his greatness... his glory"] = "Ma zzof ag ez uulwi",
+		["his greatness his glory"] = "Ma zzof ag ez uulwi",
 --variants
 		["his greatness, his glory"] = "Ma zzof ag ez uulwi",
+		["his greatness his glory"] = "Ma zzof ag ez uulwi",
 		["behold his greatness"] = "Ma zzof ag ez uulwi",
 		["witness his glory"] = "Ma zzof ag ez uulwi",
 		["his glory is unmatched"] = "Ma zzof ag ez uulwi",
 
-		["we slumber no more!"] = "Oou oou ryiu nuq",
+		["we slumber no more"] = "Oou oou ryiu nuq",
 --variants
 		["we sleep no longer"] = "Oou oou ryiu nuq",
 		["our slumber ends"] = "Oou oou ryiu nuq",
 		["we are awake at last"] = "Oou oou ryiu nuq",
 		["no more sleep"] = "Oou oou ryiu nuq",
 
-		["we rise... as he rises!"] = "Yrr par'okoth yrr vorzz",
+		["we rise as he rises"] = "Yrr par'okoth yrr vorzz",
 --variants
 		["as he rises, so do we"] = "Yrr par'okoth yrr vorzz",
+		["as he rises so do we"] = "Yrr par'okoth yrr vorzz",
 		["we rise with him"] = "Yrr par'okoth yrr vorzz",
 		["his rising is our rising"] = "Yrr par'okoth yrr vorzz",
 		["we ascend as he ascends"] = "Yrr par'okoth yrr vorzz",
@@ -1686,7 +1725,9 @@ local Dictionaries = {
 
 
 		-- individual words derived from phrases
-		["i am"] = "y'za", ["i"] = "y'za", ["i'm"] = "y'za",
+		["i am"] = "y'za",
+		["i"] = "y'za",
+		["i'm"] = "y'za",
 		["me"] = "y'za",
 		["myself"] = "y'za",
 
@@ -1725,16 +1766,21 @@ local Dictionaries = {
 		["his"] = "ag",
 		["him"] = "ag",
 
-		["do not"] = "maq", ["don't"] = "maq",
+		["do not"] = "maq",
+		["don't"] = "maq",
 		["will not"] = "maq",
 		["won't"] = "maq",
 		["refuse to"] = "maq",
 
-		["cannot"] = "sythn", ["can not"] = "sythn", ["can't"] = "sythn",
+		["cannot"] = "sythn",
+		["can not"] = "sythn",
+		["can't"] = "sythn",
 		["unable to"] = "sythn",
 
 
-		["cannot be"] = "nel'othk", ["can not be"] = "nel'othk", ["can't be"] = "nel'othk",
+		["cannot be"] = "nel'othk",
+		["can not be"] = "nel'othk",
+		["can't be"] = "nel'othk",
 		["return"] = "qam",
 		["returned"] = "qam",
 		["come back"] = "qam",
@@ -1806,7 +1852,8 @@ local Dictionaries = {
 		["the depths"] = "an'zig",
 		["the abyss"] = "an'zig",
 
-		["endless"] = "naggwa", ["unending"] = "naggwa",
+		["endless"] = "naggwa",
+		["unending"] = "naggwa",
 		["eternal"] = "naggwa",
 		["without end"] = "naggwa",
 
@@ -1820,7 +1867,9 @@ local Dictionaries = {
 		["everyone"] = "h'iwn",
 
 
-		["vessel"] = "an'qoth",  ["host"] = "an'qoth", ["container"] = "an'qoth",
+		["vessel"] = "an'qoth", 
+		["host"] = "an'qoth",
+		["container"] = "an'qoth",
 		["shell"] = "an'qoth",
 		["body"] = "an'qoth",
 
@@ -1919,23 +1968,23 @@ local Dictionaries = {
 
 		-- G'huun
 		["I feed on your terror"] = "I ongg za ywaq qvsakf",
-		["The outbreak has begun"] = "Oou gul'kafh lal lwhuk!",
-		["The titans cannot save you"] = "Oou vwahuHn ag'xig shfk zuq!",
-		["Let the feast of a thousand maws begin"] = "Qam oou iilth ez i awtgsshu amun on'ma!",
+		["The outbreak has begun"] = "Oou gul'kafh lal lwhuk",
+		["The titans cannot save you"] = "Oou vwahuHn ag'xig shfk zuq",
+		["Let the feast of a thousand maws begin"] = "Qam oou iilth ez i awtgsshu amun on'ma",
 		["Feel the twitch in your spine?"] = "Vwah oou kaaxth zz ywaq iiyoq",
 		["That is where I exist"] = "Ag'xig fhssh I on'ma.",				-- it is likely this term uses "that's" in parser
 		["Come, servants of rot"] = "W'oq uhn'agth ez qam",
-		["Consume"] = "Shandai!",
+		["Consume"] = "Shandai",
 		["Your screams will echo forever"] = "Ywaq mh'naus wgah zaix zygtahg.",
 		["Your husk serves a new master now"] = "Ywaq ongg an'qov i lal halahs nuq.",
 		["My whispers will liquefy your mind"] = "Za awtgsshu wgah uulg'ma ywaq zaix.",
-		["You cannot escape infection"] = "Zuq ag'xig bormaz ag'thyzak!",
+		["You cannot escape infection"] = "Zuq ag'xig bormaz ag'thyzak",
 
 
 		-- Mythrax
 		["I will reduce you to ash"] = "I wgah far'al zuq ni shn",
-		["Give yourself to the plague"] = "Puul qi'plahf ni oou bormax!",
-		["You will not survive"] = "Zuq wgah qam n'lyeth!",
+		["Give yourself to the plague"] = "Puul qi'plahf ni oou bormax",
+		["You will not survive"] = "Zuq wgah qam n'lyeth",
 		["ghuun will not be stopped"] = "an'zig wgah qam za zyqtahg",
 
 		-- Soggoth
@@ -1952,17 +2001,100 @@ local Dictionaries = {
 
 
 		--untranslated
-		["al'golath mal shal'nel"] = "Al'golath mal shal'nel", ["al'tha, al'tha bormaz. ni bormaz ta'thall?"] = "Al'tha, Al'tha bormaz. Ni bormaz ta'thall?",
-		["athu'gag magg'naggwa. qor'naus'agth lwhuk. lilth gag'huqth'hoq."] = "Athu'gag magg'naggwa. Qor'naus'agth lwhuk. Lilth gag'huqth'hoq.",
-		["bal'qwari og shadar."] = "Bal'qwari Og Shadar.", ["bo'al lal arwi c'toth."] = "Bo'al lal arwi C'toth.",
-		["f'lakh ghet!"] = "F'lakh ghet!", ["f'tagh nah'hat! immathan! sha'lub nahab! sha'lub nahab!"] = "F'tagh nah'hat! I'mmathan! Sha'lub nahab! Sha'lub nahab!",
-		["gillari, geth'shar. gillari, teko'shar."] = "Gillari, geth'shar. Gillari, teko'shar.", ["h'thon marwol qualar."] = "H'thon marwol qualar.",
-		["immalanath, yasoth nalarub!!!"] = "Immalanath, yasoth nalarub!!!", ["log'loth og shandai"] = "Log'loth og shandai",
-		["mar'kowa tallol ye'tarin."] = "Mar'kowa tallol ye'tarin.", ["pwhn'guul i ghawl'fwata ryiu wgah uul'gwan h'iwn guu'lal."] = "Pwhn'guul i ghawl'fwata ryiu wgah uul'gwan h'iwn guu'lal.",
-		["shethnoth, ol'goth, grell."] = "Shethnoth, ol'goth, grell.", ["shur'nab... shur'nab... yogg-saron!"] = "Shur'nab... shur'nab... Yogg-Saron!",
-		["thoth'al amun ree'thael vormos! vormos! vormos!"] = "Thoth'al amun Ree'thael vormos! Vormos! Vormos!", ["tulall par'okoth. far'al, ka'kar."] = "Tulall par'okoth. Far'al, ka'kar.",
-		["uhn'agh fash"] = "Uhn'agh Fash", ["uulwi gag erh'ongg w'ssh/w'ssht."] = "Uulwi gag erh'ongg w'ssh/w'ssht.", ["xal'atoh"] = "Xal'atoh",
-		["yrr n'lyeth... shuul anagg!"] = "Yrr n'lyeth... shuul anagg!", ["y'knath k'th'rygg k'yi mrr'ungha gr'mula."] = "Y'knath k'th'rygg k'yi mrr'ungha gr'mula."
+		["al'golath mal shal'nel"] = "al'golath mal shal'nel",
+		["bormaz"] = "bormaz",
+		["al'tha"] = "al'tha",
+		["ni bormaz ta'thall"] = "ni bormaz ta'thall",
+		["athu'gag magg'naggwa"] = "athu'gag magg'naggwa",
+		["qor'naus'agth lwhuk"] = "qor'naus'agth lwhuk",
+		["lilth gag'huqth'hoq"] = "lilth gag'huqth'hoq",
+		["bal'qwari og shadar"] = "bal'qwari Og Shadar",
+		["bo'al lal arwi c'toth"] = "Bo'al lal arwi C'toth",
+		["f'lakh ghet"] = "f'lakh ghet",
+		["f'tagh nah'hat immathan"] = "f'tagh nah'hat I'mmathan",
+		["sha'lub nahab"] = "sha'lub nahab",
+		["gillari"] = "gillari",
+		["geth'shar"] = "geth'shar",
+		["teko'shar"] = "teko'shar",
+		["h'thon marwol qualar"] = "h'thon marwol qualar",
+		["immalanath, yasoth nalarub"] = "immalanath, yasoth nalarub",
+		["immalanath, yasoth nalarub"] = "immalanath, yasoth nalarub",
+		["log'loth og shandai"] = "log'loth og shandai",
+		["mar'kowa tallol ye'tarin"] = "mar'kowa tallol ye'tarin",
+		["pwhn'guul i ghawl'fwata ryiu wgah uul'gwan h'iwn guu'lal"] = "pwhn'guul i ghawl'fwata ryiu wgah uul'gwan h'iwn guu'lal",
+		["shethnoth"] = "shethnoth",
+		["ol'goth"] = "ol'goth",
+		["grell"] = "grell",
+		["shur'nab"] = "Shur'nab",
+		["thoth'al amun ree'thael"] = "thoth'al amun Ree'thael",
+		["vormos"] = "vormos",
+		["tulall par'okoth"] = "tulall par'okoth",
+		["far'al, ka'kar"] = "far'al, ka'kar",
+		["uhn'agh fash"] = "uhn'agh Fash",
+		["uulwi gag erh'ongg w'ssh"] = "uulwi gag erh'ongg w'ssh",
+		["uulwi gag erh'ongg w'ssht"] = "uulwi gag erh'ongg w'ssht",
+		["yrr n'lyeth shuul anagg"] = "yrr n'lyeth shuul anagg",
+		["y'knath k'th'rygg k'yi mrr'ungha gr'mula"] = "y'knath k'th'rygg k'yi mrr'ungha gr'mula",
+
+		--Creatures & Things
+		["yogg-saron"] = "Yogg-Saron",
+		["yogg saron"] = "Yogg-Saron",
+		["yoggsaron"] = "Yogg-Saron",
+		["yogg'saron"] = "Yogg-Saron",
+		["y'shaarj"] = "Y'Shaarj",
+		["y shaarj"] = "Y'Shaarj",
+		["yshaarj"] = "Y'Shaarj",
+		["y-shaarj"] = "Y'Shaarj",
+		["c'thun"] = "C'Thun",
+		["c thun"] = "C'Thun",
+		["c-thun"] = "C'Thun",
+		["cthun"] = "C'Thun",
+		["n'zoth"] = "N'Zoth",
+		["n zoth"] = "N'Zoth",
+		["n-zoth"] = "N'Zoth",
+		["nzoth"] = "N'Zoth",
+		["xal'atath"] = "Xal'atath",
+		["xalatath"] = "Xal'atath",
+		["xal atath"] = "Xal'atath",
+		["xal-atath"] = "Xal'atath",
+		["zon'ozz"] = "Zon'ozz",
+		["zonozz"] = "Zon'ozz",
+		["zon-ozz"] = "Zon'ozz",
+		["zon ozz"] = "Zon'ozz",
+		["ny'alotha"] = "Ny'alotha",
+		["nyalotha"] = "Ny'alotha",
+		["ny-alotha"] = "Ny'alotha",
+		["ny alotha"] = "Ny'alotha",
+		["ahn'qiraj"] = "Ahn'Qiraj",
+		["ahnqiraj"] = "Ahn'Qiraj",
+		["ahn-qiraj"] = "Ahn'Qiraj",
+		["ahn qiraj"] = "Ahn'Qiraj",
+		["qiraji"] = "Qiraji",
+		["g'huun"] = "G'huun",
+		["g huun"] = "G'huun",
+		["ghuun"] = "G'huun",
+		["g-huun"] = "G'huun",
+		["c'thrax"] = "C'Thrax",
+		["cthrax"] = "C'Thrax",
+		["c thrax"] = "C'Thrax",
+		["c-thrax"] = "C'Thrax",
+		["c'thraxxi"] = "C'Thraxxi",
+		["cthraxxi"] = "C'Thraxxi",
+		["c thraxxi"] = "C'Thraxxi",
+		["c-thraxxi"] = "C'Thraxxi",
+		["n'raqi"] = "N'raqi",
+		["nraqi"] = "N'raqi",
+		["n raqi"] = "N'raqi",
+		["n-raqi"] = "N'raqi",
+		["aqir"] = "Aqir",
+		["ryun'eh"] = "Ryun'eh",
+		["ryuneh"] = "Ryun'eh",
+		["ryun-eh"] = "Ryun'eh",
+		["ryun eh"] = "Ryun'eh",
+		["xal'atoh"] = "Xal'atoh",
+		["xal atoh"] = "Xal'atoh",
+		["xal-atoh"] = "Xal'atoh",
+		["xalatoh"] = "Xal'atoh",
 	},
 
 	[L["Nerubian"]] = {
@@ -2004,7 +2136,7 @@ local Dictionaries = {
 	},
 
 	[L["Nerglish"]] = {
-		-- Aaaaaughibbrgubugbugrguburgle!
+		-- Aaaaaughibbrgubugbugrguburgle
 		["aaaaaughibbrgubugbugrguburgle"] = "aaaaaughibbrgubugbugrguburgle", ["rwl rwl rwl rwl"] = "aaaaaughibbrgubugbugrguburgle",
 		-- Flllurlog
 		["move"] = "flllurlog", ["walk"] = "flllurlog",
@@ -2046,7 +2178,7 @@ local Dictionaries = {
 		["murloc"] = "mmmurlok",
 		-- Mrgle
 		["yes"] = "mrgle", ["acknowledged"] = "mrgle",
-		-- Mrgllll glrrm gl!
+		-- Mrgllll glrrm gl
 		["i will kill you"] = "mrgllll glrrm gl",
 		-- Mrrrggk
 		["magic"] = "mrrrggk",
