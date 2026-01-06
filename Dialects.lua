@@ -981,8 +981,34 @@ local Dialects = {
 	[L["KulTiranNoble"]] = { -- interior southern boralus has more of this
 		["cup of"]			= "cuppa",
 
-		["ma'am"]			 = "madam",
-		["maam"]			 = "madam",
+		["ma'am"]			= "madam",
+		["maam"]			= "madam",
+
+		["good"]			= "splendid",
+		["great"]			= "marvelous",
+		["excellent"]		= "splendid",
+		["amazing"]			= "marvelous",
+		["handsome"]		= "dashing",
+		["beautiful"]		= "ravishing",
+
+		["very"]			= "terribly",
+		["really"]			= "terribly",
+		["completely"]		= "utterly",
+		["totally"]			= "utterly",
+
+		["fix up"]			= "spruce up",
+		["improve"]			= "spruce up",
+		["toilet"]			= "lavatory",
+
+		["booze"]			= "alcohol",
+		["drink"]			= "champagne",
+
+		["hey"]				= "hello",
+		["banter"]			= "repartee",
+
+		["very good"]		= "jolly well done",
+		["you should"]		= "you would do well to",
+		["you shouldn't"]	= "you would do well not to",
 	},
 
 	[L["Highborne"]] = {
