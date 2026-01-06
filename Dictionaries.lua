@@ -979,155 +979,810 @@ local Dictionaries = {
 		-- does not match letter count
 
 		-- Mindflayer Kaahrj
-		["There is no light after death"] = "En'othk uulg'shuul",
-		["Only a place where even shadows fear to go"] = "Mh'za uulwi skshgn kar",
-		["You are a prisoner in your own body"] = "Iilth ma paf'qi'ag sk'halahs",
-		["A SERVANT OF FEAR"] = "GAZ SKSHGN!",
-		["You will be the first of many to glimpse the madness of N'Zoth"] = "Iilth qi mah'shar fhn oorql N'Zoth!",
-		["The voice of N'Zoth whispers from the deeps"] = "Il'zarq N'Zoth phgwa an'zig.",
-		["It sings of unspeakable horrors"] = "Il'zarq taag ov'kadaq.",
-		["In the writhing shadow of N'Zoth, all light fades and dies"] = "Mg'uulwi N'Zoth, eth'razzqi worg zz oou.",
-		["The will of N'Zoth is made manifest"] = "N'Zoth iiyoq raz'tal'vsak!",
-		["IT CANNOT BE CONTAINED"] = "IIYOQ NEL'OTHK AR'AFGH!",
-		["The crooked serpent with no eyes is watching from the endless sky"] = "Poq'yith mazzka awan ki uhnish'philfgsh.",
-		["The Black Empire once ruled this pitiful world, and it will do so again!"] = "Shath'mag vwyq shu et'agthu, Shath'mag sshk ye!",
-		["We will reforge our dread citadels atop the fly-blown corpse of this kingdom!"] = "Ag'rr hazz ak'yel ksh ga'halahs pahg!",
-		["Your pitiful kind will know only despair and sorrow for a hundred thousand millennia to come!"] = "Krz'ek fhn'z agash zz maqdahl or'kaaxth'ma amqa!",
-		["Your soul will wander roads that twist in endless spirals"] = "Sk'yahf qi'magg luk sshoq anagg'qen.",
-		["I am not the first"] = "Y'za noq mah...",
-		["I am not the last"] = "Y'za noq ormz...",
-		["The blood of N'Zoth runs through me"] = "Yeh'glu N'Zoth okom hoq...",
-		["I cannot die"] = "Y'za sythn oou...",
+		["there is no light after death"] = "en'othk uulg'shuul",
+		--variants
+		["there is no light beyond death"] = "en'othk uulg'shuul",
+		["no light waits after death"] = "en'othk uulg'shuul",
+		["death leads only to darkness"] = "en'othk uulg'shuul",
+		["beyond death, there is no light"] = "en'othk uulg'shuul",
+		["the dead find no light"] = "en'othk uulg'shuul",
+
+		["only a place where even shadows fear to go"] = "mh'za uulwi skshgn kar",
+		--variants
+		["a place where even shadows dare not tread"] = "mh'za uulwi skshgn kar",
+		["where shadows fear to linger"] = "mh'za uulwi skshgn kar",
+		["a realm feared by the shadows themselves"] = "mh'za uulwi skshgn kar",
+		["where darkness itself recoils"] = "mh'za uulwi skshgn kar",
+
+		["you are a prisoner in your own body"] = "iilth ma paf'qi'ag sk'halahs",
+		--variants
+		["you are trapped within your own flesh"] = "iilth ma paf'qi'ag sk'halahs",
+		["your body is your prison"] = "iilth ma paf'qi'ag sk'halahs",
+		["your flesh binds you"] = "iilth ma paf'qi'ag sk'halahs",
+		["you are caged in your own form"] = "iilth ma paf'qi'ag sk'halahs",
+
+		["a servant of fear"] = "gaz skshgn",
+		--variants
+		["a thrall of fear"] = "gaz skshgn",
+		["fear’s servant"] = "gaz skshgn",
+		["you serve fear"] = "gaz skshgn",
+
+		["you will be the first of many to glimpse the madness of n'zoth"] = "iilth qi mah'shar fhn oorql N'Zoth",
+		["you will be the first of many to glimpse the madness of nzoth"] = "iilth qi mah'shar fhn oorql N'Zoth",
+		--variants
+		["you will be the first to behold n'zoth's madness"] = "iilth qi mah'shar fhn oorql N'Zoth",
+		["you will glimpse the madness of n'zoth before all others"] = "iilth qi mah'shar fhn oorql N'Zoth",
+		["you will open your eyes to n'zoth’s madness"] = "iilth qi mah'shar fhn oorql N'Zoth",
+		["you will be the first to behold nzoth's madness"] = "iilth qi mah'shar fhn oorql N'Zoth",
+		["you will glimpse the madness of nzoth before all others"] = "iilth qi mah'shar fhn oorql N'Zoth",
+		["you will open your eyes to nzoth’s madness"] = "iilth qi mah'shar fhn oorql N'Zoth",
+
+		["the voice of n'zoth whispers from the deeps"] = "il'zarq N'Zoth phgwa an'zig",
+		["the voice of nzoth whispers from the deeps"] = "il'zarq N'Zoth phgwa an'zig",
+		--variants
+		["n'zoth whispers from the deep"] = "il'zarq N'Zoth phgwa an'zig",
+		["the deep carries n'zoth's whispers"] = "il'zarq N'Zoth phgwa an'zig",
+		["from the depths, n'zoth speaks"] = "il'zarq N'Zoth phgwa an'zig",
+		["nzoth whispers from the deep"] = "il'zarq N'Zoth phgwa an'zig",
+		["the deep carries nzoth's whispers"] = "il'zarq N'Zoth phgwa an'zig",
+		["from the depths, nzoth speaks"] = "il'zarq N'Zoth phgwa an'zig",
+
+		["it sings of unspeakable horrors"] = "il'zarq taag ov'kadaq",
+		--variants
+		["it sings of nameless horrors"] = "il'zarq taag ov'kadaq",
+		["it chants of horrors beyond words"] = "il'zarq taag ov'kadaq",
+		["its song tells of unutterable horrors"] = "il'zarq taag ov'kadaq",
+
+		["in the writhing shadow of n'zoth, all light fades and dies"] = "mg'uulwi N'Zoth, eth'razzqi worg zz oou",
+		["in the writhing shadow of nzoth, all light fades and dies"] = "mg'uulwi N'Zoth, eth'razzqi worg zz oou",
+		--variants
+		["in n'zoth's shadow, all light withers"] = "mg'uulwi N'Zoth, eth'razzqi worg zz oou",
+		["all light dies beneath n'zoth’s shadow"] = "mg'uulwi N'Zoth, eth'razzqi worg zz oou",
+		["n'zoth’s shadow consumes all light"] = "mg'uulwi N'Zoth, eth'razzqi worg zz oou",
+		["in nzoth's shadow, all light withers"] = "mg'uulwi N'Zoth, eth'razzqi worg zz oou",
+		["all light dies beneath nzoth’s shadow"] = "mg'uulwi N'Zoth, eth'razzqi worg zz oou",
+		["nzoth’s shadow consumes all light"] = "mg'uulwi N'Zoth, eth'razzqi worg zz oou",
+
+		["the will of n'zoth is made manifest"] = "N'Zoth iiyoq raz'tal'vsak",
+		["the will of nzoth is made manifest"] = "N'Zoth iiyoq raz'tal'vsak",
+		--variants
+		["n'zoth's will is revealed"] = "N'Zoth iiyoq raz'tal'vsak",
+		["the will of n'zoth takes form"] = "N'Zoth iiyoq raz'tal'vsak",
+		["n'zoth’s will is realized"] = "N'Zoth iiyoq raz'tal'vsak",
+		["nzoth's will is revealed"] = "N'Zoth iiyoq raz'tal'vsak",
+		["the will of nzoth takes form"] = "N'Zoth iiyoq raz'tal'vsak",
+		["nzoth’s will is realized"] = "N'Zoth iiyoq raz'tal'vsak",
+
+		["it cannot be contained"] = "iiyoq nel'othk ar'afgh",
+		--variants
+		["it cannot be restrained"] = "iiyoq nel'othk ar'afgh",
+		["it cannot be bound"] = "iiyoq nel'othk ar'afgh",
+		["it cannot be held"] = "iiyoq nel'othk ar'afgh",
+
+		["the crooked serpent with no eyes is watching from the endless sky"] = "poq'yith mazzka awan ki uhnish'philfgsh",
+		--variants
+		["the eyeless serpent watches from the endless sky"] = "poq'yith mazzka awan ki uhnish'philfgsh",
+		["an eyeless, crooked serpent watches from above"] = "poq'yith mazzka awan ki uhnish'philfgsh",
+		["the twisted serpent without eyes gazes from the infinite sky"] = "poq'yith mazzka awan ki uhnish'philfgsh",
+		["from the endless heavens, the eyeless serpent watches"] = "poq'yith mazzka awan ki uhnish'philfgsh",
+
+		["the black empire once ruled this pitiful world, and it will do so again"] = "shath'mag vwyq shu et'agthu, shath'mag sshk ye",
+		--variants
+		["the black empire ruled this world before, and it will rule again"] = "shath'mag vwyq shu et'agthu, shath'mag sshk ye",
+		["this world once belonged to the black empire, and it shall again"] = "shath'mag vwyq shu et'agthu, shath'mag sshk ye",
+		["the black empire has ruled this world before, and will reclaim it"] = "shath'mag vwyq shu et'agthu, shath'mag sshk ye",
+		["the black empire’s dominion will return to this wretched world"] = "shath'mag vwyq shu et'agthu, shath'mag sshk ye",
+
+		["we will reforge our dread citadels atop the fly-blown corpse of this kingdom"] = "ag'rr hazz ak'yel ksh ga'halahs pahg",
+		--variants
+		["we will rebuild our dread citadels upon the rotting corpse of this kingdom"] = "ag'rr hazz ak'yel ksh ga'halahs pahg",
+		["our dread citadels will rise from the corpse of this fallen kingdom"] = "ag'rr hazz ak'yel ksh ga'halahs pahg",
+		["we shall forge our citadels upon this kingdom’s decaying remains"] = "ag'rr hazz ak'yel ksh ga'halahs pahg",
+		["this kingdom’s corpse will bear our dread citadels once more"] = "ag'rr hazz ak'yel ksh ga'halahs pahg",
+
+		["your pitiful kind will know only despair and sorrow for a hundred thousand millennia to come"] = "krz'ek fhn'z agash zz maqdahl or'kaaxth'ma amqa",
+		--variants
+		["your wretched kind will know only despair for countless millennia"] = "krz'ek fhn'z agash zz maqdahl or'kaaxth'ma amqa",
+		["your kind will suffer sorrow and despair for ages unending"] = "krz'ek fhn'z agash zz maqdahl or'kaaxth'ma amqa",
+		["for endless millennia, your kind will know nothing but despair"] = "krz'ek fhn'z agash zz maqdahl or'kaaxth'ma amqa",
+
+		["your soul will wander roads that twist in endless spirals"] = "sk'yahf qi'magg luk sshoq anagg'qen",
+		--variants
+		["your soul will wander endless, twisting paths"] = "sk'yahf qi'magg luk sshoq anagg'qen",
+		["your spirit will drift through spirals without end"] = "sk'yahf qi'magg luk sshoq anagg'qen",
+		["your soul will be lost upon roads that never straighten"] = "sk'yahf qi'magg luk sshoq anagg'qen",
+		["your essence will roam infinite, coiling paths"] = "sk'yahf qi'magg luk sshoq anagg'qen",
+
+		["i am not the first"] = "y'za noq mah",
+		--variants
+		["i was not the first"] = "y'za noq mah",
+		["i am not the beginning"] = "y'za noq mah",
+
+		["i am not the last"] = "y'za noq ormz",
+		--variants
+		["i will not be the last"] = "y'za noq ormz",
+		["others will follow"] = "y'za noq ormz",
+		["this will happen again"] = "y'za noq ormz",
+		["i am not the end"] = "y'za noq ormz",
+
+		["the blood of n'zoth runs through me"] = "yeh'glu N'Zoth okom hoq",
+		["the blood of nzoth runs through me"] = "yeh'glu N'Zoth okom hoq",
+		--variants
+		["n'zoth's blood flows within me"] = "yeh'glu N'Zoth okom hoq",
+		["i carry the blood of n'zoth"] = "yeh'glu N'Zoth okom hoq",
+		["n'zoth flows through my veins"] = "yeh'glu N'Zoth okom hoq",
+		["i am bound by the blood of n'zoth"] = "yeh'glu N'Zoth okom hoq",
+		["nzoth's blood flows within me"] = "yeh'glu N'Zoth okom hoq",
+		["i carry the blood of nzoth"] = "yeh'glu N'Zoth okom hoq",
+		["nzoth flows through my veins"] = "yeh'glu N'Zoth okom hoq",
+		["i am bound by the blood of nzoth"] = "yeh'glu N'Zoth okom hoq",
+
+		["i cannot die"] = "y'za sythn oou",
+		--variants
+		["i will not die"] = "y'za sythn oou",
+		["death cannot claim me"] = "y'za sythn oou",
+		["i am beyond death"] = "y'za sythn oou",
+		["i do not die"] = "y'za sythn oou",
+
 		["al'ksh syq iir awan"] = "is this real or an illusion",
+		--variants
+		["is this real, or merely illusion"] = "al'ksh syq iir awan",
+		["is this truth or illusion"] = "al'ksh syq iir awan",
+		["is this reality, or a lie"] = "al'ksh syq iir awan",
+		["is any of this real"] = "al'ksh syq iir awan",
+
 		["iilth sythn aqev"] = "you are going mad",
+		--variants
+		["you are losing your mind"] = "iilth sythn aqev",
+		["madness is taking you"] = "iilth sythn aqev",
+		["your mind is breaking"] = "iilth sythn aqev",
+		["you are succumbing to madness"] = "iilth sythn aqev",
+
 		["aqev"] = "mad",
+		--variants
+		["insane"] = "aqev",
+		["deranged"] = "aqev",
+		["unhinged"] = "aqev",
+
+
 
 		-- Yor'sahj the Unsleeping
-		["O, Deathwing"] = "Ez, Shuul'wah!",
-		["Your faithful servant has failed you"] = "Sk'woth'gl yu'gaz yog'ghyl ilfah!",
-		["All praise Deathwing"] = "H'iwn zaix Shuul'wah",
-		["THE DESTROYER"] = "PHQUATHI!",
-		["You will drown in the blood of the Old Gods"] = "Ilith qi'uothk shn'ma yeh'glu Shath'Yar!",
-		["ALL OF YOU"] = "H'IWN IILTH!",
-		["SEE how we pour from the CURSED EARTH"] = "KYTH ag'xig yyg'far IIQAATH ONGG!",
-		["Your soul will know ENDLESS TORMENT"] = "Sk'yahf qi'plahf PH'MAGG!",
-		["The DARKNESS devours ALL"] = "UULL lwhuk H'IWN!",
+		["o, deathwing"] = "ez, Shuul'wah",
+		--variants
+		["oh, deathwing"] = "ez, Shuul'wah",
+		["hear us, deathwing"] = "ez, Shuul'wah",
+		["we call to you, deathwing"] = "ez, Shuul'wah",
+
+		["your faithful servant has failed you"] = "sk'woth'gl yu'gaz yog'ghyl ilfah",
+		--variants
+		["your devoted servant has failed you"] = "sk'woth'gl yu'gaz yog'ghyl ilfah",
+		["your loyal servant has disappointed you"] = "sk'woth'gl yu'gaz yog'ghyl ilfah",
+		["your servant has failed in your service"] = "sk'woth'gl yu'gaz yog'ghyl ilfah",
+		["your faithful one has failed you"] = "sk'woth'gl yu'gaz yog'ghyl ilfah",
+
+		["all praise deathwing"] = "h'iwn zaix Shuul'wah",
+		--variants
+		["praise deathwing"] = "h'iwn zaix Shuul'wah",
+		["all hail deathwing"] = "h'iwn zaix Shuul'wah",
+		["glory to deathwing"] = "h'iwn zaix Shuul'wah",
+		["honor deathwing"] = "h'iwn zaix Shuul'wah",
+
+		["the destroyer"] = "phquathi",
+		--variants
+		["the worldbreaker"] = "phquathi",
+		["the ender of all"] = "phquathi",
+		["the bringer of ruin"] = "phquathi",
+		["the annihilator"] = "phquathi",
+
+		["you will drown in the blood of the old gods"] = "ilith qi'uothk shn'ma yeh'glu Shath'Yar",
+		--variants
+		["you will drown in old god blood"] = "ilith qi'uothk shn'ma yeh'glu Shath'Yar",
+		["the blood of the old gods will drown you"] = "ilith qi'uothk shn'ma yeh'glu Shath'Yar",
+		["you will choke on the blood of the old gods"] = "ilith qi'uothk shn'ma yeh'glu Shath'Yar",
+		["old god blood will swallow you"] = "ilith qi'uothk shn'ma yeh'glu Shath'Yar",
+
+		["all of you"] = "h'iwn iilth",
+		--variants
+		["every one of you"] = "h'iwn iilth",
+		["all of you will suffer"] = "h'iwn iilth",
+		["each and every one of you"] = "h'iwn iilth",
+		["none of you will escape"] = "h'iwn iilth",
+
+		["see how we pour from the cursed earth"] = "kyth ag'xig yyg'far iiqaath ongg",
+		--variants
+		["witness how we rise from the cursed earth"] = "kyth ag'xig yyg'far iiqaath ongg",
+		["see us spill forth from the cursed ground"] = "kyth ag'xig yyg'far iiqaath ongg",
+		["behold as we pour from the blighted earth"] = "kyth ag'xig yyg'far iiqaath ongg",
+		["watch us emerge from the cursed soil"] = "kyth ag'xig yyg'far iiqaath ongg",
+
+		["your soul will know endless torment"] = "sk'yahf qi'plahf ph'magg",
+		--variants
+		["your soul will suffer endless torment"] = "sk'yahf qi'plahf ph'magg",
+		["endless torment awaits your soul"] = "sk'yahf qi'plahf ph'magg",
+		["your soul will never know peace"] = "sk'yahf qi'plahf ph'magg",
+		["your soul will be tortured without end"] = "sk'yahf qi'plahf ph'magg",
+
+
+		["the darkness devours all"] = "uull lwhuk h'iwn",
+		--variants
+		["darkness devours all things"] = "uull lwhuk h'iwn",
+		["all will be consumed by darkness"] = "uull lwhuk h'iwn",
+		["nothing escapes the darkness"] = "uull lwhuk h'iwn",
+		["the darkness consumes everything"] = "uull lwhuk h'iwn",
+
 		["our numbers are endless"] = "ak'agthshi ma uhnish",
+		--variants
+		["our numbers know no end"] = "ak'agthshi ma uhnish",
+		["we are without number"] = "ak'agthshi ma uhnish",
+		["we cannot be counted"] = "ak'agthshi ma uhnish",
+		["our multitudes are endless"] = "ak'agthshi ma uhnish",
+
 		["our power beyond reckoning"] = "ak'uq shg'cul vwahuhn",
+		--variants
+		["our power cannot be measured"] = "ak'uq shg'cul vwahuhn",
+		["our power is beyond understanding"] = "ak'uq shg'cul vwahuhn",
+		["our strength defies reckoning"] = "ak'uq shg'cul vwahuhn",
+		["our might is immeasurable"] = "ak'uq shg'cul vwahuhn",
+
 		["all who oppose the destroyer will die a thousand deaths"] = "h'iwn iggksh phquathi gag oou kaaxth shuul",
+		--variants
+		["all who defy the destroyer will die a thousand deaths"] = "h'iwn iggksh phquathi gag oou kaaxth shuul",
+		["those who oppose the destroyer will suffer countless deaths"] = "h'iwn iggksh phquathi gag oou kaaxth shuul",
+		["defiance of the destroyer brings a thousand deaths"] = "h'iwn iggksh phquathi gag oou kaaxth shuul",
+		["any who stand against the destroyer will die again and again"] = "h'iwn iggksh phquathi gag oou kaaxth shuul",
 
 		-- Herald Volazj / Commander Ulthok
-		["Gaze into the void"] = "Gul'kafh an'shel",
-		["It is the perpetuity in which they dwell"] = "Yoq'al shn ky ywaq nuul",
-		["Where one falls, many shall take its place"] = "Iilth vwah, uhn'agth fhssh za.",
-		["They who dine on lost souls know only hunger"] = "Shgla'yos plahf mh'naus.",
-		["From its BLEAKEST DEPTHS"] = "Shkul an'zig qvsakf KSSH'GA",
-		["We RECLAIM this world"] = "ag'THYZAK agthu!",
-		["They are the whisper on the shivering wind"] = "Ywaq ma phgwa'cul hnakf.",
-		["They drink your fear: it is the blood of life"] = "Ywaq puul skshgn: on'ma yeh'glu zuq.",
+		["gaze into the void"] = "gul'kafh an'shel",
+		--variants
+		["look into the void"] = "gul'kafh an'shel",
+		["stare into the void"] = "gul'kafh an'shel",
+		["peer into the void"] = "gul'kafh an'shel",
+		["behold the void"] = "gul'kafh an'shel",
+
+		["it is the perpetuity in which they dwell"] = "yoq'al shn ky ywaq nuul",
+		--variants
+		["it is the eternity in which they dwell"] = "yoq'al shn ky ywaq nuul",
+		["they dwell within perpetuity"] = "yoq'al shn ky ywaq nuul",
+		["it is an endless state where they abide"] = "yoq'al shn ky ywaq nuul",
+		["they exist within endless perpetuity"] = "yoq'al shn ky ywaq nuul",
+
+		["where one falls, many shall take its place"] = "iilth vwah, uhn'agth fhssh za",
+		--variants
+		["when one falls, many rise in its place"] = "iilth vwah, uhn'agth fhssh za",
+		["for every one that falls, many replace it"] = "iilth vwah, uhn'agth fhssh za",
+		["one falls, and many take its place"] = "iilth vwah, uhn'agth fhssh za",
+		["they are endless—where one falls, many follow"] = "iilth vwah, uhn'agth fhssh za",
+
+
+		["they who dine on lost souls know only hunger"] = "shgla'yos plahf mh'naus",
+		--variants
+		["those who feast on lost souls know only hunger"] = "shgla'yos plahf mh'naus",
+		["they feed on lost souls, yet are never sated"] = "shgla'yos plahf mh'naus",
+		["devourers of lost souls are forever hungry"] = "shgla'yos plahf mh'naus",
+		["they consume lost souls and know no fullness"] = "shgla'yos plahf mh'naus",
+
+		["from its bleakest depths"] = "shkul an'zig qvsakf kssh'ga",
+		--variants
+		["from its darkest depths"] = "shkul an'zig qvsakf kssh'ga",
+		["from the bleakest depths below"] = "shkul an'zig qvsakf kssh'ga",
+		["from depths most desolate"] = "shkul an'zig qvsakf kssh'ga",
+		["from its deepest, bleakest reaches"] = "shkul an'zig qvsakf kssh'ga",
+
+		["we reclaim this world"] = "ag'thyzak agthu",
+		--variants
+		["we reclaim this world"] = "ag'thyzak agthu",
+		["this world is reclaimed"] = "ag'thyzak agthu",
+		["we take this world back"] = "ag'thyzak agthu",
+		["this world returns to us"] = "ag'thyzak agthu",
+
+		["they are the whisper on the shivering wind"] = "ywaq ma phgwa'cul hnakf",
+		--variants
+		["they whisper upon the shivering wind"] = "ywaq ma phgwa'cul hnakf",
+		["they are the voices carried by the cold wind"] = "ywaq ma phgwa'cul hnakf",
+		["they ride the trembling wind as whispers"] = "ywaq ma phgwa'cul hnakf",
+		["they are the whisper carried on the wind"] = "ywaq ma phgwa'cul hnakf",
+
+		["they drink your fear: it is the blood of life"] = "ywaq puul skshgn on'ma yeh'glu zuq",
+		--variants
+		["they drink your fear—it is the blood of life"] = "ywaq puul skshgn on'ma yeh'glu zuq",
+		["your fear is their sustenance"] = "ywaq puul skshgn on'ma yeh'glu zuq",
+		["they feed upon fear, the blood of life"] = "ywaq puul skshgn on'ma yeh'glu zuq",
+		["fear is the lifeblood they drink"] = "ywaq puul skshgn on'ma yeh'glu zuq",
 
 		-- Warlord Zon'ozz
-		["Gaze into the heart of N'Zoth"] = "Gul'kafh an'qov N'Zoth",
-		["The will of N'Zoth corrupts you"] = "N'Zoth ga zyqtahg iilth.",
-		["Your suffering strengthens me"] = "Sk'magg yawifk hoq.",
-		["Your fear drives me"] = "Sk'shgn eqnizz hoq.",
-		["Your deaths shall sing of N'Zoth's unending glory"] = "Sk'shuul agth vorzz N'Zoth naggwa'fssh.",
-		["Your skulls shall adorn N'Zoth's writhing throne"] = "Sk'tek agth nuq N'Zoth yyqzz.",
-		["Your agony sustains me"] = "Sk'uuyat guulphg hoq.",
-		["Your souls shall sate N'Zoth's endless hunger"] = "Sk'yahf agth huqth N'Zoth qornaus.",
-		["To have waited so long... for this..."] = "Uovssh thyzz... qwaz...",
-		["Once more shall the twisted flesh-banners of N'Zoth chitter and howl above the fly-blown corpse of this world"] = "Vwyq agth sshoq'meg N'Zoth vra zz shfk qwor ga'halahs agthu.",
-		["After millennia, we have returned"] = "Uulg'ma, ag qam.",
-		["They do not die; they do not live"] = "Ywaq maq oou; ywaq maq ssaggh.",
-		["They are outside the cycle"] = "Ywaq ma shg'fhn.",
-		["Victory for Deathwing"] = "Zzof Shuul'wah.",
-		["For the glory of N'Zoth"] = "Thoq fssh N'Zoth!",
+		["gaze into the heart of n'zoth"] = "gul'kafh an'qov N'Zoth",
+		["gaze into the heart of nzoth"] = "gul'kafh an'qov N'Zoth",
+		--variants
+		["look into the heart of n'zoth"] = "gul'kafh an'qov N'Zoth",
+		["peer into n'zoth's heart"] = "gul'kafh an'qov N'Zoth",
+		["behold the heart of n'zoth"] = "gul'kafh an'qov N'Zoth",
+		["stare into n'zoth's core"] = "gul'kafh an'qov N'Zoth",
+		["look into the heart of nzoth"] = "gul'kafh an'qov N'Zoth",
+		["peer into nzoth's heart"] = "gul'kafh an'qov N'Zoth",
+		["behold the heart of nzoth"] = "gul'kafh an'qov N'Zoth",
+		["stare into nzoth's core"] = "gul'kafh an'qov N'Zoth",
+
+		["the will of n'zoth corrupts you"] = "N'Zoth ga zyqtahg iilth",
+		["the will of nzoth corrupts you"] = "N'Zoth ga zyqtahg iilth",
+		--variants
+		["n'zoth's will corrupts you"] = "N'Zoth ga zyqtahg iilth",
+		["you are corrupted by n'zoth's will"] = "N'Zoth ga zyqtahg iilth",
+		["n'zoth's will seeps into you"] = "N'Zoth ga zyqtahg iilth",
+		["the will of n'zoth twists you"] = "N'Zoth ga zyqtahg iilth",
+		["nzoth's will corrupts you"] = "N'Zoth ga zyqtahg iilth",
+		["you are corrupted by nzoth's will"] = "N'Zoth ga zyqtahg iilth",
+		["nzoth's will seeps into you"] = "N'Zoth ga zyqtahg iilth",
+		["the will of nzoth twists you"] = "N'Zoth ga zyqtahg iilth",
+
+		["your suffering strengthens me"] = "sk'magg yawifk hoq",
+		--variants
+		["your suffering empowers me"] = "sk'magg yawifk hoq",
+		["i grow stronger from your suffering"] = "sk'magg yawifk hoq",
+		["your pain makes me stronger"] = "sk'magg yawifk hoq",
+		["i am strengthened by your suffering"] = "sk'magg yawifk hoq",
+
+
+		["your fear drives me"] = "sk'shgn eqnizz hoq",
+		--variants
+		["your fear fuels me"] = "sk'shgn eqnizz hoq",
+		["i am driven by your fear"] = "sk'shgn eqnizz hoq",
+		["your fear propels me"] = "sk'shgn eqnizz hoq",
+		["your terror gives me purpose"] = "sk'shgn eqnizz hoq",
+
+		["your deaths shall sing of n'zoth's unending glory"] = "sk'shuul agth vorzz N'Zoth naggwa'fssh",
+		["your deaths shall sing of nzoth's unending glory"] = "sk'shuul agth vorzz N'Zoth naggwa'fssh",
+		--variants
+		["your deaths will sing of n'zoth's eternal glory"] = "sk'shuul agth vorzz N'Zoth naggwa'fssh",
+		["your deaths will praise n'zoth's endless glory"] = "sk'shuul agth vorzz N'Zoth naggwa'fssh",
+		["your dying screams will glorify n'zoth forever"] = "sk'shuul agth vorzz N'Zoth naggwa'fssh",
+		["your deaths will echo n'zoth's undying glory"] = "sk'shuul agth vorzz N'Zoth naggwa'fssh",
+		["your deaths will sing of nzoth's eternal glory"] = "sk'shuul agth vorzz N'Zoth naggwa'fssh",
+		["your deaths will praise nzoth's endless glory"] = "sk'shuul agth vorzz N'Zoth naggwa'fssh",
+		["your dying screams will glorify nzoth forever"] = "sk'shuul agth vorzz N'Zoth naggwa'fssh",
+		["your deaths will echo nzoth's undying glory"] = "sk'shuul agth vorzz N'Zoth naggwa'fssh",
+
+		["your skulls shall adorn n'zoth's writhing throne"] = "sk'tek agth nuq N'Zoth yyqzz",
+		["your skulls shall adorn nzoth's writhing throne"] = "sk'tek agth nuq N'Zoth yyqzz",
+		--variants
+		["your skulls will adorn n'zoth's writhing throne"] = "sk'tek agth nuq N'Zoth yyqzz",
+		["n'zoth's throne will be crowned with your skulls"] = "sk'tek agth nuq N'Zoth yyqzz",
+		["your skulls will decorate n'zoth's throne"] = "sk'tek agth nuq N'Zoth yyqzz",
+		["n'zoth's throne will writhe beneath your skulls"] = "sk'tek agth nuq N'Zoth yyqzz",
+		["your skulls will adorn nzoth's writhing throne"] = "sk'tek agth nuq N'Zoth yyqzz",
+		["nzoth's throne will be crowned with your skulls"] = "sk'tek agth nuq N'Zoth yyqzz",
+		["your skulls will decorate nzoth's throne"] = "sk'tek agth nuq N'Zoth yyqzz",
+		["nzoth's throne will writhe beneath your skulls"] = "sk'tek agth nuq N'Zoth yyqzz",
+
+		["your agony sustains me"] = "sk'uuyat guulphg hoq",
+		--variants
+		["your agony sustains me"] = "sk'uuyat guulphg hoq",
+		["i am sustained by your agony"] = "sk'uuyat guulphg hoq",
+		["your torment keeps me alive"] = "sk'uuyat guulphg hoq",
+		["i endure through your agony"] = "sk'uuyat guulphg hoq",
+
+		["your souls shall sate n'zoth's endless hunger"] = "sk'yahf agth huqth N'Zoth qornaus",
+		["your souls shall sate nzoth's endless hunger"] = "sk'yahf agth huqth N'Zoth qornaus",
+		--variants
+		["your souls will sate n'zoth's endless hunger"] = "sk'yahf agth huqth N'Zoth qornaus",
+		["n'zoth's hunger will be fed by your souls"] = "sk'yahf agth huqth N'Zoth qornaus",
+		["your souls will feed n'zoth's eternal hunger"] = "sk'yahf agth huqth N'Zoth qornaus",
+		["n'zoth will feast upon your souls"] = "sk'yahf agth huqth N'Zoth qornaus",
+		["your souls will sate nzoth's endless hunger"] = "sk'yahf agth huqth N'Zoth qornaus",
+		["nzoth's hunger will be fed by your souls"] = "sk'yahf agth huqth N'Zoth qornaus",
+		["your souls will feed nzoth's eternal hunger"] = "sk'yahf agth huqth N'Zoth qornaus",
+		["nzoth will feast upon your souls"] = "sk'yahf agth huqth N'Zoth qornaus",
+
+		["to have waited so long... for this..."] = "uovssh thyzz... qwaz...",
+		--variants
+		["we have waited so long... for this..."] = "uovssh thyzz... qwaz...",
+		["at last... after so long..."] = "uovssh thyzz... qwaz...",
+		["so long we have waited..."] = "uovssh thyzz... qwaz...",
+		["this moment was long awaited..."] = "uovssh thyzz... qwaz...",
+
+		["once more shall the twisted flesh-banners of n'zoth chitter and howl above the fly-blown corpse of this world"] = "vwyq agth sshoq'meg N'Zoth vra zz shfk qwor ga'halahs agthu",
+		["once more shall the twisted flesh-banners of nzoth chitter and howl above the fly-blown corpse of this world"] = "vwyq agth sshoq'meg N'Zoth vra zz shfk qwor ga'halahs agthu",
+		--variants
+		["once more, n'zoth's twisted flesh-banners will howl above this dead world"] = "vwyq agth sshoq'meg N'Zoth vra zz shfk qwor ga'halahs agthu",
+		["again shall n'zoth's flesh-banners shriek over the corpse of this world"] = "vwyq agth sshoq'meg N'Zoth vra zz shfk qwor ga'halahs agthu",
+		["n'zoth's writhing banners will once again scream above this rotting world"] = "vwyq agth sshoq'meg N'Zoth vra zz shfk qwor ga'halahs agthu",
+		["the flesh-banners of n'zoth will howl again over this world's corpse"] = "vwyq agth sshoq'meg N'Zoth vra zz shfk qwor ga'halahs agthu",
+		["once more, nzoth's twisted flesh-banners will howl above this dead world"] = "vwyq agth sshoq'meg N'Zoth vra zz shfk qwor ga'halahs agthu",
+		["again shall nzoth's flesh-banners shriek over the corpse of this world"] = "vwyq agth sshoq'meg N'Zoth vra zz shfk qwor ga'halahs agthu",
+		["nzoth's writhing banners will once again scream above this rotting world"] = "vwyq agth sshoq'meg N'Zoth vra zz shfk qwor ga'halahs agthu",
+		["the flesh-banners of nzoth will howl again over this world's corpse"] = "vwyq agth sshoq'meg N'Zoth vra zz shfk qwor ga'halahs agthu",
+
+		["after millennia, we have returned"] = "uulg'ma, ag qam",
+		--variants
+		["after ages, we return"] = "uulg'ma, ag qam",
+		["after countless ages, we have returned"] = "uulg'ma, ag qam",
+		["we return after millennia"] = "uulg'ma, ag qam",
+		["after endless time, we return"] = "uulg'ma, ag qam",
+
+
+		["they do not die; they do not live"] = "ywaq maq oou ywaq maq ssaggh",
+		--variants
+		["they exist outside the cycle"] = "ywaq ma shg'fhn",
+		["they stand beyond the cycle"] = "ywaq ma shg'fhn",
+		["they are not bound by the cycle"] = "ywaq ma shg'fhn",
+		["the cycle does not bind them"] = "ywaq ma shg'fhn",
+
+		["they are outside the cycle"] = "ywaq ma shg'fhn",
+		--variants
+		["they exist outside the cycle"] = "ywaq ma shg'fhn",
+		["they stand beyond the cycle"] = "ywaq ma shg'fhn",
+		["they are not bound by the cycle"] = "ywaq ma shg'fhn",
+		["the cycle does not bind them"] = "ywaq ma shg'fhn",
+
+		["victory for Deathwing"] = "zzof Shuul'wah",
+		--variants
+		["victory to Deathwing"] = "zzof Shuul'wah",
+		["triumph for Deathwing"] = "zzof Shuul'wah",
+		["Deathwing is victorious"] = "zzof Shuul'wah",
+		["Deathwing shall triumph"] = "zzof Shuul'wah",
+
+		["for the glory of n'zoth"] = "thoq fssh N'Zoth",
+		["for the glory of nzoth"] = "thoq fssh N'Zoth",
+		--variants
+		["for n'zoth's glory"] = "thoq fssh N'Zoth",
+		["glory to n'zoth"] = "thoq fssh N'Zoth",
+		["in the name of n'zoth's glory"] = "thoq fssh N'Zoth",
+		["all for the glory of n'zoth"] = "thoq fssh N'Zoth",
+		["for nzoth's glory"] = "thoq fssh N'Zoth",
+		["glory to nzoth"] = "thoq fssh N'Zoth",
+		["in the name of nzoth's glory"] = "thoq fssh N'Zoth",
+		["all for the glory of nzoth"] = "thoq fssh N'Zoth",
 
 		-- Zek'voz
-		["How is this... possible..."] = "Hul bala miz rilakich...",
-		["Not a single worthy trait among you"] = "Naza bul rexil qalic ul'.",
-		["You will be eradicated"] = "Ug' crish zul Thraxas!",
-		["I am superior"] = "Ul basha krix.",
+		["how is this... possible..."] = "hul bala miz rilakich...",
+		--variants
+		["how can this be..."] = "hul bala miz rilakich...",
+		["this is... impossible..."] = "hul bala miz rilakich...",
+		["how could this happen..."] = "hul bala miz rilakich...",
+		["this cannot be..."] = "hul bala miz rilakich...",
+
+		["not a single worthy trait among you"] = "naza bul rexil qalic ul'",
+		--variants
+		["there is nothing worthy among you"] = "naza bul rexil qalic ul'",
+		["you possess not a single worthy trait"] = "naza bul rexil qalic ul'",
+		["nothing about you is worthy"] = "naza bul rexil qalic ul'",
+		["you are devoid of any merit"] = "naza bul rexil qalic ul'",
+
+
+		["you will be eradicated"] = "ug' crish zul Thraxas",
+		--variants
+		["you will be wiped out"] = "ug' crish zul Thraxas",
+		["you will be destroyed"] = "ug' crish zul Thraxas",
+		["you will be annihilated"] = "ug' crish zul Thraxas",
+		["you will be erased"] = "ug' crish zul Thraxas",
+
+		["i am superior"] = "ul basha krix",
+		--variants
+		["i am above you"] = "ul basha krix",
+		["i am greater"] = "ul basha krix",
+		["i surpass you"] = "ul basha krix",
+		["i stand above all"] = "ul basha krix",
 
 		-- Armageddon (comic)
-		["Tremble now, for the slumberer awakens"] = "Kulaq w'ajj, hwa-ksh brraglac!",
-		["They are the howlers in the dark"] = "Ywaq ma fvlolf ksht aak vrbl!",
-		["The madness without end"] = "Shn aglf olbl'nyral!",
-		["They are the shadow that feasts on life"] = "Ywaq mwual'gyos gag prfakt sjabba zuq...",
+		["tremble now, for the slumberer awakens"] = "kulaq w'ajj hwa-ksh brraglac",
+		--variants
+		["tremble, for the sleeper awakens"] = "kulaq w'ajj hwa-ksh brraglac",
+		["shudder now—the slumberer rises"] = "kulaq w'ajj hwa-ksh brraglac",
+		["quake, for the sleeper stirs"] = "kulaq w'ajj hwa-ksh brraglac",
+		["fear now, the slumberer awakens"] = "kulaq w'ajj hwa-ksh brraglac",
+
+		["they are the howlers in the dark"] = "ywaq ma fvlolf ksht aak vrbl",
+		--variants
+		["they howl within the dark"] = "ywaq ma fvlolf ksht aak vrbl",
+		["they are the voices that howl in darkness"] = "ywaq ma fvlolf ksht aak vrbl",
+		["they are the howling ones of the dark"] = "ywaq ma fvlolf ksht aak vrbl",
+		["from the darkness, they howl"] = "ywaq ma fvlolf ksht aak vrbl",
+
+		["the madness without end"] = "shn aglf olbl'nyral",
+		--variants
+		["madness without end"] = "shn aglf olbl'nyral",
+		["endless madness"] = "shn aglf olbl'nyral",
+		["a madness that never ends"] = "shn aglf olbl'nyral",
+		["madness eternal"] = "shn aglf olbl'nyral",
+
+		["they are the shadow that feasts on life"] = "ywaq mwual'gyos gag prfakt sjabba zuq...",
+		--variants
+		["they are the shadow that devours life"] = "ywaq mwual'gyos gag prfakt sjabba zuq...",
+		["they are the darkness that feeds on life"] = "ywaq mwual'gyos gag prfakt sjabba zuq...",
+		["they feast upon the living"] = "ywaq mwual'gyos gag prfakt sjabba zuq...",
+		["they are life-devouring shadows"] = "ywaq mwual'gyos gag prfakt sjabba zuq...",
 
 		-- G'huun
-		["Children, come and feed"] = "Log'loth w'oq Ongg!",
-		["The contagion... has taken root within you"] = "Oou thyzz lal ak'uq qwaz Zuq shkul ma sk'tek...",
+		["children, come and feed"] = "log'loth w'oq Ongg",
+		--variants
+		["children, come feast"] = "log'loth w'oq Ongg",
+		["come, children, and feed"] = "log'loth w'oq Ongg",
+		["children, feed now"] = "log'loth w'oq Ongg",
+		["come and feed, my children"] = "log'loth w'oq Ongg",
+
+
+		["the contagion... has taken root within you"] = "oou thyzz lal ak'uq qwaz Zuq shkul ma sk'tek...",
+		--variants
+		["the contagion has taken root in you"] = "oou thyzz lal ak'uq qwaz Zuq shkul ma sk'tek...",
+		["the corruption has rooted itself within you"] = "oou thyzz lal ak'uq qwaz Zuq shkul ma sk'tek...",
+		["the sickness now grows inside you"] = "oou thyzz lal ak'uq qwaz Zuq shkul ma sk'tek...",
+		["it has taken root within you"] = "oou thyzz lal ak'uq qwaz Zuq shkul ma sk'tek...",
 
 		-- Vol'zith the Whisperer
-		["Beneath the tides, your truth awaits"] = "Skitsh qi'uthik illith!",
-		["Darkness roots. Pestilence spreads. The doorway is open"] = "Ugalazul bwrxil' qu rax.",
-		["You are mine"] = "ULL vera skish!!",
-		["Blood pours forth in the depths"] = "Xul krass qi' UN skush!",
+		["beneath the tides, your truth awaits"] = "skitsh qi'uthik illith",
+		--variants
+		["your truth waits beneath the tides"] = "skitsh qi'uthik illith",
+		["beneath the waves, your truth lies"] = "skitsh qi'uthik illith",
+		["the tides conceal your truth"] = "skitsh qi'uthik illith",
+		["your truth sleeps beneath the sea"] = "skitsh qi'uthik illith",
+
+		["darkness roots. pestilence spreads. the doorway is open"] = "ugalazul bwrxil' qu rax",
+		--variants
+		["darkness takes root. pestilence spreads. the way is open"] = "ugalazul bwrxil' qu rax",
+		["the darkness has rooted; the doorway stands open"] = "ugalazul bwrxil' qu rax",
+		["pestilence spreads as the door opens"] = "ugalazul bwrxil' qu rax",
+		["the way is open, and corruption spreads"] = "ugalazul bwrxil' qu rax",
+
+		["you are mine"] = "ULL vera skish",
+		--variants
+		["you belong to me"] = "ULL vera skish",
+		["you are claimed"] = "ULL vera skish",
+		["you are mine to command"] = "ULL vera skish",
+		["you are already mine"] = "ULL vera skish",
+
+		["blood pours forth in the depths"] = "xul krass qi' UN skush",
+		--variants
+		["blood floods the depths"] = "xul krass qi' UN skush",
+		["the depths run with blood"] = "xul krass qi' UN skush",
+		["blood spills endlessly below"] = "xul krass qi' UN skush",
+		["the deep overflows with blood"] = "xul krass qi' UN skush",
+
 		["i will await you... in the dark..."] = "bwixki amala zal qul",
 		--variants
- 		["i wait for you in the dark"] = "bwixki amala zal qul",
+		["i wait for you in the dark"] = "bwixki amala zal qul",
 		["i await you in darkness"] = "bwixki amala zal qul",
+		["i will wait for you in the dark"] = "bwixki amala zal qul",
+		["i await you within the darkness"] = "bwixki amala zal qul",
+		["in the dark, i wait for you"] = "bwixki amala zal qul",
+		["i linger for you in the dark"] = "bwixki amala zal qul",
+
 		["i reside within your lungs"] = "aglathrax hig thrixa",
+		--variants
+		["i dwell within your lungs"] = "aglathrax hig thrixa",
+		["i breathe inside you"] = "aglathrax hig thrixa",
+		["your lungs are my home"] = "aglathrax hig thrixa",
+		["i live within your breath"] = "aglathrax hig thrixa",
+
+
 
 
 		-- Mythrax the Unraveler
-		["Xalzaix hungers for annihilation"] = "Uulg'ma zyqtahg yrr!",
-		["Extermination"] = "Xith wgah!",
+		["xalzaix hungers for annihilation"] = "Uulg'ma zyqtahg yrr",
+--variants
+		["xalzaix yearns for annihilation"] = "Uulg'ma zyqtahg yrr",
+		["xalzaix thirsts for annihilation"] = "Uulg'ma zyqtahg yrr",
+		["xalzaix desires only annihilation"] = "Uulg'ma zyqtahg yrr",
+		["xalzaix is driven by annihilation"] = "Uulg'ma zyqtahg yrr",
 
-		-- Yogg-Saron
-		["The shadow of my corpse will choke this land for all eternity"] = "Uulwi ifis halahs gag erh'ongg w'ssh.",
+		["extermination"] = "Xith wgah",
+--variants
+		["total extermination"] = "Xith wgah",
+		["eradication"] = "Xith wgah",
+		["annihilation"] = "Xith wgah",
+		["purging all life"] = "Xith wgah",
 
-		-- Anglepoint Wharf
-		["Our gods will devour all"] = "Ak yar qi'lwhuk h'iwn.",
-		["I return to the writhing throne"] = "Y'za qam yyqzz...",
-		["Power unrelenting"] = "Uq naggwa...",
+-- Yogg-Saron
+		["the shadow of my corpse will choke this land for all eternity"] = "Uulwi ifis halahs gag erh'ongg w'ssh",
+--variants
+		["my corpse's shadow will suffocate this land forever"] = "Uulwi ifis halahs gag erh'ongg w'ssh",
+		["this land will choke beneath my corpse's shadow"] = "Uulwi ifis halahs gag erh'ongg w'ssh",
+		["my shadowed corpse will smother this world eternally"] = "Uulwi ifis halahs gag erh'ongg w'ssh",
+		["forever will this land choke beneath my shadow"] = "Uulwi ifis halahs gag erh'ongg w'ssh",
 
-		-- Deep Watcher
-		["The eye sees all"] = "Ma sk'magg ni arwi",
-		["His greatness... his glory"] = "Ma zzof ag ez uulwi",
-		["We slumber no more! We rise... as he rises!"] = "Oou oou ryiu nuq Yrr par'okoth yrr vorzz",
+-- Anglepoint Wharf
+		["our gods will devour all"] = "Ak yar qi'lwhuk h'iwn",
+--variants
+		["our gods will consume everything"] = "Ak yar qi'lwhuk h'iwn",
+		["all will be devoured by our gods"] = "Ak yar qi'lwhuk h'iwn",
+		["nothing will escape our gods"] = "Ak yar qi'lwhuk h'iwn",
+		["our gods hunger for all things"] = "Ak yar qi'lwhuk h'iwn",
+
+		["i return to the writhing throne"] = "Y'za qam yyqzz...",
+--variants
+		["once more, i return to the throne"] = "Y'za qam yyqzz...",
+		["the writhing throne calls me back"] = "Y'za qam yyqzz...",
+		["i reclaim my throne"] = "Y'za qam yyqzz...",
+
+		["power unrelenting"] = "Uq naggwa...",
+--variants
+		["unrelenting power"] = "Uq naggwa...",
+		["power without end"] = "Uq naggwa...",
+		["power that never wanes"] = "Uq naggwa...",
+		["endless power"] = "Uq naggwa...",
+
+-- Deep Watcher
+		["the eye sees all"] = "Ma sk'magg ni arwi",
+--variants
+		["the eye watches all"] = "Ma sk'magg ni arwi",
+		["nothing escapes the eye"] = "Ma sk'magg ni arwi",
+		["all is seen by the eye"] = "Ma sk'magg ni arwi",
+		["the eye misses nothing"] = "Ma sk'magg ni arwi",
+
+		["his greatness... his glory"] = "Ma zzof ag ez uulwi",
+--variants
+		["his greatness, his glory"] = "Ma zzof ag ez uulwi",
+		["behold his greatness"] = "Ma zzof ag ez uulwi",
+		["witness his glory"] = "Ma zzof ag ez uulwi",
+		["his glory is unmatched"] = "Ma zzof ag ez uulwi",
+
+		["we slumber no more!"] = "Oou oou ryiu nuq",
+--variants
+		["we sleep no longer"] = "Oou oou ryiu nuq",
+		["our slumber ends"] = "Oou oou ryiu nuq",
+		["we are awake at last"] = "Oou oou ryiu nuq",
+		["no more sleep"] = "Oou oou ryiu nuq",
+
+		["we rise... as he rises!"] = "Yrr par'okoth yrr vorzz",
+--variants
+		["as he rises, so do we"] = "Yrr par'okoth yrr vorzz",
+		["we rise with him"] = "Yrr par'okoth yrr vorzz",
+		["his rising is our rising"] = "Yrr par'okoth yrr vorzz",
+		["we ascend as he ascends"] = "Yrr par'okoth yrr vorzz",
+
 
 
 		-- individual words derived from phrases
 		["i am"] = "y'za", ["i"] = "y'za", ["i'm"] = "y'za",
+		["me"] = "y'za",
+		["myself"] = "y'za",
 
 		["not"] = "noq",
+		["never"] = "noq",
+		["no longer"] = "noq",
+		["nothing"] = "noq",
+		["none"] = "noq",
 
-		["first"] = "mah", ["last"] = "ormz",
+		["first"] = "mah",
+		["beginning"] = "mah",
+		["at the start"] = "mah",
+		["origin"] = "mah",
+
+		["last"] = "ormz",
+		["the last"] = "ormz",
+		["the end"] = "ormz",
+		["final"] = "ormz",
+		["the ending"] = "ormz",
+
 		["you"] = "iilth",
+		["yourself"] = "iilth",
+		["thee"] = "iilth",
+		["thou"] = "iilth",
+
 		["your"] = "sk'", --prefix
+		["your"] = "sk'",
+		["yours"] = "sk'",
+		["belonging to you"] = "sk'",
+
 		["they"] = "ywaq",
+		["them"] = "ywaq",
+		["those"] = "ywaq",
+		["the others"] = "ywaq",
+
 		["his"] = "ag",
+		["him"] = "ag",
+
 		["do not"] = "maq", ["don't"] = "maq",
+		["will not"] = "maq",
+		["won't"] = "maq",
+		["refuse to"] = "maq",
+
 		["cannot"] = "sythn", ["can not"] = "sythn", ["can't"] = "sythn",
+		["unable to"] = "sythn",
+
 
 		["cannot be"] = "nel'othk", ["can not be"] = "nel'othk", ["can't be"] = "nel'othk",
-		["return "] = "qam",
+		["return"] = "qam",
 		["returned"] = "qam",
+		["come back"] = "qam",
+		["has returned"] = "qam",
+		["return again"] = "qam",
+
 		["will"] = "qi",
+		["will soon"] = "qi",
+		["will inevitably"] = "qi",
+		["is destined to"] = "qi",
+
 		["shall"] = "agth",
+		["shall"] = "agth",
+		["must"] = "agth",
+		["is decreed"] = "agth",
+		["is commanded"] = "agth",
+
 		["devour"] = "lwhuk",
+		["consume"] = "lwhuk",
+		["eat"] = "lwhuk",
+		["feast upon"] = "lwhuk",
+		["swallow"] = "lwhuk",
+
 		["know"] = "plahf",
+		["understand"] = "plahf",
+		["realize"] = "plahf",
+		["are aware"] = "plahf",
+
 		["die"] = "oou",
+		["death"] = "oou",
+
 		["we"] = "oou",
+		["us"] = "oou",
+
 		["live"] = "ssaggh",
+		["exist"] = "ssaggh",
+		["survive"] = "ssaggh",
+
 		["madness"] = "shn",
+		["insanity"] = "shn",
+		["delirium"] = "shn",
+
 		["shadow"] = "uulwi",
+		["darkness"] = "uulwi",
+		["shade"] = "uulwi",
+
 		["cycle"] = "shg'fhn",
+		["pattern"] = "shg'fhn",
+
 		["fear"] = "skshgn",
+		["terror"] = "skshgn",
+		["dread"] = "skshgn",
+		["panic"] = "skshgn",
+
 		["soul"] = "yahf",
+		["spirit"] = "yahf",
+		["essence"] = "yahf",
+
 		["blood"] = "yeh'glu",
+		["lifeblood"] = "yeh'glu",
+		["bloodshed"] = "yeh'glu",
+
 		["throne"] = "yyqzz",
+		["seat of power"] = "yyqzz",
+
 		["depth"] = "zig",
 		["depths"] = "an'zig",
+		["the deep"] = "zig",
+		["the depths"] = "an'zig",
+		["the abyss"] = "an'zig",
+
 		["endless"] = "naggwa", ["unending"] = "naggwa",
+		["eternal"] = "naggwa",
+		["without end"] = "naggwa",
+
 		["glory"] = "fssh",
+		["greatness"] = "fssh",
+		["majesty"] = "fssh",
+
 		["all"] = "h'iwn",
+		["everything"] = "h'iwn",
+		["all things"] = "h'iwn",
+		["everyone"] = "h'iwn",
+
 
 		["vessel"] = "an'qoth",  ["host"] = "an'qoth", ["container"] = "an'qoth",
-		["destroyer"] = "phquathi", ["death"] = "shuul", ["wing"] = "wah",
+		["shell"] = "an'qoth",
+		["body"] = "an'qoth",
+
+		["destroyer"] = "phquathi",
+		["ruiner"] = "phquathi",
+		["worldbreaker"] = "phquathi",
+
+		["death"] = "shuul",
+		["the end"] = "shuul",
+		["doom"] = "shuul",
+
+		["wing"] = "wah",
+		["wings"] = "wah",
+
 		["deathwing"] = "shuul'wah",
+		["black aspect"] = "shuul'wah",
+
 
 
 		-- individual words that can be derived from the above
