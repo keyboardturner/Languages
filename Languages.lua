@@ -2134,6 +2134,16 @@ EventRegistry:RegisterCallback("ChatFrame.OnHyperlinkClick", HyperLinkFunc)
 EventRegistry:RegisterCallback("ChatFrame.OnHyperlinkLeave", function(chatFrame)
 	GameTooltip:Hide()
 end)
+
+
+ChatFrame1:HookScript("OnHyperlinkEnter", function(self, link, text, region, left, bottom, width, height)
+	print("function running")
+    local tooltip = GameTooltip;
+    tooltip:SetOwner(self, "ANCHOR_PRESERVE");
+    tooltip:ClearAllPoints();
+    tooltip:SetPoint("BOTTOMLEFT", region, "TOPLEFT", left + width, bottom);
+    tooltip:SetHyperlink(link);
+end)
 --]]
 
 

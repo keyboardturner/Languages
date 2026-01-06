@@ -10,7 +10,8 @@ local Dictionaries = {
 		["in"] = "a'l", ["long live the king"] = "an karanir Thanagor", ["killer"] = "kalar",
 		["alliance"] = "landowar", ["peaceful land of the people"] = "Lordaeron", ["lake"] = "mere",
 		["may"] = "mor", ["his"] = "ok", ["orc"] = "or", ["orc killer"] = "or'kalar", ["spirit of the world"] = "spiritus mundi",
-		["king"] = "thanagor", [ "troll"] = "trol",
+		["king"] = "thanagor", ["troll"] = "trol", ["great winged reptilian creature"] = "dragon", ["winged reptilian creature"] = "drake",
+		["great, winged reptilian creature"] = "dragon",
 
 		-- proper nouns
 		["alterac"] = "Alterac", ["arathor"] = "Arathor", ["arevass"] = "Arevass", ["andorhal"] = "Andorhal",
@@ -69,18 +70,78 @@ local Dictionaries = {
 		["honored student"] = "thero'shan", ["let our enemies beware"] = "tor ilisar'thera'nal", ["broken crown"] = "vordrassil",
 		["chaos"] = "xaxas", ["fury"] = "xaxas", ["deathwing"] = "xaxas", ["the glory of azshara"] = "Zin-Azshari", ["glory of azshara"] = "Zin-Azshari",
 
+		-- shared with dialect
+		["blood elf"]				= "sin'dorei",
+		["blood elves"]				= "sin'dorei",
+		["blood elven"]				= "sin'dorei",
+		["void elf"]				= "ren'dorei",
+		["void elves"]				= "ren'dorei",
+		["void elven"]				= "ren'dorei",
+		["high elf"]				= "quel'dorei",
+		["high elves"]				= "quel'dorei",
+		["high elven"]				= "quel'dorei",
+		["night elf"]				= "kaldorei",
+		["night elves"]				= "kaldorei",
+		["night elven"]				= "kaldorei",
+		["children of blood"]		= "sin'dorei",
+		["children of the blood"]	= "sin'dorei",
+		["children of the sun"]		= "belore'dorei",
+		["children of sun"]			= "belore'dorei",
+		["children of the void"]	= "ren'dorei",
+		["children of void"]		= "ren'dorei",
+		["children of noble birth"]	= "quel'dorei",
+		["children of nobility"]	= "quel'dorei",
+		["children of nobility"]	= "quel'dorei",
+		["child of blood"]			= "sin'dorei",
+		["child of the blood"]		= "sin'dorei",
+		["child of the sun"]		= "belore'dorei",
+		["child of sun"]			= "belore'dorei",
+		["child of the void"]		= "ren'dorei",
+		["child of void"]			= "ren'dorei",
+		["child of noble birth"]	= "quel'dorei",
+		["child of nobility"]		= "quel'dorei",
+		["child of nobility"]		= "quel'dorei",
+		["people of blood"]			= "sin'dorei",
+		["people of the blood"]		= "sin'dorei",
+		["people of the sun"]		= "belore'dorei",
+		["people of sun"]			= "belore'dorei",
+		["people of the void"]		= "ren'dorei",
+		["people of void"]			= "ren'dorei",
+		["people of noble birth"]	= "quel'dorei",
+		["people of nobility"]		= "quel'dorei",
+		["people of nobility"]		= "quel'dorei",
+		["person of blood"]			= "sin'dorei",
+		["person of the blood"]		= "sin'dorei",
+		["person of the sun"]		= "belore'dorei",
+		["person of sun"]			= "belore'dorei",
+		["person of the void"]		= "ren'dorei",
+		["person of void"]			= "ren'dorei",
+		["person of noble birth"]	= "quel'dorei",
+		["person of nobility"]		= "quel'dorei",
+		["person of nobility"]		= "quel'dorei",
+		["highborne"]				= "quel'dorei",
+		["highbornes"]				= "quel'dorei",
+		["children of the stars"]	= "kaldorei",
+		["children of stars"]		= "kaldorei",
+		["nightborne"]				= "shal'dorei",
+		["nightbornes"]				= "shal'dorei",
+		["children of shadow"]		= "shal'dorei",
+		["children of the night"]	= "shal'dorei",
+		["high home"]				= "Quel'Thalas",
+
 		--untranslated phrases
-		["aludala"] = "aludala", ["ana duna thera"] = "ana duna thera", ["anato retetour"] = "anato retetour", ["anu'dora!"] = "anu'dora!",
+		["aludala"] = "aludala", ["ana duna thera"] = "ana duna thera", ["anato retetour"] = "anato retetour", ["anu'dora"] = "anu'dora",
 		["anu dorah"] = "anu dorah", ["anu dorini ash'ka"] = "anu dorini ash'ka", ["anu dunah thalore"] = "anu dunah thalore", ["iseradune banthalos"] = "iseradune banthalos",
-		["anu therador mali"] = "anu therador mali", ["arama sh'nala fasima nemelia boranna... manoria fesala maranor... mal'nala fal!!"] = "Arama sh'nala fasima nemelia boranna... manoria fesala maranor... mal'nala fal!!",
-		["ash'al theradas"] = "Ash'al theradas", ["ashbalanol"] = "Ashbalanol", ["ash rohk ilisar"] = "ash rohk ilisar", ["thandae"] = "thandae",
-		["ashre thoraman"] = "Ashre thoraman", ["ash'thero danador"] = "Ash'thero danador", ["ash'therod nethanas"] = "Ash'therod nethanas",
-		["bathel'daelune"] = "Bathel'daelune", ["deronica"] = "Deronica", ["elun'falah shalar."] = "Elun'falah shalar.", ["elun'orin torel!"] = "Elun'orin torel!",
-		["enae elen'relos!"] = "Enae elen'relos!", ["en'shu falah-nah"] = "En'shu falah-nah", ["enshu-falah-nah, dorini."] = "Enshu-falah-nah, dorini.",
-		["enu thora'serador"] = "Enu thora'serador", ["hinduli rethal"] = "Hinduli rethal", ["ishnu... oshalan thara dormil... anu'dorin..."] = "Ishnu... Oshalan thara dormil... Anu'dorin...",
-		["ishnu-talah kaldorei."] = "Ishnu-talah Kaldorei.", ["sael'ah"] = "Sael'ah", ["shal myrinan ishnu daldorah"] = "Shal myrinan ishnu daldorah",
-		["shu dales-na"] = "Shu dales-na", ["thandae-alah"] = "Thandae-alah", ["thara dormil dorah"] = "Thara dormil dorah",
-		["tor falah-no dorah"] = "Tor falah-no dorah", ["zin-al-elune!"] = "Zin-al-Elune!",
+		["anu therador mali"] = "anu therador mali", 
+		["arama sh'nala fasima nemelia boranna"] = "arama sh'nala fasima nemelia boranna", ["manoria fesala maranor"] = "manoria fesala maranor", ["mal'nala fal"] = "mal'nala fal",
+		["ash'al theradas"] = "ash'al theradas", ["ashbalanol"] = "ashbalanol", ["ash rohk ilisar"] = "ash rohk ilisar", ["thandae"] = "thandae",
+		["ashre thoraman"] = "ashre thoraman", ["ash'thero danador"] = "ash'thero danador", ["ash'therod nethanas"] = "ash'therod nethanas",
+		["bathel'daelune"] = "bathel'daelune", ["deronica"] = "deronica", ["elun'falah shalar"] = "elun'falah shalar", ["elun'orin torel"] = "elun'orin torel",
+		["enae elen'relos"] = "enae elen'relos", ["en'shu falah-nah"] = "en'shu falah-nah", ["enshu-falah-nah"] = "enshu-falah-nah", ["dorini"] = "dorini",
+		["enu thora'serador"] = "enu thora'serador", ["hinduli rethal"] = "hinduli rethal", ["ishnu"] = "ishnu", ["oshalan thara dormil"] = "oshalan thara dormil", ["anu'dorin"] = "anu'dorin",
+		["ishnu-talah"] = "ishnu-talah", ["sael'ah"] = "sael'ah", ["shal myrinan ishnu daldorah"] = "shal myrinan ishnu daldorah",
+		["shu dales-na"] = "shu dales-na", ["thandae-alah"] = "thandae-alah", ["thara dormil dorah"] = "thara dormil dorah",
+		["tor falah-no dorah"] = "tor falah-no dorah", ["zin-al-elune"] = "zin-al-elune",
 
 
 		--untranslated words
@@ -110,45 +171,65 @@ local Dictionaries = {
 	},
 	[L["Draenei"]] = {
 
-		-- Aar-don'sha, ki kahl'dos.
+		-- Aar-don'sha, ki kahl'dos
 		["in the light we triumph"] = "aar-don'sha, ki kahl'dos", ["in light we triumph"] = "aar-don'sha, ki kahl'dos", ["light we triumph"] = "aar-don'sha, ki kahl'dos",
+
 		-- Achal hecta
 		["good day"] = "achal hecta",
+
 		-- Archenon poros
 		["good fortune"] = "archenon poros",
-		-- Atar va hish'ana, maat irim ita.
+
+		-- Atar va hish'ana, maat irim ita
 		["beneath the eternal stars we walk together"] = "atar va hish'ana, maat irim ita", ["beneath eternal stars we walk together"] = "atar va hish'ana, maat irim ita",
-		["beneath the stars we walk together"] = "atar va hish'ana, maat irim ita",
+		["beneath the stars we walk together"] = "atar va hish'ana, maat irim ita", ["beneath the eternal stars, we walk together"] = "atar va hish'ana, maat irim ita",
+		["beneath eternal stars, we walk together"] = "atar va hish'ana, maat irim ita", ["beneath the stars, we walk together"] = "atar va hish'ana, maat irim ita",
+
 		-- Auchindoun
 		["a home for the honored dead"] = "auchindoun", ["home for the honored dead"] = "auchindoun",
+
 		-- Dioniss aca
 		["safe journey"] = "dioniss aca", ["safe travels"] = "dioniss aca",
+
 		-- Draenei
-		["exiled ones"] = "draenei", ["the exiled ones"] = "draenei",
+		["exiled ones"] = "draenei", ["the exiled ones"] = "draenei", ["exiled one"] = "draenei",
+
 		-- Draenor
 		["exiles refuge"] = "draenor", ["refuge of exiles"] = "draenor",
+
 		-- Fanlin'Deskor
 		["amber skies over wondrous rock"] = "fanlin'deskor", ["amber skies"] = "fanlin'deskor",
+
 		-- Goblin
 		["parasite"] = "goblin",
+
 		-- Krokul
 		["broken"] = "krokul", ["the broken"] = "krokul",
-		-- Krona ki cristorr!
+
+		-- Krona ki cristorr
 		["the legion will fall"] = "krona ki cristorr", ["legion will fall"] = "krona ki cristorr",
+
 		-- Kurenai
-		["redeemed"] = "kurenai", ["the redeemed"] = "kurenai",
+		["redeemed"] = "kurenai",
+
 		-- Ma-no icta!
 		["double your efforts"] = "ma-no icta", ["double efforts"] = "ma-no icta",
+
 		-- Man'ari
 		["unnatural beings"] = "man'ari", ["demons"] = "man'ari", ["demon"] = "man'ari",
-		-- Pheta thones gamera.
+
+		-- Pheta thones gamera
 		["light guide our path"] = "pheta thones gamera", ["light guide the path"] = "pheta thones gamera", ["light guide us"] = "pheta thones gamera",
-		-- Pheta vi acahachi!
+
+		-- Pheta vi acahachi
 		["light give me strength"] = "pheta vi acahachi", ["light give strength"] = "pheta vi acahachi",
+
 		-- Sha
 		["light"] = "sha",
+
 		-- Sha'tar
-		["born from light"] = "sha'tar",
+		["born from light"] = "sha'tar", ["born of light"] = "sha'tar",
+
 		-- Shattrath
 		["dwelling of light"] = "shattrath", ["home of light"] = "shattrath",
 
@@ -167,182 +248,323 @@ local Dictionaries = {
 	},
 
 	[L["Thalassian"]] = {
-		-- Alar'annalas
-		["ranger lord"] = "alar'annalas",
-		-- Al diel shala
-		["safe travels"] = "al diel shala", ["travel safely"] = "al diel shala",
-		-- Ama noral'arkhana
+		-- alar'annalas
+		["ranger lord"] = "alar'annalas", ["lord of rangers"] = "alar'annalas",
+
+		-- al diel shala
+		["safe travels"] = "al diel shala", ["travel safely"] = "al diel shala", ["travel safe"] = "al diel shala",
+		["journey safely"] = "al diel shala", ["safe journey"] = "al diel shala", ["may your travels be safe"] = "al diel shala",
+
+		-- ama noral'arkhana
 		["saved by magic"] = "ama noral'arkhana", ["saved through magic"] = "ama noral'arkhana",
-		-- Anar'alah
-		["by the light"] = "anar'alah", ["by light"] = "anar'alah",
-		-- Anar'alah belore
+		["rescued by magic"] = "ama noral'arkhana", ["preserved by magic"] = "ama noral'arkhana", ["protected by magic"] = "ama noral'arkhana",
+
+		-- anar'alah
+		["by the light"] = "anar'alah", ["by light"] = "anar'alah", ["in the light"] = "anar'alah",
+		["under the light"] = "anar'alah", ["for the light"] = "anar'alah",
+
+		-- anar'alah belore
 		["by the light of the sun"] = "anar'alah belore", ["by the suns light"] = "anar'alah belore",
-		-- Anaria shola
+
+		-- anaria shola
 		["speak your business"] = "anaria shola", ["state your business"] = "anaria shola",
-		-- Anar'endal dracon
+		["declare your business"] = "anaria shola", ["speak your purpose"] = "anaria shola",
+		["state your purpose"] = "anaria shola",
+
+		-- anar'endal dracon
 		["by the breath of the dragon"] = "anar'endal dracon", ["by the dragons breath"] = "anar'endal dracon",
-		-- Ann'da
-		["father"] = "ann'da", ["papa"] = "ann'da",
-		-- Anu belore dela'na
+		["of the dragon"] = "dracon", ["dragon"] = "dracon", ["breath of the dragon"] = "anar'endal dracon",
+		["by the dragon's breath"] = "anar'endal dracon", ["dragon's breath"] = "anar'endal dracon",
+		["of the dragon"] = "dracon",
+
+		-- ann'da
+		["father"] = "ann'da", ["papa"] = "ann'da", ["pa"] = "ann'da", ["dad"] = "ann'da", ["old man"] = "ann'da",
+
+		-- anu belore dela'na
 		["the sun guides us"] = "anu belore dela'na", ["sun guides us"] = "anu belore dela'na",
-		-- Aranal
-		["rise"] = "aranal",
-		-- Bal'a dash, malanore
-		["greetings traveler"] = "bal'a dash, malanore", ["greetings"] = "bal'a dash, malanore",
-		-- Ban'dinoriel
-		["gatekeeper"] = "ban'dinoriel",
-		-- Band'or shorel'aran
+		["the sun guides our path"] = "anu belore dela'na", ["guided by the sun"] = "anu belore dela'na",
+
+		-- aranal
+		["rise"] = "aranal", ["arise"] = "aranal", ["stand"] = "aranal", ["stand up"] = "aranal",
+		["ascend"] = "aranal",
+
+		-- bal'a dash, malanore
+		["greetings"] = "bal'a dash", ["traveler"] = "malanore", ["well met"] = "bal'a dash",
+		["hail"] = "bal'a dash", ["traveler"] = "malanore", ["wanderer"] = "malanore",
+		["wayfarer"] = "malanore",
+
+		-- ban'dinoriel
+		["gatekeeper"] = "ban'dinoriel", ["guardian of the gate"] = "ban'dinoriel",
+		["gate guardian"] = "ban'dinoriel", ["gateguardian"] = "ban'dinoriel", ["warden of the gate"] = "ban'dinoriel",
+		["gate warden"] = "ban'dinoriel", ["gatewarden"] = "ban'dinoriel",
+
+		-- band'or shorel'aran
 		["prepare to say farewell"] = "band'or shorel'aran", ["prepare for farewell"] = "band'or shorel'aran",
-		-- Bash'a no falor talah!
+		["prepare to"] = "band'or", ["prepare for"] = "band'or", ["make ready to"] = "band'or",
+
+		-- shorel'aran
+		["farewell"] = "shorel'aran", ["goodbye"] = "shorel'aran", ["prepare"] = "shorel'aran",
+
+		-- bash'a no falor talah!
 		["taste the chill of true death"] = "bash'a no falor talah", ["taste true death"] = "bash'a no falor talah",
-		-- Belono sil'aru, belore'dorei
-		["shoulder your burdens well child of the sun"] = "belono sil'aru, belore'dorei", ["bear your burdens well child of the sun"] = "belono sil'aru, belore'dorei",
-		-- Belore
-		["the sun"] = "belore", ["sun"] = "belore",
-		-- Belore'dorei
-		["child of the sun"] = "belore'dorei", ["children of the sun"] = "belore'dorei",
-		-- Doral ana'diel?
-		["how fare you"] = "doral ana'diel", ["how are you"] = "doral ana'diel",
-		-- Elor bindel felallan morin'aminor
+
+		-- belono sil'aru, belore'dorei
+		["shoulder your burdens well"] = "belono sil'aru", ["bear your burdens well"] = "belono sil'aru",
+		["carry your burdens well"] = "belono sil'aru", ["endure your burdens"] = "belono sil'aru",
+
+		-- belore
+		["the sun"] = "belore", ["sun"] = "belore",  ["of the sun"] = "belore", ["sunlight"] = "belore",
+		["the sunlight"] = "belore",
+
+		-- belore'dorei
+		["child of the sun"] = "belore'dorei", ["children of the sun"] = "belore'dorei", ["sunborn"] = "belore'dorei",
+
+		-- doral ana'diel
+		["how fare you"] = "doral ana'diel", ["how are you"] = "doral ana'diel", ["how do you fare"] = "doral ana'diel",
+		["how goes it"] = "doral ana'diel",
+
+		-- elor bindel felallan morin'aminor
 		["sleep forever in quiet serenity"] = "elor bindel felallan morin'aminor", ["sleep in eternal serenity"] = "elor bindel felallan morin'aminor",
-		-- Elu'meniel mal alann
+		["sleep in quiet serenity"] = "elor bindel felallan morin'aminor", ["sleep in eternal quiet serenity"] = "elor bindel felallan morin'aminor",
+		["rest forever in quiet serenity"] = "elor bindel felallan morin'aminor", ["rest in eternal serenity"] = "elor bindel felallan morin'aminor",
+		["rest in quiet serenity"] = "elor bindel felallan morin'aminor", ["rest in eternal quiet serenity"] = "elor bindel felallan morin'aminor",
+
+		-- elu'meniel mal alann
 		["may peace calm your heart"] = "elu'meniel mal alann", ["peace calm your heart"] = "elu'meniel mal alann",
-		-- Felo'melorn
-		["flamestrike"] = "felo'melorn",
-		-- Kim'jael
-		["little rat"] = "kim'jael",
-		-- Medivh
-		["keeper of secrets"] = "medivh",
-		-- Minn'da
-		["mother"] = "minn'da", ["mama"] = "minn'da",
-		-- Quel'dorei
-		["children of noble birth"] = "quel'dorei", ["the highborne"] = "quel'dorei", ["high elves"] = "quel'dorei", ["children of high birth"] = "quel'dorei",
-		-- Quel'Thalas
-		["high home"] = "quel'thalas",
-		-- Rea
-		["and"] = "rea",
-		-- Ren'dorei
-		["children of the void"] = "ren'dorei", ["void elves"] = "ren'dorei",
-		-- Selama ashal'anore
-		["justice for our people"] = "selama ashal'anore",
-		-- Shal'na
-		["aunt"] = "shal'na",
-		-- Shindu fallah na
+		["may peace find your heart"] = "elu'meniel mal alann", ["may your heart know peace"] = "elu'meniel mal alann",
+
+		-- felo'melorn
+		["flamestrike"] = "felo'melorn", ["strike with flame"] = "felo'melorn", ["flame strike"] = "felo'melorn",
+
+		-- kim'jael
+		["little rat"] = "kim'jael", ["small rat"] = "kim'jael",
+
+		-- medivh
+		["keeper of secrets"] = "medivh", ["guardian of secrets"] = "medivh", ["holder of secrets"] = "medivh", ["master of secrets"] = "medivh",
+
+		-- minn'da
+		["mother"] = "minn'da", ["mama"] = "minn'da", ["mom"] = "minn'da", ["ma"] = "minn'da",
+
+		-- rea
+		["and"] = "rea", ["as well as"] = "rea", ["along with"] = "rea",
+
+		-- selama ashal'anore
+		["justice for our people"] = "selama ashal'anore", ["justice for the people"] = "selama ashal'anore",
+		["justice for our kind"] = "selama ashal'anore", ["justice for our kin"] = "selama ashal'anore",
+
+		-- shal'na
+		["aunt"] = "shal'na", ["auntie"] = "shal'na", ["aunty"] = "shal'na",
+
+		-- shindu fallah na
 		["they are breaking through"] = "shindu fallah na", ["our enemies are breaking through"] = "shindu fallah na",
-		-- Shindu sin'dorei
-		["failing children of the blood"] = "shindu sin'dorei",
-		-- Shorel'aran
-		["farewell"] = "shorel'aran",
-		-- Sin'dorei
-		["children of the blood"] = "sin'dorei", ["people of the bloodline"] = "sin'dorei", ["blood elves"] = "sin'dorei",
-		-- Sinu a'manore
+		["they're breaking through"] = "shindu fallah na", ["the enemy is breaking through"] = "shindu fallah na",
+		["the enemy has broken through"] = "shindu fallah na",
+
+		-- shindu sin'dorei
+		["failing"] = "shindu", ["weak"] = "shindu",
+
+		-- sinu a'manore
 		["well met"] = "sinu a'manore",
-		-- Sunstrider
+
+		-- sunstrider
 		["he who walks the day"] = "sunstrider",
-		-- Tal anu'men no sin'dorei
-		["death to all who oppose the children of the blood"] = "tal anu'men no sin'dorei", ["death to those who oppose the sin'dorei"] = "tal anu'men no sin'dorei",
-		-- Thas'alah
-		["light of the forest"] = "thas'alah",
-		-- Thas'dorah
-		["valor of the forest"] = "thas'dorah",
-		-- Vendel'o eranu
-		["help me forget"] = "vendel'o eranu",
 
+		-- tal anu'men no sin'dorei
+		["death to all who oppose the"] = "tal anu'men no", ["death to those who oppose the"] = "tal anu'men no",
+		["death to those who oppose us"] = "tal anu'men no", ["death to our enemies"] = "tal anu'men no",
+		["death to the enemies"] = "tal anu'men no",
 
+		-- thas'alah
+		["light of the forest"] = "thas'alah", ["forest light"] = "thas'alah", ["forestlight"] = "thas'alah", ["light of the woods"] = "thas'alah",
 
+		-- thas'dorah
+		["valor of the forest"] = "thas'dorah", ["forest valor"] = "thas'dorah", ["forestvalor"] = "thas'dorah", ["valor of the woods"] = "thas'dorah",
+
+		-- vendel'o eranu
+		["help me forget"] = "vendel'o eranu", ["help me to forget"] = "vendel'o eranu", ["make me forget"] = "vendel'o eranu", ["let me forget"] = "vendel'o eranu",
+
+		-- shared with dialect
+		["blood elf"]				= "sin'dorei",
+		["blood elves"]				= "sin'dorei",
+		["blood elven"]				= "sin'dorei",
+		["void elf"]				= "ren'dorei",
+		["void elves"]				= "ren'dorei",
+		["void elven"]				= "ren'dorei",
+		["high elf"]				= "quel'dorei",
+		["high elves"]				= "quel'dorei",
+		["high elven"]				= "quel'dorei",
+		["night elf"]				= "kaldorei",
+		["night elves"]				= "kaldorei",
+		["night elven"]				= "kaldorei",
+		["children of blood"]		= "sin'dorei",
+		["children of the blood"]	= "sin'dorei",
+		["children of the sun"]		= "belore'dorei",
+		["children of sun"]			= "belore'dorei",
+		["children of the void"]	= "ren'dorei",
+		["children of void"]		= "ren'dorei",
+		["children of noble birth"]	= "quel'dorei",
+		["children of nobility"]	= "quel'dorei",
+		["children of nobility"]	= "quel'dorei",
+		["child of blood"]			= "sin'dorei",
+		["child of the blood"]		= "sin'dorei",
+		["child of the sun"]		= "belore'dorei",
+		["child of sun"]			= "belore'dorei",
+		["child of the void"]		= "ren'dorei",
+		["child of void"]			= "ren'dorei",
+		["child of noble birth"]	= "quel'dorei",
+		["child of nobility"]		= "quel'dorei",
+		["child of nobility"]		= "quel'dorei",
+		["people of blood"]			= "sin'dorei",
+		["people of the blood"]		= "sin'dorei",
+		["people of the sun"]		= "belore'dorei",
+		["people of sun"]			= "belore'dorei",
+		["people of the void"]		= "ren'dorei",
+		["people of void"]			= "ren'dorei",
+		["people of noble birth"]	= "quel'dorei",
+		["people of nobility"]		= "quel'dorei",
+		["people of nobility"]		= "quel'dorei",
+		["person of blood"]			= "sin'dorei",
+		["person of the blood"]		= "sin'dorei",
+		["person of the sun"]		= "belore'dorei",
+		["person of sun"]			= "belore'dorei",
+		["person of the void"]		= "ren'dorei",
+		["person of void"]			= "ren'dorei",
+		["person of noble birth"]	= "quel'dorei",
+		["person of nobility"]		= "quel'dorei",
+		["person of nobility"]		= "quel'dorei",
+		["highborne"]				= "quel'dorei",
+		["highbornes"]				= "quel'dorei",
+		["children of the stars"]	= "kaldorei",
+		["children of stars"]		= "kaldorei",
+		["nightborne"]				= "shal'dorei",
+		["nightbornes"]				= "shal'dorei",
+		["children of shadow"]		= "shal'dorei",
+		["children of the night"]	= "shal'dorei",
+		["high home"]				= "Quel'Thalas",
 
 		--untranslated words & phrases
-		["agamath"] = "Agamath", ["anara'nel belore"] = "Anara'nel belore", ["an'daroth"] = "An'daroth", ["andu fallah"] = "Andu fallah",
-		["an'owyn"] = "An'owyn", ["an'telas"] = "An'telas", ["anar'alash denal!"] = "Anar'alash denal!", ["anar'dalel!"] = "Anar'dalel!",
-		["anu bala belore alon"] = "Anu bala belore alon", ["aranal, ledel!"] = "Aranal, ledel!", ["archonisus"] = "Archonisus",
-		["aseph-ah-balla nah"] = "Aseph-ah-balla nah", ["asto're da shan're. turus fulo il'amare, a'talah adore. isera'duna..."] = "Asto're da shan're. Turus Fulo Il'amare, A'Talah Adore. Isera'duna...",
-		["balamore shanal!"] = "Balamore shanal!", ["bandal!"] = "Bandal!", ["belesa menoor!"] = "Belesa menoor!",
-		["bin dorei am'ovel"] = "Bin dorei am'ovel", ["diel fin'al"] = "Diel fin'al", ["diel ma'ahn... orindel'o."] = "Diel ma'ahn... orindel'o.",
-		["elrendar"] = "Elrendar", ["endala finel endal!"] = "Endala finel endal!", ["endirina-dor"] = "Endirina-dor",
-		["endo-enah quel'thalas!"] = "Endo-enah Quel'thalas!", ["endorel aluminor"] = "Endorel aluminor", ["enshu-falah-nah, dorini"] = "Enshu-falah-nah, dorini",
-		["falthrien"] = "Falthrien", ["fal'inrush"] = "Fal'inrush", ["falithas"] = "Falithas", ["fellovar"] = "Fellovar",
-		["felomin ashal"] = "Felomin ashal", ["ishera-do"] = "Ishera-do", ["lu'minellia"] = "Lu'minellia", ["morn'danel"] = "Morn'danel",
-		["quel'danas"] = "Quel'Danas", ["quel'danil"] = "Quel'Danil", ["quel'lithien"] = "Quel'Lithien", ["rae'shalare"] = "Rae'shalare",
-		["rohendor"] = "Rohendor", ["selama am'oronor!"] = "Selama am'oronor!", ["selama amor'anore!"] = "Selama amor'anore!",
-		["sha'amoor ara mashal?"] = "Sha'amoor ara mashal?", ["sha'amoor seabenal!"] = "Sha'amoor seabenal!", ["shalandis"] = "Shalandis",
-		["shan'dor"] = "Shan'dor", ["shan'dorah"] = "Shan'dorah", ["sin'loren"] = "Sin'loren", ["tel'thas"] = "Tel'thas",
-		["thalas'din belore"] = "Thalas'din belore", ["thori'dal"] = "Thori'dal", ["varillian"] = "Varillian"
+		["agamath"] = "Agamath", ["anara'nel belore"] = "anara'nel belore", ["an'daroth"] = "An'daroth", ["andu fallah"] = "Andu fallah",
+		["an'owyn"] = "An'owyn", ["an'telas"] = "An'telas", ["anar'alash denal"] = "anar'alash denal", ["anar'dalel"] = "anar'dalel",
+		["anu bala belore alon"] = "anu bala belore alon", ["aranal, ledel"] = "aranal, ledel", ["archonisus"] = "Archonisus",
+		["aseph-ah-balla nah"] = "aseph-ah-balla nah", ["asto're da shan're"] = "asto're da shan're", ["turus fulo il'amare"] = "turus fulo il'amare",
+		["a'talah adore"] = "a'talah adore", ["isera'duna"] = "isera'duna",
+		["balamore shanal"] = "balamore shanal", ["bandal"] = "bandal", ["belesa menoor"] = "belesa menoor",
+		["bin dorei am'ovel"] = "bin dorei am'ovel", ["diel fin'al"] = "diel fin'al", ["diel ma'ahn"] = "diel ma'ahn", ["orindel'o"] = "orindel'o",
+		["elrendar"] = "elrendar", ["endala finel endal"] = "endala finel endal", ["endirina-dor"] = "endirina-dor",
+		["endo-enah"] = "endo-enah", ["endorel aluminor"] = "endorel aluminor", ["enshu-falah-nah"] = "enshu-falah-nah", ["dorini"] = "dorini",
+		["falthrien"] = "Falthrien", ["fal'inrush"] = "fal'inrush", ["falithas"] = "falithas", ["fellovar"] = "fellovar",
+		["felomin ashal"] = "felomin ashal", ["ishera-do"] = "ishera-do", ["lu'minellia"] = "lu'minellia", ["morn'danel"] = "morn'danel",
+		["quel'danas"] = "Quel'Danas", ["quel'danil"] = "Quel'Danil", ["quel'lithien"] = "Quel'Lithien", ["rae'shalare"] = "rae'shalare",
+		["rohendor"] = "rohendor", ["selama am'oronor"] = "selama am'oronor", ["selama amor'anore"] = "selama amor'anore",
+		["sha'amoor ara mashal"] = "sha'amoor ara mashal", ["sha'amoor seabenal"] = "sha'amoor seabenal", ["shalandis"] = "shalandis",
+		["shan'dor"] = "shan'dor", ["shan'dorah"] = "Shan'dorah", ["sin'loren"] = "Sin'loren", ["tel'thas"] = "Tel'thas",
+		["thalas'din"] = "Thalas'din", ["thori'dal"] = "Thori'dal", ["varillian"] = "Varillian"
 	},
 
 	[L["Zandali"]] = {
 
 		-- Atal'ai
-		["devoted ones"] = "atal'ai",
-		["the devoted ones"] = "atal'ai",
+		["devoted ones"] = "atal'ai", ["the devoted ones"] = "atal'ai", ["the faithful"] = "atal'ai",
+		["the devoted"] = "atal'ai", ["faithful ones"] = "atal'ai",
 
 		-- Bwon'tulak
-		["death singer"] = "bwon'tulak",
+		["death singer"] = "bwon'tulak", ["singer"] = "tulak", ["death"] = "bwon",
+		["singer of death"] = "bwon'tulak", ["one who sings death"] = "bwon'tulak",
 
 		-- Dazdooga
-		["fire"] = "dazdooga",
+		["fire"] = "dazdooga", ["flame"] = "dazdooga", ["the flame"] = "dazdooga", ["the fire"] = "dazdooga",
 
 		-- Doba quzhu ta tawbo! Metah bo chu!
 		["we bring a gift for you great loa of death"] = "doba quzhu ta tawbo metah bo chu",
 		["we bring a gift great loa of death"] = "doba quzhu ta tawbo metah bo chu",
+		["we bring gifts to you great loa of death"] = "doba quzhu ta tawbo metah bo chu",
+		["we bring gifts great loa of death"] = "doba quzhu ta tawbo metah bo chu",
+		["we offer a gift to you great loa of death"] = "doba quzhu ta tawbo metah bo chu",
+		["we offer a gift great loa of death"] = "doba quzhu ta tawbo metah bo chu",
+		["we offer gifts to you great loa of death"] = "doba quzhu ta tawbo metah bo chu",
+		["we offer gifts great loa of death"] = "doba quzhu ta tawbo metah bo chu",
+		["we bring a gift for you, great loa of death"] = "doba quzhu ta tawbo metah bo chu",
+		["we bring a gift, great loa of death"] = "doba quzhu ta tawbo metah bo chu",
+		["we bring gifts to you, great loa of death"] = "doba quzhu ta tawbo metah bo chu",
+		["we bring gifts, great loa of death"] = "doba quzhu ta tawbo metah bo chu",
+		["we offer a gift to you, great loa of death"] = "doba quzhu ta tawbo metah bo chu",
+		["we offer a gift, great loa of death"] = "doba quzhu ta tawbo metah bo chu",
+		["we offer gifts to you, great loa of death"] = "doba quzhu ta tawbo metah bo chu",
+		["we offer gifts, great loa of death"] = "doba quzhu ta tawbo metah bo chu",
 
 		-- E'ko
 		["life energy"] = "e'ko",
 		["life energy within all living things"] = "e'ko",
+		["life force"] = "e'ko", ["spirit energy"] = "e'ko",
+		["energy of life"] = "e'ko",
 
 		-- Fa'da
 		["father"] = "fa'da",
 		["dad"] = "fa'da",
+		["papa"] = "fa'da",
+		["pa"] = "fa'da",
 
 		-- Ma'da
 		["mother"] = "ma'da",
 		["mom"] = "ma'da",
+		["mama"] = "ma'da",
+		["ma"] = "ma'da",
 
 		-- Muisek
 		["avenging spirit"] = "muisek",
 		["avenging spirit of the dead"] = "muisek",
+		["vengeful spirit"] = "muisek",
+		["spirit of vengeance"] = "muisek",
+		["angry spirit"] = "muisek",
 
 		-- Rush'kah
 		["ceremonial mask"] = "rush'kah",
 		["ritual mask"] = "rush'kah",
+		["ceremony mask"] = "rush'kah",
+		["sacred mask"] = "rush'kah",
 
 		-- Shera Ali'kh
 		["deaths hand"] = "shera ali'kh",
 		["hand of death"] = "shera ali'kh",
+		["death's hand"] = "shera ali'kh",
 
 		-- Zen
 		["druid"] = "zen",
 
 		-- Zul'
 		["voodoo master"] = "zul",
+		["master of voodoo"] = "zul",
+		["voodoo priest"] = "zul",
+		["witch doctor"] = "zul",
 
 		-- 'aka
 		["daughter of"] = "'aka",
 		["daughter"] = "'aka",
-
-
-
 
 		-- untranslated phrases
 		["amani"] = "Amani",
 		["amani'shi"] = "Amani'shi",
 		["atal'alarion"] = "Atal'alarion",
 		["atal-mhuto"] = "Atal-Mhuto",
-		["azzaga choogo zinn!"] = "Azzaga choogo zinn!",
+		["azzaga choogo zinn"] = "azzaga choogo zinn",
 		["bwonsamdi"] = "Bwonsamdi",
-		["chaga... choka'jinn."] = "Chaga... choka'jinn.",
+		["chaga"] = "chaga",
+		["choka'jinn"] = "choka'jinn",
 		["dahazi"] = "Dahazi",
 		["dazar"] = "Dazar",
-		["da amani de chuka!"] = "Da Amani de chuka!",
-		["da'kala koraste..."] = "Da'kala koraste...",
-		["da'kala di'chuka horridon! kalimaste!"] = "Da'kala di'chuka HORRIDON! Kalimaste!",
-		["di chuka rezan!"] = "Di chuka Rezan!",
-		["di chuka zandalar!"] = "Di chuka Zandalar!",
-		["farastu"] = "Farastu",
-		["gachaga"] = "Gachaga",
+		["da amani de chuka"] = "da Amani de chuka",
+		["da'kala koraste"] = "da'kala koraste",
+		["da'kala di'chuka horridon"] = "da'kala di'chuka horridon",
+		["kalimaste"] = "kalimaste",
+		["di chuka "] = "Di chuka",
+		["rezan"] = "Rezan",
+		["zandalar"] = "Zandalar",
+		["farastu"] = "farastu",
+		["gachaga"] = "gachaga",
 		["gurubashi"] = "Gurubashi",
-		["guzincha"] = "Guzincha",
+		["guzincha"] = "guzincha",
 		["hakkar"] = "Hakkar",
-		["ikambokem"] = "Ikambokem",
+		["ikambokem"] = "ikambokem",
 		["jin'do"] = "Jin'do",
 		["jin'rokh"] = "Jin'rokh",
 		["jin'sora"] = "Jin'sora",
@@ -350,7 +572,7 @@ local Dictionaries = {
 		["jin'zil"] = "Jin'Zil",
 		["kai'jin"] = "Kai'jin",
 		["kai'ju"] = "Kai'ju",
-		["ma'tuba!"] = "Ma'tuba!",
+		["ma'tuba"] = "Ma'tuba",
 		["mai'jin"] = "Mai'jin",
 		["mueh'zala"] = "Mueh'zala",
 		["nazferiti"] = "Nazferiti",
@@ -358,14 +580,15 @@ local Dictionaries = {
 		["ohgan"] = "Ohgan",
 		["orik'ando"] = "Orik'ando",
 		["pohkiza"] = "Pohkiza",
-		["rush'kah"] = "Rush'kah",
+		["rush'kah"] = "rush'kah",
 		["samedi"] = "Samedi",
-		["sendulo ma'das na khu'das, kuba zinn awe."] = "Sendulo ma'das na khu'das, kuba zinn awe.",
+		["sendulo ma'das na khu'das"] = "Sendulo ma'das na khu'das",
+		["kuba zinn awe."] = "kuba zinn awe.",
 		["sen'jin"] = "Sen'jin",
 		["shango"] = "Shango",
 		["tai'jin"] = "Tai'jin",
-		["taz'dingo"] = "Taz'dingo",
-		["tazaga-choo!"] = "Tazaga-choo!",
+		["taz'dingo"] = "taz'dingo",
+		["tazaga-choo"] = "Tazaga-choo",
 		["taz'okun"] = "Taz'okun",
 		["thresh'jin"] = "Thresh'jin",
 		["ty'jin"] = "Ty'jin",
@@ -387,7 +610,6 @@ local Dictionaries = {
 
 
 		-- Forest troll settlement names
-		["amani"] = "Amani",
 		["tor'watha"] = "Tor'Watha",
 		["zeb'watha"] = "Zeb'Watha",
 		["zul'aman"] = "Zul'Aman",
@@ -439,7 +661,6 @@ local Dictionaries = {
 
 		-- Zandalari settlements
 		["dol'watha"] = "Dol'watha",
-		["village in the vines"] = "Village in the Vines",
 		["shaol'mara"] = "Shaol'mara",
 		["za'tual"] = "Za'Tual",
 		["zeb'ahari"] = "Zeb'ahari",
@@ -457,44 +678,74 @@ local Dictionaries = {
 	[L["Taurahe"]] = {
 		-- An'she
 		["the sun"] = "an'she", ["sun"] = "an'she",
+
 		-- Apa'ro
-		["malorne"] = "apa'ro",
+		["malorne"] = "apa'ro", ["the great stag"] = "apa'ro", ["the white stag"] = "apa'ro",
+
 		-- Arikara
-		["vengeance"] = "arikara",
+		["vengeance"] = "arikara", ["revenge"] = "arikara", ["retribution"] = "arikara",
+
 		-- Echeyakee
-		["whitemist"] = "echeyakee",
+		["whitemist"] = "echeyakee", ["white mist"] = "echeyakee", ["mist of white"] = "echeyakee",
+
 		-- Ish-ne-alo por-ah
 		["may the days ahead be guided by the elders of long ago"] = "ish-ne-alo por-ah", ["may the days ahead be guided by the elders"] = "ish-ne-alo por-ah",
+		["may the elders guide the days ahead"] = "ish-ne-alo por-ah", ["may the wisdom of the elders guide you"] = "ish-ne-alo por-ah",
+
 		-- Isha Awak
-		["deep doom"] = "isha awak",
+		["deep doom"] = "isha awak", ["great doom"] = "isha awak", ["terrible fate"] = "isha awak",
+
 		-- Ishamuhale
-		["speartooth"] = "ishamuhale",
+		["speartooth"] = "ishamuhale", ["spear tooth"] = "ishamuhale", ["tooth of the spear"] = "ishamuhale",
+
 		-- Lakota'mani
-		["earthshaker"] = "lakota'mani",
+		["earthshaker"] = "lakota'mani", ["earth shaker"] = "lakota'mani", ["shaker of the earth"] = "lakota'mani",
+		["one who shakes the earth"] = "lakota'mani",
+
 		-- Lar'korwi
-		["sharp claw"] = "lar'korwi", ["sharpclaw"] = "lar'korwi",
+		["sharp claw"] = "lar'korwi", ["sharpclaw"] = "lar'korwi", ["keen claw"] = "lar'korwi", ["razor claw"] = "lar'korwi",
+
 		-- Lo'Gosh
-		["ghost wolf"] = "lo'gosh",
+		["ghost wolf"] = "lo'gosh", ["ghostwolf"] = "lo'gosh", ["spirit wolf"] = "lo'gosh", ["spiritwolf"] = "lo'gosh",
+		["spectral wolf"] = "lo'gosh",
+
 		-- Mashan'she
 		["the loom of the earth mother"] = "mashan'she", ["loom of the earth mother"] = "mashan'she",
+		["earth mothers loom"] = "mashan'she", ["earth mother's loom"] = "mashan'she",
+		["the loom of the earthmother"] = "mashan'she", ["loom of the earthmother"] = "mashan'she",
+		["earthmothers loom"] = "mashan'she", ["earthmother's loom"] = "mashan'she",
+
 		-- Mawat'aki
-		["wintersoul"] = "mawat'aki",
+		["wintersoul"] = "mawat'aki", ["winter soul"] = "mawat'aki", ["soul of winter"] = "mawat'aki",
+		["winter spirit"] = "mawat'aki", ["spirit of winter"] = "mawat'aki",
+
 		-- Mu'sha
 		["the moon"] = "mu'sha", ["moon"] = "mu'sha",
+
 		-- Nechi owachi
 		["hello and thank you"] = "nechi owachi", ["hello thank you"] = "nechi owachi",
+		["greetings and thanks"] = "nechi owachi", ["thanks and greetings"] = "nechi owachi",
+
 		-- Owatanka
-		["bluebolt"] = "owatanka",
+		["bluebolt"] = "owatanka", ["blue bolt"] = "owatanka", ["bolt of blue"] = "owatanka",
+
 		-- Shu'halo
 		["the tauren"] = "shu'halo", ["tauren"] = "shu'halo",
+
 		-- Theia-shoush ahmen
 		["so it will be"] = "theia-shoush ahmen", ["so it shall be"] = "theia-shoush ahmen",
+		["it will be so"] = "theia-shoush ahmen", ["thus it will be"] = "theia-shoush ahmen",
+
 		-- Una'fe
-		["refuge"] = "una'fe",
+		["refuge"] = "una'fe", ["sanctuary"] = "una'fe", ["safe haven"] = "una'fe",
+
 		-- Washte Pawne
-		["spirit biter"] = "washte pawne",
+		["spirit biter"] = "washte pawne", ["spiritbiter"] = "washte pawne", ["spirit eater"] = "washte pawne",
+		["spiriteater"] = "washte pawne", ["devourer of spirits"] = "washte pawne",
+
 		-- Yeena'e
 		["those who herald the dawn"] = "yeena'e", ["heralds of the dawn"] = "yeena'e",
+		["bringers of the dawn"] = "yeena'e", ["those who bring the dawn"] = "yeena'e",
 
 
 		--untranslated
@@ -514,100 +765,193 @@ local Dictionaries = {
 	[L["Shalassian"]] = {
 		-- Erana-dora isil
 		["a thousand thanks upon you"] = "erana-dora isil", ["thousand thanks upon you"] = "erana-dora isil", ["many thanks"] = "erana-dora isil",
-		-- Quel'vala thonos
-		["nobility through tradition"] = "quel'vala thonos",
-		-- Ru shanna shal'dorei / Ru-shanna shal'dorei
-		["the nightborne will survive"] = "ru shanna shal'dorei", ["nightborne will survive"] = "ru shanna shal'dorei",
-		-- Shal'dorei
-		["nightborne"] = "shal'dorei",
-		-- Tal'ashar
-		["an honor duel"] = "tal'ashar", ["honor duel"] = "tal'ashar",
+		["a thousand thanks"] = "erana-dora isil", ["my thanks upon you"] = "erana-dora isil",
 
+		-- Quel'vala thonos
+		["nobility through tradition"] = "quel'vala thonos", ["nobility by tradition"] = "quel'vala thonos",
+		["honor through tradition"] = "quel'vala thonos", ["tradition defines nobility"] = "quel'vala thonos",
+
+		-- Ru shanna shal'dorei / Ru-shanna shal'dorei
+		["the nightborne will survive"] = "ru shanna shal'dorei", ["the shal'dorei will survive"] = "ru shanna shal'dorei",
+		["the shal'dorei will endure"] = "ru shanna shal'dorei", ["the nightborne will endure"] = "ru shanna shal'dorei",
+
+		-- Tal'ashar
+		["an honor duel"] = "tal'ashar", ["honor duel"] = "tal'ashar", ["duel of honor"] = "tal'ashar",
+		["formal duel"] = "tal'ashar", ["duel by honor"] = "tal'ashar",
+
+		-- shared with dialect
+		["blood elf"]				= "sin'dorei",
+		["blood elves"]				= "sin'dorei",
+		["blood elven"]				= "sin'dorei",
+		["void elf"]				= "ren'dorei",
+		["void elves"]				= "ren'dorei",
+		["void elven"]				= "ren'dorei",
+		["high elf"]				= "quel'dorei",
+		["high elves"]				= "quel'dorei",
+		["high elven"]				= "quel'dorei",
+		["night elf"]				= "kaldorei",
+		["night elves"]				= "kaldorei",
+		["night elven"]				= "kaldorei",
+		["children of blood"]		= "sin'dorei",
+		["children of the blood"]	= "sin'dorei",
+		["children of the sun"]		= "belore'dorei",
+		["children of sun"]			= "belore'dorei",
+		["children of the void"]	= "ren'dorei",
+		["children of void"]		= "ren'dorei",
+		["children of noble birth"]	= "quel'dorei",
+		["children of nobility"]	= "quel'dorei",
+		["children of nobility"]	= "quel'dorei",
+		["child of blood"]			= "sin'dorei",
+		["child of the blood"]		= "sin'dorei",
+		["child of the sun"]		= "belore'dorei",
+		["child of sun"]			= "belore'dorei",
+		["child of the void"]		= "ren'dorei",
+		["child of void"]			= "ren'dorei",
+		["child of noble birth"]	= "quel'dorei",
+		["child of nobility"]		= "quel'dorei",
+		["child of nobility"]		= "quel'dorei",
+		["people of blood"]			= "sin'dorei",
+		["people of the blood"]		= "sin'dorei",
+		["people of the sun"]		= "belore'dorei",
+		["people of sun"]			= "belore'dorei",
+		["people of the void"]		= "ren'dorei",
+		["people of void"]			= "ren'dorei",
+		["people of noble birth"]	= "quel'dorei",
+		["people of nobility"]		= "quel'dorei",
+		["people of nobility"]		= "quel'dorei",
+		["person of blood"]			= "sin'dorei",
+		["person of the blood"]		= "sin'dorei",
+		["person of the sun"]		= "belore'dorei",
+		["person of sun"]			= "belore'dorei",
+		["person of the void"]		= "ren'dorei",
+		["person of void"]			= "ren'dorei",
+		["person of noble birth"]	= "quel'dorei",
+		["person of nobility"]		= "quel'dorei",
+		["person of nobility"]		= "quel'dorei",
+		["highborne"]				= "quel'dorei",
+		["highbornes"]				= "quel'dorei",
+		["children of the stars"]	= "kaldorei",
+		["children of stars"]		= "kaldorei",
+		["nightborne"]				= "shal'dorei",
+		["nightbornes"]				= "shal'dorei",
+		["children of shadow"]		= "shal'dorei",
+		["children of the night"]	= "shal'dorei",
+		["high home"]				= "Quel'Thalas",
 
 		--untranslated
-		["anar'amenos"] = "Anar'amenos",
-		["an'ah"] = "An'ah",
-		["an'anora"] = "An'anora",
-		["an'ratha ador"] = "An'ratha ador",
-		["an'ratha adore"] = "An'ratha adore",
-		["an'ratha... an'tal-thandros!"] = "An'ratha... an'tal-thandros!",
-		["anath'ashar"] = "Anath'ashar",
-		["aran'arcana"] = "Aran'arcana",
-		["aran'ethil"] = "Aran'ethil",
-		["arash-falas"] = "Arash-falas",
-		["ash'thoras denil"] = "Ash'thoras denil",
-		["e'rath omnas"] = "E'rath omnas",
-		["in'alah"] = "In'alah",
-		["ishnal toreth"] = "Ishnal toreth",
-		["ith'el kanesh"] = "Ith'el kanesh",
-		["ith'nala kanesh"] = "Ith'nala kanesh",
-		["kal'theros maldin"] = "Kal'theros maldin",
-		["n'eth ana"] = "N'eth ana",
-		["nar'thalas vas manari"] = "Nar'thalas vas manari",
-		["thala nar'valas"] = "Thala nar'valas",
-		["nor'bethos suramar"] = "Nor'bethos Suramar",
-		["rath"] = "Rath",
-		["rath-domaas"] = "Rath-domaas",
-		["rath-anu'tanos"] = "Rath-anu'tanos",
-		["shal'asan torah"] = "Shal'asan torah",
-		["shanar daloras"] = "Shanar daloras",
-		["tel'vasha"] = "Tel'vasha",
-		["tel'velath"] = "Tel'velath",
-		["tenu'balah"] = "Tenu'balah",
-		["tor'theras falar"] = "Tor'theras falar"
+		["anar'amenos"] = "anar'amenos",
+		["an'ah"] = "an'ah",
+		["an'anora"] = "an'anora",
+		["an'ratha ador"] = "an'ratha ador",
+		["an'ratha adore"] = "an'ratha adore",
+		["an'ratha"] = "an'ratha",
+		["an'tal-thandros"] = "an'tal-thandros",
+		["anath'ashar"] = "anath'ashar",
+		["aran'arcana"] = "aran'arcana",
+		["aran'ethil"] = "aran'ethil",
+		["arash-falas"] = "arash-falas",
+		["ash'thoras denil"] = "ash'thoras denil",
+		["e'rath omnas"] = "e'rath omnas",
+		["in'alah"] = "in'alah",					-- probably "light on"
+		["ishnal toreth"] = "ishnal toreth",
+		["ith'el kanesh"] = "ith'el kanesh",
+		["ith'nala kanesh"] = "ith'nala kanesh",
+		["kal'theros maldin"] = "kal'theros maldin",
+		["n'eth ana"] = "n'eth ana",
+		["nar'thalas vas manari"] = "nar'thalas vas manari",
+		["thala nar'valas"] = "thala nar'valas",
+		["nor'bethos suramar"] = "nor'bethos Suramar",
+		["rath"] = "rath",							-- probably a basic magic attack
+		["rath-domaas"] = "rath-domaas",			-- rank 2 of magic attack
+		["rath-anu'tanos"] = "rath-anu'tanos",		-- another magic attack
+		["shal'asan torah"] = "shal'asan torah",
+		["shanar daloras"] = "shanar daloras",
+		["tel'vasha"] = "tel'vasha",
+		["tel'velath"] = "tel'velath",
+		["tenu'balah"] = "tenu'balah",
+		["tor'theras falar"] = "tor'theras falar"
 	},
 
 
 	[L["Draconic"]] = {
 		-- Abela
-		["once"] = "abela",
+		["once"] = "abela", ["one time"] = "abela", ["at one time"] = "abela",
+
 		-- Am dakana
-		["for all"] = "am dakana",
+		["for all"] = "am dakana", ["for everyone"] = "am dakana",
+		["for all things"] = "am dakana", ["for all time"] = "am dakana",
+
 		-- Belan shi
-		["thank you"] = "belan shi", ["thanks"] = "belan shi",
+		["thank you"] = "belan shi", ["thanks"] = "belan shi", ["thanks"] = "belan shi",
+		["many thanks"] = "belan shi", ["my thanks"] = "belan shi",
+
 		-- Dargonax
-		["devourer"] = "dargonax",
+		["devourer"] = "dargonax", ["consumer"] = "dargonax", ["eater"] = "dargonax",
+		["the devourer"] = "dargonax",
+
 		-- Drekazera
-		["false nest"] = "drekazera",
+		["false nest"] = "drekazera", ["empty nest"] = "drekazera", ["sham nest"] = "drekazera",
+
 		-- Lish Llrath
-		["talon toss"] = "lish llrath",
+		["talon toss"] = "lish llrath", ["throw of the talon"] = "lish llrath", ["talon throw"] = "lish llrath",
+
 		-- Mal
-		["and"] = "mal",
+		["and"] = "mal", ["as well as"] = "mal", ["along with"] = "mal",
+
 		-- Mel andilar borun miranol
 		["your suffering shall be legendary"] = "mel andilar borun miranol", ["your suffering will be legendary"] = "mel andilar borun miranol",
+		["your suffering shall be remembered"] = "mel andilar borun miranol", ["your pain will be legendary"] = "mel andilar borun miranol",
+
 		-- Reln nu ramani ar ravelahn
 		["let the will of this puppet be broken"] = "reln nu ramani ar ravelahn", ["break the will of this puppet"] = "reln nu ramani ar ravelahn",
+		["shatter the will of this puppet"] = "reln nu ramani ar ravelahn", ["let this puppet's will be broken"] = "reln nu ramani ar ravelahn",
+		["let this puppets will be broken"] = "reln nu ramani ar ravelahn",
+
 		-- Rethul
-		["vessel"] = "rethul",
+		["vessel"] = "rethul", ["host"] = "rethul", ["container"] = "rethul",
+
 		-- Thorel osh'onza
-		["insolent young elf"] = "thorel osh'onza", ["insolent elf"] = "thorel osh'onza",
-
-
+		["insolent young elf"] = "thorel osh'onza", ["insolent elf"] = "thorel osh'onza", ["arrogant elf"] = "thorel osh'onza",
+		["disrespectful elf"] = "thorel osh'onza",
 
 		--untranslated
-		["aberrus"] = "Aberrus", ["akirus"] = "Akirus", ["algeth'ar"] = "Algeth'ar", ["algeth'era"] = "Algeth'era", ["andoros"] = "Andoros",
-		["ashjra'kamas"] = "Ashjra'kamas", ["ashjre'thul"] = "Ashjre'thul", ["ataraxis"] = "Ataraxis", ["crul'korak"] = "Crul'korak",
-		["crul'shorukh"] = "Crul'shorukh", ["draco'dar"] = "Draco'dar", ["erethos"] = "Erethos", ["fyr'alath"] = "Fyr'alath",
-		["gelikyr"] = "Gelikyr", ["gholak"] = "Gholak", ["golad"] = "Golad", ["gurthalak"] = "Gurthalak", ["holth aldon shi"] = "Holth aldon shi",
-		["kiril"] = "Kiril", ["krondus krozhu, xahlera..."] = "Krondus krozhu, xahlera...", ["lok'amir il romathis"] = "Lok'amir il Romathis",
-		["lunedane"] = "Lunedane", ["karnthar"] = "Karnthar", ["kharnalex"] = "Kharnalex", ["maladath"] = "Maladath", ["mish'undare"] = "Mish'undare",
-		["nal ks'kol"] = "Nal ks'kol", ["nasz'uro"] = "Nasz'uro", ["neltharax"] = "Neltharax", ["nelthazan"] = "Nelthazan",
-		["no'kaled"] = "No'Kaled", ["rashon"] = "Rashon", ["rathrak"] = "Rathrak", ["rusza'thar"] = "Rusza'thar", ["seradane"] = "Seradane",
-		["szar skeleth"] = "Szar Skeleth", ["thaldraszus"] = "Thaldraszus", ["themios"] = "Themios", ["tiriosh"] = "Tiriosh",
-		["ti'tahk"] = "Ti'tahk", ["t'zonna"] = "T'zonna", ["vakash"] = "Vakash", ["vakthros"] = "Vakthros", ["valdrakken"] = "Valdrakken",
-		["vishanka"] = "Vishanka", ["vis'kag"] = "Vis'kag", ["zelthrak"] = "Zelthrak", ["zskera"] = "Zskera"
+		["aberrus"] = "Aberrus", ["akirus"] = "akirus", ["algeth'ar"] = "Algeth'ar", ["algeth'era"] = "Algeth'era", ["andoros"] = "Andoros",
+		["ashjra'kamas"] = "ashjra'kamas", ["ashjre'thul"] = "ashjre'thul", ["ataraxis"] = "ataraxis", ["crul'korak"] = "crul'korak",
+		["crul'shorukh"] = "crul'shorukh", ["draco'dar"] = "draco'dar", ["erethos"] = "Erethos", ["fyr'alath"] = "fyr'alath",
+		["gelikyr"] = "gelikyr", ["gholak"] = "gholak", ["golad"] = "golad", ["gurthalak"] = "gurthalak", ["holth aldon shi"] = "holth aldon shi",
+		["kiril"] = "kiril", ["krondus krozhu"] = "krondus krozhu", ["xahlera"] = "xahlera", ["lok'amir il romathis"] = "lok'amir il romathis",
+		["lunedane"] = "Lunedane", ["karnthar"] = "Karnthar", ["kharnalex"] = "kharnalex", ["maladath"] = "maladath", ["mish'undare"] = "mish'undare",
+		["nal ks'kol"] = "nal ks'kol", ["nasz'uro"] = "nasz'uro", ["neltharax"] = "neltharax", ["nelthazan"] = "nelthazan",
+		["no'kaled"] = "no'kaled", ["rashon"] = "rashon", ["rathrak"] = "rathrak", ["rusza'thar"] = "rusza'thar", ["seradane"] = "Seradane",
+		["szar skeleth"] = "szar skeleth", ["thaldraszus"] = "Thaldraszus", ["themios"] = "themios", ["tiriosh"] = "tiriosh",
+		["ti'tahk"] = "ti'tahk", ["t'zonna"] = "t'zonna", ["vakash"] = "vakash", ["vakthros"] = "Vakthros", ["valdrakken"] = "Valdrakken",
+		["vishanka"] = "vishanka", ["vis'kag"] = "vis'kag", ["zelthrak"] = "zelthrak", ["zskera"] = "Zskera"
 
 	},
 
 	[L["Pandaren"]] = {
-		["spirit"] = "chi", ["counselor"] = "chu'shao", ["judge"] = "fa'shua",
+		["spirit"] = "chi", ["spirit"] = "chi", ["inner spirit"] = "chi",
+		["life spirit"] = "chi", ["spiritual energy"] = "chi",
+
+		["counselor"] = "chu'shao", ["advisor"] = "chu'shao", ["guide"] = "chu'shao",
+
+		["judge"] = "fa'shua", ["arbiter"] = "fa'shua", ["magistrate"] = "fa'shua",
 
 		["tan-chao"] = "tan-chao",
 	},
 
 	[L["Titan"]] = {
-		["storm giants"] = "aesir", ["land of eternal starlight"] = "Kalimdor", ["vessel"] = "midnir", ["serpent"] = "nalak",
-		["earth giants"] = "vanir",
+		["storm giants"] = "aesir", ["giants of the storm"] = "aesir",
+		["stormborn giants"] = "aesir",
+
+		["land of eternal starlight"] = "Kalimdor",
+
+		["vessel"] = "midnir", ["host"] = "midnir", ["container"] = "midnir",
+
+		["serpent"] = "nalak",
+
+		["earth giants"] = "vanir", ["giants of the earth"] = "vanir",
+		["stone giants"] = "vanir", ["earthborn giants"] = "vanir",
 
 		--untranslated
 		["aggramar"] = "Aggramar", ["aman'thul"] = "Aman'Thul", ["argus"] = "Argus", ["azeroth"] = "Azeroth", ["echomok"] = "Echomok",
@@ -630,84 +974,270 @@ local Dictionaries = {
 	},
 
 	[L["Shath'Yar"]] = {
-		-- Aglathrax hig' thrixa
+
+		-- WIP
+		-- does not match letter count
+
+		-- Mindflayer Kaahrj
+		["There is no light after death"] = "En'othk uulg'shuul",
+		["Only a place where even shadows fear to go"] = "Mh'za uulwi skshgn kar",
+		["You are a prisoner in your own body"] = "Iilth ma paf'qi'ag sk'halahs",
+		["A SERVANT OF FEAR"] = "GAZ SKSHGN!",
+		["You will be the first of many to glimpse the madness of N'Zoth"] = "Iilth qi mah'shar fhn oorql N'Zoth!",
+		["The voice of N'Zoth whispers from the deeps"] = "Il'zarq N'Zoth phgwa an'zig.",
+		["It sings of unspeakable horrors"] = "Il'zarq taag ov'kadaq.",
+		["In the writhing shadow of N'Zoth, all light fades and dies"] = "Mg'uulwi N'Zoth, eth'razzqi worg zz oou.",
+		["The will of N'Zoth is made manifest"] = "N'Zoth iiyoq raz'tal'vsak!",
+		["IT CANNOT BE CONTAINED"] = "IIYOQ NEL'OTHK AR'AFGH!",
+		["The crooked serpent with no eyes is watching from the endless sky"] = "Poq'yith mazzka awan ki uhnish'philfgsh.",
+		["The Black Empire once ruled this pitiful world, and it will do so again!"] = "Shath'mag vwyq shu et'agthu, Shath'mag sshk ye!",
+		["We will reforge our dread citadels atop the fly-blown corpse of this kingdom!"] = "Ag'rr hazz ak'yel ksh ga'halahs pahg!",
+		["Your pitiful kind will know only despair and sorrow for a hundred thousand millennia to come!"] = "Krz'ek fhn'z agash zz maqdahl or'kaaxth'ma amqa!",
+		["Your soul will wander roads that twist in endless spirals"] = "Sk'yahf qi'magg luk sshoq anagg'qen.",
+		["I am not the first"] = "Y'za noq mah...",
+		["I am not the last"] = "Y'za noq ormz...",
+		["The blood of N'Zoth runs through me"] = "Yeh'glu N'Zoth okom hoq...",
+		["I cannot die"] = "Y'za sythn oou...",
+		["al'ksh syq iir awan"] = "is this real or an illusion",
+		["iilth sythn aqev"] = "you are going mad",
+		["aqev"] = "mad",
+
+		-- Yor'sahj the Unsleeping
+		["O, Deathwing"] = "Ez, Shuul'wah!",
+		["Your faithful servant has failed you"] = "Sk'woth'gl yu'gaz yog'ghyl ilfah!",
+		["All praise Deathwing"] = "H'iwn zaix Shuul'wah",
+		["THE DESTROYER"] = "PHQUATHI!",
+		["You will drown in the blood of the Old Gods"] = "Ilith qi'uothk shn'ma yeh'glu Shath'Yar!",
+		["ALL OF YOU"] = "H'IWN IILTH!",
+		["SEE how we pour from the CURSED EARTH"] = "KYTH ag'xig yyg'far IIQAATH ONGG!",
+		["Your soul will know ENDLESS TORMENT"] = "Sk'yahf qi'plahf PH'MAGG!",
+		["The DARKNESS devours ALL"] = "UULL lwhuk H'IWN!",
+		["our numbers are endless"] = "ak'agthshi ma uhnish",
+		["our power beyond reckoning"] = "ak'uq shg'cul vwahuhn",
+		["all who oppose the destroyer will die a thousand deaths"] = "h'iwn iggksh phquathi gag oou kaaxth shuul",
+
+		-- Herald Volazj / Commander Ulthok
+		["Gaze into the void"] = "Gul'kafh an'shel",
+		["It is the perpetuity in which they dwell"] = "Yoq'al shn ky ywaq nuul",
+		["Where one falls, many shall take its place"] = "Iilth vwah, uhn'agth fhssh za.",
+		["They who dine on lost souls know only hunger"] = "Shgla'yos plahf mh'naus.",
+		["From its BLEAKEST DEPTHS"] = "Shkul an'zig qvsakf KSSH'GA",
+		["We RECLAIM this world"] = "ag'THYZAK agthu!",
+		["They are the whisper on the shivering wind"] = "Ywaq ma phgwa'cul hnakf.",
+		["They drink your fear: it is the blood of life"] = "Ywaq puul skshgn: on'ma yeh'glu zuq.",
+
+		-- Warlord Zon'ozz
+		["Gaze into the heart of N'Zoth"] = "Gul'kafh an'qov N'Zoth",
+		["The will of N'Zoth corrupts you"] = "N'Zoth ga zyqtahg iilth.",
+		["Your suffering strengthens me"] = "Sk'magg yawifk hoq.",
+		["Your fear drives me"] = "Sk'shgn eqnizz hoq.",
+		["Your deaths shall sing of N'Zoth's unending glory"] = "Sk'shuul agth vorzz N'Zoth naggwa'fssh.",
+		["Your skulls shall adorn N'Zoth's writhing throne"] = "Sk'tek agth nuq N'Zoth yyqzz.",
+		["Your agony sustains me"] = "Sk'uuyat guulphg hoq.",
+		["Your souls shall sate N'Zoth's endless hunger"] = "Sk'yahf agth huqth N'Zoth qornaus.",
+		["To have waited so long... for this..."] = "Uovssh thyzz... qwaz...",
+		["Once more shall the twisted flesh-banners of N'Zoth chitter and howl above the fly-blown corpse of this world"] = "Vwyq agth sshoq'meg N'Zoth vra zz shfk qwor ga'halahs agthu.",
+		["After millennia, we have returned"] = "Uulg'ma, ag qam.",
+		["They do not die; they do not live"] = "Ywaq maq oou; ywaq maq ssaggh.",
+		["They are outside the cycle"] = "Ywaq ma shg'fhn.",
+		["Victory for Deathwing"] = "Zzof Shuul'wah.",
+		["For the glory of N'Zoth"] = "Thoq fssh N'Zoth!",
+
+		-- Zek'voz
+		["How is this... possible..."] = "Hul bala miz rilakich...",
+		["Not a single worthy trait among you"] = "Naza bul rexil qalic ul'.",
+		["You will be eradicated"] = "Ug' crish zul Thraxas!",
+		["I am superior"] = "Ul basha krix.",
+
+		-- Armageddon (comic)
+		["Tremble now, for the slumberer awakens"] = "Kulaq w'ajj, hwa-ksh brraglac!",
+		["They are the howlers in the dark"] = "Ywaq ma fvlolf ksht aak vrbl!",
+		["The madness without end"] = "Shn aglf olbl'nyral!",
+		["They are the shadow that feasts on life"] = "Ywaq mwual'gyos gag prfakt sjabba zuq...",
+
+		-- G'huun
+		["Children, come and feed"] = "Log'loth w'oq Ongg!",
+		["The contagion... has taken root within you"] = "Oou thyzz lal ak'uq qwaz Zuq shkul ma sk'tek...",
+
+		-- Vol'zith the Whisperer
+		["Beneath the tides, your truth awaits"] = "Skitsh qi'uthik illith!",
+		["Darkness roots. Pestilence spreads. The doorway is open"] = "Ugalazul bwrxil' qu rax.",
+		["You are mine"] = "ULL vera skish!!",
+		["Blood pours forth in the depths"] = "Xul krass qi' UN skush!",
+		["i will await you... in the dark..."] = "bwixki amala zal qul",
+		--variants
+ 		["i wait for you in the dark"] = "bwixki amala zal qul",
+		["i await you in darkness"] = "bwixki amala zal qul",
 		["i reside within your lungs"] = "aglathrax hig thrixa",
-		-- Ak'agthshi ma uhnish...
-		["our numbers are endless our power beyond reckoning all who oppose the destroyer will die a thousand deaths"] = "ak'agthshi ma uhnish ak'uq shg'cul vwahuhn hiwn iggksh phquathi gag oou kaaxth shuul",
-		-- An'qoth
-		["vessel"] = "an'qoth",
-		-- AN'zig wgah qam za zyqtahg
+
+
+		-- Mythrax the Unraveler
+		["Xalzaix hungers for annihilation"] = "Uulg'ma zyqtahg yrr!",
+		["Extermination"] = "Xith wgah!",
+
+		-- Yogg-Saron
+		["The shadow of my corpse will choke this land for all eternity"] = "Uulwi ifis halahs gag erh'ongg w'ssh.",
+
+		-- Anglepoint Wharf
+		["Our gods will devour all"] = "Ak yar qi'lwhuk h'iwn.",
+		["I return to the writhing throne"] = "Y'za qam yyqzz...",
+		["Power unrelenting"] = "Uq naggwa...",
+
+		-- Deep Watcher
+		["The eye sees all"] = "Ma sk'magg ni arwi",
+		["His greatness... his glory"] = "Ma zzof ag ez uulwi",
+		["We slumber no more! We rise... as he rises!"] = "Oou oou ryiu nuq Yrr par'okoth yrr vorzz",
+
+
+		-- individual words derived from phrases
+		["i am"] = "y'za", ["i"] = "y'za", ["i'm"] = "y'za",
+
+		["not"] = "noq",
+
+		["first"] = "mah", ["last"] = "ormz",
+		["you"] = "iilth",
+		["your"] = "sk'", --prefix
+		["they"] = "ywaq",
+		["his"] = "ag",
+		["do not"] = "maq", ["don't"] = "maq",
+		["cannot"] = "sythn", ["can not"] = "sythn", ["can't"] = "sythn",
+
+		["cannot be"] = "nel'othk", ["can not be"] = "nel'othk", ["can't be"] = "nel'othk",
+		["return "] = "qam",
+		["returned"] = "qam",
+		["will"] = "qi",
+		["shall"] = "agth",
+		["devour"] = "lwhuk",
+		["know"] = "plahf",
+		["die"] = "oou",
+		["we"] = "oou",
+		["live"] = "ssaggh",
+		["madness"] = "shn",
+		["shadow"] = "uulwi",
+		["cycle"] = "shg'fhn",
+		["fear"] = "skshgn",
+		["soul"] = "yahf",
+		["blood"] = "yeh'glu",
+		["throne"] = "yyqzz",
+		["depth"] = "zig",
+		["depths"] = "an'zig",
+		["endless"] = "naggwa", ["unending"] = "naggwa",
+		["glory"] = "fssh",
+		["all"] = "h'iwn",
+
+		["vessel"] = "an'qoth",  ["host"] = "an'qoth", ["container"] = "an'qoth",
+		["destroyer"] = "phquathi", ["death"] = "shuul", ["wing"] = "wah",
+		["deathwing"] = "shuul'wah",
+
+
+		-- individual words that can be derived from the above
+		--[[
+
+		shath'yar		meaning								examples
+		________________________________________________________________________
+		Y'za			I am / I							Appears in many 1st-person declaratives
+		noq				not									Negation particle
+		mah				first								Reinforced by "mah'shar" = first of many
+		ormz			last								Exclusive contrast with mah
+
+		Y'za			I / I am							Y'za noq mah
+		Iilth			you									Iilth ma paf'qi'ag
+		Sk'-			your (possessive)					Sk'yahf, Sk'shgn, Sk'tək
+		Ywaq			they								Many "They are..." lines
+		ag				we									ag'THYZAK, ag qam
+
+		noq				not									I am not the first
+		maq				do not								Ywaq maq oou
+		sythn			cannot								I cannot die
+		nel'othk		cannot be							IT CANNOT BE CONTAINED
+
+		qam				return / returned					I return, we have returned
+		qi				will / shall						Future constructions
+		agth			shall / will (formal, prophetic)	Skull shall adorn…
+		lwhuk			devour								Darkness devours all
+		plahf			know								Your soul will know torment
+		oou				die / death							multiple
+		ssaggh			live								contrast with oou
+	
+		shn				madness								The madness without end
+		uulwi			shadow								many
+		shg'fhn			cycle								outside the cycle
+		skshgn			fear								Your fear drives me
+		yahf			soul								repeated
+		yeh'glu			blood								many
+		yyqzz			throne								writhing throne
+		zig / an'zig	depths								whispers from the deeps
+
+		mah				first								confirmed
+		ormz			last								confirmed
+		naggwa			endless / unending					glory, power
+		fssh			glory								For the glory of N'Zoth
+		H'IWN			all									ALL OF YOU
+
+		]]
+
+
+
+		-- matches letter count, probably from the parser
+		--[[
+
+		-- From the Maw of Madness
+		["They are redemption"] = "Fssh qam ak'agathShi",
+		["They are truth"] = "Fssh qam h'iwn",
+		["You will all drown in the lightless abyss"] = "Gag vwah gag yyqzz ez hoz shAth'yar plahf",
+		["You struggle at the surface"] = "Gag yoh'ghyl og hoq uul'gwa",
+		["But He waits below"] = "gag Ez yyqzz huqth",
+
+		-- A Mote of Cosmic Truth
+		["Errant flesh"] = "H'thon thyzz",
+		["When it awakens"] = "Agth ma iiqaath",
+		["you will know eternity"] = "zuq wgah puul uhn'agth",
+		["and you will tremble"] = "yrr zuq wgah uulg'ma",
+		["The key... turns once more"] = "Oou zuq agthu qwor arwi",
+		["There is a great and terrible truth at the beginning of all things."] = "Shuul og i agthu yrr sk'uuyat uulwi ma oou sshoq'met ez nuq far'al",
+		["I am its herald."] = "I zz nuq al'tha",
+		["Listen to my sermon, and know your infinite inconsequence"] = "Ssaggh ni za an'zig yrr puul ywaq gul'kafh",
+		["You have seen into the beyond"] = "Zuq agth kyth ongg oou uovssh",
+		["Now you shall perceive things as they truly are"] = "Nuq zuq lwhuk qi'uothk far'al aq zaix hnakf lal",
+
+		-- Storm's End (Quest)
+		["The sunken realm welcomes your yawning souls"] = "Hoq aN'qov huqth erh'ongg thoq shanDai h'lwn",
+		["No light"] = "Og h'iwn",
+		["No escape."] = "Og vormos",
+		["The forgotten king returns"] = "Hoq sshoq'meg thoq wotH'gl",
+		["My fall is but a beat in the heart of the infinite abyss"] = "Za uul og nuq i fssh zz oou iiyoq ez oou gul'kafh anagg",
+
+		-- G'huun
+		["I feed on your terror"] = "I ongg za ywaq qvsakf",
+		["The outbreak has begun"] = "Oou gul'kafh lal lwhuk!",
+		["The titans cannot save you"] = "Oou vwahuHn ag'xig shfk zuq!",
+		["Let the feast of a thousand maws begin"] = "Qam oou iilth ez i awtgsshu amun on'ma!",
+		["Feel the twitch in your spine?"] = "Vwah oou kaaxth zz ywaq iiyoq",
+		["That is where I exist"] = "Ag'xig fhssh I on'ma.",				-- it is likely this term uses "that's" in parser
+		["Come, servants of rot"] = "W'oq uhn'agth ez qam",
+		["Consume"] = "Shandai!",
+		["Your screams will echo forever"] = "Ywaq mh'naus wgah zaix zygtahg.",
+		["Your husk serves a new master now"] = "Ywaq ongg an'qov i lal halahs nuq.",
+		["My whispers will liquefy your mind"] = "Za awtgsshu wgah uulg'ma ywaq zaix.",
+		["You cannot escape infection"] = "Zuq ag'xig bormaz ag'thyzak!",
+
+
+		-- Mythrax
+		["I will reduce you to ash"] = "I wgah far'al zuq ni shn",
+		["Give yourself to the plague"] = "Puul qi'plahf ni oou bormax!",
+		["You will not survive"] = "Zuq wgah qam n'lyeth!",
 		["ghuun will not be stopped"] = "an'zig wgah qam za zyqtahg",
-		-- Al'ksh syq iir awan
-		["is this real or an illusion you are going mad"] = "al'ksh syq iir awan iilth sythn aqev",
-		-- Bwixki amala zal qulllll
-		["i will await you in the dark"] = "bwixki amala zal qulllll",
-		-- En'othk uulg'shuul
-		["there is no light after death only a place where even shadows fear to go"] = "en'othk uulg'shuul mh'za uulwi skshgn kar",
-		-- Ez Shuul'wah
-		["your faithful servant has failed you o deathwing"] = "ez shuul'wah sk'woth'gl yugaz yog'ghyl ilfah",
-		-- Fssh qam ak'agathshi
-		["they are redemption they are truth"] = "fssh qam ak'agathshi fssh qam hiwn",
-		-- Gag vwah gag yyqzz
-		["you will all drown in the lightless abyss"] = "gag vwah gag yyqzz ez hoz shath'yar plahf",
-		-- Gag yoh'ghyl
-		["you struggle at the surface but he waits below"] = "gag yoh'ghyl og hoq uulgwa gag ez yyqzz huqth",
-		-- Gul'kafh an'shel
-		["gaze into the void it is the perpetuity in which they dwell"] = "gul'kafh an'shel yoq'al shn ky ywaq nuul",
-		-- Gul'kafh an'qov N'Zoth
-		["gaze into the heart of nzoth"] = "gul'kafh an'qov nzoth",
-		-- H'iwn zaix Shuul'wah
-		["all praise deathwing the destroyer"] = "hiwn zaix shuul'wah phquathi",
-		-- H'thon thyzz Agth
-		["errant flesh when it awakens you will know eternity and you will tremble"] = "h'thon thyzz agth ma iiqaath zuq wgah puul uhn'agth",
-		-- Hoq aN'qov
-		["the sunken realm welcomes your yawning souls"] = "hoq an'qov huqth erh'ongg thoq shandai h'lwn",
-		-- Hul bala miz rilakich
-		["how is this possible"] = "hul bala miz rilakich",
-		-- I ongg za ywaq qvsakf
-		["i feed on your terror"] = "i ongg za ywaq qvsakf",
-		-- I wgah far'al
-		["i will reduce you to ash"] = "i wgah far'al zuq ni shn",
-		-- Iilth ma paf'qi'ag
-		["you are a prisoner in your own body a servant of fear"] =  "iilth ma paf'qi'ag sk'halahs gaz skshgn",
-		-- Ilith qi'uothk
-		["you will drown in the blood of the old gods"] = "ilith qi'uothk shn'ma yeh'glu shath'yar",
-		-- Iilth qi mah'shar
-		["you will be the first of many to glimpse the madness of nzoth"] = "iilth qi mah'shar fhn oorql nzoth",
-		-- Iilth vwah uhn'agth
-		["where one falls many shall take its place"] = "iilth vwah uhn'agth fhssh za",
-		-- Il'zarq N'Zoth
-		["the voice of nzoth whispers from the deeps"] = "il'zarq nzoth phgwa an'zig",
-		-- Kulaq w'ajj
-		["tremble now for the slumberer awakens"] = "kulaq w'ajj hwa ksh brraglac",
-		-- KYTH ag'xig
-		["see how we pour from the cursed earth"] = "kyth ag'xig yyg'far iiqaath ongg",
-		-- Log'loth w'oq Ongg
-		["children come and feed"] = "log'loth w'oq ongg",
-		-- Mg'uulwi N'Zoth
-		["in the writhing shadow of nzoth all light fades and dies"] = "mg'uulwi nzoth eth'razzqi worg zz oou",
-		-- N'Zoth ga zyqtahg
-		["the will of nzoth corrupts you"] = "nzoth ga zyqtahg iilth",
-		-- Naza bul rexil
-		["not a single worthy trait among you"] = "naza bul rexil qalic ul",
-		-- Oou gul'kafh
-		["the outbreak has begun"] = "oou gul'kafh lal lwhuk",
-		-- Puul qi'plahf
-		["give yourself to the plague"] = "puul qi'plahf ni oou bormax",
-		-- Sk'magg yawifk
-		["your suffering strengthens me"] = "sk'magg yawifk hoq",
-		-- Sk'shgn eqnizz
-		["your fear drives me"] = "sk'shgn eqnizz hoq",
-		-- Ug crish zul Thraxas
-		["you will be eradicated"] = "ug crish zul thraxas",
-		-- Ul basha krix
-		["i am superior"] = "ul basha krix",
-		-- ULL vera skish
-		["you are mine"] = "ull vera skish",
-		-- Xith wgah
-		["extermination"] = "xith wgah",
-		-- Zuq wgah qam n'lyeth
-		["you will not survive"] = "zuq wgah qam n'lyeth",
+
+		-- Soggoth
+		["The deep one's prison weakens"] = "Oou wgah yyqZz uhnish guu'lal",
+		["None will be spared"] = "Qwor wgah za kaaxth",
+
+		-- Coming Out of His Shell (Quest)
+		["Fluffy"] = "Yu'gaz",
+
+
+
+		--]]
 
 
 
