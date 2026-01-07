@@ -854,6 +854,136 @@ local AlphabetKerning = {
 		},
 		]]
 	},
+
+
+
+	[L["Thalassian"]] = {
+		[" "] = {
+			width = 1,
+			height = 1,
+		},
+		["'"] = {
+			width = .375,
+			height = 1,
+		},
+		["-"] = {
+			width = .671875,
+			height = 1,
+		},
+		["A"] = {
+			width = 1,
+			height = 1,
+		},
+		["B"] = {
+			width = 1,
+			height = 1,
+		},
+		["C"] = {
+			width = 1,
+			height = 1,
+		},
+		["D"] = {
+			width = .921875,
+			height = 1,
+		},
+		["E"] = {
+			width = 1,
+			height = 1,
+		},
+		["F"] = {
+			width = 1,
+			height = 1,
+		},
+		["G"] = {
+			width = 1,
+			height = 1,
+		},
+		["H"] = {
+			width = 1,
+			height = 1,
+		},
+		["I"] = {
+			width = 1,
+			height = 1,
+		},
+		["J"] = {
+			width = 1,
+			height = 1,
+		},
+		["K"] = {
+			width = .859375,
+			height = 1,
+		},
+		["L"] = {
+			width = 1,
+			height = 1,
+		},
+		["M"] = {
+			width = 1,
+			height = 1,
+		},
+		["N"] = {
+			width = 1,
+			height = 1,
+		},
+		["O"] = {
+			width = 1,
+			height = 1,
+		},
+		["P"] = {
+			width = 1,
+			height = 1,
+		},
+		["Q"] = {
+			width = 1,
+			height = 1,
+		},
+		["R"] = {
+			width = 1,
+			height = 1,
+		},
+		["S"] = {
+			width = .859375,
+			height = 1,
+		},
+		["T"] = {
+			width = .953125,
+			height = 1,
+		},
+		["U"] = {
+			width = 1,
+			height = 1,
+		},
+		["V"] = {
+			width = 1,
+			height = 1,
+		},
+		["W"] = {
+			width = 1,
+			height = 1,
+		},
+		["X"] = {
+			width = 1,
+			height = 1,
+		},
+		["Y"] = {
+			width = 1,
+			height = 1,
+		},
+		["Z"] = {
+			width = 1,
+			height = 1,
+		},
+
+
+		--[[
+		[""] = {
+			width = 1,
+			height = 1,
+		},
+		]]
+	},
+
 };
 
 Lang.AlphabetKerning = AlphabetKerning;
