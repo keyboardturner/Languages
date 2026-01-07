@@ -1966,6 +1966,7 @@ end
 ---------------------------------------------------------------------------------------------------------------------------------------------------------
 
 local AddonPath = "Interface\\AddOns\\Languages\\Textures\\"
+local spacePath = "Interface\\AddOns\\Languages\\Textures\\All\\space.blp"
 
 MatchCasing = function(original, translated)
 	local result = ""
@@ -1996,9 +1997,13 @@ local function GetRuneString(text, language)
 	local scale = Languages_DB.settings.runeScale or 1.0
 	local fontSize = select(2, ChatFrame1:GetFont()) * scale 
 	local atlasPath = AddonPath .. language .. "\\"
+	
 
 	for character in string.gmatch(text, "([%z\1-\127\194-\244][\128-\191]*)") do
-		if character == " " or character == "\t" or character == "\n" or character == "\r" then
+		if character == " " then
+			local tex = "|T" .. spacePath .. ":" .. fontSize .. ":" .. fontSize .. "|t"
+			runeString = runeString .. tex
+		elseif character == "\t" or character == "\n" or character == "\r" then
 			runeString = runeString .. character
 		else
 			local tex = "|T" .. atlasPath .. character .. ":" .. fontSize .. ":" .. fontSize .. "|t"
@@ -2105,6 +2110,12 @@ local function ReplaceLanguage(text, language)
 		return GetRuneString(finalWord, language)
 	end)
 
+	if Languages_DB.settings.glyphs then
+		local spaceRune = GetRuneString(" ", language)
+
+		text = text:gsub(" ", spaceRune)
+	end
+
 	for token, translation in pairs(protectedPhrases) do
 		token = string.gsub(token, "([%(%)%.%%%+%-%*%?%[%^%$])", "%%%1")
 		text = string.gsub(text, token, translation)
@@ -2113,57 +2124,34 @@ local function ReplaceLanguage(text, language)
 	return text
 end
 
---[[
-local function HyperLinkFunc(chatFrame, link, text, region, boundsLeft, boundsBottom, boundsWidth, boundsHeight)
-	print("function running")
-	local type, value = link:match("(%a+):(.+)")
-	if type == "languages" then
-		ShowUIPanel(GameTooltip)
-		GameTooltip:SetOwner(chatFrame, "ANCHOR_CURSOR")
-		GameTooltip:ClearLines()
-		
-		local displayName = L[value] or value
-		local titleColor = CreateColor(Languages_DB.settings.colors.prefix.r, Languages_DB.settings.colors.prefix.g, Languages_DB.settings.colors.prefix.b):GenerateHexColor()
-		GameTooltip:AddLine(L["Language"] .. ": |c" .. titleColor .. displayName .. "|r")
-		
-		local isUnderstood = false
-		if Languages_DB.profiles[charKey].TRP3 == true and TRP3_API then
-			local profileName = TRP3_API.profile.getPlayerCurrentProfile().profileName
-			if Languages_DB.profiles["TRP3_" .. profileName].understandLanguage[value] then
-				isUnderstood = true
-			end
-		elseif Languages_DB.profiles[charKey].understandLanguage[value] then
-			isUnderstood = true
-		end
-		
-		if isUnderstood then
-			GameTooltip:AddLine(L["Understand"] .. ": |cff00ff00" .. YES .. "|r")
-		else
-			GameTooltip:AddLine(L["Understand"] .. ": |cffff0000" .. NO .. "|r")
-		end
-		
-		GameTooltip:Show()
+local function StripTags(text)
+	local count = 1
+	while count > 0 do
+		text, count = string.gsub(text, "|H.-|h(.-)|h", "%1")
 	end
+	
+	text = string.gsub(text, "|T.-|t", "")
+	
+	text = string.gsub(text, "|cn.-:(.-)|r", "%1")
+	
+	text = string.gsub(text, "|c%x%x%x%x%x%x%x%x", "")
+	
+	-- item links will often use colorname
+	text = string.gsub(text, "|cn.-|r", "")
+	text = string.gsub(text, "|cn", "")
+	text = string.gsub(text, "|A.-|a", "")
+	text = string.gsub(text, "|A", "")
+	text = string.gsub(text, "|a", "")
+	
+	text = string.gsub(text, "|r", "")
+	
+	text = string.gsub(text, "|H.-|h", "") 
+	
+	-- breaks other stuff just as a "catch-all"
+	text = string.gsub(text, "|", "")
+	
+	return text
 end
-
-EventRegistry:RegisterCallback("ChatFrame.OnHyperlinkEnter", HyperLinkFunc)
-EventRegistry:RegisterCallback("ChatFrame.OnHyperlinkClick", HyperLinkFunc)
-
-EventRegistry:RegisterCallback("ChatFrame.OnHyperlinkLeave", function(chatFrame)
-	GameTooltip:Hide()
-end)
-
-
-ChatFrame1:HookScript("OnHyperlinkEnter", function(self, link, text, region, left, bottom, width, height)
-	print("function running")
-	local tooltip = GameTooltip;
-	tooltip:SetOwner(self, "ANCHOR_PRESERVE");
-	tooltip:ClearAllPoints();
-	tooltip:SetPoint("BOTTOMLEFT", region, "TOPLEFT", left + width, bottom);
-	tooltip:SetHyperlink(link);
-end)
---]]
-
 
 local function eventFilterStuff(frame, event, message, sender, ...)
 	for i, v in ipairs(thingsToHide) do
@@ -2172,6 +2160,8 @@ local function eventFilterStuff(frame, event, message, sender, ...)
 		else
 			if message:find(v) then
 				message = message:gsub(v, "")
+				
+				local cleanMessage = StripTags(message)
 
 				local textColor = CreateColor(Languages_DB.settings.colors.prefix.r, Languages_DB.settings.colors.prefix.g, Languages_DB.settings.colors.prefix.b):GenerateHexColor()
 				
@@ -2189,7 +2179,12 @@ local function eventFilterStuff(frame, event, message, sender, ...)
 						elseif event == "CHAT_MSG_YELL" then
 							chatTypeBingus = ChatTypeInfo["YELL"];
 						end
-						return false, "|c" .. textColor .. bracketName .. "|r " .. ReplaceLanguage(message, internalKey), sender, ...
+
+						local linkData = "languages:" .. internalKey .. ":" .. cleanMessage .. ":" .. sender
+						
+						local hyperLinkPrefix = "|H" .. linkData .. "|h" .. bracketName .. "|h"
+
+						return false, "|c" .. textColor .. hyperLinkPrefix .. "|r " .. ReplaceLanguage(cleanMessage, internalKey), sender, ...
 					end
 
 				else
@@ -2201,11 +2196,14 @@ local function eventFilterStuff(frame, event, message, sender, ...)
 						elseif event == "CHAT_MSG_YELL" then
 							chatTypeBingus = ChatTypeInfo["YELL"];
 						end
-						return false, "|c" .. textColor .. bracketName .. "|r " .. ReplaceLanguage(message, internalKey), sender, ...
+						
+						local linkData = "languages:" .. internalKey .. ":" .. cleanMessage .. ":" .. sender
+						
+						local hyperLinkPrefix = "|H" .. linkData .. "|h" .. bracketName .. "|h"
+
+						return false, "|c" .. textColor .. hyperLinkPrefix .. "|r " .. ReplaceLanguage(cleanMessage, internalKey), sender, ...
 					end
 				end
-
-
 			end
 		end
 	end
@@ -2523,6 +2521,7 @@ function lang:LoadChatBubbles()
 end
 
 lang:RegisterEvent("ADDON_LOADED")
+lang:RegisterEvent("PLAYER_ENTERING_WORLD")
 lang:RegisterEvent("UNIT_AURA")
 --lang:RegisterEvent("PLAYER_ENTERING_WORLD")
 
@@ -2568,6 +2567,128 @@ function lang.InitializeDB()
 			end
 		end
 	end
+end
+
+
+local TranslationTooltip = CreateFrame("Frame", "LanguagesTranslationTooltip", UIParent, "BackdropTemplate")
+TranslationTooltip:SetSize(300, 150)
+TranslationTooltip:SetPoint("CENTER", UIParent, "CENTER")
+TranslationTooltip:SetMovable(true)
+TranslationTooltip:SetClampedToScreen(true)
+TranslationTooltip:EnableMouse(true)
+TranslationTooltip:SetFrameStrata("TOOLTIP")
+TranslationTooltip:Hide()
+TranslationTooltip:RegisterForDrag("LeftButton")
+
+TranslationTooltip:SetBackdrop({
+	bgFile = "Interface\\Tooltips\\UI-Tooltip-Background",
+	edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border",
+	tile = true,
+	tileSize = 16,
+	edgeSize = 16,
+	insets = { left = 4, right = 4, top = 4, bottom = 4 }
+})
+TranslationTooltip:SetBackdropColor(0, 0, 0, 0.9)
+TranslationTooltip:SetBackdropBorderColor(0.6, 0.6, 0.6, 1)
+
+TranslationTooltip.titleBar = CreateFrame("Frame", nil, TranslationTooltip)
+TranslationTooltip.titleBar:SetPoint("TOPLEFT", 8, -8)
+TranslationTooltip.titleBar:SetPoint("TOPRIGHT", -8, -8)
+TranslationTooltip.titleBar:SetHeight(20)
+
+TranslationTooltip:SetScript("OnDragStart", function(self)
+	TranslationTooltip:StartMoving()
+end)
+TranslationTooltip:SetScript("OnDragStop", function(self)
+	TranslationTooltip:StopMovingOrSizing()
+end)
+
+TranslationTooltip.closeButton = CreateFrame("Button", nil, TranslationTooltip, "UIPanelCloseButton")
+TranslationTooltip.closeButton:SetPoint("TOPRIGHT", -2, -2)
+TranslationTooltip.closeButton:SetSize(20, 20)
+TranslationTooltip.closeButton:SetScript("OnClick", function()
+	TranslationTooltip:Hide()
+end)
+
+TranslationTooltip.title = TranslationTooltip.titleBar:CreateFontString(nil, "OVERLAY", "GameFontHighlight")
+TranslationTooltip.title:SetPoint("LEFT", 2, 0)
+TranslationTooltip.title:SetText(L["Translation"])
+
+TranslationTooltip.languageLabel = TranslationTooltip:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+TranslationTooltip.languageLabel:SetPoint("TOPLEFT", 15, -35)
+TranslationTooltip.languageLabel:SetPoint("TOPRIGHT", -15, -35)
+TranslationTooltip.languageLabel:SetJustifyH("LEFT")
+
+TranslationTooltip.textarea = CreateFrame("Frame", nil, TranslationTooltip)
+TranslationTooltip.textarea:SetPoint("TOPLEFT", 15, -60)
+TranslationTooltip.textarea:SetPoint("BOTTOMRIGHT", -30, 15)
+
+TranslationTooltip.translationText = TranslationTooltip.textarea:CreateFontString(nil, "OVERLAY", "GameFontHighlight")
+TranslationTooltip.translationText:SetPoint("TOPLEFT")
+TranslationTooltip.translationText:SetWidth(TranslationTooltip.textarea:GetWidth() - 10)
+TranslationTooltip.translationText:SetJustifyH("LEFT")
+TranslationTooltip.translationText:SetWordWrap(true)
+
+
+function TranslationTooltip:ShowTranslation(langKey, translation, sender)
+	local displayName = L[langKey] or langKey
+	self.title:SetText(L["Translation"] .. " - " .. sender)
+	self.languageLabel:SetText(L["Language"] .. ": " .. displayName)
+	self.translationText:SetText(translation)
+	
+	local textHeight = self.translationText:GetStringHeight()
+	local newHeight = math.min(math.max(textHeight + 100, 150), 400)
+	self:SetHeight(newHeight)
+	
+	self:Show()
+end
+
+tinsert(UISpecialFrames, "LanguagesTranslationTooltip")
+
+
+local function OnHyperlinkClick(self, link, text, button)
+	local linkType, linkData = link:match("^([^:]+):(.+)$")
+	
+	if linkType == "languages" then
+		local langKey, translation, sender = linkData:match("^([^:]+):([^:]+):(.+)$")
+		
+		if langKey and translation and sender then
+			TranslationTooltip:ShowTranslation(langKey, translation, sender)
+		end
+	end
+end
+
+local function OnHyperlinkEnter(self, link, text, region, left, bottom, width, height)
+	local linkType, linkData = link:match("^([^:]+):(.+)$")
+
+	if linkType == "languages" then
+		local langKey, translation, sender = linkData:match("^([^:]+):([^:]+):(.+)$")
+
+		if langKey and translation then
+			local tooltip = GameTooltip
+			tooltip:SetOwner(self, "ANCHOR_CURSOR")
+			tooltip:ClearLines()
+			
+			local displayName = L[langKey] or langKey
+			tooltip:AddLine(L["Language"] .. ": " .. WrapTextInColorCode(displayName, "ffffffff"))
+
+			tooltip:AddLine(L["Translation"] .. ": " .. WrapTextInColorCode(translation, "ffffffff"), nil, nil, nil, true)
+			
+			tooltip:Show()
+		end
+	end
+end
+
+function lang.HyperLinks()
+
+	ChatFrame1:HookScript("OnHyperlinkEnter", OnHyperlinkEnter)
+
+	ChatFrame1:HookScript("OnHyperlinkLeave", function(self)
+		GameTooltip:Hide()
+	end)
+	
+	ChatFrame1:SetHyperlinksEnabled(true)
+	ChatFrame1:HookScript("OnHyperlinkClick", OnHyperlinkClick)
 end
 
 function lang.addonLoaded(self, event, arg1) -- table, event, addonName
@@ -2631,6 +2752,10 @@ function lang.addonLoaded(self, event, arg1) -- table, event, addonName
 			lang.checkSettings()
 			PlaySound(SOUNDKIT.IG_CHARACTER_INFO_CLOSE, "SFX");
 		end);
+
+	end
+	if event == "PLAYER_ENTERING_WORLD" then -- load some stuff late, generally so we don't get overwritten
+		lang.HyperLinks()
 	end
 	if event == "UNIT_AURA" and arg1 == "player" then
 		lang.shapeshiftProfileCheck()
@@ -2638,3 +2763,12 @@ function lang.addonLoaded(self, event, arg1) -- table, event, addonName
 end
 
 lang:SetScript("OnEvent", lang.addonLoaded)
+
+local function OnAddonLoaded()
+	local ChattynatorHyperlinkHandler = Chattynator.API.GetHyperlinkHandler() -- chattynator explodes OnHyperlinkEnter with SetScript, so hookscript onto chattynator's setscript
+	
+	ChattynatorHyperlinkHandler:HookScript("OnHyperlinkClick", OnHyperlinkClick)
+	ChattynatorHyperlinkHandler:HookScript("OnHyperlinkEnter", OnHyperlinkEnter)
+end
+
+EventUtil.ContinueOnAddOnLoaded("Chattynator", OnAddonLoaded);

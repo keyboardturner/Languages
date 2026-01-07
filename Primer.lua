@@ -355,7 +355,7 @@ local LANGUAGE_REPLACEMENTS = {
 		[9] = {"ag'thyzak", "ga'halahs", "lyrr'keth", "par'okoth", "phgwa'cul", "pwhn'guul", "ree'thael", "shath'yar", "shgla'yos", "shuul'wah", "sshoq'meg"},
 		[10] = {"ak'agthshi", "shg'ullwaq", "sk'woth'gl"},
 		[11] = {"ghawl'fwata", "naggwa'fssh", "yeq'kafhgyl"},
-		["hasRunes"] = false,
+		["hasRunes"] = true,
 	},
 
 	[L["Broker"]] = { -- no languageID, fanmade

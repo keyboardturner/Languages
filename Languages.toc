@@ -28,7 +28,7 @@
 ## Notes-zhTW: 一個角色扮演插件，旨在以輕量級且易於訪問的方式引入“可說的”遊戲語言。
 ## LoadSavedVariablesFirst: 1
 ## SavedVariables: Languages_DB
-## OptionalDeps: LibDBIcon, Ace3, TotalRP3
+## OptionalDeps: LibDBIcon, Ace3, TotalRP3, Chattynator
 ## X-Curse-Project-ID: 872452
 ## X-WoWI-ID: 26633
 ## X-Wago-ID: 4N2mbQGL
