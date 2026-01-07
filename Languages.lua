@@ -756,41 +756,41 @@ local atlas = {
 local doNotTranslate = { ".", ",", "-", "¤", "0", "1", };
 
 local languageBasicList = {
-	L["Common"],
-	L["Darnassian"],
-	L["Dwarvish"],
-	L["Gnomish"],
-	L["Draenei"],
-	L["Orcish"],
-	L["Zandali"],
-	L["Taurahe"],
-	L["Forsaken"], 
-	L["Gutterspeak"],
-	L["Thalassian"],
-	L["Goblin"],
-	L["Shalassian"],
-	L["Vulpera"],
-	L["Pandaren"],
-	L["Draconic"],
+	"Common",
+	"Darnassian",
+	"Dwarvish",
+	"Gnomish",
+	"Draenei",
+	"Orcish",
+	"Zandali",
+	"Taurahe",
+	"Forsaken", 
+	"Gutterspeak",
+	"Thalassian",
+	"Goblin",
+	"Shalassian",
+	"Vulpera",
+	"Pandaren",
+	"Draconic",
 	
-	L["Demonic"],
-	L["Titan"],
-	L["Kalimag"],
-	L["Shath'Yar"],
-	L["Nerubian"],
-	L["Sprite"],
-	L["Nerglish"],
-	L["Moonkin"],
-	L["Furbolg"],
+	"Demonic",
+	"Titan",
+	"Kalimag",
+	"Shath'Yar",
+	"Nerubian",
+	"Sprite",
+	"Nerglish",
+	"Moonkin",
+	"Furbolg",
 	
 	--"Hara'ni",
 
-	L["Cypher"],
+	"Cypher",
 	
 	-- [fanmade]
-	L["Arathi"],
+	"Arathi",
 
-	L["Broker"],
+	"Broker",
 	--"Ethereal",
 	--"K'areshi",
 
@@ -804,14 +804,32 @@ local thingsToHide = {};
 local languagelist = {};
 local languageNoBrackets = {};
 
-for _, langKey in ipairs(languageBasicList) do
-	local localizedName = L[langKey] or langKey
-	local bracketPattern = "^%[" .. localizedName .. "%]"
-	local bracketName = "[" .. localizedName .. "]"
+local function RegisterLanguageTag(langKey, localizedName)
+	if not localizedName then return end
 	
-	table.insert(thingsToHide, bracketPattern)
-	languagelist[bracketPattern] = bracketName
-	languageNoBrackets[bracketPattern] = langKey
+	local safeName = localizedName:gsub("([%(%)%.%%%+%-%*%?%[%^%$])", "%%%1")
+	local bracketPattern = "^%[" .. safeName .. "%]"
+	local bracketName = "[" .. localizedName .. "]"
+
+	if not languageNoBrackets[bracketPattern] then
+		table.insert(thingsToHide, bracketPattern)
+		languagelist[bracketPattern] = bracketName
+		languageNoBrackets[bracketPattern] = langKey 
+	end
+end
+
+if L.AllLanguages then
+	for locale, translations in pairs(L.AllLanguages) do
+		for _, langKey in ipairs(languageBasicList) do
+			local localizedName = translations[langKey] or L[langKey] or langKey
+			RegisterLanguageTag(langKey, localizedName)
+		end
+	end
+else
+	for _, langKey in ipairs(languageBasicList) do
+		local localizedName = L[langKey] or langKey
+		RegisterLanguageTag(langKey, localizedName)
+	end
 end
 
 local understandLanguage = {
@@ -2138,11 +2156,11 @@ end)
 
 ChatFrame1:HookScript("OnHyperlinkEnter", function(self, link, text, region, left, bottom, width, height)
 	print("function running")
-    local tooltip = GameTooltip;
-    tooltip:SetOwner(self, "ANCHOR_PRESERVE");
-    tooltip:ClearAllPoints();
-    tooltip:SetPoint("BOTTOMLEFT", region, "TOPLEFT", left + width, bottom);
-    tooltip:SetHyperlink(link);
+	local tooltip = GameTooltip;
+	tooltip:SetOwner(self, "ANCHOR_PRESERVE");
+	tooltip:ClearAllPoints();
+	tooltip:SetPoint("BOTTOMLEFT", region, "TOPLEFT", left + width, bottom);
+	tooltip:SetHyperlink(link);
 end)
 --]]
 
