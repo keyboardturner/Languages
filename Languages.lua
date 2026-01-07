@@ -2023,6 +2023,8 @@ local function GetRuneString(text, language)
 	local scale = Languages_DB.settings.runeScale or 1.0
 	local fontSize = select(2, ChatFrame1:GetFont()) * scale 
 	local atlasPath = AddonPath .. language .. "\\"
+
+	local lowerCaseScale = 1 -- .75 would be a nice lowercase height if offset didn't lag
 	
 	for character in string.gmatch(text, "([%z\1-\127\194-\244][\128-\191]*)") do
 		if character == " " then
@@ -2046,12 +2048,19 @@ local function GetRuneString(text, language)
 		else
 			local width = fontSize
 			local height = fontSize
+			local yOffset = 0
+			
+			local isLowercase = (character == string.lower(character) and character ~= string.upper(character))
+			local usingFallback = false
 
 			if kerningTable then
 				local kerningData = kerningTable[character]
 				
 				if not kerningData then
 					kerningData = kerningTable[string.upper(character)]
+					if kerningData then
+						usingFallback = true
+					end
 				end
 
 				if kerningData then
@@ -2064,7 +2073,20 @@ local function GetRuneString(text, language)
 				end
 			end
 
-			local tex = "|T" .. atlasPath .. character .. ":" .. height .. ":" .. width .. "|t"
+			-- this would have been to make lowercase + move the letters down
+			--[[
+			if isLowercase and usingFallback then
+				local originalHeight = height
+				
+				width = width * lowerCaseScale
+				height = height * lowerCaseScale
+				
+				yOffset = -(originalHeight - height) / 2
+			end
+			]]
+
+			--local tex = "|T" .. atlasPath .. character .. ":" .. height .. ":" .. width .. ":0:" .. yOffset .. "|t"
+			local tex = "|T" .. atlasPath .. character .. ":" .. height .. ":" .. width .. "|t" -- can't use offset, lags badly :(
 			runeString = runeString .. tex
 		end
 	end

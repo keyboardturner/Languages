@@ -597,6 +597,126 @@ local AlphabetKerning = {
 			width = .625,
 			height = 1,
 		},
+	},
+
+	[L["Broker"]] = {
+		[" "] = {
+			width = .8,
+			height = 1,
+		},
+		["'"] = {
+			width = .375,
+			height = 1,
+		},
+		["-"] = {
+			width = .625,
+			height = 1,
+		},
+		["A"] = {
+			width = .750,
+			height = 1,
+		},
+		["B"] = {
+			width = .8125,
+			height = 1,
+		},
+		["C"] = {
+			width = .84375,
+			height = 1,
+		},
+		["D"] = {
+			width = .9375,
+			height = 1,
+		},
+		["E"] = {
+			width = .875,
+			height = 1,
+		},
+		["F"] = {
+			width = .875,
+			height = 1,
+		},
+		["G"] = {
+			width = 1,
+			height = 1,
+		},
+		["H"] = {
+			width = 1,
+			height = 1,
+		},
+		["I"] = {
+			width = .9375,
+			height = 1,
+		},
+		["J"] = {
+			width = .6875,
+			height = 1,
+		},
+		["K"] = {
+			width = .8125,
+			height = 1,
+		},
+		["L"] = {
+			width = .78125,
+			height = 1,
+		},
+		["M"] = {
+			width = .8125,
+			height = 1,
+		},
+		["N"] = {
+			width = 1,
+			height = 1,
+		},
+		["O"] = {
+			width = .875,
+			height = 1,
+		},
+		["P"] = {
+			width = .84375,
+			height = 1,
+		},
+		["Q"] = {
+			width = .875,
+			height = 1,
+		},
+		["R"] = {
+			width = .9375,
+			height = 1,
+		},
+		["S"] = {
+			width = 1,
+			height = 1,
+		},
+		["T"] = {
+			width = 1,
+			height = 1,
+		},
+		["U"] = {
+			width = .90625,
+			height = 1,
+		},
+		["V"] = {
+			width = .500,
+			height = 1,
+		},
+		["W"] = {
+			width = .90625,
+			height = 1,
+		},
+		["X"] = {
+			width = .9375,
+			height = 1,
+		},
+		["Y"] = {
+			width = .750,
+			height = 1,
+		},
+		["Z"] = {
+			width = .90625,
+			height = 1,
+		},
+
 
 		--[[
 		[""] = {
