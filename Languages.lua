@@ -4,6 +4,7 @@ local L = Lang.L;
 local Dialects = Lang.Dialects;
 local LANGUAGE_REPLACEMENTS = Lang.LANGUAGE_REPLACEMENTS
 local Dictionaries = Lang.Dictionaries
+local AlphabetKerning = Lang.AlphabetKerning
 
 local defaultsTableAcc = {
 	
@@ -411,49 +412,54 @@ local function ApplyDialectToText(text)
 	end
 	
 	local dictionary = Dialects[dialectName]
-	
-	local toggles = nil
-	if profile.dialectWordToggles then
-		toggles = profile.dialectWordToggles[dialectName]
+	local toggles = profile.dialectWordToggles and profile.dialectWordToggles[dialectName]
+
+	local keys = {}
+	for targetWord in pairs(dictionary) do
+		if not (toggles and toggles[targetWord] == false) then
+			table.insert(keys, targetWord)
+		end
 	end
+	table.sort(keys, function(a, b) return #a > #b end)
 
 	local protectedMap = {}
 	local protectedCount = 0
+	
+	local textLower = string.lower(text)
 
-	for targetWord, replacementWord in pairs(dictionary) do
-		if not (toggles and toggles[targetWord] == false) then
-
-			local function Protect(match)
-				protectedCount = protectedCount + 1
-				local token = "{P_LANG_" .. protectedCount .. "}"
-				local cleanWord = match:sub(2, -2) 
-				protectedMap[token] = cleanWord
-				return token
-			end
-
-			local escapedTarget = "_" .. targetWord .. "_"
-			if string.find(text, escapedTarget, 1, true) then
-				text = text:gsub(escapedTarget, Protect)
-			end
-
-			local titleTarget = targetWord:gsub("^%l", string.upper)
-			local escapedTitleTarget = "_" .. titleTarget .. "_"
-			if string.find(text, escapedTitleTarget, 1, true) then
-				text = text:gsub(escapedTitleTarget, Protect)
-			end
-
-			text = text:gsub("(%f[%a])" .. targetWord .. "(%f[%A])", function(boundaryA, boundaryB)
-				return boundaryA .. MatchCasing(targetWord, replacementWord) .. boundaryB
-			end)
+	for _, targetWord in ipairs(keys) do
+		local targetLower = string.lower(targetWord)
+		local replacementWord = dictionary[targetWord]
+		
+		local startPos, endPos = string.find(textLower, targetLower, 1, true)
+		
+		while startPos do
+			local isStartBoundary = (startPos == 1) or not string.match(string.sub(text, startPos - 1, startPos - 1), "%a")
+			local isEndBoundary = (endPos == #text) or not string.match(string.sub(text, endPos + 1, endPos + 1), "%a")
 			
-			text = text:gsub("(%f[%a])" .. titleTarget .. "(%f[%A])", function(boundaryA, boundaryB)
-				return boundaryA .. MatchCasing(titleTarget, replacementWord) .. boundaryB
-			end)
+			if isStartBoundary and isEndBoundary then
+				local originalSegment = string.sub(text, startPos, endPos)
+				
+				protectedCount = protectedCount + 1
+				local token = "###LANG_P" .. protectedCount .. "###"
+				
+				local translated = MatchCasing(originalSegment, replacementWord)
+				
+				protectedMap[token] = translated
+				
+				text = string.sub(text, 1, startPos - 1) .. token .. string.sub(text, endPos + 1)
+				
+				textLower = string.lower(text)
+				
+				startPos, endPos = string.find(textLower, targetLower, 1, true)
+			else
+				startPos, endPos = string.find(textLower, targetLower, endPos + 1, true)
+			end
 		end
 	end
 
 	if protectedCount > 0 then
-		text = text:gsub("{P_LANG_%d+}", function(token)
+		text = text:gsub("###LANG_P%d+###", function(token)
 			return protectedMap[token] or token
 		end)
 	end
@@ -1969,15 +1975,32 @@ local AddonPath = "Interface\\AddOns\\Languages\\Textures\\"
 local spacePath = "Interface\\AddOns\\Languages\\Textures\\All\\space.blp"
 
 MatchCasing = function(original, translated)
+	if string.find(original, "%u") and not string.find(original, "%l") then
+		return string.upper(translated)
+	end
+	
+	if not string.find(original, "%u") then
+		return string.lower(translated)
+	end
+
+	local casingMap = {}
+	for char in string.gmatch(original, "[%a]") do
+		table.insert(casingMap, string.match(char, "%u") ~= nil)
+	end
+	
+	if #casingMap == 0 then
+		return translated
+	end
+
 	local result = ""
-	local lenOrg = string.len(original)
 	local lenTrans = string.len(translated)
 	
 	for i = 1, lenTrans do
 		local charTrans = string.sub(translated, i, i)
-		local charOrg = string.sub(original, math.min(i, lenOrg), math.min(i, lenOrg))
 		
-		if string.match(charOrg, "%u") then
+		local useUpperCase = casingMap[math.min(i, #casingMap)]
+		
+		if useUpperCase then
 			result = result .. string.upper(charTrans)
 		else
 			result = result .. string.lower(charTrans)
@@ -1993,20 +2016,55 @@ local function GetRuneString(text, language)
 		return text
 	end
 
+	local langDisplay = L[language] or language
+	local kerningTable = AlphabetKerning and AlphabetKerning[langDisplay]
+
 	local runeString = ""
 	local scale = Languages_DB.settings.runeScale or 1.0
 	local fontSize = select(2, ChatFrame1:GetFont()) * scale 
 	local atlasPath = AddonPath .. language .. "\\"
 	
-
 	for character in string.gmatch(text, "([%z\1-\127\194-\244][\128-\191]*)") do
 		if character == " " then
-			local tex = "|T" .. spacePath .. ":" .. fontSize .. ":" .. fontSize .. "|t"
+			local spaceWidth = fontSize
+			local spaceHeight = fontSize
+
+			if kerningTable and kerningTable[" "] then
+				if kerningTable[" "].width then
+					spaceWidth = fontSize * kerningTable[" "].width
+				end
+				if kerningTable[" "].height then
+					spaceHeight = fontSize * kerningTable[" "].height
+				end
+			end
+
+			local tex = "|T" .. spacePath .. ":" .. spaceHeight .. ":" .. spaceWidth .. "|t"
 			runeString = runeString .. tex
+
 		elseif character == "\t" or character == "\n" or character == "\r" then
 			runeString = runeString .. character
 		else
-			local tex = "|T" .. atlasPath .. character .. ":" .. fontSize .. ":" .. fontSize .. "|t"
+			local width = fontSize
+			local height = fontSize
+
+			if kerningTable then
+				local kerningData = kerningTable[character]
+				
+				if not kerningData then
+					kerningData = kerningTable[string.upper(character)]
+				end
+
+				if kerningData then
+					if kerningData.width then
+						width = fontSize * kerningData.width
+					end
+					if kerningData.height then
+						height = fontSize * kerningData.height
+					end
+				end
+			end
+
+			local tex = "|T" .. atlasPath .. character .. ":" .. height .. ":" .. width .. "|t"
 			runeString = runeString .. tex
 		end
 	end
