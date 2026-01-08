@@ -62,6 +62,106 @@ local function GetPlayerClassID()
 	return select(3, UnitClass("player"))
 end
 
+local LANGPRESET_CLASS_LANGUAGE_DEFAULT = {
+	gameplay = {
+		[12] = { L["Demonic"] },			-- Demon Hunter
+	},
+	recommended = {
+		[12] = { L["Demonic"] },			-- Demon Hunter
+		[5]  = { L["Shath'Yar"] },			-- Priest
+		[9]  = { L["Demonic"] },			-- Warlock
+		[4]  = { L["Gutterspeak"] },		-- Rogue
+		[7]  = { L["Kalimag"] },			-- Shaman
+		[8]  = { L["Titan"] },				-- Mage
+		[10] = { L["Pandaren"] },			-- Monk
+		[13] = { L["Draconic"] },			-- Evoker
+	},
+};
+
+local LANGPRESET_RACE_LANGUAGE_DEFAULT = {
+	gameplay = {
+		[1] = {[L["Common"]] = true}, -- 1 human 
+		[3] = {[L["Common"]] = true, [L["Dwarvish"]] = true}, -- 3 dwarf
+		[4] = {[L["Common"]] = true, [L["Darnassian"]] = true}, -- 4 night elf
+		[7] = {[L["Common"]] = true, [L["Gnomish"]] = true}, -- 7 gnome
+		[11] = {[L["Common"]] = true, [L["Draenei"]] = true}, -- 11 draenei
+		[22] = {[L["Common"]] = true}, -- 22 worgen
+		[29] = {[L["Common"]] = true, [L["Thalassian"]] = true}, -- 29 void elf
+		[30] = {[L["Common"]] = true, [L["Draenei"]] = true}, -- 30 lightforged
+		[34] = {[L["Common"]] = true, [L["Dwarvish"]] = true}, -- 34 dark iron
+		[32] = {[L["Common"]] = true}, -- 32 kul tiran
+		[37] = {[L["Common"]] = true, [L["Gnomish"]] = true}, -- 37 mechagnome
+		[24] = {[L["Pandaren"]] = true}, -- 24 pandaren neutral
+		[25] = {[L["Common"]] = true, [L["Pandaren"]] = true}, -- 25 pandaren alliance
+		[26] = {[L["Orcish"]] = true, [L["Pandaren"]] = true}, -- 26 pandaren horde
+		[2] = {[L["Orcish"]] = true}, -- 2 orc
+		[5] = {[L["Orcish"]] = true, [L["Forsaken"]] = true}, -- 5 forsaken
+		[6] = {[L["Orcish"]] = true, [L["Taurahe"]] = true}, -- 6 tauren
+		[8] = {[L["Orcish"]] = true, [L["Zandali"]] = true}, -- 8 troll
+		[10] = {[L["Orcish"]] = true, [L["Thalassian"]] = true}, -- 10 blood elf
+		[9] = {[L["Orcish"]] = true, [L["Goblin"]] = true}, -- 9 goblin
+		[27] = {[L["Orcish"]] = true, [L["Shalassian"]] = true}, -- 27 nightborne
+		[28] = {[L["Orcish"]] = true, [L["Taurahe"]] = true}, -- 28 highmountain
+		[36] = {[L["Orcish"]] = true}, -- 36 mag'har
+		[31] = {[L["Orcish"]] = true, [L["Zandali"]] = true}, -- 31 zandalari
+		[35] = {[L["Orcish"]] = true, [L["Vulpera"]] = true}, -- 35 vulpera
+		--dracthyrN = {L["Draconic"]}, -- 
+		[52] = {[L["Common"]] = true, [L["Draconic"]] = true}, -- 52 dracthyr alliance
+		[70] = {[L["Orcish"]] = true, [L["Draconic"]] = true}, -- 70 dracthyr horde
+		[84] = {[L["Common"]] = true, [L["Titan"]] = true}, -- 84 earthen alliance
+		[85] = {[L["Orcish"]] = true, [L["Titan"]] = true}, -- 85 earthen horde
+	},
+	recommended = {
+		[1] = {[L["Common"]] = true}, -- 1 human
+		[3] = {[L["Common"]] = true, [L["Dwarvish"]] = true, [L["Gnomish"]] = true}, -- 3 dwarf
+		[4] = {[L["Common"]] = true, [L["Darnassian"]] = true}, -- 4 night elf
+		[7] = {[L["Common"]] = true, [L["Gnomish"]] = true, [L["Dwarvish"]] = true}, -- 7 dwarf
+		[11] = {[L["Common"]] = true, [L["Draenei"]] = true, [L["Orcish"]] = true}, -- 11 draenei
+		[22] = {[L["Common"]] = true}, -- 22 worgen
+		[29] = {[L["Common"]] = true, [L["Thalassian"]] = true}, -- 29 void elf
+		[30] = {[L["Common"]] = true, [L["Draenei"]] = true}, -- 30 lightforged
+		[34] = {[L["Common"]] = true, [L["Dwarvish"]] = true}, -- 34 dark iron
+		[32] = {[L["Common"]] = true}, -- 32 kul tiran 
+		[37] = {[L["Common"]] = true, [L["Gnomish"]] = true}, -- 37 mechagnome
+		[24] = {[L["Pandaren"]] = true}, -- 24 pandaren neutral
+		[25] = {[L["Common"]] = true, [L["Pandaren"]] = true}, -- 25 pandaren alliance
+		[26] = {[L["Orcish"]] = true, [L["Pandaren"]] = true}, -- 26 pandaren horde
+		[2] = {[L["Orcish"]] = true, [L["Common"]] = true}, -- 2 orc
+		[5] = {[L["Orcish"]] = true, [L["Gutterspeak"]] = true, [L["Common"]] = true, [L["Forsaken"]] = true}, -- 5 forsaken
+		[6] = {[L["Orcish"]] = true, [L["Taurahe"]] = true}, -- 6 tauren
+		[8] = {[L["Orcish"]] = true, [L["Zandali"]] = true}, -- 8 troll
+		[10] = {[L["Orcish"]] = true, [L["Thalassian"]] = true, [L["Common"]] = true}, -- 10 blood elf
+		[9] = {[L["Orcish"]] = true, [L["Goblin"]] = true, [L["Common"]] = true}, -- 9 goblin
+		[27] = {[L["Orcish"]] = true, [L["Shalassian"]] = true}, -- 27 nightborne
+		[28] = {[L["Orcish"]] = true, [L["Taurahe"]] = true}, -- 28 highmountain
+		[36] = {[L["Orcish"]] = true}, --36 mag'har
+		[31] = {[L["Orcish"]] = true, [L["Zandali"]] = true}, -- 31 zandalari
+		[35] = {[L["Orcish"]] = true, [L["Vulpera"]] = true}, -- 35 vulpera
+		--dracthyrN = {L["Draconic"], L["Common"], L["Orcish"]}, -- 
+		[52] = {[L["Common"]] = true, [L["Draconic"]] = true, [L["Orcish"]] = true}, -- 52 dracthyr alliance
+		[70] = {[L["Orcish"]] = true, [L["Draconic"]] = true, [L["Common"]] = true}, -- 70 dracthyr horde
+		[84] = {[L["Common"]] = true, [L["Dwarvish"]] = true, [L["Titan"]] = true}, -- 84 earthen alliance
+		[85] = {[L["Orcish"]] = true, [L["Dwarvish"]] = true, [L["Titan"]] = true}, -- 85 earthen horde
+	},
+};
+
+local function ApplyLanguagePreset(targetProfile, presetKey)
+	local raceID  = GetPlayerRaceID()
+	local classID = GetPlayerClassID()
+
+	local raceDefaults  = LANGPRESET_RACE_LANGUAGE_DEFAULT[presetKey]
+	local classDefaults = LANGPRESET_CLASS_LANGUAGE_DEFAULT[presetKey]
+
+	targetProfile.understandLanguage = CopyTable((raceDefaults and raceDefaults[raceID]) or {})
+
+	local bonuses = classDefaults and classDefaults[classID]
+	if bonuses then
+		for _, language in ipairs(bonuses) do
+			targetProfile.understandLanguage[language] = true
+		end
+	end
+end
+
 local function GetLanguageNameByID(langID) -- default languages
 	for i = 1, GetNumLanguages() do
 		local name, id = GetLanguageByIndex(i)
@@ -79,7 +179,47 @@ local function Print(text)
 	return DEFAULT_CHAT_FRAME:AddMessage(text, 1, 1, 1)
 end
 
+function lang.InitializeDB()
+	if not Languages_DB then Languages_DB = {} end
+
+	if not Languages_DB.settings then 
+		Languages_DB.settings = CopyTable(defaultsTableAcc) 
+	else
+		for key, value in pairs(defaultsTableAcc) do
+			if Languages_DB.settings[key] == nil then
+				Languages_DB.settings[key] = value
+			elseif type(value) == "table" and type(Languages_DB.settings[key]) == "table" then
+				for subKey, subValue in pairs(value) do
+					if Languages_DB.settings[key][subKey] == nil then
+						Languages_DB.settings[key][subKey] = subValue
+					end
+				end
+			end
+		end
+	end
+
+	if not Languages_DB.profiles then Languages_DB.profiles = {} end
+	
+	if not Languages_DB.profiles[charKey] then 
+		Languages_DB.profiles[charKey] = CopyTable(defaultsTableChar) 
+		ApplyLanguagePreset(Languages_DB.profiles[charKey], "gameplay") 
+	end
+
+	for profileName, profileData in pairs(Languages_DB.profiles) do
+		for key, value in pairs(defaultsTableChar) do
+			if profileData[key] == nil then
+				if type(value) == "table" then
+					profileData[key] = CopyTable(value)
+				else
+					profileData[key] = value
+				end
+			end
+		end
+	end
+end
+
 local function GetActiveProfile()
+	lang.InitializeDB()
 	if C_AddOns.IsAddOnLoaded("totalRP3") and TRP3_API then
 		local trpProfile = TRP3_API.profile.getPlayerCurrentProfile()
 		if trpProfile and trpProfile.profileName then
@@ -87,6 +227,7 @@ local function GetActiveProfile()
 			
 			if not Languages_DB.profiles[key] then
 				Languages_DB.profiles[key] = CopyTable(defaultsTableChar)
+				ApplyLanguagePreset(Languages_DB.profiles[key], "gameplay") 
 			end
 			
 			if Languages_DB.profiles[charKey].TRP3 then
@@ -99,6 +240,7 @@ local function GetActiveProfile()
 	end
 	if Languages_DB and charKey and Languages_DB.profiles and not Languages_DB.profiles[charKey] then
 		Languages_DB.profiles[charKey] = CopyTable(defaultsTableChar)
+		ApplyLanguagePreset(Languages_DB.profiles[charKey], "gameplay") 
 	end
 	if Languages_DB and charKey and Languages_DB.profiles and Languages_DB.profiles[charKey] then
 		return Languages_DB.profiles[charKey]
@@ -424,6 +566,14 @@ local function ApplyDialectToText(text)
 
 	local protectedMap = {}
 	local protectedCount = 0
+	
+	--bring the underscore protection back waltuh
+	text = text:gsub("_([^_]+)_", function(captured)
+		protectedCount = protectedCount + 1
+		local token = "###LANG_P" .. protectedCount .. "###"
+		protectedMap[token] = captured
+		return token
+	end)
 	
 	local textLower = string.lower(text)
 
@@ -842,88 +992,7 @@ local understandLanguage = {
 };
 
 
-local LANGPRESET_CLASS_LANGUAGE_DEFAULT = {
-	gameplay = {
-		[12] = { L["Demonic"] },			-- Demon Hunter
-	},
-	recommended = {
-		[12] = { L["Demonic"] },			-- Demon Hunter
-		[5]  = { L["Shath'Yar"] },			-- Priest
-		[9]  = { L["Demonic"] },			-- Warlock
-		[4]  = { L["Gutterspeak"] },		-- Rogue
-		[7]  = { L["Kalimag"] },			-- Shaman
-		[8]  = { L["Titan"] },				-- Mage
-		[10] = { L["Pandaren"] },			-- Monk
-		[13] = { L["Draconic"] },			-- Evoker
-	},
-};
 
-local LANGPRESET_RACE_LANGUAGE_DEFAULT = {
-	gameplay = {
-		[1] = {[L["Common"]] = true}, -- 1 human 
-		[3] = {[L["Common"]] = true, [L["Dwarvish"]] = true}, -- 3 dwarf
-		[4] = {[L["Common"]] = true, [L["Darnassian"]] = true}, -- 4 night elf
-		[7] = {[L["Common"]] = true, [L["Gnomish"]] = true}, -- 7 gnome
-		[11] = {[L["Common"]] = true, [L["Draenei"]] = true}, -- 11 draenei
-		[22] = {[L["Common"]] = true}, -- 22 worgen
-		[29] = {[L["Common"]] = true, [L["Thalassian"]] = true}, -- 29 void elf
-		[30] = {[L["Common"]] = true, [L["Draenei"]] = true}, -- 30 lightforged
-		[34] = {[L["Common"]] = true, [L["Dwarvish"]] = true}, -- 34 dark iron
-		[32] = {[L["Common"]] = true}, -- 32 kul tiran
-		[37] = {[L["Common"]] = true, [L["Gnomish"]] = true}, -- 37 mechagnome
-		[24] = {[L["Pandaren"]] = true}, -- 24 pandaren neutral
-		[25] = {[L["Common"]] = true, [L["Pandaren"]] = true}, -- 25 pandaren alliance
-		[26] = {[L["Orcish"]] = true, [L["Pandaren"]] = true}, -- 26 pandaren horde
-		[2] = {[L["Orcish"]] = true}, -- 2 orc
-		[5] = {[L["Orcish"]] = true, [L["Forsaken"]] = true}, -- 5 forsaken
-		[6] = {[L["Orcish"]] = true, [L["Taurahe"]] = true}, -- 6 tauren
-		[8] = {[L["Orcish"]] = true, [L["Zandali"]] = true}, -- 8 troll
-		[10] = {[L["Orcish"]] = true, [L["Thalassian"]] = true}, -- 10 blood elf
-		[9] = {[L["Orcish"]] = true, [L["Goblin"]] = true}, -- 9 goblin
-		[27] = {[L["Orcish"]] = true, [L["Shalassian"]] = true}, -- 27 nightborne
-		[28] = {[L["Orcish"]] = true, [L["Taurahe"]] = true}, -- 28 highmountain
-		[36] = {[L["Orcish"]] = true}, -- 36 mag'har
-		[31] = {[L["Orcish"]] = true, [L["Zandali"]] = true}, -- 31 zandalari
-		[35] = {[L["Orcish"]] = true, [L["Vulpera"]] = true}, -- 35 vulpera
-		--dracthyrN = {L["Draconic"]}, -- 
-		[52] = {[L["Common"]] = true, [L["Draconic"]] = true}, -- 52 dracthyr alliance
-		[70] = {[L["Orcish"]] = true, [L["Draconic"]] = true}, -- 70 dracthyr horde
-		[84] = {[L["Common"]] = true, [L["Titan"]] = true}, -- 84 earthen alliance
-		[85] = {[L["Orcish"]] = true, [L["Titan"]] = true}, -- 85 earthen horde
-	},
-	recommended = {
-		[1] = {[L["Common"]] = true}, -- 1 human
-		[3] = {[L["Common"]] = true, [L["Dwarvish"]] = true, [L["Gnomish"]] = true}, -- 3 dwarf
-		[4] = {[L["Common"]] = true, [L["Darnassian"]] = true}, -- 4 night elf
-		[7] = {[L["Common"]] = true, [L["Gnomish"]] = true, [L["Dwarvish"]] = true}, -- 7 dwarf
-		[11] = {[L["Common"]] = true, [L["Draenei"]] = true, [L["Orcish"]] = true}, -- 11 draenei
-		[22] = {[L["Common"]] = true}, -- 22 worgen
-		[29] = {[L["Common"]] = true, [L["Thalassian"]] = true}, -- 29 void elf
-		[30] = {[L["Common"]] = true, [L["Draenei"]] = true}, -- 30 lightforged
-		[34] = {[L["Common"]] = true, [L["Dwarvish"]] = true}, -- 34 dark iron
-		[32] = {[L["Common"]] = true}, -- 32 kul tiran 
-		[37] = {[L["Common"]] = true, [L["Gnomish"]] = true}, -- 37 mechagnome
-		[24] = {[L["Pandaren"]] = true}, -- 24 pandaren neutral
-		[25] = {[L["Common"]] = true, [L["Pandaren"]] = true}, -- 25 pandaren alliance
-		[26] = {[L["Orcish"]] = true, [L["Pandaren"]] = true}, -- 26 pandaren horde
-		[2] = {[L["Orcish"]] = true, [L["Common"]] = true}, -- 2 orc
-		[5] = {[L["Orcish"]] = true, [L["Gutterspeak"]] = true, [L["Common"]] = true, [L["Forsaken"]] = true}, -- 5 forsaken
-		[6] = {[L["Orcish"]] = true, [L["Taurahe"]] = true}, -- 6 tauren
-		[8] = {[L["Orcish"]] = true, [L["Zandali"]] = true}, -- 8 troll
-		[10] = {[L["Orcish"]] = true, [L["Thalassian"]] = true, [L["Common"]] = true}, -- 10 blood elf
-		[9] = {[L["Orcish"]] = true, [L["Goblin"]] = true, [L["Common"]] = true}, -- 9 goblin
-		[27] = {[L["Orcish"]] = true, [L["Shalassian"]] = true}, -- 27 nightborne
-		[28] = {[L["Orcish"]] = true, [L["Taurahe"]] = true}, -- 28 highmountain
-		[36] = {[L["Orcish"]] = true}, --36 mag'har
-		[31] = {[L["Orcish"]] = true, [L["Zandali"]] = true}, -- 31 zandalari
-		[35] = {[L["Orcish"]] = true, [L["Vulpera"]] = true}, -- 35 vulpera
-		--dracthyrN = {L["Draconic"], L["Common"], L["Orcish"]}, -- 
-		[52] = {[L["Common"]] = true, [L["Draconic"]] = true, [L["Orcish"]] = true}, -- 52 dracthyr alliance
-		[70] = {[L["Orcish"]] = true, [L["Draconic"]] = true, [L["Common"]] = true}, -- 70 dracthyr horde
-		[84] = {[L["Common"]] = true, [L["Dwarvish"]] = true, [L["Titan"]] = true}, -- 84 earthen alliance
-		[85] = {[L["Orcish"]] = true, [L["Dwarvish"]] = true, [L["Titan"]] = true}, -- 85 earthen horde
-	},
-};
 
 
 ----------------------------------------
@@ -1143,6 +1212,7 @@ StaticPopupDialogs["LANGUAGES_CHAR_RESET_SETTINGS"] = {
 		else
 			Languages_DB.profiles[charKey] = nil;
 			Languages_DB.profiles[charKey] = CopyTable(defaultsTableChar);
+			ApplyLanguagePreset(Languages_DB.profiles[charKey], "gameplay") 
 		end
 		lang.checkSettings();
 	end,
@@ -1152,22 +1222,7 @@ StaticPopupDialogs["LANGUAGES_CHAR_RESET_SETTINGS"] = {
 };
 
 
-local function ApplyLanguagePreset(targetProfile, presetKey)
-	local raceID  = GetPlayerRaceID()
-	local classID = GetPlayerClassID()
 
-	local raceDefaults  = LANGPRESET_RACE_LANGUAGE_DEFAULT[presetKey]
-	local classDefaults = LANGPRESET_CLASS_LANGUAGE_DEFAULT[presetKey]
-
-	targetProfile.understandLanguage = CopyTable((raceDefaults and raceDefaults[raceID]) or {})
-
-	local bonuses = classDefaults and classDefaults[classID]
-	if bonuses then
-		for _, language in ipairs(bonuses) do
-			targetProfile.understandLanguage[language] = true
-		end
-	end
-end
 
 local function GetTRP3Profile()
 	if not (Languages_DB.profiles[charKey].TRP3 and TRP3_API) then
@@ -2357,6 +2412,7 @@ function lang.trp3ProfileName()
 		if TRP3_API.profile.getPlayerCurrentProfile() then
 			if Languages_DB.profiles["TRP3_" .. TRP3_API.profile.getPlayerCurrentProfile().profileName] == nil then
 				Languages_DB.profiles["TRP3_" .. TRP3_API.profile.getPlayerCurrentProfile().profileName] = CopyTable(defaultsTableChar);
+				ApplyLanguagePreset(Languages_DB.profiles["TRP3_" .. TRP3_API.profile.getPlayerCurrentProfile().profileName], "gameplay")
 			end
 
 			if Languages_DB.profiles[charKey].TRP3 == true then
@@ -2611,44 +2667,6 @@ function mainFrame.init()
 	mainFrame.RefreshDialectWordList()
 end
 
-function lang.InitializeDB()
-	if not Languages_DB then Languages_DB = {} end
-
-	if not Languages_DB.settings then 
-		Languages_DB.settings = CopyTable(defaultsTableAcc) 
-	else
-		for key, value in pairs(defaultsTableAcc) do
-			if Languages_DB.settings[key] == nil then
-				Languages_DB.settings[key] = value
-			elseif type(value) == "table" and type(Languages_DB.settings[key]) == "table" then
-				for subKey, subValue in pairs(value) do
-					if Languages_DB.settings[key][subKey] == nil then
-						Languages_DB.settings[key][subKey] = subValue
-					end
-				end
-			end
-		end
-	end
-
-	if not Languages_DB.profiles then Languages_DB.profiles = {} end
-	
-	if not Languages_DB.profiles[charKey] then 
-		Languages_DB.profiles[charKey] = CopyTable(defaultsTableChar) 
-	end
-
-	for profileName, profileData in pairs(Languages_DB.profiles) do
-		for key, value in pairs(defaultsTableChar) do
-			if profileData[key] == nil then
-				if type(value) == "table" then
-					profileData[key] = CopyTable(value)
-				else
-					profileData[key] = value
-				end
-			end
-		end
-	end
-end
-
 
 local TranslationTooltip = CreateFrame("Frame", "LanguagesTranslationTooltip", UIParent, "BackdropTemplate")
 TranslationTooltip:SetSize(300, 150)
@@ -2784,6 +2802,7 @@ function lang.addonLoaded(self, event, arg1) -- table, event, addonName
 
 		if Languages_DB.profiles[charKey] == nil then
 			Languages_DB.profiles[charKey] = CopyTable(defaultsTableChar);
+			ApplyLanguagePreset(Languages_DB.profiles[charKey], "gameplay");
 		end
 		
 		if not lang.SelectionButton then

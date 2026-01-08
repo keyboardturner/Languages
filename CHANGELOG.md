@@ -1,11 +1,21 @@
-# 0.2.1
+# 1.0.0
 
-Reworked the language list code
+Reworked the language list code, allowing for Favorites and a Search
 
-certain proper nouns / words remain untranslated in their respective language, while certain words translate properly to lore-established terms
+Added Dialect tab with several premade dialects to choose from (still a work-in-progress)
+ - Dialect allows for toggling individual changed words, and a manual override cancel where a term is surrounded by underscores (and removing the underscores)
+
+Language alphabet rune & spacing width rescaled to better fit the characters
+
+New "Mini-Button" frame has been added, allowing for easier known language selection and switching the prefix on/off.
+
+New "Only In Character" setting has been added for Total RP 3 users, automatically switching the prefix on/off depending on on-character status.
+
+Certain proper nouns / words remain untranslated in their respective language, while certain words translate properly to lore-established terms
 
 Capitalization is now retained, and certain characters such as periods, commas, and hyphens will pass through untranslated
 
+New profiles will start with the Gameplay preset.
 
 
 # 0.2.0
