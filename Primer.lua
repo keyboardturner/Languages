@@ -716,14 +716,6 @@ local AlphabetKerning = {
 			width = .90625,
 			height = 1,
 		},
-
-
-		--[[
-		[""] = {
-			width = 1,
-			height = 1,
-		},
-		]]
 	},
 
 
@@ -845,14 +837,6 @@ local AlphabetKerning = {
 			width = .59375,
 			height = 1,
 		},
-
-
-		--[[
-		[""] = {
-			width = 1,
-			height = 1,
-		},
-		]]
 	},
 
 
@@ -974,14 +958,6 @@ local AlphabetKerning = {
 			width = 1,
 			height = 1,
 		},
-
-
-		--[[
-		[""] = {
-			width = 1,
-			height = 1,
-		},
-		]]
 	},
 
 
@@ -1103,14 +1079,6 @@ local AlphabetKerning = {
 			width = 0.703125,
 			height = 1,
 		},
-
-
-		--[[
-		[""] = {
-			width = 1,
-			height = 1,
-		},
-		]]
 	},
 
 
@@ -1121,7 +1089,7 @@ local AlphabetKerning = {
 			height = 1,
 		},
 		["'"] = {
-			width = 0.375,
+			width = .375,
 			height = 1,
 		},
 		["-"] = {
@@ -1129,11 +1097,11 @@ local AlphabetKerning = {
 			height = 1,
 		},
 		["A"] = {
-			width = 0.8125,
+			width = .8125,
 			height = 1,
 		},
 		["B"] = {
-			width = 0.84375,
+			width = .84375,
 			height = 1,
 		},
 		["C"] = {
@@ -1141,15 +1109,15 @@ local AlphabetKerning = {
 			height = 1,
 		},
 		["D"] = {
-			width = 0.59375,
+			width = .59375,
 			height = 1,
 		},
 		["E"] = {
-			width = 0.703125,
+			width = .703125,
 			height = 1,
 		},
 		["F"] = {
-			width = 0.84375,
+			width = .84375,
 			height = 1,
 		},
 		["G"] = {
@@ -1157,7 +1125,7 @@ local AlphabetKerning = {
 			height = 1,
 		},
 		["H"] = {
-			width = 0.640625,
+			width = .640625,
 			height = 1,
 		},
 		["I"] = {
@@ -1169,7 +1137,7 @@ local AlphabetKerning = {
 			height = 1,
 		},
 		["K"] = {
-			width = 0.78125,
+			width = .78125,
 			height = 1,
 		},
 		["L"] = {
@@ -1177,7 +1145,7 @@ local AlphabetKerning = {
 			height = 1,
 		},
 		["M"] = {
-			width = 0.765625,
+			width = .765625,
 			height = 1,
 		},
 		["N"] = {
@@ -1189,31 +1157,31 @@ local AlphabetKerning = {
 			height = 1,
 		},
 		["P"] = {
-			width = 0.71875,
+			width = .71875,
 			height = 1,
 		},
 		["Q"] = {
-			width = 0.59375,
+			width = .59375,
 			height = 1,
 		},
 		["R"] = {
-			width = 0.75,
+			width = .75,
 			height = 1,
 		},
 		["S"] = {
-			width = 0.6875,
+			width = .6875,
 			height = 1,
 		},
 		["T"] = {
-			width = 0.5625,
+			width = .5625,
 			height = 1,
 		},
 		["U"] = {
-			width = 0.84375,
+			width = .84375,
 			height = 1,
 		},
 		["V"] = {
-			width = 0.9375,
+			width = .9375,
 			height = 1,
 		},
 		["W"] = {
@@ -1229,18 +1197,980 @@ local AlphabetKerning = {
 			height = 1,
 		},
 		["Z"] = {
-			width = 0.6875,
+			width = .6875,
 			height = 1,
 		},
+	},
 
 
-		--[[
-		[""] = {
+
+	[L["Common"]] = {
+		[" "] = {
 			width = 1,
 			height = 1,
 		},
-		]]
+		["'"] = {
+			width = .250,
+			height = 1,
+		},
+		["-"] = {
+			width = .5625,
+			height = 1,
+		},
+		["A"] = {
+			width = .500,
+			height = 1,
+		},
+		["B"] = {
+			width = .5625,
+			height = 1,
+		},
+		["C"] = {
+			width = .625,
+			height = 1,
+		},
+		["D"] = {
+			width = .625,
+			height = 1,
+		},
+		["E"] = {
+			width = .625,
+			height = 1,
+		},
+		["F"] = {
+			width = .750,
+			height = 1,
+		},
+		["G"] = {
+			width = .625,
+			height = 1,
+		},
+		["H"] = {
+			width = .625,
+			height = 1,
+		},
+		["I"] = {
+			width = .250,
+			height = 1,
+		},
+		["J"] = {
+			width = 1,
+			height = 1,
+		},
+		["K"] = {
+			width = .625,
+			height = 1,
+		},
+		["L"] = {
+			width = .375,
+			height = 1,
+		},
+		["M"] = {
+			width = .625,
+			height = 1,
+		},
+		["N"] = {
+			width = .5625,
+			height = 1,
+		},
+		["O"] = {
+			width = .500,
+			height = 1,
+		},
+		["P"] = {
+			width = .5625,
+			height = 1,
+		},
+		["Q"] = {
+			width = .90625,
+			height = 1,
+		},
+		["R"] = {
+			width = .59375,
+			height = 1,
+		},
+		["S"] = {
+			width = .59375,
+			height = 1,
+		},
+		["T"] = {
+			width = .5625,
+			height = 1,
+		},
+		["U"] = {
+			width = .4375,
+			height = 1,
+		},
+		["V"] = {
+			width = .5625,
+			height = 1,
+		},
+		["W"] = {
+			width = .65625,
+			height = 1,
+		},
+		["X"] = {
+			width = .90625,
+			height = 1,
+		},
+		["Y"] = {
+			width = .625,
+			height = 1,
+		},
+		["Z"] = {
+			width = .750,
+			height = 1,
+		},
 	},
+
+
+	[L["Cypher"]] = {
+		[" "] = {
+			width = 1,
+			height = 1,
+		},
+		["'"] = {
+			width = .3125,
+			height = 1,
+		},
+		["-"] = {
+			width = .3125,
+			height = 1,
+		},
+		["A"] = {
+			width = .3125,
+			height = 1,
+		},
+		["B"] = {
+			width = .8125,
+			height = 1,
+		},
+		["C"] = {
+			width = .84375,
+			height = 1,
+		},
+		["D"] = {
+			width = .90625,
+			height = 1,
+		},
+		["E"] = {
+			width = .90625,
+			height = 1,
+		},
+		["F"] = {
+			width = .84375,
+			height = 1,
+		},
+		["G"] = {
+			width = 1,
+			height = 1,
+		},
+		["H"] = {
+			width = .875,
+			height = 1,
+		},
+		["I"] = {
+			width = 1,
+			height = 1,
+		},
+		["J"] = {
+			width = 1,
+			height = 1,
+		},
+		["K"] = {
+			width = 1,
+			height = 1,
+		},
+		["L"] = {
+			width = .71875,
+			height = 1,
+		},
+		["M"] = {
+			width = .90625,
+			height = 1,
+		},
+		["N"] = {
+			width = .78125,
+			height = 1,
+		},
+		["O"] = {
+			width = .875,
+			height = 1,
+		},
+		["P"] = {
+			width = .53125,
+			height = 1,
+		},
+		["Q"] = {
+			width = 1,
+			height = 1,
+		},
+		["R"] = {
+			width = .78125,
+			height = 1,
+		},
+		["S"] = {
+			width = 1,
+			height = 1,
+		},
+		["T"] = {
+			width = .59375,
+			height = 1,
+		},
+		["U"] = {
+			width = .625,
+			height = 1,
+		},
+		["V"] = {
+			width = .46875,
+			height = 1,
+		},
+		["W"] = {
+			width = 1,
+			height = 1,
+		},
+		["X"] = {
+			width = .875,
+			height = 1,
+		},
+		["Y"] = {
+			width = 1,
+			height = 1,
+		},
+		["Z"] = {
+			width = .59375,
+			height = 1,
+		},
+	},
+
+
+
+	[L["Darnassian"]] = {
+		[" "] = {
+			width = 1,
+			height = 1,
+		},
+		["'"] = {
+			width = .250,
+			height = 1,
+		},
+		["-"] = {
+			width = .59375,
+			height = 1,
+		},
+		["A"] = {
+			width = .90625,
+			height = 1,
+		},
+		["B"] = {
+			width = .71875,
+			height = 1,
+		},
+		["C"] = {
+			width = 1,
+			height = 1,
+		},
+		["D"] = {
+			width = .59375,
+			height = 1,
+		},
+		["E"] = {
+			width = .5625,
+			height = 1,
+		},
+		["F"] = {
+			width = .46875,
+			height = 1,
+		},
+		["G"] = {
+			width = 1,
+			height = 1,
+		},
+		["H"] = {
+			width = .625,
+			height = 1,
+		},
+		["I"] = {
+			width = .5625,
+			height = 1,
+		},
+		["J"] = {
+			width = .625,
+			height = 1,
+		},
+		["K"] = {
+			width = .625,
+			height = 1,
+		},
+		["L"] = {
+			width = .65625,
+			height = 1,
+		},
+		["M"] = {
+			width = .500,
+			height = 1,
+		},
+		["N"] = {
+			width = .500,
+			height = 1,
+		},
+		["O"] = {
+			width = .375,
+			height = 1,
+		},
+		["P"] = {
+			width = .90625,
+			height = 1,
+		},
+		["Q"] = {
+			width = .90625,
+			height = 1,
+		},
+		["R"] = {
+			width = .65625,
+			height = 1,
+		},
+		["S"] = {
+			width = .875,
+			height = 1,
+		},
+		["T"] = {
+			width = .875,
+			height = 1,
+		},
+		["U"] = {
+			width = 1,
+			height = 1,
+		},
+		["V"] = {
+			width = .5625,
+			height = 1,
+		},
+		["W"] = {
+			width = .78125,
+			height = 1,
+		},
+		["X"] = {
+			width = .8125,
+			height = 1,
+		},
+		["Y"] = {
+			width = .625,
+			height = 1,
+		},
+		["Z"] = {
+			width = .750,
+			height = 1,
+		},
+	},
+
+
+
+	[L["Draenei"]] = {
+		[" "] = {
+			width = 1,
+			height = 1,
+		},
+		["'"] = {
+			width = .28125,
+			height = 1,
+		},
+		["-"] = {
+			width = .90625,
+			height = 1,
+		},
+		["A"] = {
+			width = .875,
+			height = 1,
+		},
+		["B"] = {
+			width = .90625,
+			height = 1,
+		},
+		["C"] = {
+			width = .90625,
+			height = 1,
+		},
+		["D"] = {
+			width = .78125,
+			height = 1,
+		},
+		["E"] = {
+			width = .6875,
+			height = 1,
+		},
+		["F"] = {
+			width = .875,
+			height = 1,
+		},
+		["G"] = {
+			width = .65625,
+			height = 1,
+		},
+		["H"] = {
+			width = .875,
+			height = 1,
+		},
+		["I"] = {
+			width = .90625,
+			height = 1,
+		},
+		["J"] = {
+			width = .90625,
+			height = 1,
+		},
+		["K"] = {
+			width = .90625,
+			height = 1,
+		},
+		["L"] = {
+			width = .6875,
+			height = 1,
+		},
+		["M"] = {
+			width = .90625,
+			height = 1,
+		},
+		["N"] = {
+			width = .71875,
+			height = 1,
+		},
+		["O"] = {
+			width = .8125,
+			height = 1,
+		},
+		["P"] = {
+			width = .90625,
+			height = 1,
+		},
+		["Q"] = {
+			width = .84375,
+			height = 1,
+		},
+		["R"] = {
+			width = .875,
+			height = 1,
+		},
+		["S"] = {
+			width = .875,
+			height = 1,
+		},
+		["T"] = {
+			width = .6875,
+			height = 1,
+		},
+		["U"] = {
+			width = .84375,
+			height = 1,
+		},
+		["V"] = {
+			width = .6875,
+			height = 1,
+		},
+		["W"] = {
+			width = .90625,
+			height = 1,
+		},
+		["X"] = {
+			width = .90625,
+			height = 1,
+		},
+		["Y"] = {
+			width = .90625,
+			height = 1,
+		},
+		["Z"] = {
+			width = .875,
+			height = 1,
+		},
+
+	},
+
+
+
+	[L["Dwarvish"]] = {
+		[" "] = {
+			width = 1,
+			height = 1,
+		},
+		["'"] = {
+			width = .250,
+			height = 1,
+		},
+		["-"] = {
+			width = .28125,
+			height = 1,
+		},
+		["A"] = {
+			width = 1,
+			height = 1,
+		},
+		["B"] = {
+			width = .625,
+			height = 1,
+		},
+		["C"] = {
+			width = .8125,
+			height = 1,
+		},
+		["D"] = {
+			width = .90625,
+			height = 1,
+		},
+		["E"] = {
+			width = .90625,
+			height = 1,
+		},
+		["F"] = {
+			width = 1,
+			height = 1,
+		},
+		["G"] = {
+			width = .625,
+			height = 1,
+		},
+		["H"] = {
+			width = .53125,
+			height = 1,
+		},
+		["I"] = {
+			width = .500,
+			height = 1,
+		},
+		["J"] = {
+			width = .500,
+			height = 1,
+		},
+		["K"] = {
+			width = .500,
+			height = 1,
+		},
+		["L"] = {
+			width = .65625,
+			height = 1,
+		},
+		["M"] = {
+			width = .65625,
+			height = 1,
+		},
+		["N"] = {
+			width = .750,
+			height = 1,
+		},
+		["O"] = {
+			width = .65625,
+			height = 1,
+		},
+		["P"] = {
+			width = .5625,
+			height = 1,
+		},
+		["Q"] = {
+			width = .500,
+			height = 1,
+		},
+		["R"] = {
+			width = .5625,
+			height = 1,
+		},
+		["S"] = {
+			width = .6875,
+			height = 1,
+		},
+		["T"] = {
+			width = .500,
+			height = 1,
+		},
+		["U"] = {
+			width = .5625,
+			height = 1,
+		},
+		["V"] = {
+			width = .625,
+			height = 1,
+		},
+		["W"] = {
+			width = .90625,
+			height = 1,
+		},
+		["X"] = {
+			width = 1,
+			height = 1,
+		},
+		["Y"] = {
+			width = .71875,
+			height = 1,
+		},
+		["Z"] = {
+			width = .500,
+			height = 1,
+		},
+	},
+
+
+
+	[L["Furbolg"]] = {
+		[" "] = {
+			width = 1,
+			height = 1,
+		},
+		
+		["'"] = {
+			width = .34375,
+			height = 1,
+		},
+		["-"] = {
+			width = .8125,
+			height = 1,
+		},
+		["A"] = {
+			width = .40625,
+			height = 1,
+		},
+		["B"] = {
+			width = .625,
+			height = 1,
+		},
+		["C"] = {
+			width = .90625,
+			height = 1,
+		},
+		["D"] = {
+			width = .5625,
+			height = 1,
+		},
+		["E"] = {
+			width = 1,
+			height = 1,
+		},
+		["F"] = {
+			width = .6875,
+			height = 1,
+		},
+		["G"] = {
+			width = 1,
+			height = 1,
+		},
+		["H"] = {
+			width = 1,
+			height = 1,
+		},
+		["I"] = {
+			width = 1,
+			height = 1,
+		},
+		["J"] = {
+			width = .8125,
+			height = 1,
+		},
+		["K"] = {
+			width = .71875,
+			height = 1,
+		},
+		["L"] = {
+			width = .625,
+			height = 1,
+		},
+		["M"] = {
+			width = .59375,
+			height = 1,
+		},
+		["N"] = {
+			width = .625,
+			height = 1,
+		},
+		["O"] = {
+			width = .8125,
+			height = 1,
+		},
+		["P"] = {
+			width = 1,
+			height = 1,
+		},
+		["Q"] = {
+			width = .90625,
+			height = 1,
+		},
+		["R"] = {
+			width = .71875,
+			height = 1,
+		},
+		["S"] = {
+			width = .8125,
+			height = 1,
+		},
+		["T"] = {
+			width = .500,
+			height = 1,
+		},
+		["U"] = {
+			width = 1,
+			height = 1,
+		},
+		["V"] = {
+			width = .875,
+			height = 1,
+		},
+		["W"] = {
+			width = .750,
+			height = 1,
+		},
+		["X"] = {
+			width = .675,
+			height = 1,
+		},
+		["Y"] = {
+			width = .875,
+			height = 1,
+		},
+		["Z"] = {
+			width = .90625,
+			height = 1,
+		},
+	},
+
+
+
+	[L["Orcish"]] = {
+		[" "] = {
+			width = 1,
+			height = 1,
+		},
+		["'"] = {
+			width = .750,
+			height = 1,
+		},
+		["-"] = {
+			width = .625,
+			height = 1,
+		},
+		["A"] = {
+			width = .875,
+			height = 1,
+		},
+		["B"] = {
+			width = .8125,
+			height = 1,
+		},
+		["C"] = {
+			width = .875,
+			height = 1,
+		},
+		["D"] = {
+			width = .875,
+			height = 1,
+		},
+		["E"] = {
+			width = .90625,
+			height = 1,
+		},
+		["F"] = {
+			width = .875,
+			height = 1,
+		},
+		["G"] = {
+			width = .875,
+			height = 1,
+		},
+		["H"] = {
+			width = .000,
+			height = 1,
+		},
+		["I"] = {
+			width = .875,
+			height = 1,
+		},
+		["J"] = {
+			width = .000,
+			height = 1,
+		},
+		["K"] = {
+			width = .000,
+			height = 1,
+		},
+		["L"] = {
+			width = .90625,
+			height = 1,
+		},
+		["M"] = {
+			width = .000,
+			height = 1,
+		},
+		["N"] = {
+			width = .90625,
+			height = 1,
+		},
+		["O"] = {
+			width = .875,
+			height = 1,
+		},
+		["P"] = {
+			width = .000,
+			height = 1,
+		},
+		["Q"] = {
+			width = .750,
+			height = 1,
+		},
+		["R"] = {
+			width = .000,
+			height = 1,
+		},
+		["S"] = {
+			width = .000,
+			height = 1,
+		},
+		["T"] = {
+			width = .90625,
+			height = 1,
+		},
+		["U"] = {
+			width = .000,
+			height = 1,
+		},
+		["V"] = {
+			width = .000,
+			height = 1,
+		},
+		["W"] = {
+			width = .000,
+			height = 1,
+		},
+		["X"] = {
+			width = .000,
+			height = 1,
+		},
+		["Y"] = {
+			width = .750,
+			height = 1,
+		},
+		["Z"] = {
+			width = .875,
+			height = 1,
+		},
+
+	},
+
+	--[[
+	["PLACEHOLDER"] = {
+		[" "] = {
+			width = 1,
+			height = 1,
+		},
+		["'"] = {
+			width = 1,
+			height = 1,
+		},
+		["-"] = {
+			width = 1,
+			height = 1,
+		},
+		["A"] = {
+			width = 1,
+			height = 1,
+		},
+		["B"] = {
+			width = 1,
+			height = 1,
+		},
+		["C"] = {
+			width = 1,
+			height = 1,
+		},
+		["D"] = {
+			width = 1,
+			height = 1,
+		},
+		["E"] = {
+			width = 1,
+			height = 1,
+		},
+		["F"] = {
+			width = 1,
+			height = 1,
+		},
+		["G"] = {
+			width = 1,
+			height = 1,
+		},
+		["H"] = {
+			width = 1,
+			height = 1,
+		},
+		["I"] = {
+			width = 1,
+			height = 1,
+		},
+		["J"] = {
+			width = 1,
+			height = 1,
+		},
+		["K"] = {
+			width = 1,
+			height = 1,
+		},
+		["L"] = {
+			width = 1,
+			height = 1,
+		},
+		["M"] = {
+			width = 1,
+			height = 1,
+		},
+		["N"] = {
+			width = 1,
+			height = 1,
+		},
+		["O"] = {
+			width = 1,
+			height = 1,
+		},
+		["P"] = {
+			width = 1,
+			height = 1,
+		},
+		["Q"] = {
+			width = 1,
+			height = 1,
+		},
+		["R"] = {
+			width = 1,
+			height = 1,
+		},
+		["S"] = {
+			width = 1,
+			height = 1,
+		},
+		["T"] = {
+			width = 1,
+			height = 1,
+		},
+		["U"] = {
+			width = 1,
+			height = 1,
+		},
+		["V"] = {
+			width = 1,
+			height = 1,
+		},
+		["W"] = {
+			width = 1,
+			height = 1,
+		},
+		["X"] = {
+			width = 1,
+			height = 1,
+		},
+		["Y"] = {
+			width = 1,
+			height = 1,
+		},
+		["Z"] = {
+			width = 1,
+			height = 1,
+		},
+	},
+	]]
 
 };
 
