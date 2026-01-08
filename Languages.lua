@@ -21,6 +21,12 @@ local defaultsTableAcc = {
 	speechBubbles = true,
 	faction = true,
 
+	selectionButton = {
+		point = "CENTER",
+		relativePoint = "CENTER",
+		x = 0,
+		y = 0,
+	},
 };
 
 local defaultsTableChar = {
@@ -39,10 +45,6 @@ local defaultsTableChar = {
 	favoriteLanguages = {},
 	selectionButton = {
 		shown = true,
-		point = "CENTER",
-		relativePoint = "CENTER",
-		x = 0,
-		y = 0,
 	},
 };
 
@@ -1002,13 +1004,12 @@ local understandLanguage = {
 
 function lang.SaveButtonPosition(self)
 	local point, _, relativePoint, x, y = self:GetPoint()
-	local profile = GetActiveProfile()
 	
-	if not profile.selectionButton then profile.selectionButton = {} end
-	profile.selectionButton.point = point
-	profile.selectionButton.relativePoint = relativePoint
-	profile.selectionButton.x = x
-	profile.selectionButton.y = y
+	if not Languages_DB.settings.selectionButton then Languages_DB.settings.selectionButton = {} end
+	Languages_DB.settings.selectionButton.point = point
+	Languages_DB.settings.selectionButton.relativePoint = relativePoint
+	Languages_DB.settings.selectionButton.x = x
+	Languages_DB.settings.selectionButton.y = y
 end
 
 function lang.SelectionButtonGenerator(owner, rootDescription)
@@ -2530,19 +2531,21 @@ function lang.checkSettings()
 	mainFrame.shapeshiftFormsCB:SetChecked(profile.shapeshift);
 	mainFrame.onlyInCharacterCB:SetChecked(profile.onlyInCharacter)
 
-	if not lang.SelectionButton then
-		lang.CreateSelectionButton()
-	end
-	
 	if not profile.selectionButton then 
 		profile.selectionButton = CopyTable(defaultsTableChar.selectionButton) 
+	end
+
+	if not Languages_DB.settings.selectionButton then
+		Languages_DB.settings.selectionButton = CopyTable(defaultsTableAcc.selectionButton)
 	end
 
 	mainFrame.selectionButtonCB:SetChecked(profile.selectionButton.shown)
 	
 	lang.SelectionButton:ClearAllPoints()
-	if profile.selectionButton.point then
-		lang.SelectionButton:SetPoint(profile.selectionButton.point, UIParent, profile.selectionButton.relativePoint, profile.selectionButton.x, profile.selectionButton.y)
+	
+	if Languages_DB.settings.selectionButton.point then
+		local pos = Languages_DB.settings.selectionButton
+		lang.SelectionButton:SetPoint(pos.point, UIParent, pos.relativePoint, pos.x, pos.y)
 	else
 		lang.SelectionButton:SetPoint("CENTER", UIParent, "CENTER", 0, 0)
 	end
