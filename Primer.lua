@@ -1113,6 +1113,135 @@ local AlphabetKerning = {
 		]]
 	},
 
+
+
+	[L["Shath'Yar"]] = {
+		[" "] = {
+			width = 1,
+			height = 1,
+		},
+		["'"] = {
+			width = 0.375,
+			height = 1,
+		},
+		["-"] = {
+			width = 1,
+			height = 1,
+		},
+		["A"] = {
+			width = 0.8125,
+			height = 1,
+		},
+		["B"] = {
+			width = 0.84375,
+			height = 1,
+		},
+		["C"] = {
+			width = 1,
+			height = 1,
+		},
+		["D"] = {
+			width = 0.59375,
+			height = 1,
+		},
+		["E"] = {
+			width = 0.703125,
+			height = 1,
+		},
+		["F"] = {
+			width = 0.84375,
+			height = 1,
+		},
+		["G"] = {
+			width = 1,
+			height = 1,
+		},
+		["H"] = {
+			width = 0.640625,
+			height = 1,
+		},
+		["I"] = {
+			width = 1,
+			height = 1,
+		},
+		["J"] = {
+			width = 1,
+			height = 1,
+		},
+		["K"] = {
+			width = 0.78125,
+			height = 1,
+		},
+		["L"] = {
+			width = 1,
+			height = 1,
+		},
+		["M"] = {
+			width = 0.765625,
+			height = 1,
+		},
+		["N"] = {
+			width = 1,
+			height = 1,
+		},
+		["O"] = {
+			width = 1,
+			height = 1,
+		},
+		["P"] = {
+			width = 0.71875,
+			height = 1,
+		},
+		["Q"] = {
+			width = 0.59375,
+			height = 1,
+		},
+		["R"] = {
+			width = 0.75,
+			height = 1,
+		},
+		["S"] = {
+			width = 0.6875,
+			height = 1,
+		},
+		["T"] = {
+			width = 0.5625,
+			height = 1,
+		},
+		["U"] = {
+			width = 0.84375,
+			height = 1,
+		},
+		["V"] = {
+			width = 0.9375,
+			height = 1,
+		},
+		["W"] = {
+			width = 1,
+			height = 1,
+		},
+		["X"] = {
+			width = 1,
+			height = 1,
+		},
+		["Y"] = {
+			width = 1,
+			height = 1,
+		},
+		["Z"] = {
+			width = 0.6875,
+			height = 1,
+		},
+
+
+		--[[
+		[""] = {
+			width = 1,
+			height = 1,
+		},
+		]]
+	},
+
 };
 
 Lang.AlphabetKerning = AlphabetKerning;
