@@ -19,7 +19,6 @@ local defaultsTableAcc = {
 	},
 
 	speechBubbles = true,
-	combat = false,
 	faction = true,
 
 };
@@ -487,7 +486,7 @@ function mainFrame.RefreshDialectWordList()
 end
 
 function lang.combatCheck()
-	if UnitAffectingCombat("player") == true and Languages_DB.settings.combat == false then
+	if UnitAffectingCombat("player") == true then
 		return true
 	end
 end
@@ -1567,7 +1566,7 @@ end
 
 mainFrame.Acc_Frame = CreateFrame("Frame", nil, content2, "BackdropTemplate")
 mainFrame.Acc_Frame:SetPoint("TOP", content2, "TOP", 0, -75)
-mainFrame.Acc_Frame:SetSize(300,220)
+mainFrame.Acc_Frame:SetSize(300,180)
 mainFrame.Acc_Frame:SetBackdrop(mainFrame.backdropInfo)
 mainFrame.Acc_Frame:SetBackdropColor(0,0,0,.5)
 
@@ -1684,34 +1683,9 @@ mainFrame.speechbubCB:SetScript("OnLeave", function()
 	GameTooltip:Hide();
 end);
 
-mainFrame.combatCB = CreateFrame("CheckButton", nil, mainFrame.speechbubCB, "UICheckButtonTemplate");
-mainFrame.combatCB:SetPoint("TOPRIGHT", mainFrame.speechbubCB, "TOPRIGHT", 0, -30);
-mainFrame.combatCB:SetScript("OnClick", function(self)
-	if self:GetChecked() then
-		Languages_DB.settings.combat = true;
-		PlaySound(856);
-	else
-		Languages_DB.settings.combat = false;
-		PlaySound(857);
-	end
-	lang.checkSettings();
-end);
-mainFrame.combatCB.text = mainFrame.Acc_Frame:CreateFontString()
-mainFrame.combatCB.text:SetFont(STANDARD_TEXT_FONT, 11)
-mainFrame.combatCB.text:SetPoint("RIGHT", mainFrame.combatCB, "LEFT", -5, 0)
-mainFrame.combatCB.text:SetText(L["CombatOption"])
-mainFrame.combatCB:SetScript("OnEnter", function(self)
-	GameTooltip:SetOwner(self, "ANCHOR_TOP");
-	GameTooltip:AddLine(L["CombatOption"]);
-	GameTooltip:AddLine(L["CombatOptionTT"], 1, 1, 1, true);
-	GameTooltip:Show();
-end);
-mainFrame.combatCB:SetScript("OnLeave", function()
-	GameTooltip:Hide();
-end);
 
-mainFrame.factionLangCB = CreateFrame("CheckButton", nil, mainFrame.combatCB, "UICheckButtonTemplate");
-mainFrame.factionLangCB:SetPoint("TOPRIGHT", mainFrame.combatCB, "TOPRIGHT", 0, -30);
+mainFrame.factionLangCB = CreateFrame("CheckButton", nil, mainFrame.speechbubCB, "UICheckButtonTemplate");
+mainFrame.factionLangCB:SetPoint("TOPRIGHT", mainFrame.speechbubCB, "TOPRIGHT", 0, -30);
 mainFrame.factionLangCB:SetScript("OnClick", function(self)
 	if self:GetChecked() then
 		Languages_DB.settings.faction = true;
@@ -1737,7 +1711,7 @@ mainFrame.factionLangCB:SetScript("OnLeave", function()
 end);
 
 mainFrame.runeScaleSlider = CreateFrame("Frame", nil, mainFrame.Acc_Frame, "MinimalSliderWithSteppersTemplate")
-mainFrame.runeScaleSlider:SetPoint("TOPRIGHT", mainFrame.Acc_Frame, "TOPRIGHT", -40, -40)
+mainFrame.runeScaleSlider:SetPoint("TOPRIGHT", mainFrame.Acc_Frame, "TOPRIGHT", -45, -40)
 mainFrame.runeScaleSlider:SetWidth(160)
 
 mainFrame.runeScaleSlider.Title = mainFrame.runeScaleSlider:CreateFontString(nil, "OVERLAY", "GameFontHighlight")
@@ -2470,35 +2444,68 @@ end
 
 lang.prefixRevert = false;
 
+local ShapeshiftAuras = {
+	["ShadowForm"] = {
+		auraIDs = { 232698 },
+		languages = { "Shath'Yar" },
+	},
+	["Metamorphosis"] = {
+		auraIDs = { 162264, 187827, 1217607 },
+		languages = { "Demonic" },
+	},
+};
+
 function lang.shapeshiftForm()
-	if mainFrame.prefix == false then
-		lang.prefixRevert = false;
-	else
-		lang.prefixRevert = true;
-	end
-	if C_UnitAuras.GetPlayerAuraBySpellID(232698) then -- shadowform
-		currentLanguage.lang = "Shath'Yar";
-		mainFrame.prefix = false;
-		mainFrame.TogglePrefix();
-		lang.checkSettings();
-	elseif C_UnitAuras.GetPlayerAuraBySpellID(162264) or C_UnitAuras.GetPlayerAuraBySpellID(187827) then -- metamorphosis
-		currentLanguage.lang = "Demonic";
-		mainFrame.prefix = false;
-		mainFrame.TogglePrefix();
-		lang.checkSettings();
-	else
-		if lang.prefixRevert == false then
-			mainFrame.prefix = true;
-			mainFrame.TogglePrefix();
-			lang.checkSettings();
-		else
-			mainFrame.prefix = false;
-			mainFrame.TogglePrefix();
-			lang.checkSettings();
+	local activeFormLanguage = nil
+
+	for formName, data in pairs(ShapeshiftAuras) do
+		for _, id in ipairs(data.auraIDs) do
+			local spellAura = C_UnitAuras.GetPlayerAuraBySpellID(id)
+			
+			if spellAura and issecretvalue and issecretvalue(spellAura) then
+				return
+			end
+
+			if spellAura then
+				activeFormLanguage = data.languages[1]
+				break
+			end
 		end
-		currentLanguage = CopyTable(preserveLanguage);
+		if activeFormLanguage then break end
 	end
 
+	if activeFormLanguage then
+		if not lang.isTransformed then
+			lang.isTransformed = true
+			
+			if mainFrame.prefix == false then
+				lang.prefixRevert = false
+			else
+				lang.prefixRevert = true
+			end
+			
+			currentLanguage.lang = activeFormLanguage
+			
+			mainFrame.prefix = false 
+			mainFrame.TogglePrefix() 
+		end
+		
+		lang.checkSettings()
+
+	elseif lang.isTransformed then
+		lang.isTransformed = false
+
+		if lang.prefixRevert == false then
+			mainFrame.prefix = true
+			mainFrame.TogglePrefix()
+		else
+			mainFrame.prefix = false
+			mainFrame.TogglePrefix()
+		end
+		
+		currentLanguage = CopyTable(preserveLanguage)
+		lang.checkSettings()
+	end
 end
 
 
@@ -2513,10 +2520,6 @@ function lang.checkSettings()
 
 	mainFrame.glyphsCB:SetChecked(Languages_DB.settings.glyphs);
 	mainFrame.speechbubCB:SetChecked(Languages_DB.settings.speechBubbles);
-	mainFrame.combatCB:SetChecked(Languages_DB.settings.combat);
-	mainFrame.factionLangCB:SetChecked(Languages_DB.settings.faction);
-
-	mainFrame.combatCB:SetChecked(Languages_DB.settings.combat);
 	mainFrame.factionLangCB:SetChecked(Languages_DB.settings.faction);
 
 	if mainFrame.runeScaleSlider then

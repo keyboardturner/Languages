@@ -17,6 +17,8 @@ Capitalization is now retained, and certain characters such as periods, commas, 
 
 New profiles will start with the Gameplay preset.
 
+Removed option to have addon function in combat as per impending Midnight API changes - addon simply doesn't work in combat.
+
 
 # 0.2.0
 
