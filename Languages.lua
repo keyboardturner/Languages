@@ -111,6 +111,8 @@ local LANGPRESET_RACE_LANGUAGE_DEFAULT = {
 		[70] = {[L["Orcish"]] = true, [L["Draconic"]] = true}, -- 70 dracthyr horde
 		[84] = {[L["Common"]] = true, [L["Titan"]] = true}, -- 84 earthen alliance
 		[85] = {[L["Orcish"]] = true, [L["Titan"]] = true}, -- 85 earthen horde
+		[86] = {[L["Common"]] = true, [L["Hara'ni"]] = true}, -- 86 haranir alliance
+		[91] = {[L["Orcish"]] = true, [L["Hara'ni"]] = true}, -- 91 haranir horde
 	},
 	recommended = {
 		[1] = {[L["Common"]] = true}, -- 1 human
@@ -143,6 +145,8 @@ local LANGPRESET_RACE_LANGUAGE_DEFAULT = {
 		[70] = {[L["Orcish"]] = true, [L["Draconic"]] = true, [L["Common"]] = true}, -- 70 dracthyr horde
 		[84] = {[L["Common"]] = true, [L["Dwarvish"]] = true, [L["Titan"]] = true}, -- 84 earthen alliance
 		[85] = {[L["Orcish"]] = true, [L["Dwarvish"]] = true, [L["Titan"]] = true}, -- 85 earthen horde
+		[86] = {[L["Common"]] = true, [L["Hara'ni"]] = true}, -- 86 haranir alliance
+		[91] = {[L["Orcish"]] = true, [L["Hara'ni"]] = true}, -- 91 haranir horde
 	},
 };
 
@@ -1027,7 +1031,7 @@ local languageBasicList = {
 	"Moonkin",
 	"Furbolg",
 	
-	--"Hara'ni",
+	"Hara'ni",
 
 	"Cypher",
 	

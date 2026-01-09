@@ -473,6 +473,18 @@ local LANGUAGE_REPLACEMENTS = {
 		[6] = {"rrargh", "nrronn", "gargrr", "gro'rr", "ten-ra", "brumar", "then'a", "grothr", "whisra"},
 		["hasRunes"] = true,
 	},
+
+	[L["Hara'ni"]] = {
+		[1] = {"Oi",},
+		[2] = {"We", "Ti", "Po", "Pi", "Pa", "Or", "Oi", "Ob", "Ni", "Na", "Lo", "Li", "Ke", "Ho", "Hi", "Ha", "Ao",},
+		[3] = {"Yin", "Wey", "Shu", "Sho", "Shi", "Pon", "Olu", "Oah", "Noh", "Koh", "Isa", "Hai", "Cho", "Ayo", "Aye",},
+		[4] = {"Urao", "Shul", "Shae", "Roon", "Obwe", "Nalo", "Ihna", "Hune", "Hara", "Enoa", "Ayia", "Ahoa",},
+		[5] = {"Nahli", "Mahwe", "Kupai", "Hanui", "Ediwa",},
+		[6] = {"Oh'lua",},
+		[7] = {"Ruahnti", "Keralwe", "Keradwe", "Kao'mal",},
+		[8] = {"Ru'ahnii", "Pon'ayia", "Nal'shae", "Koh'ihna", "Aiy'hune",},
+		["hasRunes"] = false,
+	},
 	
 };
 
