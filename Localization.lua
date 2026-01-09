@@ -16,6 +16,12 @@ local LOCALE = GetLocale()
 local colorThingS = "|cff9ce6d9"
 local colorThingE = "|r"
 
+L["Contributor_1"] = "TrinitysEnd"
+L["ContributorNote_1"] = "Glyph Width Textures"
+L["Contributor_2"] = "Peterodox"
+L["ContributorNote_2"] = "Chat Hyperlink Functionality"
+L["Contributor_Anonymous"] = "Anonymous Users"
+
 L.AllLanguages = {
 	enUS = {
 		["Common"] = 				"Common",
@@ -599,6 +605,8 @@ if LOCALE == "enUS" then
 	L["ShiftDrag"] = "Shift-Drag"
 	L["DialectsTT"] = "Choosing a Dialect will change certain words you type into other words. For example, turning \"are not\" into \"aren't\". Each language has its own set of words, and each one can be toggled."
 	L["Dialects2TT"] = "Words can have their Dialect form prevented by adding underscores to each side, such as \"_are not_\". This will keep the term in its original spelling, and additionally remove the underscores placed on each side."
+	L["Contributors"] = "Contributors"
+	L["SpecialThanks"] = "Thank you to these wonderful people who contributed to this addon!"
 
 	-- official languages
 	L["Common"] = 		"Common"			--7
@@ -946,6 +954,8 @@ if LOCALE == "esMX" then
 	L["ShiftDrag"] = "MAYÚS + arrastrar"
 	L["DialectsTT"] = "Elegir un dialecto cambiará ciertas palabras que escribes por otras. Por ejemplo, convertir \"are not\" en \"aren't\". Cada idioma tiene su propio conjunto de palabras, y cada uno puede activarse o desactivarse."
 	L["Dialects2TT"] = "Las palabras pueden evitar su forma dialectal añadiendo guiones bajos a cada lado, como \"_are not_\". Esto mantendrá el término con su ortografía original y, además, eliminará los guiones bajos colocados a cada lado."
+	L["Contributors"] = "Colaboradores"
+	L["SpecialThanks"] = "¡Gracias a estas maravillosas personas que contribuyeron a este complemento!"
 
 	L["Common"] = 		"Lengua común"		--7
 	L["Darnassian"] = 	"Darnassiano"		--2
@@ -1085,6 +1095,8 @@ if LOCALE == "esES" then
 	L["ShiftDrag"] = "MAYÚS + arrastrar"
 	L["DialectsTT"] = "Elegir un dialecto cambiará ciertas palabras que escribes por otras. Por ejemplo, convertir \"are not\" en \"aren't\". Cada idioma tiene su propio conjunto de palabras, y cada uno puede activarse o desactivarse."
 	L["Dialects2TT"] = "Las palabras pueden evitar su forma dialectal añadiendo guiones bajos a cada lado, como \"_are not_\". Esto mantendrá el término con su ortografía original y, además, eliminará los guiones bajos colocados a cada lado."
+	L["Contributors"] = "Colaboradores"
+	L["SpecialThanks"] = "¡Gracias a estas maravillosas personas que contribuyeron a este complemento!"
 
 	L["Common"] = 		"Lengua común"		--7
 	L["Darnassian"] = 	"Darnassiano"		--2
@@ -1224,6 +1236,8 @@ if LOCALE == "deDE" then
 	L["ShiftDrag"] = "UMSCHALT + Ziehen"
 	L["DialectsTT"] = "Die Auswahl eines Dialekts ersetzt bestimmte Wörter, die du eingibst, durch andere. Zum Beispiel wird \"are not\" zu \"aren't\". Jede Sprache hat ihren eigenen Wortschatz, und jeder kann ein- oder ausgeschaltet werden."
 	L["Dialects2TT"] = "Wörter können von ihrer Dialektform ausgenommen werden, indem auf beiden Seiten Unterstriche hinzugefügt werden, wie z. B. \"_are not_\". Dadurch bleibt die ursprüngliche Schreibweise erhalten, und die hinzugefügten Unterstriche werden anschließend entfernt."
+	L["Contributors"] = "Mitwirkende"
+	L["SpecialThanks"] = "Vielen Dank an diese wunderbaren Menschen, die zu diesem Add-on beigetragen haben!"
 
 	L["Common"] = 		"Gemeinsprache"		--7
 	L["Darnassian"] = 	"Darnassisch"		--2
@@ -1363,6 +1377,8 @@ if LOCALE == "frFR" then
 	L["ShiftDrag"] = "MAJ + déplacer"
 	L["DialectsTT"] = "Choisir un dialecte remplacera certains mots que vous tapez par d’autres. Par exemple, transformer \"are not\" en \"aren't\". Chaque langue possède son propre ensemble de mots, et chacun peut être activé ou désactivé."
 	L["Dialects2TT"] = "Il est possible d’empêcher la forme dialectale d’un mot en ajoutant des traits de soulignement de chaque côté, comme \"_are not_\". Le terme conserve alors son orthographe d’origine et les traits de soulignement ajoutés sont supprimés."
+	L["Contributors"] = "Contributeurs"
+	L["SpecialThanks"] = "Merci à ces merveilleuses personnes qui ont contribué à cet addon !"
 
 	L["Common"] = 		"Commun"		--7
 	L["Darnassian"] = 	"Darnassien"	--2
@@ -1502,6 +1518,8 @@ if LOCALE == "itIT" then
 	L["ShiftDrag"] = "MAIUSC + trascina"
 	L["DialectsTT"] = "Scegliere un dialetto sostituirà alcune parole che digiti con altre. Ad esempio, trasformando \"are not\" in \"aren't\". Ogni lingua ha il proprio insieme di parole, e ciascuno può essere attivato o disattivato."
 	L["Dialects2TT"] = "È possibile impedire la forma dialettale di una parola aggiungendo dei trattini bassi su entrambi i lati, come \"_are not_\". Questo manterrà il termine nella sua ortografia originale e rimuoverà inoltre i trattini bassi aggiunti."
+	L["Contributors"] = "Collaboratori"
+	L["SpecialThanks"] = "Grazie a queste persone meravigliose che hanno contribuito a questo componente aggiuntivo!"
 
 	L["Common"] = 		"Comune"		--7
 	L["Darnassian"] = 	"Darnassiano"	--2
@@ -1641,6 +1659,8 @@ if LOCALE == "ptBR" then
 	L["ShiftDrag"] = "SHIFT + arrastar"
 	L["DialectsTT"] = "Escolher um dialeto substituirá certas palavras digitadas por outras. Por exemplo, transformando \"are not\" em \"aren't\". Cada idioma possui seu próprio conjunto de palavras, e cada um pode ser ativado ou desativado."
 	L["Dialects2TT"] = "É possível impedir a forma dialetal de uma palavra adicionando sublinhados em ambos os lados, como \"_are not_\". Isso mantém o termo com sua grafia original e também remove os sublinhados adicionados."
+	L["Contributors"] = "Colaboradores"
+	L["SpecialThanks"] = "Obrigado a essas pessoas maravilhosas que contribuíram para este complemento!"
 
 	L["Common"] = 		"Língua Comum"	--7
 	L["Darnassian"] = 	"Darnassiano"	--2
@@ -1782,6 +1802,8 @@ if LOCALE == "ruRU" then
 	L["ShiftDrag"] = "SHIFT + перетаскивание"
 	L["DialectsTT"] = "Выбор диалекта заменяет некоторые вводимые слова другими. Например, \"are not\" превращается в \"aren't\". У каждого языка есть собственный набор слов, и каждый из них можно включать или отключать."
 	L["Dialects2TT"] = "Можно предотвратить использование диалектной формы слова, добавив символы подчёркивания с обеих сторон, например \"_are not_\". Это сохранит исходное написание слова, а добавленные символы подчёркивания будут удалены."
+	L["Contributors"] = "Участники"
+	L["SpecialThanks"] = "Спасибо этим замечательным людям, которые внесли свой вклад в это дополнение!"
 
 	L["Common"] = 		"всеобщий"				--7
 	L["Darnassian"] = 	"дарнасский"			--2
@@ -1921,6 +1943,8 @@ if LOCALE == "koKR" then
 	L["ShiftDrag"] = "SHIFT + 드래그"
 	L["DialectsTT"] = "방언을 선택하면 입력한 일부 단어가 다른 단어로 변경됩니다. 예를 들어 \"are not\"이 \"aren't\"로 바뀝니다. 각 언어에는 고유한 단어 목록이 있으며, 각각 켜거나 끌 수 있습니다."
 	L["Dialects2TT"] = "단어 양쪽에 밑줄을 추가하면 방언 형태로 변환되는 것을 막을 수 있습니다. 예: \"_are not_\". 이렇게 하면 단어는 원래 철자를 유지하며, 양쪽에 추가된 밑줄은 자동으로 제거됩니다."
+	L["Contributors"] = "기여자"
+	L["SpecialThanks"] = "이 애드온에 기여한 훌륭한 사람들에게 감사드립니다!"
 
 	L["Common"] = 		"공용어"			--7
 	L["Darnassian"] = 	"나이트 엘프어"	--2
@@ -2060,6 +2084,8 @@ if LOCALE == "zhCN" then
 	L["ShiftDrag"] = "SHIFT + 拖动"
 	L["DialectsTT"] = "选择一种方言会将你输入的某些词语替换为其他词语。例如，将\"are not\"转换为\"aren't\"。每种语言都有自己的一组词语，并且都可以单独启用或禁用。"
 	L["Dialects2TT"] = "在单词两侧添加下划线可以阻止其被转换为方言形式，例如\"_are not_\"。这样可以保留该词的原始拼写，并会自动移除两侧添加的下划线。"
+	L["Contributors"] = "贡献者"
+	L["SpecialThanks"] = "感谢为这个插件做出贡献的优秀人士！"
 
 	L["Common"] = 		"通用语"			--7
 	L["Darnassian"] = 	"达纳苏斯语"		--2
@@ -2199,6 +2225,8 @@ if LOCALE == "zhTW" then
 	L["ShiftDrag"] = "SHIFT + 拖曳"
 	L["DialectsTT"] = "選擇一種方言會將你輸入的某些詞語替換為其他詞語。例如，將「are not」轉換為「aren't」。每種語言都有自己的一組詞語，並且都可以個別啟用或停用。"
 	L["Dialects2TT"] = "在單詞兩側加上下劃線可以防止其被轉換為方言形式，例如「_are not_」。這會保留該詞的原始拼寫，並同時移除兩側加入的下劃線。"
+	L["Contributors"] = "貢獻者"
+	L["SpecialThanks"] = "感謝這些為這個插件做出貢獻的優秀人士！"
 
 	L["Common"] = 		"通用語"			--7
 	L["Darnassian"] = 	"達納蘇斯語"		--2

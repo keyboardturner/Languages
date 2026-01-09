@@ -259,6 +259,93 @@ mainFrame:SetClampedToScreen(true)
 mainFrame:Hide()
 mainFrame.minMax = true;
 
+local MeowFrameMixin = {};
+
+MeowFrameMixin.SoundFileList = {
+	-- bakhar
+	4578778, 4578780, 4578782,
+	5094357, 5094359, 5094361,
+	5094363,
+
+	-- murloc
+	556000,
+
+};
+
+function MeowFrameMixin:OnLoad()
+	self.clickCount = 0;
+	self.clickThreshold = 20;
+	self.timeFrame = .2;
+	self.lastClickTime = 0;
+
+	self:RegisterForClicks("AnyDown", "AnyUp");
+end
+
+function MeowFrameMixin:OnClick(_, down)
+	local portrait = mainFrame.PortraitContainer.portrait;
+	local currentTime = GetTime();
+
+	if not down then
+		portrait:SetTexCoord(0, 1, 0, 1);
+	else
+		portrait:SetTexCoord(.01, .99, .01, .99);
+	end
+
+	if currentTime - self.lastClickTime > self.timeFrame then
+		self:ResetClicks();
+	end
+
+	self.clickCount = self.clickCount + 1;
+	self.lastClickTime = currentTime;
+
+	if self.clickCount >= self.clickThreshold then
+		self:ResetClicks();
+		self:Mrow();
+	end
+end
+
+function MeowFrameMixin:ResetClicks()
+	self.clickCount = 0;
+end
+
+function MeowFrameMixin:Mrow()
+	local sound = self.SoundFileList[fastrandom(1, #self.SoundFileList)];
+	PlaySoundFile(sound, "SFX");
+end
+
+function MeowFrameMixin:ConcatenateNames()
+	local names = ""
+	local notes = ""
+	for i = 1, 2 do -- increase value with more contributors
+		if L["Contributor_"..i] then
+			names = names .. "\n" .. L["Contributor_"..i]
+		end
+		if L["ContributorNote_"..i] then
+			notes = notes .. "\n" .. L["ContributorNote_"..i]
+		end
+	end
+	--names = names .. "\n" .. L["Contributor_Anonymous"]
+
+	return names, notes
+end
+
+mainFrame.PortraitContainer.portrait.MeowFrame = CreateFrame("Button", nil, mainFrame);
+FrameUtil.SpecializeFrameWithMixins(mainFrame.PortraitContainer.portrait.MeowFrame, MeowFrameMixin);
+mainFrame.PortraitContainer.portrait.MeowFrame:SetAllPoints(mainFrame.PortraitContainer.portrait);
+
+mainFrame.PortraitContainer.portrait.MeowFrame:SetScript("OnEnter", function(self)
+	local names, notes = MeowFrameMixin:ConcatenateNames()
+	GameTooltip:SetOwner(self, "ANCHOR_BOTTOM");
+	GameTooltip:AddLine(L["Contributors"], 1, 1, 1, true);
+	GameTooltip:AddLine(L["SpecialThanks"], 1, 1, 1, true);
+	GameTooltip:AddDoubleLine(names, notes, 1, 1, 1, 1, 1, 1, true);
+	GameTooltip:AddTexture("Interface\\ICONS\\UI_JailersTower_Defense", {width = 32, height = 32});
+	GameTooltip:Show();
+end);
+mainFrame.PortraitContainer.portrait.MeowFrame:SetScript("OnLeave", function()
+	GameTooltip:Hide();
+end);
+
 function mainFrame.minMaxFunc()
 	if mainFrame.minMax == true then
 		mainFrame:SetSize(338,100)

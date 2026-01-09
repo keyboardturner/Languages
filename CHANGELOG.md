@@ -5,7 +5,9 @@ Reworked the language list code, allowing for Favorites and a Search
 Added Dialect tab with several premade dialects to choose from (still a work-in-progress)
  - Dialect allows for toggling individual changed words, and a manual override cancel where a term is surrounded by underscores (and removing the underscores)
 
-Language alphabet rune & spacing width rescaled to better fit the characters
+Language alphabet rune & spacing width rescaled to better fit the characters (Thanks to TrinitysEnd for helping convert many of the existing textures)
+
+New Translation tooltip upon prefix mouseover & window upon click which shows the original untranslated message (Thanks to Peterodox for hyperlink functionality)
 
 New "Mini-Button" frame has been added, allowing for easier known language selection and switching the prefix on/off.
 
