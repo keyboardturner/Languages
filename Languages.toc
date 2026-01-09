@@ -1,4 +1,4 @@
-## Interface: 110207
+## Interface: 110207, 120000
 ## Title: Languages
 ## Notes: A roleplaying addon that aims to bring in "speakable" ingame languages in a lightweight and accessible way.
 ## IconTexture: Interface/AddOns/Languages/Languages_Icon_Small.blp
@@ -26,8 +26,9 @@
 ## Notes-zhCN: 一个角色扮演插件，旨在以轻量级且易于访问的方式引入“可说的”游戏语言。
 ## Title-zhTW: Languages：語言
 ## Notes-zhTW: 一個角色扮演插件，旨在以輕量級且易於訪問的方式引入“可說的”遊戲語言。
+## LoadSavedVariablesFirst: 1
 ## SavedVariables: Languages_DB
-## OptionalDeps: LibDBIcon, Ace3, TotalRP3
+## OptionalDeps: LibDBIcon, Ace3, TotalRP3, Chattynator
 ## X-Curse-Project-ID: 872452
 ## X-WoWI-ID: 26633
 ## X-Wago-ID: 4N2mbQGL
@@ -53,4 +54,7 @@ Libs\LibDBIcon-1.0\LibDataBroker-1.1\LibDataBroker-1.1.lua
 Libs\LibDBIcon-1.0\LibDBIcon-1.0\lib.xml
 
 Localization.lua
+Primer.lua
+Dictionaries.lua
+Dialects.lua
 Languages.lua

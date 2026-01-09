@@ -1,4 +1,7 @@
-local Languages, L = ...; -- Let's use the private table passed to every .lua 
+local _, Lang = ...; -- Let's use the private table passed to every .lua 
+
+local L = {}
+Lang.L = L
 
 local function defaultFunc(L, key)
  -- If this function was called, we have no localization for this key.
@@ -13,11 +16,514 @@ local LOCALE = GetLocale()
 local colorThingS = "|cff9ce6d9"
 local colorThingE = "|r"
 
+L["Contributor_1"] = "TrinitysEnd"
+L["ContributorNote_1"] = "Glyph Width Textures"
+L["Contributor_2"] = "Peterodox"
+L["ContributorNote_2"] = "Chat Hyperlink Functionality"
+L["Contributor_Anonymous"] = "Anonymous Users"
+
+L.AllLanguages = {
+	enUS = {
+		["Common"] = 				"Common",
+		["Darnassian"] = 			"Darnassian",
+		["Dwarvish"] = 				"Dwarvish",
+		["Gnomish"] = 				"Gnomish",
+		["Draenei"] = 				"Draenei",
+		["Orcish"] = 				"Orcish",
+		["Zandali"] = 				"Zandali",
+		["Taurahe"] = 				"Taurahe",
+		["Forsaken"] = 				"Forsaken",
+		["Thalassian"] = 			"Thalassian",
+		["Goblin"] = 				"Goblin",
+		["Shalassian"] = 			"Shalassian",
+		["Vulpera"] = 				"Vulpera",
+		["Pandaren"] = 				"Pandaren",
+		["Draconic"] = 				"Draconic",
+		["Demonic"] = 				"Demonic",
+		["Titan"] = 				"Titan",
+		["Kalimag"] = 				"Kalimag",
+		["Shath'Yar"] = 			"Shath'Yar",
+		["Nerubian"] = 				"Nerubian",
+		["Sprite"] = 				"Sprite",
+		["Nerglish"] = 				"Nerglish",
+		["Moonkin"] = 				"Moonkin",
+		["Furbolg"] = 				"Furbolg",
+		["Earthen"] = 				"Earthen",
+		["Hara'ni"] = 				"Hara'ni",
+		["Gutterspeak"] = 			"Gutterspeak",
+		["AncientPandaren"] = 		"Ancient Pandaren",
+		["Broker"] = 				"Broker",
+		["Cypher"] = 				"Cypher",
+		["Arathi"] = 				"Arathi",
+		["Mogu"] = 					"Mogu",
+		["Ethereal"] = 				"Ethereal",
+		["K'areshi"] = 				"K'areshi",
+		["Gilnean"] =				"Gilnean",
+		["KulTiranNoble"] =			"Kul Tiran Noble",
+		["Mechagnome"] =			"Mechagnome",
+		["DarkspearTrolls"] =		"Darkspear Troll",
+		["Sailor"] =				"Sailor",
+		["Highborne"] =				"Highborne",
+		["Nightborne"] =			"Nightborne",
+		["Zandalari"] =				"Zandalari Troll",
+	},
+
+	esMX = {
+		["Common"] =				"Lengua común",
+		["Darnassian"] = 			"Darnassiano",
+		["Dwarvish"] = 				"Enánico",
+		["Gnomish"] = 				"Gnomótico",
+		["Draenei"] = 				"Draenei",
+		["Orcish"] = 				"Orco",
+		["Zandali"] = 				"Zandali",
+		["Taurahe"] = 				"Taurahe",
+		["Forsaken"] = 				"Renegado",
+		["Thalassian"] = 			"Thalassiano",
+		["Goblin"] = 				"Goblin",
+		["Shalassian"] = 			"Shalassiano",
+		["Vulpera"] = 				"Vulpera",
+		["Pandaren"] = 				"Pandaren",
+		["Draconic"] = 				"Dracónico",
+		["Demonic"] = 				"Demoníaco",
+		["Titan"] = 				"Titánico",
+		["Kalimag"] = 				"Kalimag",
+		["Shath'Yar"] = 			"Shath'Yar",
+		["Nerubian"] = 				"Nerubiano",
+		["Sprite"] = 				"Duende",
+		["Nerglish"] = 				"Nerglish",
+		["Moonkin"] = 				"Lechúcico lunar",
+		["Furbolg"] = 				"Fúrbolg",
+		["Earthen"] = 				"Terráneo",
+		["Hara'ni"] = 				"Hara'ni",
+		["Gutterspeak"] = 			"Viscerálico",
+		["AncientPandaren"] = 		"Pandaren antiguo",
+		["Broker"] = 				"Negociante",
+		["Cypher"] = 				"Códigos",
+		["Arathi"] = 				"Arathi",
+		["Mogu"] = 					"Mogu",
+		["Ethereal"] = 				"Etéreo",
+		["K'areshi"] = 				"K'areshi",
+		["Gilnean"] =				"gilneano",
+		["KulTiranNoble"] =			"Noble kultirano",
+		["Mechagnome"] =			"Mecagnomo",
+		["DarkspearTrolls"] =		"Trol Lanza Negra",
+		["Sailor"] =				"Marinero",
+		["Highborne"] =				"Altonato",
+		["Nightborne"] =			"Natonocturno",
+		["Zandalari"] =				"Trol zandalari",
+	},
+	esES = {
+		["Common"] = 				"Lengua común",
+		["Darnassian"] = 			"Darnassiano",
+		["Dwarvish"] = 				"Enánico",
+		["Gnomish"] = 				"Gnomótico",
+		["Draenei"] = 				"Draenei",
+		["Orcish"] = 				"Orco",
+		["Zandali"] = 				"Zandali",
+		["Taurahe"] = 				"Taurahe",
+		["Forsaken"] = 				"Renegado",
+		["Thalassian"] = 			"Thalassiano",
+		["Goblin"] = 				"Goblin",
+		["Shalassian"] = 			"Shalassiano",
+		["Vulpera"] = 				"Vulpera",
+		["Pandaren"] = 				"Pandaren",
+		["Draconic"] = 				"Dracónico",
+		["Demonic"] = 				"Demoníaco",
+		["Titan"] = 				"Titánico",
+		["Kalimag"] = 				"Kalimag",
+		["Shath'Yar"] = 			"Shath'yar",
+		["Nerubian"] = 				"Nerubiano",
+		["Sprite"] = 				"Duende",
+		["Nerglish"] = 				"Nerglés",
+		["Moonkin"] = 				"Lechúcico lunar",
+		["Furbolg"] = 				"Fúrbolg",
+		["Earthen"] = 				"Terráneo",
+		["Hara'ni"] = 				"Hara'ni",
+		["Gutterspeak"] = 			"Viscerálico",
+		["AncientPandaren"] = 		"Pandaren antiguo",
+		["Broker"] = 				"Especulador",
+		["Cypher"] = 				"Claves",
+		["Arathi"] = 				"Arathi",
+		["Mogu"] = 					"Mogu",
+		["Ethereal"] = 				"Etéreo",
+		["K'areshi"] = 				"K'areshi",
+		["Gilnean"] =				"gilneano",
+		["KulTiranNoble"] =			"Noble de Kul Tiras",
+		["Mechagnome"] =			"Mecagnomo",
+		["DarkspearTrolls"] =		"Trol Lanza Negra",
+		["Sailor"] =				"Marinero",
+		["Highborne"] =				"Altonato",
+		["Nightborne"] =			"Nocheterna",
+		["Zandalari"] =				"Trol Zandalari",
+	},
+	deDE = {
+		["Common"] = 				"Gemeinsprache",
+		["Darnassian"] = 			"Darnassisch",
+		["Dwarvish"] = 				"Zwergisch",
+		["Gnomish"] = 				"Gnomisch",
+		["Draenei"] = 				"Draenei",
+		["Orcish"] = 				"Orcisch",
+		["Zandali"] = 				"Zandali",
+		["Taurahe"] = 				"Taurahe",
+		["Forsaken"] = 				"Gossensprache",
+		["Thalassian"] = 			"Thalassisch",
+		["Goblin"] = 				"Goblin",
+		["Shalassian"] = 			"Shalassisch",
+		["Vulpera"] = 				"Vulpera",
+		["Pandaren"] = 				"Pandarisch",
+		["Draconic"] = 				"Drakonisch",
+		["Demonic"] = 				"Dämonisch",
+		["Titan"] = 				"Titanensprache",
+		["Kalimag"] = 				"Kalimag",
+		["Shath'Yar"] = 			"Shath'Yar",
+		["Nerubian"] = 				"Nerubisch",
+		["Sprite"] = 				"Feensprache",
+		["Nerglish"] = 				"Nerglisch",
+		["Moonkin"] = 				"Mondkin",
+		["Furbolg"] = 				"Furbolg",
+		["Earthen"] = 				"Irden",
+		["Hara'ni"] = 				"Hara'ni",
+		["Gutterspeak"] = 			"Gossensprache",
+		["AncientPandaren"] = 		"Uralter Pandaren",
+		["Broker"] = 				"Mittler",
+		["Cypher"] = 				"Chiffren",
+		["Arathi"] = 				"Arathi",
+		["Mogu"] = 					"Mogu",
+		["Ethereal"] = 				"Astral",
+		["K'areshi"] = 				"K'areshi",
+		["Gilnean"] =				"Gilnearisch",
+		["KulTiranNoble"] =			"Adliger von Kul Tiras",
+		["Mechagnome"] =			"Mechagnom",
+		["DarkspearTrolls"] =		"Dunkelspeertroll",
+		["Sailor"] =				"Matrose",
+		["Highborne"] =				"Hochgeborene",
+		["Nightborne"] =			"Nachtgeborener",
+		["Zandalari"] =				"Zandalaritroll",
+	},
+	frFR = {
+		["Common"] = 				"Commun",
+		["Darnassian"] = 			"Darnassien",
+		["Dwarvish"] = 				"Nain",
+		["Gnomish"] = 				"Gnome",
+		["Draenei"] = 				"Draeneï",
+		["Orcish"] = 				"Orc",
+		["Zandali"] = 				"Zandali",
+		["Taurahe"] = 				"Taurahe",
+		["Forsaken"] = 				"Réprouvé",
+		["Thalassian"] = 			"Thalassien",
+		["Goblin"] = 				"Gobelin",
+		["Shalassian"] = 			"Shalassien",
+		["Vulpera"] = 				"Vulpérin",
+		["Pandaren"] = 				"Pandaren",
+		["Draconic"] = 				"Draconique",
+		["Demonic"] = 				"Démoniaque",
+		["Titan"] = 				"Titan",
+		["Kalimag"] = 				"Kalimag",
+		["Shath'Yar"] = 			"Shath’Yar",
+		["Nerubian"] = 				"Nérubien",
+		["Sprite"] = 				"Lutin",
+		["Nerglish"] = 				"Nerglais",
+		["Moonkin"] = 				"Sélénien",
+		["Furbolg"] = 				"Furbolg",
+		["Earthen"] = 				"Terrestre",
+		["Hara'ni"] = 				"Hara’ni",
+		["Gutterspeak"] = 			"Bas-parler",
+		["AncientPandaren"] = 		"Pandaren ancien",
+		["Broker"] = 				"Négociant",
+		["Cypher"] = 				"Cryptogrammes",
+		["Arathi"] = 				"Arathie",
+		["Mogu"] = 					"Mogu",
+		["Ethereal"] = 				"Éthérien",
+		["K'areshi"] = 				"K'areshi",
+		["Gilnean"] =				"gilnéen",
+		["KulTiranNoble"] =			"Noble de Kul Tiras",
+		["Mechagnome"] =			"Mécagnome",
+		["DarkspearTrolls"] =		"Troll sombrelances",
+		["Sailor"] =				"Marin",
+		["Highborne"] =				"Bien-né",
+		["Nightborne"] =			"Sacrenuit",
+		["Zandalari"] =				"Troll zandalari",
+	},
+	itIT = {
+		["Common"] = 				"Comune",
+		["Darnassian"] = 			"Darnassiano",
+		["Dwarvish"] = 				"Nanico",
+		["Gnomish"] = 				"Gnomesco",
+		["Draenei"] = 				"Draenei",
+		["Orcish"] = 				"Orchesco",
+		["Zandali"] = 				"Zandali",
+		["Taurahe"] = 				"Taurino",
+		["Forsaken"] = 				"Non Morto",
+		["Thalassian"] = 			"Thalassiano",
+		["Goblin"] = 				"Goblin",
+		["Shalassian"] = 			"Shalassiano",
+		["Vulpera"] = 				"Vulpera",
+		["Pandaren"] = 				"Pandaren",
+		["Draconic"] = 				"Draconico",
+		["Demonic"] = 				"Demoniaco",
+		["Titan"] = 				"Titanico",
+		["Kalimag"] = 				"Kalimag",
+		["Shath'Yar"] = 			"Shath'yar",
+		["Nerubian"] = 				"Nerubiano",
+		["Sprite"] = 				"Follettiano",
+		["Nerglish"] = 				"Nergliano",
+		["Moonkin"] = 				"Lunagufo",
+		["Furbolg"] = 				"Mezzorso",
+		["Earthen"] = 				"Terrigeno",
+		["Hara'ni"] = 				"Hara'ni",
+		["Gutterspeak"] = 			"Non Morto",
+		["AncientPandaren"] = 		"Pandaren antico",
+		["Broker"] = 				"Alienatore",
+		["Cypher"] = 				"Codici",
+		["Arathi"] = 				"Arathi",
+		["Mogu"] = 					"Mogu",
+		["Ethereal"] = 				"Etereo",
+		["K'areshi"] = 				"K'areshi",
+		["Gilnean"] =				"Gilneano",
+		["KulTiranNoble"] =			"Nobile di Kul Tiras",
+		["Mechagnome"] =			"Meccagnomo",
+		["DarkspearTrolls"] =		"Troll Lanciascura",
+		["Sailor"] =				"Marinaio",
+		["Highborne"] =				"Alto Nobile",
+		["Nightborne"] =			"Nobile Oscuro",
+		["Zandalari"] =				"Troll Zandalari",
+	},
+	ptBR = {
+		["Common"] = 				"Língua Comum",
+		["Darnassian"] = 			"Darnassiano",
+		["Dwarvish"] = 				"Enânico",
+		["Gnomish"] = 				"Gnomês",
+		["Draenei"] = 				"Draeneico",
+		["Orcish"] = 				"Órquico",
+		["Zandali"] = 				"Zandali",
+		["Taurahe"] = 				"Taurahe",
+		["Forsaken"] = 				"Guturalês",
+		["Thalassian"] = 			"Talassiano",
+		["Goblin"] = 				"Goblinês",
+		["Shalassian"] = 			"Shalassiano",
+		["Vulpera"] = 				"Vulpera",
+		["Pandaren"] = 				"Pandaren",
+		["Draconic"] = 				"Dracônico",
+		["Demonic"] = 				"Demoníaco",
+		["Titan"] = 				"Titânico",
+		["Kalimag"] = 				"Kalimaico",
+		["Shath'Yar"] = 			"Shath'Yar",
+		["Nerubian"] = 				"Nerubiano",
+		["Sprite"] = 				"Duendês",
+		["Nerglish"] = 				"Nergonês",
+		["Moonkin"] = 				"Lunisquês",
+		["Furbolg"] = 				"Pelurso",
+		["Earthen"] = 				"Terrano",
+		["Hara'ni"] = 				"Hara'ni",
+		["Gutterspeak"] = 			"Guturalês",
+		["AncientPandaren"] = 		"Pandaren antigo",
+		["Broker"] = 				"Corretor",
+		["Cypher"] = 				"Cifras",
+		["Arathi"] = 				"Arathi",
+		["Mogu"] = 					"Mogu",
+		["Ethereal"] = 				"Etéreo",
+		["K'areshi"] = 				"K'areshi",
+		["Gilnean"] =				"Guilneana",
+		["KulTiranNoble"] =			"Nobre Kultireno",
+		["Mechagnome"] =			"Gnomecânico",
+		["DarkspearTrolls"] =		"Troll Lançanegra",
+		["Sailor"] =				"Marinheiro",
+		["Highborne"] =				"Altaneiro",
+		["Nightborne"] =			"Filho da Noite",
+		["Zandalari"] =				"Troll Zandalari",
+	},
+	ruRU = {
+		["Common"] = 				"всеобщий",
+		["Darnassian"] = 			"дарнасский",
+		["Dwarvish"] = 				"дворфийский",
+		["Gnomish"] = 				"гномский",
+		["Draenei"] = 				"дренейский",
+		["Orcish"] = 				"орочий",
+		["Zandali"] = 				"зандаларский",
+		["Taurahe"] = 				"таурахэ",
+		["Forsaken"] = 				"наречие Отрекшихся",
+		["Thalassian"] = 			"талассийский",
+		["Goblin"] = 				"гоблинский",
+		["Shalassian"] = 			"Шалассийский",
+		["Vulpera"] = 				"Вульперский",
+		["Pandaren"] = 				"пандаренский",
+		["Draconic"] = 				"драконий",
+		["Demonic"] = 				"язык демонов",
+		["Titan"] = 				"язык титанов",
+		["Kalimag"] = 				"калимаг",
+		["Shath'Yar"] = 			"шат'яр",
+		["Nerubian"] = 				"Нерубский",
+		["Sprite"] = 				"язык лесных духов",
+		["Nerglish"] = 				"нерглийский",
+		["Moonkin"] = 				"язык совухов",
+		["Furbolg"] = 				"фурболгский",
+		["Earthen"] = 				"Язык земельников",
+		["Hara'ni"] = 				"хара'нийский",
+		["Gutterspeak"] = 			"Нежити",
+		["AncientPandaren"] = 		"Древний пандарен",
+		["Broker"] = 				"Брокер",
+		["Cypher"] = 				"Шифры",
+		["Arathi"] = 				"Аратии",
+		["Mogu"] = 					"Могу",
+		["Ethereal"] = 				"Эфириал",
+		["K'areshi"] = 				"К'ареши",
+		["Gilnean"] =				"гилнеасский",
+		["KulTiranNoble"] =			"Кул-тирасский аристократ",
+		["Mechagnome"] =			"Механогном",
+		["DarkspearTrolls"] =		"Племя Черного Копья",
+		["Sailor"] =				"Матрос",
+		["Highborne"] =				"Высокорожденный",
+		["Nightborne"] =			"Ночнорожденный",
+		["Zandalari"] =				"Зандалар",
+	},
+	koKR = {
+		["Common"] = 				"공용어",
+		["Darnassian"] = 			"나이트 엘프어",
+		["Dwarvish"] = 				"드워프어",
+		["Gnomish"] = 				"노움어",
+		["Draenei"] = 				"드레나이어",
+		["Orcish"] = 				"오크어",
+		["Zandali"] = 				"잔달라어",
+		["Taurahe"] = 				"타우렌어",
+		["Forsaken"] = 				"포세이큰어",
+		["Thalassian"] = 			"하이엘프어",
+		["Goblin"] = 				"고블린어",
+		["Shalassian"] = 			"나이트본어",
+		["Vulpera"] = 				"불페라어",
+		["Pandaren"] = 				"판다렌어",
+		["Draconic"] = 				"용언",
+		["Demonic"] = 				"악마어",
+		["Titan"] = 				"티탄어",
+		["Kalimag"] = 				"정령어",
+		["Shath'Yar"] = 			"샤트야르",
+		["Nerubian"] = 				"네루비안",
+		["Sprite"] = 				"요마어",
+		["Nerglish"] = 				"옳옳어",
+		["Moonkin"] = 				"달빛야수",
+		["Furbolg"] = 				"펄볼그어",
+		["Earthen"] = 				"토석인어",
+		["Hara'ni"] = 				"하라니",
+		["Gutterspeak"] = 			"언데드어",
+		["AncientPandaren"] = 		"고대 판다렌",
+		["Broker"] = 				"중개자",
+		["Cypher"] = 				"암호",
+		["Arathi"] = 				"아라시",
+		["Mogu"] = 					"모구",
+		["Ethereal"] = 				"에테리얼",
+		["K'areshi"] = 				"크아레쉬",
+		["Gilnean"] =				"길니아스어",
+		["KulTiranNoble"] =			"쿨 티란 귀족",
+		["Mechagnome"] =			"기계노움",
+		["DarkspearTrolls"] =		"검은창 트롤",
+		["Sailor"] =				"선원",
+		["Highborne"] =				"명가",
+		["Nightborne"] =			"나이트본",
+		["Zandalari"] =				"잔달라 트롤",
+	},
+	zhCN = {
+		["Common"] = 				"通用语",
+		["Darnassian"] = 			"达纳苏斯语",
+		["Dwarvish"] = 				"矮人语",
+		["Gnomish"] = 				"侏儒语",
+		["Draenei"] = 				"德莱尼语",
+		["Orcish"] = 				"兽人语",
+		["Zandali"] = 				"赞达拉语",
+		["Taurahe"] = 				"牛头人语",
+		["Forsaken"] = 				"亡灵语",
+		["Thalassian"] = 			"萨拉斯语",
+		["Goblin"] = 				"地精语",
+		["Shalassian"] = 			"夏拉斯语",
+		["Vulpera"] = 				"狐人语",
+		["Pandaren"] = 				"熊猫人语",
+		["Draconic"] = 				"龙语",
+		["Demonic"] = 				"恶魔语",
+		["Titan"] = 				"泰坦语",
+		["Kalimag"] = 				"卡利麦格语",
+		["Shath'Yar"] = 			"沙斯亚尔语",
+		["Nerubian"] = 				"蛛魔语",
+		["Sprite"] = 				"林精语",
+		["Nerglish"] = 				"水生语",
+		["Moonkin"] = 				"枭兽语",
+		["Furbolg"] = 				"熊怪语",
+		["Earthen"] = 				"土灵语",
+		["Hara'ni"] = 				"哈籁尼语",
+		["Gutterspeak"] = 			"亡灵语",
+		["AncientPandaren"] = 		"古代熊猫人",
+		["Broker"] = 				"掮灵",
+		["Cypher"] = 				"密文",
+		["Arathi"] = 				"阿拉希",
+		["Mogu"] = 					"魔古族",
+		["Ethereal"] = 				"虚灵",
+		["K'areshi"] = 				"卡雷什",
+		["Gilnean"] =				"吉尔尼斯语",
+		["KulTiranNoble"] =			"库尔提拉斯贵族",
+		["Mechagnome"] =			"机械侏儒",
+		["DarkspearTrolls"] =		"暗矛巨魔",
+		["Sailor"] =				"水手",
+		["Highborne"] =				"上层精灵",
+		["Nightborne"] =			"夜之子",
+		["Zandalari"] =				"赞达拉巨魔",
+	},
+	zhTW = {
+		["Common"] = 				"通用語",
+		["Darnassian"] = 			"達納蘇斯語",
+		["Dwarvish"] = 				"矮人語",
+		["Gnomish"] = 				"地精語",
+		["Draenei"] = 				"德萊尼語",
+		["Orcish"] = 				"獸人語",
+		["Zandali"] = 				"食人妖語",
+		["Taurahe"] = 				"牛頭人語",
+		["Forsaken"] = 				"不死族語",
+		["Thalassian"] = 			"薩拉斯語",
+		["Goblin"] = 				"哥布林語",
+		["Shalassian"] = 			"夏拉斯語",
+		["Vulpera"] = 				"狐狸人語",
+		["Pandaren"] = 				"熊貓人語",
+		["Draconic"] = 				"龍語",
+		["Demonic"] = 				"惡魔語",
+		["Titan"] = 				"泰坦語",
+		["Kalimag"] = 				"元素語",
+		["Shath'Yar"] = 			"古神語",
+		["Nerubian"] = 				"奈幽語",
+		["Sprite"] = 				"妖精語",
+		["Nerglish"] = 				"魚人語",
+		["Moonkin"] = 				"梟獸語",
+		["Furbolg"] = 				"熊怪語",
+		["Earthen"] = 				"土靈",
+		["Hara'ni"] = 				"哈拉尼",
+		["Gutterspeak"] = 			"不死族語",
+		["AncientPandaren"] = 		"古代熊貓人",
+		["Broker"] = 				"仲介者",
+		["Cypher"] = 				"暗語",
+		["Arathi"] = 				"阿拉希",
+		["Mogu"] = 					"魔古",
+		["Ethereal"] = 				"以太",
+		["K'areshi"] = 				"凱瑞西",
+		["Gilnean"] =				"吉爾尼斯",
+		["KulTiranNoble"] =			"庫爾提拉斯貴族",
+		["Mechagnome"] =			"機械地精",
+		["DarkspearTrolls"] =		"暗矛食人妖",
+		["Sailor"] =				"水手",
+		["Highborne"] =				"精靈貴族",
+		["Nightborne"] =			"夜裔精靈",
+		["Zandalari"] =				"贊達拉食人妖",
+	},
+
+};
+
+GlobalVar = L.AllLanguages
+
 if LOCALE == "enUS" then
 -- The EU English game client also
 -- uses the US English locale code.
 	L["Languages"] = "Languages"
 	L["Language"] = "Language"
+	L["SLASH_1"] = "/languages"
+	L["SLASH_2"] = "/language"
+	L["SLASH_3"] = "/lang"
+	L["SLASH_4"] = "/languages" -- non-localized slash
+	L["SLASH_5"] = "/language"
+	L["SLASH_6"] = "/lang"
 	L["Understand"] = "Understand"
 	L["TogglePrefixOff"] = "Language Prefix: Off"
 	L["TogglePrefixOn"] = "Language Prefix: On"
@@ -25,7 +531,7 @@ if LOCALE == "enUS" then
 	L["TogglePrefixTextOn"] = "Toggling off automated language prefix."
 	L["TogglePrefixTT"] = "Controls if the currently selected language automatically prefixes the user's message."
 	L["Diction"] = "Diction"
-	L["Settings"] = "Settings"
+	L["Settings"] = SETTINGS
 	L["Profiles"] = "Profiles"
 	L["ResetAccSettings"] = "Resets all settings specific to the account section. This will not reset character-specific settings."
 	L["ResetCharSettings"] = "Resets all settings specific to the character section. This will not reset account-specific settings."
@@ -59,14 +565,11 @@ if LOCALE == "enUS" then
 	L["SettingLanguageTo"] = "Setting language to:"
 	L["EnableUnderstand"] = "Enable Understand"
 	L["DisableUnderstand"] = "Disable Understand"
-	L["Dialect"] = "Dialect (Coming Soon)"
+	L["Dialect"] = "Dialect"
 	L["DialectOff"] = "Dialect: Off"
 	L["DialectOn"] = "Dialect: On"
 	L["UseDialectTT"] = "Controls if the user currently speaks with a dialect while speaking, e.g. \"What do you want\" becomes \"Waschu wan'?\"."
 	L["SettingDialectTo"] = "Setting dialect to:"
-	L["Dwarvish"] = "Dwarvish"
-	L["Draenic"] = "Draenic"
-	L["Zandali"] = "Zandali"
 	L["CurrentlySpeaking"] = "Currently speaking:"
 	L["NoPrefixBaseLang"] = "Don't use the prefix if speaking your faction's base language (Common/Orcish as Alliance/Horde respectively)."
 	L["LanguagePreset"] = "Learn Language Presets"
@@ -74,7 +577,7 @@ if LOCALE == "enUS" then
 	L["ImportGameplayTT"] = "Learn preset default languages that your race would in normal gameplay mechanics.\nThis will overwrite your current learned languages."
 	L["ImportRecommended"] = "Recommended"
 	L["ImportRecommendedTT"] = "Learn preset languages your race / class likely would have learned in their probable history.\nThis will overwrite your current learned languages."
-	L["ThisLangHasRunesTT"] = "This language can display runes when unlearned."
+	L["ThisLangHasRunesTT"] = "This language can display glyphs when unlearned."
 	L["ToggleLanguageLearnedTT"] = "Click to toggle your ability to understand this language when spoken by yourself and others."
 	L["ToggleLanguageSpokenTT"] = "Click to set this language as your prefix."
 	L["UseAutoShapeshiftOff"] = "Automatic Shapeshift language disabled for this character."
@@ -82,18 +585,294 @@ if LOCALE == "enUS" then
 	L["UseAutoShapeshift"] = "Automatic Shapeshift language"
 	L["UseAutoShapeshiftTT"] = "Shapeshifting into a form will automatically change your language to its association.\nRequires: Shadowform, Metamorphosis." --  Druid Forms, Ghost Wolf are planned maybe later 
 	L["LoadingProfile"] = "Loading Profile"
-	L["Help"] = "You can use "..colorThingS.."/languages"..colorThingE..", "..colorThingS.."/language"..colorThingE..", or "..colorThingS.."/lang"..colorThingE.." to access slash commands. The list of slash command sub-options available:"..
+	L["HelpCMD"] = "You can use "..colorThingS.."/languages"..colorThingE..", "..colorThingS.."/language"..colorThingE..", or "..colorThingS.."/lang"..colorThingE.." to access slash commands. The list of slash command sub-options available:"..
 	"\n"..colorThingS.."prefix"..colorThingE.." - toggle the [Language] prefix on/off."..
 	"\n"..colorThingS.."open"..colorThingE.." - open the options frame."..
 	"\n"..colorThingS.."minimap"..colorThingE.." - toggle the minimap button on/off."..
-	"\nAdditionally, you can set a language, such as for example "..colorThingS.."/lang Darnassian"..colorThingE.." or "..colorThingS.."/Darnassian"..colorThingE.."."
+	"\nAdditionally, you can set a language, such as for example "..colorThingS.."/Darnassian"..colorThingE.."."
+	L["OnlyInCharacter"] = "Only In Character"
+	L["OnlyInCharacterTT"] = "Only Enable Prefix / Dialect while 'In Character'.\nRequires the addon Total RP 3"
+	L["RuneSize"] = "Glyph Size"
+	L["DisablePrefix"] = "Disable Prefix"
+	L["EnablePrefix"] = "Enable Prefix"
+	L["ShowSelectionButton"] = "Show Languages Mini-Button"
+	L["ShowSelectionButtonTT"] = "Toggles a small button on screen from which to access learned language selection."
+	L["SelectLanguage"] = "Select Language"
+	L["OpenMenu"] = "Open Menu"
+	L["DragFrame"] = "Drag Frame"
+	L["LeftClick"] = "Left-Click"
+	L["RightClick"] = "Right-Click"
+	L["ShiftDrag"] = "Shift-Drag"
+	L["DialectsTT"] = "Choosing a Dialect will change certain words you type into other words. For example, turning \"are not\" into \"aren't\". Each language has its own set of words, and each one can be toggled."
+	L["Dialects2TT"] = "Words can have their Dialect form prevented by adding underscores to each side, such as \"_are not_\". This will keep the term in its original spelling, and additionally remove the underscores placed on each side."
+	L["Contributors"] = "Contributors"
+	L["SpecialThanks"] = "Thank you to these wonderful people who contributed to this addon!"
+
+	-- official languages
+	L["Common"] = 		"Common"			--7
+	L["Darnassian"] = 	"Darnassian"		--2
+	L["Dwarvish"] = 	"Dwarvish"			--6
+	L["Gnomish"] = 		"Gnomish"			--13
+	L["Draenei"] = 		"Draenei"			--35
+	L["Orcish"] = 		"Orcish"			--1
+	L["Zandali"] = 		"Zandali"			--14
+	L["Taurahe"] = 		"Taurahe"			--3
+	L["Forsaken"] = 	"Forsaken"			--33
+	L["Thalassian"] = 	"Thalassian"		--10
+	L["Goblin"] = 		"Goblin"			--40
+	L["Shalassian"] = 	"Shalassian"		--181
+	L["Vulpera"] = 		"Vulpera"			--285
+	L["Pandaren"] = 	"Pandaren"			--42
+	L["Draconic"] = 	"Draconic"			--11
+	L["Demonic"] = 		"Demonic"			--8
+	L["Titan"] = 		"Titan"				--9
+	L["Kalimag"] = 		"Kalimag"			--12
+	L["Shath'Yar"] = 	"Shath'Yar"			--178
+	L["Nerubian"] = 	"Nerubian"			--307
+	L["Sprite"] = 		"Sprite"			--168
+	L["Nerglish"] = 	"Nerglish"			--179
+	L["Moonkin"] = 		"Moonkin"			--180
+	L["Furbolg"] = 		"Furbolg"			--303
+	L["Earthen"] = 		"Earthen"			--304
+	L["Hara'ni"] = 		"Hara'ni"			--309
+			--
+	-- technically fanon
+	L["Gutterspeak"] = 			"Gutterspeak" -- Language Gutterspeak
+	--deDE		Gossensprache
+	--esES		Viscerálico
+	--esMX		Viscerálico
+	--frFR		Bas-parler
+	--itIT		Non Morto
+	--ptBR		Guturalês
+	--ruRU		Нежити
+	--koKR		언데드어
+	--zhCN		亡灵语
+	--zhTW		不死族語
+
+	L["AncientPandaren"] = 	"Ancient Pandaren" -- Ancient Pandaren Fishing Charm
+	--deDE		Uralter Pandaren
+	--esES		Pandaren antiguo
+	--esMX		Pandaren antiguo
+	--frFR		Pandaren ancien
+	--itIT		Pandaren antico
+	--ptBR		Pandaren antigo
+	--ruRU		Древний пандарен
+	--koKR		고대 판다렌
+	--zhCN		古代熊猫人
+	--zhTW		古代熊貓人
+
+	L["Broker"] = 				"Broker" -- Broker
+	--deDE		Mittler
+	--esES		Especulador
+	--esMX		Negociante
+	--frFR		Négociant
+	--itIT		Alienatore
+	--ptBR		Corretor
+	--ruRU		Брокер
+	--koKR		중개자
+	--zhCN		掮灵
+	--zhTW		仲介者
+
+	L["Cypher"] = 				"Cypher" -- Cyphers of the First Ones
+	--deDE		Chiffren
+	--esES		Claves
+	--esMX		Códigos
+	--frFR		Cryptogrammes
+	--itIT		Codici
+	--ptBR		Cifras
+	--ruRU		Шифры
+	--koKR		암호
+	--zhCN		密文
+	--zhTW		暗語
+
+	L["Arathi"] = 				"Arathi" -- Arathi Bartender's Shelves
+	--deDE		Arathi
+	--esES		Arathi
+	--esMX		Arathi
+	--frFR		Arathie
+	--itIT		Arathi
+	--ptBR		Arathi
+	--ruRU		Аратии
+	--koKR		아라시
+	--zhCN		阿拉希
+	--zhTW		阿拉希
+
+	L["Mogu"] = 				"Mogu" -- Mogu
+	--deDE		Mogu
+	--esES		Mogu
+	--esMX		Mogu
+	--frFR		Mogu
+	--itIT		Mogu
+	--ptBR		Mogu
+	--ruRU		Могу
+	--koKR		모구
+	--zhCN		魔古族
+	--zhTW		魔古
+
+	L["Ethereal"] = 				"Ethereal" -- Ethereal Citizen
+	--deDE		Astral
+	--esES		Etéreo
+	--esMX		Etéreo
+	--frFR		Éthérien
+	--itIT		Etereo
+	--ptBR		Etéreo
+	--ruRU		Эфириал
+	--koKR		에테리얼
+	--zhCN		虚灵
+	--zhTW		以太
+
+	L["K'areshi"] = 				"K'areshi" -- K'areshi Sentry
+	--deDE		K'areshi
+	--esES		K'areshi
+	--esMX		K'areshi
+	--frFR		K'areshi
+	--itIT		K'areshi
+	--ptBR		K'areshi
+	--ruRU		К'ареши
+	--koKR		크아레쉬
+	--zhCN		卡雷什
+	--zhTW		凱瑞西
+
+	-- other languages to include eventually
+		--Apexis
+		--Drogbar
+		--Drust
+		--Hozen
+		--Jinyu
+		--Mantid
+		--Nathrezim
+		--Nazja
+		--Ogre
+		--Pygmy
+		--Qiraji
+		--Quilboar
+		--Ravenspeech
+		--Tol'vir
+		--Tuskarr
+		--Vrykul
+		--
+		--
+		--
+		--
+		--
+		--
+		--
+		--
+		--
+		--
+
+
+
+	L["Gilnean"] =					"Gilnean"
+	--deDE		Gilnearisch
+	--esES		gilneano
+	--esMX		gilneano
+	--frFR		gilnéen
+	--itIT		Gilneano
+	--ptBR		Guilneana
+	--ruRU		гилнеасский
+	--koKR		길니아스어
+	--zhCN		吉尔尼斯语
+	--zhTW		吉爾尼斯
+
+	L["KulTiranNoble"] =			"Kul Tiran Noble"
+	--deDE		Adliger von Kul Tiras
+	--esES		Noble de Kul Tiras
+	--esMX		Noble kultirano
+	--frFR		Noble de Kul Tiras
+	--itIT		Nobile di Kul Tiras
+	--ptBR		Nobre Kultireno
+	--ruRU		Кул-тирасский аристократ
+	--koKR		쿨 티란 귀족
+	--zhCN		库尔提拉斯贵族
+	--zhTW		庫爾提拉斯貴族
+
+	L["Mechagnome"] =				"Mechagnome"
+	--deDE		Mechagnom
+	--esES		Mecagnomo
+	--esMX		Mecagnomo
+	--frFR		Mécagnome
+	--itIT		Meccagnomo
+	--ptBR		Gnomecânico
+	--ruRU		Механогном
+	--koKR		기계노움
+	--zhCN		机械侏儒
+	--zhTW		機械地精
+
+	L["DarkspearTrolls"] =				"Darkspear Troll"
+	--deDE		Dunkelspeertroll
+	--esES		Trol Lanza Negra
+	--esMX		Trol Lanza Negra
+	--frFR		Troll sombrelances
+	--itIT		Troll Lanciascura
+	--ptBR		Troll Lançanegra
+	--ruRU		Племя Черного Копья
+	--koKR		검은창 트롤
+	--zhCN		暗矛巨魔
+	--zhTW		暗矛食人妖
+
+	L["Sailor"] =						"Sailor"
+	--deDE		Matrose
+	--esES		Marinero
+	--esMX		Marinero
+	--frFR		Marin
+	--itIT		Marinaio
+	--ptBR		Marinheiro
+	--ruRU		Матрос
+	--koKR		선원
+	--zhCN		水手
+	--zhTW		水手
+
+	L["Highborne"] =					"Highborne"
+	--deDE		Hochgeborene
+	--esES		Altonato
+	--esMX		Altonato
+	--frFR		Bien-né
+	--itIT		Alto Nobile
+	--ptBR		Altaneiro
+	--ruRU		Высокорожденный
+	--koKR		명가
+	--zhCN		上层精灵
+	--zhTW		精靈貴族
+
+	L["Nightborne"] =					"Nightborne"
+	--deDE		Nachtgeborener
+	--esES		Nocheterna
+	--esMX		Natonocturno
+	--frFR		Sacrenuit
+	--itIT		Nobile Oscuro
+	--ptBR		Filho da Noite
+	--ruRU		Ночнорожденный
+	--koKR		나이트본
+	--zhCN		夜之子
+	--zhTW		夜裔精靈
+
+	L["Zandalari"] =					"Zandalari Troll"
+	--deDE		Zandalaritroll
+	--esES		Trol Zandalari
+	--esMX		Trol zandalari
+	--frFR		Troll zandalari
+	--itIT		Troll Zandalari
+	--ptBR		Troll Zandalari
+	--ruRU		Зандалар
+	--koKR		잔달라 트롤
+	--zhCN		赞达拉巨魔
+	--zhTW		贊達拉食人妖
+
+
 
 return end
 
-if LOCALE == "esES" or LOCALE == "esMX" then
+if LOCALE == "esMX" then
 -- Spanish translations go here
 	L["Languages"] = "Idiomas"
 	L["Language"] = "Idioma"
+	L["SLASH_1"] = "/idiomas"
+	L["SLASH_2"] = "/idiomas"
+	L["SLASH_3"] = "/idiomas"
+	L["SLASH_4"] = "/languages" -- non-localized slash
+	L["SLASH_5"] = "/language"
+	L["SLASH_6"] = "/lang"
 	L["Understand"] = "Entender"
 	L["TogglePrefixOff"] = "Prefijo de idioma: desactivado"
 	L["TogglePrefixOn"] = "Prefijo de idioma: activado"
@@ -101,7 +880,7 @@ if LOCALE == "esES" or LOCALE == "esMX" then
 	L["TogglePrefixTextOn"] = "Desactivar el prefijo de idioma automatizado."
 	L["TogglePrefixTT"] = "Controla si el idioma seleccionado actualmente antepone automáticamente el mensaje del usuario."
 	L["Diction"] = "Dicción"
-	L["Settings"] = "Ajustes"
+	L["Settings"] = SETTINGS
 	L["Profiles"] = "Perfiles"
 	L["ResetAccSettings"] = "Restablece todas las configuraciones específicas de la sección de cuenta. Esto no restablecerá la configuración específica del personaje."
 	L["ResetCharSettings"] = "Restablece todas las configuraciones específicas de la sección de personajes. Esto no restablecerá la configuración específica de la cuenta."
@@ -135,14 +914,11 @@ if LOCALE == "esES" or LOCALE == "esMX" then
 	L["SettingLanguageTo"] = "Configuración del idioma en:"
 	L["EnableUnderstand"] = "Habilitar comprensión"
 	L["DisableUnderstand"] = "Deshabilitar entender"
-	L["Dialect"] = "Dialecto (próximamente)"
+	L["Dialect"] = "Dialecto"
 	L["DialectOff"] = "Dialecto: Desactivado"
 	L["DialectOn"] = "Dialecto: encendido"
 	L["UseDialectTT"] = "Controla si el usuario actualmente habla con un dialecto mientras habla, p. \"¿Qué quieres\" se convierte en \"Waschu wan'?\"."
 	L["SettingDialectTo"] = "Configurando el dialecto en:"
-	L["Dwarvish"] = "enano"
-	L["Draenic"] = "draénico"
-	L["Zandali"] = "Zandalí"
 	L["CurrentlySpeaking"] = "Actualmente hablando:"
 	L["NoPrefixBaseLang"] = "No uses el prefijo si hablas el idioma base de tu facción (Común/Orco como Alianza/Horda respectivamente)."
 	L["LanguagePreset"] = "Aprender ajustes preestablecidos de idioma"
@@ -150,7 +926,7 @@ if LOCALE == "esES" or LOCALE == "esMX" then
 	L["ImportGameplayTT"] = "Aprende los idiomas predeterminados preestablecidos que usaría tu raza en la mecánica de juego normal.\nEsto sobrescribirá los idiomas aprendidos actualmente."
 	L["ImportRecommended"] = "Recomendado"
 	L["ImportRecommendedTT"] = "Aprenda idiomas preestablecidos que su raza/clase probablemente habría aprendido en su historial probable.\nEsto sobrescribirá los idiomas aprendidos actualmente."
-	L["ThisLangHasRunesTT"] = "Este idioma puede mostrar runas cuando no se aprende."
+	L["ThisLangHasRunesTT"] = "Este idioma puede mostrar glifos cuando no se ha aprendido."
 	L["ToggleLanguageLearnedTT"] = "Haga clic para alternar su capacidad de comprender este idioma cuando lo hablan usted mismo y otros."
 	L["ToggleLanguageSpokenTT"] = "Haga clic para establecer este idioma como su prefijo."
 	L["UseAutoShapeshiftOff"] = "Idioma de cambio de forma automático deshabilitado para este personaje."
@@ -158,25 +934,235 @@ if LOCALE == "esES" or LOCALE == "esMX" then
 	L["UseAutoShapeshift"] = "Idioma de cambio de forma automático"
 	L["UseAutoShapeshiftTT"] = "Cambiar de forma a una forma cambiará automáticamente su idioma a su asociación.\nRequiere: Forma de sombra, Metamorfosis."
 	L["LoadingProfile"] = "Cargando perfil"
-	L["Help"] = "Puede utilizar "..colorThingS.."/languages"..colorThingE..", "..colorThingS.."/language"..colorThingE..", o "..colorThingS.."/lang"..colorThingE.." para acceder a los comandos de barra diagonal. La lista de subopciones de comandos de barra diagonal disponibles:"..
+	L["HelpCMD"] = "Puede utilizar "..colorThingS.."/languages"..colorThingE..", "..colorThingS.."/idiomas"..colorThingE..", o "..colorThingS.."/lang"..colorThingE.." para acceder a los comandos de barra diagonal. La lista de subopciones de comandos de barra diagonal disponibles:"..
 	"\n"..colorThingS.."prefix"..colorThingE.." - activa o desactiva el prefijo [Language]."..
 	"\n"..colorThingS.."open"..colorThingE.." - abre el marco de opciones."..
 	"\n"..colorThingS.."minimap"..colorThingE.." - activa o desactiva el botón del minimapa."..
-	"\nAdemás, puede configurar un idioma, como por ejemplo "..colorThingS.."/lang Darnassian"..colorThingE.." o "..colorThingS.."/Darnassian"..colorThingE.."."
+	"\nAdemás, puede configurar un idioma, como por ejemplo "..colorThingS.."/Darnassiano"..colorThingE.."."
+	L["OnlyInCharacter"] = "Solo en personaje"
+	L["OnlyInCharacterTT"] = "Solo activa el prefijo / dialecto mientras estás \"En personaje\".\nRequiere el addon Total RP 3"
+	L["RuneSize"] = "Tamaño del glifo"
+	L["DisablePrefix"] = "Desactivar prefijo"
+	L["EnablePrefix"] = "Activar prefijo"
+	L["ShowSelectionButton"] = "Mostrar minibotón de idiomas"
+	L["ShowSelectionButtonTT"] = "Activa un pequeño botón en pantalla para acceder a la selección de idiomas aprendidos."
+	L["SelectLanguage"] = "Seleccionar idioma"
+	L["OpenMenu"] = "Abrir menú"
+	L["DragFrame"] = "Arrastrar marco"
+	L["LeftClick"] = "Clic izquierdo"
+	L["RightClick"] = "Clic derecho"
+	L["ShiftDrag"] = "MAYÚS + arrastrar"
+	L["DialectsTT"] = "Elegir un dialecto cambiará ciertas palabras que escribes por otras. Por ejemplo, convertir \"are not\" en \"aren't\". Cada idioma tiene su propio conjunto de palabras, y cada uno puede activarse o desactivarse."
+	L["Dialects2TT"] = "Las palabras pueden evitar su forma dialectal añadiendo guiones bajos a cada lado, como \"_are not_\". Esto mantendrá el término con su ortografía original y, además, eliminará los guiones bajos colocados a cada lado."
+	L["Contributors"] = "Colaboradores"
+	L["SpecialThanks"] = "¡Gracias a estas maravillosas personas que contribuyeron a este complemento!"
+
+	L["Common"] = 		"Lengua común"		--7
+	L["Darnassian"] = 	"Darnassiano"		--2
+	L["Dwarvish"] = 	"Enánico"			--6
+	L["Gnomish"] = 		"Gnomótico"			--13
+	L["Draenei"] = 		"Draenei"			--35
+	L["Orcish"] = 		"Orco"				--1
+	L["Zandali"] = 		"Zandali"			--14
+	L["Taurahe"] = 		"Taurahe"			--3
+	L["Forsaken"] = 	"Renegado"			--33
+	L["Thalassian"] = 	"Thalassiano"		--10
+	L["Goblin"] = 		"Goblin"			--40
+	L["Shalassian"] = 	"Shalassiano"		--181
+	L["Vulpera"] = 		"Vulpera"			--285
+	L["Pandaren"] = 	"Pandaren"			--42
+	L["Draconic"] = 	"Dracónico"			--11
+	L["Demonic"] = 		"Demoníaco"			--8
+	L["Titan"] = 		"Titánico"			--9
+	L["Kalimag"] = 		"Kalimag"			--12
+	L["Shath'Yar"] = 	"Shath'Yar"			--178
+	L["Nerubian"] = 	"Nerubiano"			--307
+	L["Sprite"] = 		"Duende"			--168
+	L["Nerglish"] = 	"Nerglish"			--179
+	L["Moonkin"] = 		"Lechúcico lunar"	--180
+	L["Furbolg"] = 		"Fúrbolg"			--303
+	L["Earthen"] = 		"Terráneo"			--304
+	L["Hara'ni"] = 		"Hara'ni"			--309
+
+	L["Gutterspeak"] = 			"Viscerálico"
+	L["AncientPandaren"] = 	"Pandaren antiguo"
+	L["Broker"] = 				"Negociante"
+	L["Cypher"] = 				"Códigos"
+	L["Arathi"] = 				"Arathi"
+	L["Mogu"] = 				"Mogu"
+	L["Ethereal"] = 			"Etéreo"
+	L["K'areshi"] = 			"K'areshi"
+
+	L["Gilnean"] = "gilneano"
+	L["KulTiranNoble"] = "Noble kultirano"
+	L["Mechagnome"] = "Mecagnomo"
+	L["DarkspearTrolls"] = "Trol Lanza Negra"
+	L["Sailor"] = "Marinero"
+	L["Highborne"] = "Altonato"
+	L["Nightborne"] = "Natonocturno"
+	L["Zandalari"] = "Trol zandalari"
+
+return end
+
+if LOCALE == "esES" then
+-- Spanish translations go here
+	L["Languages"] = "Idiomas"
+	L["Language"] = "Idioma"
+	L["SLASH_1"] = "/idiomas"
+	L["SLASH_2"] = "/idiomas"
+	L["SLASH_3"] = "/idiomas"
+	L["SLASH_4"] = "/languages" -- non-localized slash
+	L["SLASH_5"] = "/language"
+	L["SLASH_6"] = "/lang"
+	L["Understand"] = "Entender"
+	L["TogglePrefixOff"] = "Prefijo de idioma: desactivado"
+	L["TogglePrefixOn"] = "Prefijo de idioma: activado"
+	L["TogglePrefixTextOff"] = "Desactivar el prefijo de idioma automatizado."
+	L["TogglePrefixTextOn"] = "Desactivar el prefijo de idioma automatizado."
+	L["TogglePrefixTT"] = "Controla si el idioma seleccionado actualmente antepone automáticamente el mensaje del usuario."
+	L["Diction"] = "Dicción"
+	L["Settings"] = SETTINGS
+	L["Profiles"] = "Perfiles"
+	L["ResetAccSettings"] = "Restablece todas las configuraciones específicas de la sección de cuenta. Esto no restablecerá la configuración específica del personaje."
+	L["ResetCharSettings"] = "Restablece todas las configuraciones específicas de la sección de personajes. Esto no restablecerá la configuración específica de la cuenta."
+	L["ResetAccSettingsConfirm"] = "¿Está seguro de que desea restablecer la configuración específica de la cuenta para Idiomas?"
+	L["ResetCharSettingsConfirm"] = "¿Estás seguro de que quieres restablecer la configuración específica de idiomas de este personaje?"
+	L["ApplyPresetConfirm"] = "¿Está seguro de que desea sobrescribir los idiomas aprendidos actualmente?"
+	L["AddonPrefixColor"] = "Idiomas Prefijo Color"
+	L["AccountSettings"] = "Configuraciones de la cuenta"
+	L["CharacterSettings"] = "Configuración de personajes"
+	L["MinimapTooltip"] = "Idiomas\nHaga clic para alternar el menú Idiomas."
+	L["GlyphsOff"] ="Desactivando glifos."
+	L["GlyphsOn"] = "Activando glifos."
+	L["UseGlyphs"] = "Los idiomas no aprendidos usan glifos"
+	L["UseGlyphsTT"] = "Controla si un idioma no aprendido utiliza glifos, cuando están disponibles, para reemplazar los caracteres individuales. Es posible que algunos idiomas aún no tengan glifos disponibles."
+	L["SpeechBubblesOff"] = "Desactivar las traducciones de bocadillos."
+	L["SpeechBubblesOn"] = "Activando la traducción de bocadillos."
+	L["SpeechBubbles"] = "Mostrar en bocadillos"
+	L["SpeechBubblesTT"] = "Controla si los idiomas no traducidos aparecerán en los bocadillos.\nLa API de Blizzard limita el funcionamiento de esta función en contenido instanciado."
+	L["CombatOptionOn"] = "Activar las traducciones durante el combate."
+	L["CombatOptionOff"] = "Desactivar las traducciones durante el combate."
+	L["CombatOption"] = "Función durante el combate"
+	L["CombatOptionTT"] = "Controla si el complemento funcionará en combate."
+	L["FactionOptionOn"] = "Ignorando el lenguaje de la facción."
+	L["FactionOptionOff"] = "Ignorar el lenguaje de facción desactivado."
+	L["FactionOption"] = "Ignorar los idiomas de la propia facción."
+	L["FactionOptionTT"] = "Controla si el complemento ignorará la opción de prefijo para \"Común\" mientras esté en un personaje de la Alianza o \"Orco\" para un personaje de la Horda."
+	L["LinkToTotalRP3Off"] = "Enlace total de RP 3 deshabilitado para este personaje."
+	L["LinkToTotalRP3On"] = "Enlace total de RP 3 habilitado para este personaje."
+	L["LinkToTotalRP3"] = "Enlace al perfil de Total RP 3"
+	L["LinkToTotalRP3TT"] = "Cambia automáticamente el perfil del personaje según el perfil Total RP 3. Si varios personajes usan el mismo perfil, esto debería conservar la configuración de esos personajes.\nRequiere el complemento Total RP 3"
+	L["SettingLanguageTo"] = "Configuración del idioma en:"
+	L["EnableUnderstand"] = "Habilitar comprensión"
+	L["DisableUnderstand"] = "Deshabilitar entender"
+	L["Dialect"] = "Dialecto"
+	L["DialectOff"] = "Dialecto: Desactivado"
+	L["DialectOn"] = "Dialecto: encendido"
+	L["UseDialectTT"] = "Controla si el usuario actualmente habla con un dialecto mientras habla, p. \"¿Qué quieres\" se convierte en \"Waschu wan'?\"."
+	L["SettingDialectTo"] = "Configurando el dialecto en:"
+	L["CurrentlySpeaking"] = "Actualmente hablando:"
+	L["NoPrefixBaseLang"] = "No uses el prefijo si hablas el idioma base de tu facción (Común/Orco como Alianza/Horda respectivamente)."
+	L["LanguagePreset"] = "Aprender ajustes preestablecidos de idioma"
+	L["ImportGameplay"] = "Como se Juega"
+	L["ImportGameplayTT"] = "Aprende los idiomas predeterminados preestablecidos que usaría tu raza en la mecánica de juego normal.\nEsto sobrescribirá los idiomas aprendidos actualmente."
+	L["ImportRecommended"] = "Recomendado"
+	L["ImportRecommendedTT"] = "Aprenda idiomas preestablecidos que su raza/clase probablemente habría aprendido en su historial probable.\nEsto sobrescribirá los idiomas aprendidos actualmente."
+	L["ThisLangHasRunesTT"] = "Este idioma puede mostrar glifos cuando no se ha aprendido."
+	L["ToggleLanguageLearnedTT"] = "Haga clic para alternar su capacidad de comprender este idioma cuando lo hablan usted mismo y otros."
+	L["ToggleLanguageSpokenTT"] = "Haga clic para establecer este idioma como su prefijo."
+	L["UseAutoShapeshiftOff"] = "Idioma de cambio de forma automático deshabilitado para este personaje."
+	L["UseAutoShapeshiftOn"] = "Idioma de cambio de forma automático habilitado para este personaje."
+	L["UseAutoShapeshift"] = "Idioma de cambio de forma automático"
+	L["UseAutoShapeshiftTT"] = "Cambiar de forma a una forma cambiará automáticamente su idioma a su asociación.\nRequiere: Forma de sombra, Metamorfosis."
+	L["LoadingProfile"] = "Cargando perfil"
+	L["HelpCMD"] = "Puede utilizar "..colorThingS.."/languages"..colorThingE..", "..colorThingS.."/idiomas"..colorThingE..", o "..colorThingS.."/lang"..colorThingE.." para acceder a los comandos de barra diagonal. La lista de subopciones de comandos de barra diagonal disponibles:"..
+	"\n"..colorThingS.."prefix"..colorThingE.." - activa o desactiva el prefijo [Language]."..
+	"\n"..colorThingS.."open"..colorThingE.." - abre el marco de opciones."..
+	"\n"..colorThingS.."minimap"..colorThingE.." - activa o desactiva el botón del minimapa."..
+	"\nAdemás, puede configurar un idioma, como por ejemplo "..colorThingS.."/Darnassiano"..colorThingE.."."
+	L["OnlyInCharacter"] = "Solo en personaje"
+	L["OnlyInCharacterTT"] = "Solo activa el prefijo / dialecto mientras estás \"En personaje\".\nRequiere el addon Total RP 3"
+	L["RuneSize"] = "Tamaño del glifo"
+	L["DisablePrefix"] = "Desactivar prefijo"
+	L["EnablePrefix"] = "Activar prefijo"
+	L["ShowSelectionButton"] = "Mostrar minibotón de idiomas"
+	L["ShowSelectionButtonTT"] = "Activa un pequeño botón en pantalla para acceder a la selección de idiomas aprendidos."
+	L["SelectLanguage"] = "Seleccionar idioma"
+	L["OpenMenu"] = "Abrir menú"
+	L["DragFrame"] = "Arrastrar marco"
+	L["LeftClick"] = "Clic izquierdo"
+	L["RightClick"] = "Clic derecho"
+	L["ShiftDrag"] = "MAYÚS + arrastrar"
+	L["DialectsTT"] = "Elegir un dialecto cambiará ciertas palabras que escribes por otras. Por ejemplo, convertir \"are not\" en \"aren't\". Cada idioma tiene su propio conjunto de palabras, y cada uno puede activarse o desactivarse."
+	L["Dialects2TT"] = "Las palabras pueden evitar su forma dialectal añadiendo guiones bajos a cada lado, como \"_are not_\". Esto mantendrá el término con su ortografía original y, además, eliminará los guiones bajos colocados a cada lado."
+	L["Contributors"] = "Colaboradores"
+	L["SpecialThanks"] = "¡Gracias a estas maravillosas personas que contribuyeron a este complemento!"
+
+	L["Common"] = 		"Lengua común"		--7
+	L["Darnassian"] = 	"Darnassiano"		--2
+	L["Dwarvish"] = 	"Enánico"			--6
+	L["Gnomish"] = 		"Gnomótico"			--13
+	L["Draenei"] = 		"Draenei"			--35
+	L["Orcish"] = 		"Orco"				--1
+	L["Zandali"] = 		"Zandali"			--14
+	L["Taurahe"] = 		"Taurahe"			--3
+	L["Forsaken"] = 	"Renegado"			--33
+	L["Thalassian"] = 	"Thalassiano"		--10
+	L["Goblin"] = 		"Goblin"			--40
+	L["Shalassian"] = 	"Shalassiano"		--181
+	L["Vulpera"] = 		"Vulpera"			--285
+	L["Pandaren"] = 	"Pandaren"			--42
+	L["Draconic"] = 	"Dracónico"			--11
+	L["Demonic"] = 		"Demoníaco"			--8
+	L["Titan"] = 		"Titánico"			--9
+	L["Kalimag"] = 		"Kalimag"			--12
+	L["Shath'Yar"] = 	"Shath'yar"			--178
+	L["Nerubian"] = 	"Nerubiano"			--307
+	L["Sprite"] = 		"Duende"			--168
+	L["Nerglish"] = 	"Nerglés"			--179
+	L["Moonkin"] = 		"Lechúcico lunar"	--180
+	L["Furbolg"] = 		"Fúrbolg"			--303
+	L["Earthen"] = 		"Terráneo"			--304
+	L["Hara'ni"] = 		"Hara'ni"			--309
+
+	L["Gutterspeak"] = 			"Viscerálico"
+	L["AncientPandaren"] = 	"Pandaren antiguo"
+	L["Broker"] = 				"Especulador"
+	L["Cypher"] = 				"Claves"
+	L["Arathi"] = 				"Arathi"
+	L["Mogu"] = 				"Mogu"
+	L["Ethereal"] = 			"Etéreo"
+	L["K'areshi"] = 			"K'areshi"
+
+	L["Gilnean"] = "gilneano"
+	L["KulTiranNoble"] = "Noble de Kul Tiras"
+	L["Mechagnome"] = "Mecagnomo"
+	L["DarkspearTrolls"] = "Trol Lanza Negra"
+	L["Sailor"] = "Marinero"
+	L["Highborne"] = "Altonato"
+	L["Nightborne"] = "Nocheterna"
+	L["Zandalari"] = "Trol Zandalari"
+
 return end
 
 if LOCALE == "deDE" then
 -- German translations go here
 	L["Languages"] = "Sprachen"
 	L["Language"] = "Sprache"
+	L["SLASH_1"] = "/sprachen"
+	L["SLASH_2"] = "/sprachen"
+	L["SLASH_3"] = "/sprachen"
+	L["SLASH_4"] = "/languages" -- non-localized slash
+	L["SLASH_5"] = "/language"
+	L["SLASH_6"] = "/lang"
 	L["Understand"] = "Verstehen"
 	L["TogglePrefixOff"] = "Sprachpräfix: Aus"
 	L["TogglePrefixOn"] = "Sprachpräfix: Ein"
 	L["TogglePrefixTextOff"] = "Automatisches Sprachpräfix ausschalten."
-	L["TogglePrefixTextOn"] = "„Automatisches Sprachpräfix ausschalten.“"
+	L["TogglePrefixTextOn"] = "\"Automatisches Sprachpräfix ausschalten.\""
 	L["TogglePrefixTT"] = "Steuert, ob die aktuell ausgewählte Sprache der Nachricht des Benutzers automatisch vorangestellt wird."
 	L["Diction"] = "Diktion"
-	L["Settings"] = "Einstellungen"
+	L["Settings"] = SETTINGS
 	L["Profiles"] = "Profile"
 	L["ResetAccSettings"] = "Setzt alle für den Kontobereich spezifischen Einstellungen zurück. Dadurch werden die charakterspezifischen Einstellungen nicht zurückgesetzt."
 	L["ResetCharSettings"] = "Setzt alle für den Charakterbereich spezifischen Einstellungen zurück. Dadurch werden kontospezifische Einstellungen nicht zurückgesetzt."
@@ -202,22 +1188,19 @@ if LOCALE == "deDE" then
 	L["FactionOptionOn"] = "Ignorieren Sie die Fraktionssprache."
 	L["FactionOptionOff"] = "Fraktionssprache ignorieren aus."
 	L["FactionOption"] = "Ignorieren Sie die Sprachen der eigenen Fraktion"
-	L["FactionOptionTT"] = "Steuert, ob das Addon die Präfixoption für „Common“ bei einem Allianz-Charakter oder „Orcish“ bei einem Horde-Charakter ignoriert."
+	L["FactionOptionTT"] = "Steuert, ob das Addon die Präfixoption für \"Common\" bei einem Allianz-Charakter oder \"Orcish\" bei einem Horde-Charakter ignoriert."
 	L["LinkToTotalRP3Off"] = "Gesamt-RP-3-Link für diesen Charakter deaktiviert."
 	L["LinkToTotalRP3On"] = "Gesamt-RP-3-Link für diesen Charakter aktiviert."
 	L["LinkToTotalRP3"] = "Link zum Total RP 3-Profil"
 	L["LinkToTotalRP3TT"] = "Ändere das Profil des Charakters automatisch entsprechend dem Gesamt-RP-3-Profil. Wenn mehrere Charaktere dasselbe Profil verwenden, sollten die Einstellungen für diese Charaktere beibehalten werden.\nErfordert das Add-on Total RP 3"
 	L["SettingLanguageTo"] = "Sprache einstellen auf:"
-	L["EnableUnderstand"] = "Aktivieren Sie „Verstehen“."
-	L["DisableUnderstand"] = "Deaktivieren Sie „Verstehen“."
-	L["Dialect"] = "Dialekt (bald erhältlich)"
+	L["EnableUnderstand"] = "Aktivieren Sie \"Verstehen\"."
+	L["DisableUnderstand"] = "Deaktivieren Sie \"Verstehen\"."
+	L["Dialect"] = "Dialekt"
 	L["DialectOff"] = "Dialekt: Aus"
 	L["DialectOn"] = "Dialekt: Ein"
-	L["UseDialectTT"] = "Steuert, ob der Benutzer beim Sprechen derzeit mit einem Dialekt spricht, z. Aus „Was willst du“ wird „Waschu wan‘?“."
-	L["SettingDialectTo"] = "„Dialekt einstellen auf:“"
-	L["Dwarvish"] = "Zwergisch"
-	L["Draenic"] = "Draenisch"
-	L["Zandali"] = "Zandali"
+	L["UseDialectTT"] = "Steuert, ob der Benutzer beim Sprechen derzeit mit einem Dialekt spricht, z. Aus \"Was willst du\" wird \"Waschu wan‘?\"."
+	L["SettingDialectTo"] = "\"Dialekt einstellen auf:\""
 	L["CurrentlySpeaking"] = "Derzeit spricht:"
 	L["NoPrefixBaseLang"] = "Verwenden Sie das Präfix nicht, wenn Sie die Basissprache Ihrer Fraktion sprechen (gemeinsam/Orkisch als Allianz/Horde)."
 	L["LanguagePreset"] = "Lernen Sie Sprachvoreinstellungen"
@@ -225,7 +1208,7 @@ if LOCALE == "deDE" then
 	L["ImportGameplayTT"] = "Lernen Sie voreingestellte Standardsprachen, die Ihre Rasse in der normalen Spielmechanik verwenden würde.\nDadurch werden Ihre aktuell erlernten Sprachen überschrieben."
 	L["ImportRecommended"] = "Empfohlen"
 	L["ImportRecommendedTT"] = "Lernen Sie voreingestellte Sprachen, die Ihre Rasse/Klasse in ihrer wahrscheinlichen Geschichte wahrscheinlich gelernt hätte.\nDadurch werden Ihre aktuell erlernten Sprachen überschrieben."
-	L["ThisLangHasRunesTT"] = "Diese Sprache kann Runen anzeigen, wenn sie nicht erlernt ist."
+	L["ThisLangHasRunesTT"] = "Diese Sprache kann Glyphe anzeigen, wenn sie nicht erlernt wurde."
 	L["ToggleLanguageLearnedTT"] = "Klicken Sie hier, um Ihre Fähigkeit, diese Sprache zu verstehen, wenn Sie sie selbst oder andere sprechen, ein- oder auszuschalten."
 	L["ToggleLanguageSpokenTT"] = "Klicken Sie, um diese Sprache als Ihr Präfix festzulegen."
 	L["UseAutoShapeshiftOff"] = "Die automatische Gestaltwandlungssprache ist für diesen Charakter deaktiviert."
@@ -233,31 +1216,100 @@ if LOCALE == "deDE" then
 	L["UseAutoShapeshift"] = "Automatische Shapeshift-Sprache"
 	L["UseAutoShapeshiftTT"] = "Durch die Gestaltwandlung in eine Form wird Ihre Sprache automatisch an die entsprechende Assoziation angepasst.\nErfordert: Schattenform, Metamorphose."
 	L["LoadingProfile"] = "Profil wird geladen"
-	L["Help"] = "Sie können "..colorThingS.."/languages"..colorThingE..", "..colorThingS.."/language"..colorThingE..", oder "..colorThingS.."/lang"..colorThingE.." verwenden, um auf Schrägstrich-Befehle zuzugreifen. Die Liste der verfügbaren Unteroptionen für Schrägstrich-Befehle:"..
+	L["HelpCMD"] = "Sie können "..colorThingS.."/languages"..colorThingE..", "..colorThingS.."/sprachen"..colorThingE..", oder "..colorThingS.."/lang"..colorThingE.." verwenden, um auf Schrägstrich-Befehle zuzugreifen. Die Liste der verfügbaren Unteroptionen für Schrägstrich-Befehle:"..
 	"\n"..colorThingS.."prefix"..colorThingE.." - Schaltet das [Language]-Präfix ein/aus."..
 	"\n"..colorThingS.."open"..colorThingE.." - Öffnet den Optionsrahmen."..
 	"\n"..colorThingS.."minimap"..colorThingE.." - Schaltet die Minikarten-Schaltfläche ein/aus."..
-	"\nZusätzlich können Sie eine Sprache festlegen, beispielsweise "..colorThingS.."/lang Darnassian"..colorThingE.." oder "..colorThingS.."/Darnassian"..colorThingE.."."
+	"\nZusätzlich können Sie eine Sprache festlegen, beispielsweise "..colorThingS.."/Darnassisch"..colorThingE.."."
+	L["OnlyInCharacter"] = "Nur im Charakter"
+	L["OnlyInCharacterTT"] = "Aktiviert Präfix / Dialekt nur, wenn du \"Im Charakter\" bist.\nErfordert das Addon Total RP 3"
+	L["RuneSize"] = "Glyphengröße"
+	L["DisablePrefix"] = "Präfix deaktivieren"
+	L["EnablePrefix"] = "Präfix aktivieren"
+	L["ShowSelectionButton"] = "Mini-Schaltfläche für Sprachen anzeigen"
+	L["ShowSelectionButtonTT"] = "Blendet eine kleine Schaltfläche ein, über die die Auswahl erlernter Sprachen geöffnet werden kann."
+	L["SelectLanguage"] = "Sprache auswählen"
+	L["OpenMenu"] = "Menü öffnen"
+	L["DragFrame"] = "Fenster verschieben"
+	L["LeftClick"] = "Links-Klick"
+	L["RightClick"] = "Rechts-Klick"
+	L["ShiftDrag"] = "UMSCHALT + Ziehen"
+	L["DialectsTT"] = "Die Auswahl eines Dialekts ersetzt bestimmte Wörter, die du eingibst, durch andere. Zum Beispiel wird \"are not\" zu \"aren't\". Jede Sprache hat ihren eigenen Wortschatz, und jeder kann ein- oder ausgeschaltet werden."
+	L["Dialects2TT"] = "Wörter können von ihrer Dialektform ausgenommen werden, indem auf beiden Seiten Unterstriche hinzugefügt werden, wie z. B. \"_are not_\". Dadurch bleibt die ursprüngliche Schreibweise erhalten, und die hinzugefügten Unterstriche werden anschließend entfernt."
+	L["Contributors"] = "Mitwirkende"
+	L["SpecialThanks"] = "Vielen Dank an diese wunderbaren Menschen, die zu diesem Add-on beigetragen haben!"
+
+	L["Common"] = 		"Gemeinsprache"		--7
+	L["Darnassian"] = 	"Darnassisch"		--2
+	L["Dwarvish"] = 	"Zwergisch"			--6
+	L["Gnomish"] = 		"Gnomisch"			--13
+	L["Draenei"] = 		"Draenei"			--35
+	L["Orcish"] = 		"Orcisch"			--1
+	L["Zandali"] = 		"Zandali"			--14
+	L["Taurahe"] = 		"Taurahe"			--3
+	L["Forsaken"] = 	"Gossensprache"		--33
+	L["Thalassian"] = 	"Thalassisch"		--10
+	L["Goblin"] = 		"Goblin"			--40
+	L["Shalassian"] = 	"Shalassisch"		--181
+	L["Vulpera"] = 		"Vulpera"			--285
+	L["Pandaren"] = 	"Pandarisch"		--42
+	L["Draconic"] = 	"Drakonisch"		--11
+	L["Demonic"] = 		"Dämonisch"			--8
+	L["Titan"] = 		"Titanensprache"	--9
+	L["Kalimag"] = 		"Kalimag"			--12
+	L["Shath'Yar"] = 	"Shath'Yar"			--178
+	L["Nerubian"] = 	"Nerubisch"			--307
+	L["Sprite"] = 		"Feensprache"		--168
+	L["Nerglish"] = 	"Nerglisch"			--179
+	L["Moonkin"] = 		"Mondkin"			--180
+	L["Furbolg"] = 		"Furbolg"			--303
+	L["Earthen"] = 		"Irden"				--304
+	L["Hara'ni"] = 		"Hara'ni"			--309
+
+	L["Gutterspeak"] = 			"Gossensprache"
+	L["AncientPandaren"] = 	"Uralter Pandaren"
+	L["Broker"] = 				"Mittler"
+	L["Cypher"] = 				"Chiffren"
+	L["Arathi"] = 				"Arathi"
+	L["Mogu"] = 				"Mogu"
+	L["Ethereal"] = 			"Astral"
+	L["K'areshi"] = 			"K'areshi"
+
+	L["Gilnean"] = "Gilnearisch"
+	L["KulTiranNoble"] = "Adliger von Kul Tiras"
+	L["Mechagnome"] = "Mechagnom"
+	L["DarkspearTrolls"] = "Dunkelspeertroll"
+	L["Sailor"] = "Matrose"
+	L["Highborne"] = "Hochgeborene"
+	L["Nightborne"] = "Nachtgeborener"
+	L["Zandalari"] = "Zandalaritroll"
+
 return end
 
 if LOCALE == "frFR" then
 -- French translations go here
 	L["Languages"] = "Langues"
 	L["Language"] = "Langue"
+	L["SLASH_1"] = "/langues"
+	L["SLASH_2"] = "/langues"
+	L["SLASH_3"] = "/langues"
+	L["SLASH_4"] = "/languages" -- non-localized slash
+	L["SLASH_5"] = "/language"
+	L["SLASH_6"] = "/lang"
 	L["Understand"] = "Comprendre"
-	L["TogglePrefixOff"] = "Préfixe de langue : Désactivé"
-	L["TogglePrefixOn"] = "Préfixe de langue : activé"
+	L["TogglePrefixOff"] = "Préfixe de langue : Désactivé"
+	L["TogglePrefixOn"] = "Préfixe de langue : activé"
 	L["TogglePrefixTextOff"] = "Désactivation du préfixe de langue automatisé."
 	L["TogglePrefixTextOn"] = "Désactivation du préfixe de langue automatisé."
 	L["TogglePrefixTT"] = "Contrôle si la langue actuellement sélectionnée préfixe automatiquement le message de l'utilisateur."
 	L["Diction"] = "Diction"
-	L["Settings"] = "Paramètres"
+	L["Settings"] = SETTINGS
 	L["Profiles"] = "Profils"
 	L["ResetAccSettings"] = "Réinitialise tous les paramètres spécifiques à la section compte. Cela ne réinitialisera pas les paramètres spécifiques au personnage."
 	L["ResetCharSettings"] = "Réinitialise tous les paramètres spécifiques à la section personnage. Cela ne réinitialisera pas les paramètres spécifiques au compte."
-	L["ResetAccSettingsConfirm"] = "Êtes-vous sûr de vouloir réinitialiser les paramètres spécifiques au compte pour les langues ?"
-	L["ResetCharSettingsConfirm"] = "Êtes-vous sûr de vouloir réinitialiser les paramètres spécifiques de langue de ce personnage ?"
-	L["ApplyPresetConfirm"] = "Etes-vous sûr de vouloir écraser vos langues apprises actuellement ?"
+	L["ResetAccSettingsConfirm"] = "Êtes-vous sûr de vouloir réinitialiser les paramètres spécifiques au compte pour les langues ?"
+	L["ResetCharSettingsConfirm"] = "Êtes-vous sûr de vouloir réinitialiser les paramètres spécifiques de langue de ce personnage ?"
+	L["ApplyPresetConfirm"] = "Etes-vous sûr de vouloir écraser vos langues apprises actuellement ?"
 	L["AddonPrefixColor"] = "Couleur du préfixe des langues"
 	L["AccountSettings"] = "Paramètres du compte"
 	L["CharacterSettings"] = "Paramètres des personnages"
@@ -282,43 +1334,109 @@ if LOCALE == "frFR" then
 	L["LinkToTotalRP3On"] = "Lien Total RP 3 activé pour ce personnage."
 	L["LinkToTotalRP3"] = "Lien vers le profil Total RP 3"
 	L["LinkToTotalRP3TT"] = "Modifiez automatiquement le profil du personnage en fonction du profil Total RP 3. Si plusieurs personnages utilisent le même profil, celui-ci devrait conserver les paramètres de ces personnages.\nNécessite l'addon Total RP 3"
-	L["SettingLanguageTo"] = "Définir la langue sur :"
+	L["SettingLanguageTo"] = "Définir la langue sur :"
 	L["EnableUnderstand"] = "Activer Comprendre"
 	L["DisableUnderstand"] = "Désactiver Comprendre"
-	L["Dialect"] = "Dialecte (à venir)"
-	L["DialectOff"] = "Dialecte : Désactivé"
-	L["DialectOn"] = "Dialecte : Activé"
+	L["Dialect"] = "Dialecte"
+	L["DialectOff"] = "Dialecte : Désactivé"
+	L["DialectOn"] = "Dialecte : Activé"
 	L["UseDialectTT"] = "Contrôle si l'utilisateur parle actuellement avec un dialecte tout en parlant, par ex. \"Qu'est-ce que tu veux\" devient \"Waschu wan'?\"."
-	L["SettingDialectTo"] = "« Définir le dialecte sur : »"
-	L["Dwarvish"] = "Nain"
-	L["Draenic"] = "Draenique"
-	L["Zandali"] = "Zandali"
-	L["CurrentlySpeaking"] = "Parlant actuellement :"
+	L["SettingDialectTo"] = "« Définir le dialecte sur : »"
+	L["CurrentlySpeaking"] = "Parlant actuellement :"
 	L["NoPrefixBaseLang"] = "N'utilisez pas le préfixe si vous parlez la langue de base de votre faction (respectivement commun/orque comme Alliance/Horde)."
 	L["LanguagePreset"] = "Apprendre les préréglages de langue"
 	L["ImportGameplay"] = "Gameplay"
 	L["ImportGameplayTT"] = "Apprenez les langues par défaut prédéfinies que votre race utiliserait dans les mécanismes de jeu normaux.\nCela écrasera vos langues apprises actuellement."
 	L["ImportRecommended"] = "Recommandé"
 	L["ImportRecommendedTT"] = "Apprenez des langues prédéfinies que votre race/classe aurait probablement apprises au cours de son histoire probable.\nCela écrasera vos langues apprises actuellement."
-	L["ThisLangHasRunesTT"] = "Cette langue peut afficher des runes lorsqu'elle n'est pas apprise."
+	L["ThisLangHasRunesTT"] = "Cette langue peut afficher des glyphes lorsqu’elle n’est pas apprise."
 	L["ToggleLanguageLearnedTT"] = "Cliquez pour modifier votre capacité à comprendre cette langue lorsqu'elle est parlée par vous-même et par les autres."
 	L["ToggleLanguageSpokenTT"] = "Cliquez pour définir cette langue comme préfixe."
 	L["UseAutoShapeshiftOff"] = "Langue Shapeshift automatique désactivée pour ce personnage."
 	L["UseAutoShapeshiftOn"] = "Langage Shapeshift automatique activé pour ce personnage."
 	L["UseAutoShapeshift"] = "Langage Shapeshift automatique"
-	L["UseAutoShapeshiftTT"] = "Le changement de forme dans un formulaire changera automatiquement votre langue en son association.\nNécessite : Forme d'Ombre, Métamorphose."
+	L["UseAutoShapeshiftTT"] = "Le changement de forme dans un formulaire changera automatiquement votre langue en son association.\nNécessite : Forme d'Ombre, Métamorphose."
 	L["LoadingProfile"] = "Chargement du profil"
-	L["Help"] = "Vous pouvez utiliser "..colorThingS.."/languages"..colorThingE..", "..colorThingS.."/language"..colorThingE..", ou "..colorThingS.."/lang"..colorThingE.." pour accéder aux commandes slash. La liste des sous-options de commande slash disponibles:"..
+	L["HelpCMD"] = "Vous pouvez utiliser "..colorThingS.."/languages"..colorThingE..", "..colorThingS.."/langues"..colorThingE..", ou "..colorThingS.."/lang"..colorThingE.." pour accéder aux commandes slash. La liste des sous-options de commande slash disponibles:"..
 	"\n"..colorThingS.."prefix"..colorThingE.." - active/désactive le préfixe [Language]."..
 	"\n"..colorThingS.."open"..colorThingE.." - ouvre le cadre des options."..
 	"\n"..colorThingS.."minimap"..colorThingE.." - active/désactive le bouton de la mini-carte."..
-	"\nDe plus, vous pouvez définir une langue, comme par exemple "..colorThingS.."/lang Darnassian"..colorThingE.." ou "..colorThingS.."/Darnassian"..colorThingE.."."
+	"\nDe plus, vous pouvez définir une langue, comme par exemple "..colorThingS.."/Darnassien"..colorThingE.."."
+	L["OnlyInCharacter"] = "Uniquement en personnage"
+	L["OnlyInCharacterTT"] = "Active le préfixe / dialecte uniquement lorsque vous êtes « en personnage ».\nNécessite l’addon Total RP 3"
+	L["RuneSize"] = "Taille du glyphe"
+	L["DisablePrefix"] = "Désactiver le préfixe"
+	L["EnablePrefix"] = "Activer le préfixe"
+	L["ShowSelectionButton"] = "Afficher le mini-bouton des langues"
+	L["ShowSelectionButtonTT"] = "Affiche un petit bouton à l’écran permettant d’accéder à la sélection des langues apprises."
+	L["SelectLanguage"] = "Sélectionner la langue"
+	L["OpenMenu"] = "Ouvrir le menu"
+	L["DragFrame"] = "Déplacer le cadre"
+	L["LeftClick"] = "Clic gauche"
+	L["RightClick"] = "Clic droit"
+	L["ShiftDrag"] = "MAJ + déplacer"
+	L["DialectsTT"] = "Choisir un dialecte remplacera certains mots que vous tapez par d’autres. Par exemple, transformer \"are not\" en \"aren't\". Chaque langue possède son propre ensemble de mots, et chacun peut être activé ou désactivé."
+	L["Dialects2TT"] = "Il est possible d’empêcher la forme dialectale d’un mot en ajoutant des traits de soulignement de chaque côté, comme \"_are not_\". Le terme conserve alors son orthographe d’origine et les traits de soulignement ajoutés sont supprimés."
+	L["Contributors"] = "Contributeurs"
+	L["SpecialThanks"] = "Merci à ces merveilleuses personnes qui ont contribué à cet addon !"
+
+	L["Common"] = 		"Commun"		--7
+	L["Darnassian"] = 	"Darnassien"	--2
+	L["Dwarvish"] = 	"Nain"			--6
+	L["Gnomish"] = 		"Gnome"			--13
+	L["Draenei"] = 		"Draeneï"		--35
+	L["Orcish"] = 		"Orc"			--1
+	L["Zandali"] = 		"Zandali"		--14
+	L["Taurahe"] = 		"Taurahe"		--3
+	L["Forsaken"] = 	"Réprouvé"		--33
+	L["Thalassian"] = 	"Thalassien"	--10
+	L["Goblin"] = 		"Gobelin"		--40
+	L["Shalassian"] = 	"Shalassien"	--181
+	L["Vulpera"] = 		"Vulpérin"		--285
+	L["Pandaren"] = 	"Pandaren"		--42
+	L["Draconic"] = 	"Draconique"	--11
+	L["Demonic"] = 		"Démoniaque"	--8
+	L["Titan"] = 		"Titan"			--9
+	L["Kalimag"] = 		"Kalimag"		--12
+	L["Shath'Yar"] = 	"Shath’Yar"		--178
+	L["Nerubian"] = 	"Nérubien"		--307
+	L["Sprite"] = 		"Lutin"			--168
+	L["Nerglish"] = 	"Nerglais"		--179
+	L["Moonkin"] = 		"Sélénien"		--180
+	L["Furbolg"] = 		"Furbolg"		--303
+	L["Earthen"] = 		"Terrestre"		--304
+	L["Hara'ni"] = 		"Hara’ni"		--309
+
+	L["Gutterspeak"] = 			"Bas-parler"
+	L["AncientPandaren"] = 	"Pandaren ancien"
+	L["Broker"] = 				"Négociant"
+	L["Cypher"] = 				"Cryptogrammes"
+	L["Arathi"] = 				"Arathie"
+	L["Mogu"] = 				"Mogu"
+	L["Ethereal"] = 			"Éthérien"
+	L["K'areshi"] = 			"K'areshi"
+
+	L["Gilnean"] = "gilnéen"
+	L["KulTiranNoble"] = "Noble de Kul Tiras"
+	L["Mechagnome"] = "Mécagnome"
+	L["DarkspearTrolls"] = "Troll sombrelances"
+	L["Sailor"] = "Marin"
+	L["Highborne"] = "Bien-né"
+	L["Nightborne"] = "Sacrenuit"
+	L["Zandalari"] = "Troll zandalari"
+
 return end
 
 if LOCALE == "itIT" then
 -- French translations go here
 	L["Languages"] = "Le lingue"
 	L["Language"] = "Lingua"
+	L["SLASH_1"] = "/lingue"
+	L["SLASH_2"] = "/lingue"
+	L["SLASH_3"] = "/lingue"
+	L["SLASH_4"] = "/languages" -- non-localized slash
+	L["SLASH_5"] = "/language"
+	L["SLASH_6"] = "/lang"
 	L["Understand"] = "Capire"
 	L["TogglePrefixOff"] = "Prefisso lingua: disattivato"
 	L["TogglePrefixOn"] = "Prefisso lingua: attivato"
@@ -326,7 +1444,7 @@ if LOCALE == "itIT" then
 	L["TogglePrefixTextOn"] = "Disattivazione del prefisso automatico della lingua."
 	L["TogglePrefixTT"] = "Controlla se la lingua attualmente selezionata antepone automaticamente il messaggio dell'utente."
 	L["Diction"] = "Dizione"
-	L["Settings"] = "Impostazioni"
+	L["Settings"] = SETTINGS
 	L["Profiles"] = "Profili"
 	L["ResetAccSettings"] = "Ripristina tutte le impostazioni specifiche della sezione account. Ciò non ripristinerà le impostazioni specifiche del personaggio."
 	L["ResetCharSettings"] = "Ripristina tutte le impostazioni specifiche della sezione caratteri. Ciò non ripristinerà le impostazioni specifiche dell'account."
@@ -360,14 +1478,11 @@ if LOCALE == "itIT" then
 	L["SettingLanguageTo"] = "Impostazione della lingua su:"
 	L["EnableUnderstand"] = "Abilita Capire"
 	L["DisableUnderstand"] = "Disabilita Capire"
-	L["Dialect"] = "Dialetto (disponibile a breve)"
+	L["Dialect"] = "Dialetto"
 	L["DialectOff"] = "Dialetto: spento"
 	L["DialectOn"] = "Dialetto: acceso"
 	L["UseDialectTT"] = "Controlla se l'utente parla attualmente con un dialetto mentre parla, ad es. \"Cosa vuoi\" diventa \"Waschu wan'?\"."
 	L["SettingDialectTo"] = "Impostazione dialetto su:"
-	L["Dwarvish"] = "Nanesco"
-	L["Draenic"] = "Draenico"
-	L["Zandali"] = "Zandali"
 	L["CurrentlySpeaking"] = "Attualmente si parla:"
 	L["NoPrefixBaseLang"] = "Non utilizzare il prefisso se parli la lingua base della tua fazione (rispettivamente Comune/Orco come Alleanza/Orda)."
 	L["LanguagePreset"] = "Impara le lingue preimpostate"
@@ -375,7 +1490,7 @@ if LOCALE == "itIT" then
 	L["ImportGameplayTT"] = "Impara le lingue predefinite preimpostate che la tua razza utilizzerebbe nelle normali meccaniche di gioco.\nQuesto sovrascriverà le lingue attualmente apprese."
 	L["ImportRecommended"] = "Consigliato"
 	L["ImportRecommendedTT"] = "Impara le lingue preimpostate che la tua razza/classe probabilmente avrebbe imparato nella sua probabile storia.\nQuesto sovrascriverà le lingue attualmente apprese."
-	L["ThisLangHasRunesTT"] = "Questa lingua può visualizzare le rune se non appresa."
+	L["ThisLangHasRunesTT"] = "Questa lingua può mostrare glifi quando non è stata appresa."
 	L["ToggleLanguageLearnedTT"] = "Fai clic per attivare/disattivare la tua capacità di comprendere questa lingua quando parlata da te e da altri."
 	L["ToggleLanguageSpokenTT"] = "Fare clic per impostare questa lingua come prefisso."
 	L["UseAutoShapeshiftOff"] = "Linguaggio Shapeshift automatico disabilitato per questo personaggio."
@@ -383,17 +1498,86 @@ if LOCALE == "itIT" then
 	L["UseAutoShapeshift"] = "Linguaggio Shapeshift automatico"
 	L["UseAutoShapeshiftTT"] = "Trasformarti in una forma cambierà automaticamente la tua lingua in base alla sua associazione.\nRichiede: Forma d'Ombra, Metamorfosi."
 	L["LoadingProfile"] = "Caricamento profilo"
-	L["Help"] = "È possibile utilizzare "..colorThingS.."/languages"..colorThingE..", "..colorThingS.."/language"..colorThingE..", o "..colorThingS.."/lang"..colorThingE.." per accedere ai comandi slash. L'elenco delle opzioni secondarie dei comandi slash disponibili:"..
+	L["HelpCMD"] = "È possibile utilizzare "..colorThingS.."/languages"..colorThingE..", "..colorThingS.."/lingue"..colorThingE..", o "..colorThingS.."/lang"..colorThingE.." per accedere ai comandi slash. L'elenco delle opzioni secondarie dei comandi slash disponibili:"..
 	"\n"..colorThingS.."prefix"..colorThingE.." - attiva/disattiva il prefisso [Language]."..
 	"\n"..colorThingS.."open"..colorThingE.." - apre il riquadro delle opzioni."..
 	"\n"..colorThingS.."minimap"..colorThingE.." - attiva/disattiva il pulsante della minimappa."..
-	"\nAdditionally, you can set a language, such as for examplInoltre è possibile impostare una lingua, come ad esempio "..colorThingS.."/lang Darnassian"..colorThingE.." o "..colorThingS.."/Darnassian"..colorThingE.."."
+	"\nAdditionally, you can set a language, such as for examplInoltre è possibile impostare una lingua, come ad esempio "..colorThingS.."/Darnassiano"..colorThingE.."."
+	L["OnlyInCharacter"] = "Solo in personaggio"
+	L["OnlyInCharacterTT"] = "Attiva il prefisso / dialetto solo quando sei \"In personaggio\".\nRichiede l'addon Total RP 3"
+	L["RuneSize"] = "Dimensione del glifo"
+	L["DisablePrefix"] = "Disattiva prefisso"
+	L["EnablePrefix"] = "Attiva prefisso"
+	L["ShowSelectionButton"] = "Mostra mini-pulsante delle lingue"
+	L["ShowSelectionButtonTT"] = "Attiva un piccolo pulsante sullo schermo per accedere alla selezione delle lingue apprese."
+	L["SelectLanguage"] = "Seleziona lingua"
+	L["OpenMenu"] = "Apri menu"
+	L["DragFrame"] = "Trascina riquadro"
+	L["LeftClick"] = "Clic sinistro"
+	L["RightClick"] = "Clic destro"
+	L["ShiftDrag"] = "MAIUSC + trascina"
+	L["DialectsTT"] = "Scegliere un dialetto sostituirà alcune parole che digiti con altre. Ad esempio, trasformando \"are not\" in \"aren't\". Ogni lingua ha il proprio insieme di parole, e ciascuno può essere attivato o disattivato."
+	L["Dialects2TT"] = "È possibile impedire la forma dialettale di una parola aggiungendo dei trattini bassi su entrambi i lati, come \"_are not_\". Questo manterrà il termine nella sua ortografia originale e rimuoverà inoltre i trattini bassi aggiunti."
+	L["Contributors"] = "Collaboratori"
+	L["SpecialThanks"] = "Grazie a queste persone meravigliose che hanno contribuito a questo componente aggiuntivo!"
+
+	L["Common"] = 		"Comune"		--7
+	L["Darnassian"] = 	"Darnassiano"	--2
+	L["Dwarvish"] = 	"Nanico"		--6
+	L["Gnomish"] = 		"Gnomesco"		--13
+	L["Draenei"] = 		"Draenei"		--35
+	L["Orcish"] = 		"Orchesco"		--1
+	L["Zandali"] = 		"Zandali"		--14
+	L["Taurahe"] = 		"Taurino"		--3
+	L["Forsaken"] = 	"Non Morto"		--33
+	L["Thalassian"] = 	"Thalassiano"	--10
+	L["Goblin"] = 		"Goblin"		--40
+	L["Shalassian"] = 	"Shalassiano"	--181
+	L["Vulpera"] = 		"Vulpera"		--285
+	L["Pandaren"] = 	"Pandaren"		--42
+	L["Draconic"] = 	"Draconico"		--11
+	L["Demonic"] = 		"Demoniaco"		--8
+	L["Titan"] = 		"Titanico"		--9
+	L["Kalimag"] = 		"Kalimag"		--12
+	L["Shath'Yar"] = 	"Shath'yar"		--178
+	L["Nerubian"] = 	"Nerubiano"		--307
+	L["Sprite"] = 		"Follettiano"	--168
+	L["Nerglish"] = 	"Nergliano"		--179
+	L["Moonkin"] = 		"Lunagufo"		--180
+	L["Furbolg"] = 		"Mezzorso"		--303
+	L["Earthen"] = 		"Terrigeno"		--304
+	L["Hara'ni"] = 		"Hara'ni"		--309
+
+	L["Gutterspeak"] = 			"Non Morto"
+	L["AncientPandaren"] = 	"Pandaren antico"
+	L["Broker"] = 				"Alienatore"
+	L["Cypher"] = 				"Codici"
+	L["Arathi"] = 				"Arathi"
+	L["Mogu"] = 				"Mogu"
+	L["Ethereal"] = 			"Etereo"
+	L["K'areshi"] = 			"K'areshi"
+
+	L["Gilnean"] = "Gilneano"
+	L["KulTiranNoble"] = "Nobile di Kul Tiras"
+	L["Mechagnome"] = "Meccagnomo"
+	L["DarkspearTrolls"] = "Troll Lanciascura"
+	L["Sailor"] = "Marinaio"
+	L["Highborne"] = "Alto Nobile"
+	L["Nightborne"] = "Nobile Oscuro"
+	L["Zandalari"] = "Troll Zandalari"
+
 return end
 
 if LOCALE == "ptBR" then
 -- Brazilian Portuguese translations go here
 	L["Languages"] = "línguas"
 	L["Language"] = "Linguagem"
+	L["SLASH_1"] = "/idiomas"
+	L["SLASH_2"] = "/idioma"
+	L["SLASH_3"] = "/lingua"
+	L["SLASH_4"] = "/languages" -- non-localized slash
+	L["SLASH_5"] = "/language"
+	L["SLASH_6"] = "/lang"
 	L["Understand"] = "Entender"
 	L["TogglePrefixOff"] = "Prefixo de idioma: desativado"
 	L["TogglePrefixOn"] = "Prefixo de idioma: ativado"
@@ -401,7 +1585,7 @@ if LOCALE == "ptBR" then
 	L["TogglePrefixTextOn"] = "Desativando o prefixo de idioma automatizado."
 	L["TogglePrefixTT"] = "Controla se o idioma atualmente selecionado prefixa automaticamente a mensagem do usuário."
 	L["Diction"] = "Dicção"
-	L["Settings"] = "Configurações"
+	L["Settings"] = SETTINGS
 	L["Profiles"] = "Perfis"
 	L["ResetAccSettings"] = "Redefine todas as configurações específicas da seção da conta. Isso não redefinirá as configurações específicas do personagem."
 	L["ResetCharSettings"] = "Redefine todas as configurações específicas da seção do personagem. Isso não redefinirá as configurações específicas da conta."
@@ -435,14 +1619,11 @@ if LOCALE == "ptBR" then
 	L["SettingLanguageTo"] = "Configurando o idioma para:"
 	L["EnableUnderstand"] = "Ativar compreensão"
 	L["DisableUnderstand"] = "Desativar compreensão"
-	L["Dialect"] = "Dialeto (em breve)"
+	L["Dialect"] = "Dialeto"
 	L["DialectOff"] = "Dialeto: desligado"
 	L["DialectOn"] = "Dialeto: Ligado"
 	L["UseDialectTT"] = "Controla se o usuário fala atualmente com um dialeto enquanto fala, por exemplo. \"O que você quer\" se torna \"Waschu wan'?\"."
 	L["SettingDialectTo"] = "Definindo dialeto para:"
-	L["Dwarvish"] = "Anão"
-	L["Draenic"] = "Draenico"
-	L["Zandali"] = "Zandali"
 	L["CurrentlySpeaking"] = "Atualmente falando:"
 	L["NoPrefixBaseLang"] = "Não use o prefixo se estiver falando o idioma base da sua facção (Comum/Orcish como Alliance/Horde respectivamente)."
 	L["LanguagePreset"] = "Aprenda predefinições de idioma"
@@ -450,7 +1631,7 @@ if LOCALE == "ptBR" then
 	L["ImportGameplayTT"] = "Aprenda idiomas padrão predefinidos que sua raça aprenderia na mecânica de jogo normal.\nIsso substituirá os idiomas aprendidos atualmente."
 	L["ImportRecommended"] = "Recomendado"
 	L["ImportRecommendedTT"] = "Aprenda idiomas predefinidos que sua raça/classe provavelmente teria aprendido em seu provável histórico.\nIsso substituirá os idiomas aprendidos atualmente."
-	L["ThisLangHasRunesTT"] = "Este idioma pode exibir runas quando não aprendido."
+	L["ThisLangHasRunesTT"] = "Este idioma pode exibir glifos quando não foi aprendido."
 	L["ToggleLanguageLearnedTT"] = "Clique para alternar sua capacidade de entender esse idioma quando falado por você e por outras pessoas."
 	L["ToggleLanguageSpokenTT"] = "Clique para definir este idioma como seu prefixo."
 	L["UseAutoShapeshiftOff"] = "Idioma do Shapeshift automático desativado para este personagem."
@@ -458,11 +1639,74 @@ if LOCALE == "ptBR" then
 	L["UseAutoShapeshift"] = "Linguagem de mudança de forma automática"
 	L["UseAutoShapeshiftTT"] = "Mudar de forma para uma forma mudará automaticamente seu idioma para sua associação.\nRequer: Shadowform, Metamorphosis."
 	L["LoadingProfile"] = "Carregando perfil"
-	L["Help"] = "Você pode usar "..colorThingS.."/languages"..colorThingE..", "..colorThingS.."/language"..colorThingE..", ou "..colorThingS.."/lang"..colorThingE.." para acessar comandos de barra. A lista de subopções de comando de barra disponíveis:"..
+	L["HelpCMD"] = "Você pode usar "..colorThingS.."/languages"..colorThingE..", "..colorThingS.."/idiomas"..colorThingE..", ou "..colorThingS.."/lang"..colorThingE.." para acessar comandos de barra. A lista de subopções de comando de barra disponíveis:"..
 	"\n"..colorThingS.."prefix"..colorThingE.." - ativa/desativa o prefixo [Language]."..
 	"\n"..colorThingS.."open"..colorThingE.." - abre o quadro de opções."..
 	"\n"..colorThingS.."minimap"..colorThingE.." - ativa/desativa o botão do minimapa."..
-	"\nAlém disso, você pode definir um idioma, como por exemplo "..colorThingS.."/lang Darnassian"..colorThingE.." ou "..colorThingS.."/Darnassian"..colorThingE.."."
+	"\nAlém disso, você pode definir um idioma, como por exemplo "..colorThingS.."/Darnassiano"..colorThingE.."."
+	L["OnlyInCharacter"] = "Apenas em personagem"
+	L["OnlyInCharacterTT"] = "Ativa o prefixo / dialeto apenas quando estiver \"Em personagem\".\nRequer o addon Total RP 3"
+	L["RuneSize"] = "Tamanho do glifo"
+	L["DisablePrefix"] = "Desativar prefixo"
+	L["EnablePrefix"] = "Ativar prefixo"
+	L["ShowSelectionButton"] = "Mostrar mini-botão de idiomas"
+	L["ShowSelectionButtonTT"] = "Ativa um pequeno botão na tela para acessar a seleção de idiomas aprendidos."
+	L["SelectLanguage"] = "Selecionar idioma"
+	L["OpenMenu"] = "Abrir menu"
+	L["DragFrame"] = "Arrastar quadro"
+	L["LeftClick"] = "Clique esquerdo"
+	L["RightClick"] = "Clique direito"
+	L["ShiftDrag"] = "SHIFT + arrastar"
+	L["DialectsTT"] = "Escolher um dialeto substituirá certas palavras digitadas por outras. Por exemplo, transformando \"are not\" em \"aren't\". Cada idioma possui seu próprio conjunto de palavras, e cada um pode ser ativado ou desativado."
+	L["Dialects2TT"] = "É possível impedir a forma dialetal de uma palavra adicionando sublinhados em ambos os lados, como \"_are not_\". Isso mantém o termo com sua grafia original e também remove os sublinhados adicionados."
+	L["Contributors"] = "Colaboradores"
+	L["SpecialThanks"] = "Obrigado a essas pessoas maravilhosas que contribuíram para este complemento!"
+
+	L["Common"] = 		"Língua Comum"	--7
+	L["Darnassian"] = 	"Darnassiano"	--2
+	L["Dwarvish"] = 	"Enânico"		--6
+	L["Gnomish"] = 		"Gnomês"		--13
+	L["Draenei"] = 		"Draeneico"		--35
+	L["Orcish"] = 		"Órquico"		--1
+	L["Zandali"] = 		"Zandali"		--14
+	L["Taurahe"] = 		"Taurahe"		--3
+	L["Forsaken"] = 	"Guturalês"		--33
+	L["Thalassian"] = 	"Talassiano"	--10
+	L["Goblin"] = 		"Goblinês"		--40
+	L["Shalassian"] = 	"Shalassiano"	--181
+	L["Vulpera"] = 		"Vulpera"		--285
+	L["Pandaren"] = 	"Pandaren"		--42
+	L["Draconic"] = 	"Dracônico"		--11
+	L["Demonic"] = 		"Demoníaco"		--8
+	L["Titan"] = 		"Titânico"		--9
+	L["Kalimag"] = 		"Kalimaico"		--12
+	L["Shath'Yar"] = 	"Shath'Yar"		--178
+	L["Nerubian"] = 	"Nerubiano"		--307
+	L["Sprite"] = 		"Duendês"		--168
+	L["Nerglish"] = 	"Nergonês"		--179
+	L["Moonkin"] = 		"Lunisquês"		--180
+	L["Furbolg"] = 		"Pelurso"		--303
+	L["Earthen"] = 		"Terrano"		--304
+	L["Hara'ni"] = 		"Hara'ni"		--309
+
+	L["Gutterspeak"] = 			"Guturalês"
+	L["AncientPandaren"] = 	"Pandaren antigo"
+	L["Broker"] = 				"Corretor"
+	L["Cypher"] = 				"Cifras"
+	L["Arathi"] = 				"Arathi"
+	L["Mogu"] = 				"Mogu"
+	L["Ethereal"] = 			"Etéreo"
+	L["K'areshi"] = 			"K'areshi"
+
+	L["Gilnean"] = "Guilneana"
+	L["KulTiranNoble"] = "Nobre Kultireno"
+	L["Mechagnome"] = "Gnomecânico"
+	L["DarkspearTrolls"] = "Troll Lançanegra"
+	L["Sailor"] = "Marinheiro"
+	L["Highborne"] = "Altaneiro"
+	L["Nightborne"] = "Filho da Noite"
+	L["Zandalari"] = "Troll Zandalari"
+
 -- Note that the EU Portuguese WoW client also
 -- uses the Brazilian Portuguese locale code.
 return end
@@ -471,6 +1715,12 @@ if LOCALE == "ruRU" then
 -- Russian translations go here
 	L["Languages"] = "Языки"
 	L["Language"] = "Язык"
+	L["SLASH_1"] = "/языки"
+	L["SLASH_2"] = "/языки"
+	L["SLASH_3"] = "/языки"
+	L["SLASH_4"] = "/languages" -- non-localized slash
+	L["SLASH_5"] = "/language"
+	L["SLASH_6"] = "/lang"
 	L["Understand"] = "Понимать"
 	L["TogglePrefixOff"] = "Префикс языка: Выкл."
 	L["TogglePrefixOn"] = "Префикс языка: Вкл."
@@ -478,7 +1728,7 @@ if LOCALE == "ruRU" then
 	L["TogglePrefixTextOn"] = "«Отключение автоматического языкового префикса»."
 	L["TogglePrefixTT"] = "Определяет, будет ли выбранный в данный момент язык автоматически добавляться к сообщению пользователя."
 	L["Diction"] = "Дикция"
-	L["Settings"] = "Настройки"
+	L["Settings"] = SETTINGS
 	L["Profiles"] = "Профили"
 	L["ResetAccSettings"] = "Сбрасывает все настройки, специфичные для раздела учетной записи. Это не приведет к сбросу настроек персонажа."
 	L["ResetCharSettings"] = "Сбрасывает все настройки, относящиеся к разделу персонажей. Это не приведет к сбросу настроек учетной записи."
@@ -508,18 +1758,15 @@ if LOCALE == "ruRU" then
 	L["LinkToTotalRP3Off"] = "Ссылка на общий RP 3 отключена для этого персонажа."
 	L["LinkToTotalRP3On"] = "Для этого персонажа включена ссылка на общий RP 3."
 	L["LinkToTotalRP3"] = "Ссылка на профиль Total RP 3"
-	L["LinkToTotalRP3TT"] = "Автоматически менять профиль персонажа в соответствии с профилем Total RP 3. Если несколько персонажей используют один и тот же профиль, настройки этих персонажей должны сохраниться.\nТребуется дополнение. Всего RP 3."
+	L["LinkToTotalRP3TT"] = "Автоматически менять профиль персонажа в соответствии с профилем Total RP 3. Если несколько персонажей используют один и тот же профиль, настройки этих персонажей должны сохраниться.\nТребуется дополнение. Total RP 3."
 	L["SettingLanguageTo"] = "Установка языка:"
 	L["EnableUnderstand"] = "Включить понимание"
 	L["DisableUnderstand"] = "Отключить понимание"
-	L["Dialect"] = "Диалект (скоро)"
+	L["Dialect"] = "Диалект"
 	L["DialectOff"] = "Диалект: Выкл."
 	L["DialectOn"] = "Диалект: Вкл."
 	L["UseDialectTT"] = "Определяет, говорит ли пользователь в настоящее время на диалекте, например «Чего вы хотите» превращается в «Вашу ван»?"
 	L["SettingDialectTo"] = "Установка диалекта:"
-	L["Dwarvish"] = "гномий"
-	L["Draenic"] = "Дренорский"
-	L["Zandali"] = "Зандали"
 	L["CurrentlySpeaking"] = "Сейчас говорю:"
 	L["NoPrefixBaseLang"] = "Не используйте префикс, если говорите на базовом языке вашей фракции (общий/орочий как Альянс/Орда соответственно)."
 	L["LanguagePreset"] = "Изучите языковые пресеты"
@@ -527,7 +1774,7 @@ if LOCALE == "ruRU" then
 	L["ImportGameplayTT"] = "Изучите предустановленные языки по умолчанию, которые ваша раса использовала бы в обычном игровом процессе.\nЭто перезапишет ваши текущие изученные языки."
 	L["ImportRecommended"] = "рекомендуемые"
 	L["ImportRecommendedTT"] = "Изучите предустановленные языки, которые ваша раса/класс, вероятно, выучила бы в своей вероятной истории.\nЭто перезапишет ваши текущие изученные языки."
-	L["ThisLangHasRunesTT"] = "Если вы не выучили этот язык, на нем могут отображаться руны."
+	L["ThisLangHasRunesTT"] = "Этот язык может отображать глифы, если он не изучен."
 	L["ToggleLanguageLearnedTT"] = "Нажмите, чтобы переключить свою способность понимать этот язык, когда на нем говорите вы сами и другие."
 	L["ToggleLanguageSpokenTT"] = "Нажмите, чтобы установить этот язык в качестве префикса."
 	L["UseAutoShapeshiftOff"] = "Язык автоматического изменения формы отключен для этого персонажа."
@@ -535,17 +1782,86 @@ if LOCALE == "ruRU" then
 	L["UseAutoShapeshift"] = "Язык автоматического изменения формы"
 	L["UseAutoShapeshiftTT"] = "Преобразование в форму автоматически изменит ваш язык в соответствии с ассоциацией.\nТребуется: Теневая форма, Метаморфоза."
 	L["LoadingProfile"] = "Загрузка профиля"
-	L["Help"] = "Вы можете использовать "..colorThingS.."/languages"..colorThingE..", "..colorThingS.."/language"..colorThingE..", или "..colorThingS.."/lang"..colorThingE.." для доступа к командам с косой чертой. Список доступных подопций команды с косой чертой:"..
+	L["HelpCMD"] = "Вы можете использовать "..colorThingS.."/languages"..colorThingE..", "..colorThingS.."/языки"..colorThingE..", или "..colorThingS.."/lang"..colorThingE.." для доступа к командам с косой чертой. Список доступных подопций команды с косой чертой:"..
 	"\n"..colorThingS.."prefix"..colorThingE.." - включение/выключение префикса [Language]."..
 	"\n"..colorThingS.."open"..colorThingE.." - открыть рамку опций."..
 	"\n"..colorThingS.."minimap"..colorThingE.." - включение/выключение кнопки миникарты."..
-	"\nКроме того, вы можете установить язык, например "..colorThingS.."/lang Darnassian"..colorThingE.." или "..colorThingS.."/Darnassian"..colorThingE.."."
+	"\nКроме того, вы можете установить язык, например "..colorThingS.."/дарнасский"..colorThingE.."."
+	L["OnlyInCharacter"] = "Только в образе"
+	L["OnlyInCharacterTT"] = "Включает префикс / диалект только в режиме «В образе».\nТребуется аддон Total RP 3"
+	L["RuneSize"] = "Размер глифа"
+	L["DisablePrefix"] = "Отключить префикс"
+	L["EnablePrefix"] = "Включить префикс"
+	L["ShowSelectionButton"] = "Показать мини-кнопку языков"
+	L["ShowSelectionButtonTT"] = "Включает небольшую кнопку на экране для доступа к выбору изученных языков."
+	L["SelectLanguage"] = "Выбрать язык"
+	L["OpenMenu"] = "Открыть меню"
+	L["DragFrame"] = "Переместить окно"
+	L["LeftClick"] = "ЛКМ"
+	L["RightClick"] = "ПКМ"
+	L["ShiftDrag"] = "SHIFT + перетаскивание"
+	L["DialectsTT"] = "Выбор диалекта заменяет некоторые вводимые слова другими. Например, \"are not\" превращается в \"aren't\". У каждого языка есть собственный набор слов, и каждый из них можно включать или отключать."
+	L["Dialects2TT"] = "Можно предотвратить использование диалектной формы слова, добавив символы подчёркивания с обеих сторон, например \"_are not_\". Это сохранит исходное написание слова, а добавленные символы подчёркивания будут удалены."
+	L["Contributors"] = "Участники"
+	L["SpecialThanks"] = "Спасибо этим замечательным людям, которые внесли свой вклад в это дополнение!"
+
+	L["Common"] = 		"всеобщий"				--7
+	L["Darnassian"] = 	"дарнасский"			--2
+	L["Dwarvish"] = 	"дворфийский"			--6
+	L["Gnomish"] = 		"гномский"				--13
+	L["Draenei"] = 		"дренейский"			--35
+	L["Orcish"] = 		"орочий"				--1
+	L["Zandali"] = 		"зандаларский"			--14
+	L["Taurahe"] = 		"таурахэ"				--3
+	L["Forsaken"] = 	"наречие Отрекшихся"	--33
+	L["Thalassian"] = 	"талассийский"			--10
+	L["Goblin"] = 		"гоблинский"			--40
+	L["Shalassian"] = 	"Шалассийский"			--181
+	L["Vulpera"] = 		"Вульперский"			--285
+	L["Pandaren"] = 	"пандаренский"			--42
+	L["Draconic"] = 	"драконий"				--11
+	L["Demonic"] = 		"язык демонов"			--8
+	L["Titan"] = 		"язык титанов"			--9
+	L["Kalimag"] = 		"калимаг"				--12
+	L["Shath'Yar"] = 	"шат'яр"				--178
+	L["Nerubian"] = 	"Нерубский"				--307
+	L["Sprite"] = 		"язык лесных духов"		--168
+	L["Nerglish"] = 	"нерглийский"			--179
+	L["Moonkin"] = 		"язык совухов"			--180
+	L["Furbolg"] = 		"фурболгский"			--303
+	L["Earthen"] = 		"Язык земельников"		--304
+	L["Hara'ni"] = 		"хара'нийский"			--309
+
+	L["Gutterspeak"] = 			"Нежити"
+	L["AncientPandaren"] = 	"Древний пандарен"
+	L["Broker"] = 				"Брокер"
+	L["Cypher"] = 				"Шифры"
+	L["Arathi"] = 				"Аратии"
+	L["Mogu"] = 				"Могу"
+	L["Ethereal"] = 			"Эфириал"
+	L["K'areshi"] = 			"К'ареши"
+
+	L["Gilnean"] = "гилнеасский"
+	L["KulTiranNoble"] = "Кул-тирасский аристократ"
+	L["Mechagnome"] = "Механогном"
+	L["DarkspearTrolls"] = "Племя Черного Копья"
+	L["Sailor"] = "Матрос"
+	L["Highborne"] = "Высокорожденный"
+	L["Nightborne"] = "Ночнорожденный"
+	L["Zandalari"] = "Зандалар"
+
 return end
 
 if LOCALE == "koKR" then
 -- Korean translations go here
 	L["Languages"] = "언어"
 	L["Language"] = "언어"
+	L["SLASH_1"] = "/언어"
+	L["SLASH_2"] = "/언어"
+	L["SLASH_3"] = "/언어"
+	L["SLASH_4"] = "/languages" -- non-localized slash
+	L["SLASH_5"] = "/language"
+	L["SLASH_6"] = "/lang"
 	L["Understand"] = "이해하다"
 	L["TogglePrefixOff"] = "언어 접두어: 꺼짐"
 	L["TogglePrefixOn"] = "언어 접두사: 켜짐"
@@ -553,7 +1869,7 @@ if LOCALE == "koKR" then
 	L["TogglePrefixTextOn"] = "자동 언어 접두어를 끄는 중입니다."
 	L["TogglePrefixTT"] = "현재 선택한 언어가 사용자 메시지 앞에 자동으로 추가되는지 여부를 제어합니다."
 	L["Diction"] = "어법"
-	L["Settings"] = "설정"
+	L["Settings"] = SETTINGS
 	L["Profiles"] = "프로필"
 	L["ResetAccSettings"] = "계정 섹션과 관련된 모든 설정을 재설정합니다. 캐릭터별 설정은 초기화되지 않습니다."
 	L["ResetCharSettings"] = "문자 섹션과 관련된 모든 설정을 재설정합니다. 계정별 설정은 재설정되지 않습니다."
@@ -583,18 +1899,15 @@ if LOCALE == "koKR" then
 	L["LinkToTotalRP3Off"] = "이 캐릭터에 대한 총 RP 3 링크가 비활성화되었습니다."
 	L["LinkToTotalRP3On"] = "이 캐릭터에 총 RP 3 링크가 활성화되었습니다."
 	L["LinkToTotalRP3"] = "Total RP 3 프로필 링크"
-	L["LinkToTotalRP3TT"] = "토탈 RP 3 프로필에 따라 캐릭터의 프로필을 자동으로 변경합니다. 여러 캐릭터가 동일한 프로필을 사용하는 경우 해당 캐릭터에 대한 설정이 유지됩니다.\n총 RP 3 애드온이 필요합니다."
+	L["LinkToTotalRP3TT"] = "Total RP 3 프로필에 따라 캐릭터 프로필을 자동으로 변경합니다. 여러 캐릭터가 동일한 프로필을 사용하는 경우 해당 캐릭터들의 설정이 유지됩니다.\nTotal RP 3 애드온이 필요합니다."
 	L["SettingLanguageTo"] = "언어 설정:"
 	L["EnableUnderstand"] = "이해 활성화"
 	L["DisableUnderstand"] = "이해 비활성화"
-	L["Dialect"] = "방언(출시 예정)"
+	L["Dialect"] = "방언"
 	L["DialectOff"] = "방언: 꺼짐"
 	L["DialectOn"] = "방언: 켜짐"
 	L["UseDialectTT"] = "사용자가 현재 말하는 동안 방언으로 말하는지 여부를 제어합니다. \"무엇을 원하시나요\"는 \"Waschu wan'?\"이 됩니다."
 	L["SettingDialectTo"] = "방언을 다음으로 설정:"
-	L["Dwarvish"] = "드워프어"
-	L["Draenic"] = "드레나이"
-	L["Zandali"] = "잔달리"
 	L["CurrentlySpeaking"] = "현재 말하고 있는 것:"
 	L["NoPrefixBaseLang"] = "해당 세력의 기본 언어(각각 얼라이언스/호드와 같이 일반/오키어)를 사용하는 경우 접두사를 사용하지 마세요."
 	L["LanguagePreset"] = "언어 사전 설정 알아보기"
@@ -602,7 +1915,7 @@ if LOCALE == "koKR" then
 	L["ImportGameplayTT"] = "귀하의 종족이 일반적인 게임 플레이 메커니즘에서 사용하게 될 미리 설정된 기본 언어를 배우십시오.\n이렇게 하면 현재 학습한 언어를 덮어쓰게 됩니다."
 	L["ImportRecommended"] = "추천"
 	L["ImportRecommendedTT"] = "당신의 인종/직업이 아마도 역사에서 배웠을 것 같은 미리 설정된 언어를 배우십시오.\n이렇게 하면 현재 배운 언어를 덮어쓰게 됩니다."
-	L["ThisLangHasRunesTT"] = "이 언어를 배우지 않으면 룬이 표시될 수 있습니다."
+	L["ThisLangHasRunesTT"] = "이 언어는 습득하지 않았을 때 문양을 표시할 수 있습니다."
 	L["ToggleLanguageLearnedTT"] = "자신과 다른 사람이 말할 때 이 언어를 이해할 수 있는 능력을 전환하려면 클릭하세요."
 	L["ToggleLanguageSpokenTT"] = "이 언어를 접두어로 설정하려면 클릭하세요."
 	L["UseAutoShapeshiftOff"] = "이 캐릭터에는 자동 변신 언어가 비활성화되었습니다."
@@ -610,25 +1923,94 @@ if LOCALE == "koKR" then
 	L["UseAutoShapeshift"] = "자동 변신 언어"
 	L["UseAutoShapeshiftTT"] = "형태로 변신하면 자동으로 언어가 연관되어 변경됩니다.\n필요 사항: Shadowform, Metamorphosis."
 	L["LoadingProfile"] = "프로필 로드 중"
-	L["Help"] = colorThingS.."/languages"..colorThingE..", "..colorThingS.."/language"..colorThingE..", 또는 "..colorThingS.."/lang"..colorThingE.." 사용하여 슬래시 명령에 액세스할 수 있습니다. 사용 가능한 슬래시 명령 하위 옵션 목록은 다음과 같습니다:"..
+	L["HelpCMD"] = colorThingS.."/languages"..colorThingE..", "..colorThingS.."/언어"..colorThingE..", 또는 "..colorThingS.."/lang"..colorThingE.." 사용하여 슬래시 명령에 액세스할 수 있습니다. 사용 가능한 슬래시 명령 하위 옵션 목록은 다음과 같습니다:"..
 	"\n"..colorThingS.."prefix"..colorThingE.." - [언어] 접두어를 켜거나 끕니다."..
 	"\n"..colorThingS.."open"..colorThingE.." - 옵션 프레임을 엽니다."..
 	"\n"..colorThingS.."minimap"..colorThingE.." - 미니맵 버튼을 켜거나 끕니다."..
-	"\n또한 "..colorThingS.."/lang Darnassian"..colorThingE.." 또는 "..colorThingS.."/Darnassian"..colorThingE.." 과 같은 언어를 설정할 수 있습니다."
+	"\n또한 "..colorThingS.."/나이트 엘프어"..colorThingE.." 과 같은 언어를 설정할 수 있습니다."
+	L["OnlyInCharacter"] = "캐릭터 상태에서만"
+	L["OnlyInCharacterTT"] = "\"캐릭터 상태\"일 때만 접두사 / 방언을 활성화합니다.\nTotal RP 3 애드온이 필요합니다"
+	L["RuneSize"] = "문양 크기"
+	L["DisablePrefix"] = "접두사 비활성화"
+	L["EnablePrefix"] = "접두사 활성화"
+	L["ShowSelectionButton"] = "언어 미니 버튼 표시"
+	L["ShowSelectionButtonTT"] = "학습한 언어 선택에 접근할 수 있는 작은 버튼을 화면에 표시합니다."
+	L["SelectLanguage"] = "언어 선택"
+	L["OpenMenu"] = "메뉴 열기"
+	L["DragFrame"] = "프레임 이동"
+	L["LeftClick"] = "좌클릭"
+	L["RightClick"] = "우클릭"
+	L["ShiftDrag"] = "SHIFT + 드래그"
+	L["DialectsTT"] = "방언을 선택하면 입력한 일부 단어가 다른 단어로 변경됩니다. 예를 들어 \"are not\"이 \"aren't\"로 바뀝니다. 각 언어에는 고유한 단어 목록이 있으며, 각각 켜거나 끌 수 있습니다."
+	L["Dialects2TT"] = "단어 양쪽에 밑줄을 추가하면 방언 형태로 변환되는 것을 막을 수 있습니다. 예: \"_are not_\". 이렇게 하면 단어는 원래 철자를 유지하며, 양쪽에 추가된 밑줄은 자동으로 제거됩니다."
+	L["Contributors"] = "기여자"
+	L["SpecialThanks"] = "이 애드온에 기여한 훌륭한 사람들에게 감사드립니다!"
+
+	L["Common"] = 		"공용어"			--7
+	L["Darnassian"] = 	"나이트 엘프어"	--2
+	L["Dwarvish"] = 	"드워프어"		--6
+	L["Gnomish"] = 		"노움어"			--13
+	L["Draenei"] = 		"드레나이어"		--35
+	L["Orcish"] = 		"오크어"			--1
+	L["Zandali"] = 		"잔달라어"		--14
+	L["Taurahe"] = 		"타우렌어"		--3
+	L["Forsaken"] = 	"포세이큰어"		--33
+	L["Thalassian"] = 	"하이엘프어"		--10
+	L["Goblin"] = 		"고블린어"		--40
+	L["Shalassian"] = 	"나이트본어"		--181
+	L["Vulpera"] = 		"불페라어"		--285
+	L["Pandaren"] = 	"판다렌어"		--42
+	L["Draconic"] = 	"용언"			--11
+	L["Demonic"] = 		"악마어"			--8
+	L["Titan"] = 		"티탄어"			--9
+	L["Kalimag"] = 		"정령어"			--12
+	L["Shath'Yar"] = 	"샤트야르"		--178
+	L["Nerubian"] = 	"네루비안"		--307
+	L["Sprite"] = 		"요마어"			--168
+	L["Nerglish"] = 	"옳옳어"			--179
+	L["Moonkin"] = 		"달빛야수"		--180
+	L["Furbolg"] = 		"펄볼그어"		--303
+	L["Earthen"] = 		"토석인어"		--304
+	L["Hara'ni"] = 		"하라니"			--309
+
+	L["Gutterspeak"] = 			"언데드어"
+	L["AncientPandaren"] = 	"고대 판다렌"
+	L["Broker"] = 				"중개자"
+	L["Cypher"] = 				"암호"
+	L["Arathi"] = 				"아라시"
+	L["Mogu"] = 				"모구"
+	L["Ethereal"] = 			"에테리얼"
+	L["K'areshi"] = 			"크아레쉬"
+
+	L["Gilnean"] = "길니아스어"
+	L["KulTiranNoble"] = "쿨 티란 귀족"
+	L["Mechagnome"] = "기계노움"
+	L["DarkspearTrolls"] = "검은창 트롤"
+	L["Sailor"] = "선원"
+	L["Highborne"] = "명가"
+	L["Nightborne"] = "나이트본"
+	L["Zandalari"] = "잔달라 트롤"
+
 return end
 
 if LOCALE == "zhCN" then
 -- Simplified Chinese translations go here
 	L["Languages"] = "语言"
 	L["Language"] = "语言"
+	L["SLASH_1"] = "/语言"
+	L["SLASH_2"] = "/语言"
+	L["SLASH_3"] = "/语言"
+	L["SLASH_4"] = "/languages" -- non-localized slash
+	L["SLASH_5"] = "/language"
+	L["SLASH_6"] = "/lang"
 	L["Understand"] = "理解"
 	L["TogglePrefixOff"] = "语言前缀：关"
 	L["TogglePrefixOn"] = "语言前缀：开"
 	L["TogglePrefixTextOff"] = "关闭自动语言前缀。"
-	L["TogglePrefixTextOn"] = "“关闭自动语言前缀。”"
+	L["TogglePrefixTextOn"] = "\"关闭自动语言前缀。\""
 	L["TogglePrefixTT"] = "控制当前选择的语言是否自动为用户消息添加前缀。"
 	L["Diction"] = "措辞"
-	L["Settings"] = "设置"
+	L["Settings"] = SETTINGS
 	L["Profiles"] = "型材"
 	L["ResetAccSettings"] = "重置特定于帐户部分的所有设置。 这不会重置特定于角色的设置。"
 	L["ResetCharSettings"] = "重置特定于字符部分的所有设置。 这不会重置帐户特定的设置。"
@@ -662,14 +2044,11 @@ if LOCALE == "zhCN" then
 	L["SettingLanguageTo"] = "将语言设置为："
 	L["EnableUnderstand"] = "启用理解"
 	L["DisableUnderstand"] = "禁用理解"
-	L["Dialect"] = "方言（即将推出）"
+	L["Dialect"] = "方言"
 	L["DialectOff"] = "方言：关闭"
 	L["DialectOn"] = "方言：开"
-	L["UseDialectTT"] = "控制用户当前说话时是否使用方言，例如方言。 “你想要什么”变成“Waschu wan'？”。"
-	L["SettingDialectTo"] = "“将方言设置为：”"
-	L["Dwarvish"] = "矮人语"
-	L["Draenic"] = "德拉诺语"
-	L["Zandali"] = "赞达利"
+	L["UseDialectTT"] = "控制用户当前说话时是否使用方言，例如方言。 \"你想要什么\"变成\"Waschu wan'？\"。"
+	L["SettingDialectTo"] = "\"将方言设置为：\""
 	L["CurrentlySpeaking"] = "目前正在讲："
 	L["NoPrefixBaseLang"] = "如果您使用派系的基本语言（通用/兽人语分别为联盟/部落），请勿使用前缀。"
 	L["LanguagePreset"] = "学习语言预设"
@@ -677,7 +2056,7 @@ if LOCALE == "zhCN" then
 	L["ImportGameplayTT"] = "学习您的种族在正常游戏机制中会使用的预设默认语言。\n这将覆盖您当前学习的语言。"
 	L["ImportRecommended"] = "受到推崇的"
 	L["ImportRecommendedTT"] = "学习您的种族/阶级在其可能的历史中可能会学习的预设语言。\n这将覆盖您当前学习的语言。"
-	L["ThisLangHasRunesTT"] = "这种语言在未学习时可以显示符文。"
+	L["ThisLangHasRunesTT"] = "该语言在未学习时可以显示符文。"
 	L["ToggleLanguageLearnedTT"] = "单击可切换您在自己和他人所说的语言时理解该语言的能力。"
 	L["ToggleLanguageSpokenTT"] = "单击将此语言设置为您的前缀。"
 	L["UseAutoShapeshiftOff"] = "该角色禁用自动变形语言。"
@@ -685,25 +2064,94 @@ if LOCALE == "zhCN" then
 	L["UseAutoShapeshift"] = "自动变形语言"
 	L["UseAutoShapeshiftTT"] = "变形为某种形态会自动改变你的语言与其关联。\n需要：暗影形态、变形。"
 	L["LoadingProfile"] = "加载配置文件"
-	L["Help"] = "您可以使用 "..colorThingS.."/languages"..colorThingE..", "..colorThingS.."/language"..colorThingE..", 或 "..colorThingS.."/lang"..colorThingE.." t来访问斜杠命令。可用的斜杠命令子选项列表:"..
+	L["HelpCMD"] = "您可以使用 "..colorThingS.."/languages"..colorThingE..", "..colorThingS.."/语言"..colorThingE..", 或 "..colorThingS.."/lang"..colorThingE.." t来访问斜杠命令。可用的斜杠命令子选项列表:"..
 	"\n"..colorThingS.."prefix"..colorThingE.." - 打开/关闭 [Language] 前缀。"..
 	"\n"..colorThingS.."open"..colorThingE.." - 打开选项框架。"..
 	"\n"..colorThingS.."minimap"..colorThingE.." - 打开/关闭小地图按钮。"..
-	"\n此外，您还可以设置语言，例如 "..colorThingS.."/lang Darnassian"..colorThingE.." 或 "..colorThingS.."/Darnassian"..colorThingE.."。"
+	"\n此外，您还可以设置语言，例如 "..colorThingS.."/达纳苏斯语"..colorThingE.."。"
+	L["OnlyInCharacter"] = "仅角色状态"
+	L["OnlyInCharacterTT"] = "仅在\"角色状态\"下启用前缀 / 方言。\n需要 Total RP 3 插件"
+	L["RuneSize"] = "雕文大小"
+	L["DisablePrefix"] = "禁用前缀"
+	L["EnablePrefix"] = "启用前缀"
+	L["ShowSelectionButton"] = "显示语言迷你按钮"
+	L["ShowSelectionButtonTT"] = "在屏幕上显示一个小按钮，用于访问已学习语言的选择。"
+	L["SelectLanguage"] = "选择语言"
+	L["OpenMenu"] = "打开菜单"
+	L["DragFrame"] = "拖动框体"
+	L["LeftClick"] = "左键点击"
+	L["RightClick"] = "右键点击"
+	L["ShiftDrag"] = "SHIFT + 拖动"
+	L["DialectsTT"] = "选择一种方言会将你输入的某些词语替换为其他词语。例如，将\"are not\"转换为\"aren't\"。每种语言都有自己的一组词语，并且都可以单独启用或禁用。"
+	L["Dialects2TT"] = "在单词两侧添加下划线可以阻止其被转换为方言形式，例如\"_are not_\"。这样可以保留该词的原始拼写，并会自动移除两侧添加的下划线。"
+	L["Contributors"] = "贡献者"
+	L["SpecialThanks"] = "感谢为这个插件做出贡献的优秀人士！"
+
+	L["Common"] = 		"通用语"			--7
+	L["Darnassian"] = 	"达纳苏斯语"		--2
+	L["Dwarvish"] = 	"矮人语"			--6
+	L["Gnomish"] = 		"侏儒语"			--13
+	L["Draenei"] = 		"德莱尼语"		--35
+	L["Orcish"] = 		"兽人语"			--1
+	L["Zandali"] = 		"赞达拉语"		--14
+	L["Taurahe"] = 		"牛头人语"		--3
+	L["Forsaken"] = 	"亡灵语"			--33
+	L["Thalassian"] = 	"萨拉斯语"		--10
+	L["Goblin"] = 		"地精语"			--40
+	L["Shalassian"] = 	"夏拉斯语"		--181
+	L["Vulpera"] = 		"狐人语"			--285
+	L["Pandaren"] = 	"熊猫人语"		--42
+	L["Draconic"] = 	"龙语"			--11
+	L["Demonic"] = 		"恶魔语"			--8
+	L["Titan"] = 		"泰坦语"			--9
+	L["Kalimag"] = 		"卡利麦格语"		--12
+	L["Shath'Yar"] = 	"沙斯亚尔语"		--178
+	L["Nerubian"] = 	"蛛魔语"			--307
+	L["Sprite"] = 		"林精语"			--168
+	L["Nerglish"] = 	"水生语"			--179
+	L["Moonkin"] = 		"枭兽语"			--180
+	L["Furbolg"] = 		"熊怪语"			--303
+	L["Earthen"] = 		"土灵语"			--304
+	L["Hara'ni"] = 		"哈籁尼语"		--309
+
+	L["Gutterspeak"] = 			"亡灵语"
+	L["AncientPandaren"] = 	"古代熊猫人"
+	L["Broker"] = 				"掮灵"
+	L["Cypher"] = 				"密文"
+	L["Arathi"] = 				"阿拉希"
+	L["Mogu"] = 				"魔古族"
+	L["Ethereal"] = 			"虚灵"
+	L["K'areshi"] = 			"卡雷什"
+
+	L["Gilnean"] = "吉尔尼斯语"
+	L["KulTiranNoble"] = "库尔提拉斯贵族"
+	L["Mechagnome"] = "机械侏儒"
+	L["DarkspearTrolls"] = "暗矛巨魔"
+	L["Sailor"] = "水手"
+	L["Highborne"] = "上层精灵"
+	L["Nightborne"] = "夜之子"
+	L["Zandalari"] = "赞达拉巨魔"
+
 return end
 
 if LOCALE == "zhTW" then
 -- Traditional Chinese translations go here
 	L["Languages"] = "語言"
 	L["Language"] = "語言"
+	L["SLASH_1"] = "/語言"
+	L["SLASH_2"] = "/語言"
+	L["SLASH_3"] = "/語言"
+	L["SLASH_4"] = "/languages" -- non-localized slash
+	L["SLASH_5"] = "/language"
+	L["SLASH_6"] = "/lang"
 	L["Understand"] = "理解"
 	L["TogglePrefixOff"] = "語言前綴：關閉"
 	L["TogglePrefixOn"] = "語言前綴：開"
 	L["TogglePrefixTextOff"] = "關閉自動語言前綴。"
-	L["TogglePrefixTextOn"] = "“關閉自動語言前綴。”"
+	L["TogglePrefixTextOn"] = "\"關閉自動語言前綴。\""
 	L["TogglePrefixTT"] = "控制目前選擇的語言是否自動為使用者訊息添加前綴。"
 	L["Diction"] = "措辭"
-	L["Settings"] = "設定"
+	L["Settings"] = SETTINGS
 	L["Profiles"] = "型材"
 	L["ResetAccSettings"] = "重置特定於帳戶部分的所有設定。 這不會重置特定於角色的設定。"
 	L["ResetCharSettings"] = "重置特定於字元部分的所有設定。 這不會重置帳戶特定的設定。"
@@ -737,14 +2185,11 @@ if LOCALE == "zhTW" then
 	L["SettingLanguageTo"] = "將語言設定為："
 	L["EnableUnderstand"] = "啟用理解"
 	L["DisableUnderstand"] = "禁用理解"
-	L["Dialect"] = "方言（即將推出）"
+	L["Dialect"] = "方言"
 	L["DialectOff"] = "方言：關閉"
 	L["DialectOn"] = "方言：開"
 	L["UseDialectTT"] = "控制使用者目前說話時是否使用方言，例如方言。 「你想要什麼」變成「Waschu wan'？」。"
-	L["SettingDialectTo"] = "“將方言設定為：”"
-	L["Dwarvish"] = "矮人語"
-	L["Draenic"] = "德拉諾語"
-	L["Zandali"] = "贊達利"
+	L["SettingDialectTo"] = "\"將方言設定為：\""
 	L["CurrentlySpeaking"] = "目前正在講："
 	L["NoPrefixBaseLang"] = "如果您使用派系的基本語言（通用/獸人語分別為聯盟/部落），請勿使用前綴。"
 	L["LanguagePreset"] = "學習語言預設"
@@ -752,7 +2197,7 @@ if LOCALE == "zhTW" then
 	L["ImportGameplayTT"] = "學習您的種族在正常遊戲機制中會使用的預設預設語言。\n這將覆蓋您目前學習的語言。"
 	L["ImportRecommended"] = "受到推崇的"
 	L["ImportRecommendedTT"] = "學習您的種族/階級在其可能的歷史中可能會學習的預設語言。\n這將涵蓋您當前學習的語言。"
-	L["ThisLangHasRunesTT"] = "這種語言在未學習時可以顯示符文。"
+	L["ThisLangHasRunesTT"] = "此語言在尚未學習時可以顯示符文。"
 	L["ToggleLanguageLearnedTT"] = "點擊可切換您在自己和他人所說的語言時理解該語言的能力。"
 	L["ToggleLanguageSpokenTT"] = "點擊將此語言設定為您的前綴。"
 	L["UseAutoShapeshiftOff"] = "該角色會停用自動變形語言。"
@@ -760,9 +2205,72 @@ if LOCALE == "zhTW" then
 	L["UseAutoShapeshift"] = "自動變形語言"
 	L["UseAutoShapeshiftTT"] = "變形為某種形態會自動改變你的語言與其關聯。\n需要：暗影形態、變形。"
 	L["LoadingProfile"] = "載入設定檔"
-	L["Help"] = "您可以使用 "..colorThingS.."/languages"..colorThingE..", "..colorThingS.."/language"..colorThingE..", 或 "..colorThingS.."/lang"..colorThingE.." 來存取斜杠命令。可用的斜杠命令子選項清單:"..
+	L["HelpCMD"] = "您可以使用 "..colorThingS.."/languages"..colorThingE..", "..colorThingS.."/語言"..colorThingE..", 或 "..colorThingS.."/lang"..colorThingE.." 來存取斜杠命令。可用的斜杠命令子選項清單:"..
 	"\n"..colorThingS.."prefix"..colorThingE.." - 開啟/關閉 [Language] 前綴。"..
 	"\n"..colorThingS.."open"..colorThingE.." - 開啟選項框架。"..
 	"\n"..colorThingS.."minimap"..colorThingE.." - 開啟/關閉小地圖按鈕。"..
-	"\n此外，您還可以設定語言，例如 "..colorThingS.."/lang Darnassian"..colorThingE.." 或 "..colorThingS.."/Darnassian"..colorThingE.."。"
+	"\n此外，您還可以設定語言，例如 "..colorThingS.."/達納蘇斯語"..colorThingE.."。"
+	L["OnlyInCharacter"] = "僅角色狀態"
+	L["OnlyInCharacterTT"] = "僅在「角色狀態」下啟用前綴 / 方言。\n需要 Total RP 3 外掛"
+	L["RuneSize"] = "雕文大小"
+	L["DisablePrefix"] = "停用前綴"
+	L["EnablePrefix"] = "啟用前綴"
+	L["ShowSelectionButton"] = "顯示語言迷你按鈕"
+	L["ShowSelectionButtonTT"] = "在畫面上顯示一個小按鈕，用於存取已學會的語言選擇。"
+	L["SelectLanguage"] = "選擇語言"
+	L["OpenMenu"] = "開啟選單"
+	L["DragFrame"] = "拖曳框架"
+	L["LeftClick"] = "左鍵點擊"
+	L["RightClick"] = "右鍵點擊"
+	L["ShiftDrag"] = "SHIFT + 拖曳"
+	L["DialectsTT"] = "選擇一種方言會將你輸入的某些詞語替換為其他詞語。例如，將「are not」轉換為「aren't」。每種語言都有自己的一組詞語，並且都可以個別啟用或停用。"
+	L["Dialects2TT"] = "在單詞兩側加上下劃線可以防止其被轉換為方言形式，例如「_are not_」。這會保留該詞的原始拼寫，並同時移除兩側加入的下劃線。"
+	L["Contributors"] = "貢獻者"
+	L["SpecialThanks"] = "感謝這些為這個插件做出貢獻的優秀人士！"
+
+	L["Common"] = 		"通用語"			--7
+	L["Darnassian"] = 	"達納蘇斯語"		--2
+	L["Dwarvish"] = 	"矮人語"			--6
+	L["Gnomish"] = 		"地精語"			--13
+	L["Draenei"] = 		"德萊尼語"		--35
+	L["Orcish"] = 		"獸人語"			--1
+	L["Zandali"] = 		"食人妖語"		--14
+	L["Taurahe"] = 		"牛頭人語"		--3
+	L["Forsaken"] = 	"不死族語"		--33
+	L["Thalassian"] = 	"薩拉斯語"		--10
+	L["Goblin"] = 		"哥布林語"		--40
+	L["Shalassian"] = 	"夏拉斯語"		--181
+	L["Vulpera"] = 		"狐狸人語"		--285
+	L["Pandaren"] = 	"熊貓人語"		--42
+	L["Draconic"] = 	"龍語"			--11
+	L["Demonic"] = 		"惡魔語"			--8
+	L["Titan"] = 		"泰坦語"			--9
+	L["Kalimag"] = 		"元素語"			--12
+	L["Shath'Yar"] = 	"古神語"			--178
+	L["Nerubian"] = 	"奈幽語"			--307
+	L["Sprite"] = 		"妖精語"			--168
+	L["Nerglish"] = 	"魚人語"			--179
+	L["Moonkin"] = 		"梟獸語"			--180
+	L["Furbolg"] = 		"熊怪語"			--303
+	L["Earthen"] = 		"土靈"			--304
+	L["Hara'ni"] = 		"哈拉尼"			--309
+
+	L["Gutterspeak"] = 			"不死族語"
+	L["AncientPandaren"] = 	"古代熊貓人"
+	L["Broker"] = 				"仲介者"
+	L["Cypher"] = 				"暗語"
+	L["Arathi"] = 				"阿拉希"
+	L["Mogu"] = 				"魔古"
+	L["Ethereal"] = 			"以太"
+	L["K'areshi"] = 			"凱瑞西"
+
+	L["Gilnean"] = "吉爾尼斯"
+	L["KulTiranNoble"] = "庫爾提拉斯貴族"
+	L["Mechagnome"] = "機械地精"
+	L["DarkspearTrolls"] = "暗矛食人妖"
+	L["Sailor"] = "水手"
+	L["Highborne"] = "精靈貴族"
+	L["Nightborne"] = "夜裔精靈"
+	L["Zandalari"] = "贊達拉食人妖"
+
 return end
