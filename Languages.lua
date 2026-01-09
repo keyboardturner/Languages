@@ -320,7 +320,7 @@ end
 function MeowFrameMixin:ConcatenateNames()
 	local names = ""
 	local notes = ""
-	for i = 1, 2 do -- increase value with more contributors
+	for i = 1, 3 do -- increase value with more contributors
 		if L["Contributor_"..i] then
 			names = names .. "\n" .. L["Contributor_"..i]
 		end

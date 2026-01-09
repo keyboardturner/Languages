@@ -21,6 +21,8 @@ L["ContributorNote_1"] = "Glyph Width Textures"
 L["Contributor_2"] = "Peterodox"
 L["ContributorNote_2"] = "Chat Hyperlink Functionality"
 L["Contributor_Anonymous"] = "Anonymous Users"
+L["Contributor_3"] = "Feyawen\n \n "
+L["ContributorNote_3"] = "Darnassian, Shalassian, Thalassian,\nDraenei, Pandaren, Zandali,\nDwarvish, and Taurahe font textures"
 
 L.AllLanguages = {
 	enUS = {

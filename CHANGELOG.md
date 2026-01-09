@@ -1,3 +1,7 @@
+# 1.0.1
+
+Added a contribution [Feyawen](https://feyawen.carrd.co/) font contribution in portrait tooltip
+
 # 1.0.0
 
 Reworked the language list code, allowing for Favorites and a Search
