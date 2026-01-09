@@ -9,17 +9,19 @@ Language alphabet rune & spacing width rescaled to better fit the characters (Th
 
 New Translation tooltip upon prefix mouseover & window upon click which shows the original untranslated message (Thanks to Peterodox for hyperlink functionality)
 
-New "Mini-Button" frame has been added, allowing for easier known language selection and switching the prefix on/off.
+New "Mini-Button" frame has been added, allowing for easier known language selection and switching the prefix on/off
 
-New "Only In Character" setting has been added for Total RP 3 users, automatically switching the prefix on/off depending on on-character status.
+New "Only In Character" setting has been added for Total RP 3 users, automatically switching the prefix on/off depending on on-character status
+
+New Glyph Size slider setting has been added to manually adjust glyph size independent of chat size
 
 Certain proper nouns / words remain untranslated in their respective language, while certain words translate properly to lore-established terms
 
 Capitalization is now retained, and certain characters such as periods, commas, and hyphens will pass through untranslated
 
-New profiles will start with the Gameplay preset.
+New profiles will start with the Gameplay preset
 
-Removed option to have addon function in combat as per impending Midnight API changes - addon simply doesn't work in combat.
+Removed option to have addon function in combat as per impending Midnight API changes - addon simply doesn't work in combat
 
 
 # 0.2.0
