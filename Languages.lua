@@ -2314,7 +2314,15 @@ local function ReplaceLanguage(text, language)
 	if Languages_DB.settings.glyphs then
 		local spaceRune = GetRuneString(" ", language)
 
+		local leadingSpace = ""
+		if string.sub(text, 1, 1) == " " then
+			leadingSpace = " "
+			text = string.sub(text, 2)
+		end
+
 		text = text:gsub(" ", spaceRune)
+		
+		text = leadingSpace .. text
 	end
 
 	for token, translation in pairs(protectedPhrases) do
