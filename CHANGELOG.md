@@ -1,6 +1,6 @@
 # 1.0.2
 
-Removed a ranbdom global variable
+Removed a random global variable
 
 # 1.0.1
 
