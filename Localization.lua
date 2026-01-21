@@ -513,8 +513,6 @@ L.AllLanguages = {
 
 };
 
-GlobalVar = L.AllLanguages
-
 if LOCALE == "enUS" then
 -- The EU English game client also
 -- uses the US English locale code.

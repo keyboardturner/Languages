@@ -1,3 +1,7 @@
+# 1.0.2
+
+Removed a ranbdom global variable
+
 # 1.0.1
 
 Added a contribution [Feyawen](https://feyawen.carrd.co/) font contribution in portrait tooltip
