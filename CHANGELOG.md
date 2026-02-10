@@ -1,3 +1,7 @@
+# 1.0.3
+
+12.0.1 toc update
+
 # 1.0.2
 
 Removed a random global variable
