@@ -716,7 +716,7 @@ function mainFrame.setMaxLetters()
 		if ACTIVE_CHAT_EDIT_BOX ~= nil then
 			local editBox = _G[ACTIVE_CHAT_EDIT_BOX:GetName()]
 			local header = _G[ACTIVE_CHAT_EDIT_BOX:GetName().."Header"]
-			if C_AddOns.IsAddOnLoaded("EmoteSplitter") == true then
+			if editBox:GetMaxLetters() ~= 255 then
 				return
 			else
 				local maxLetters = 255
@@ -735,78 +735,40 @@ function mainFrame.setMaxLetters()
 end
 
 function mainFrame.enablePrefix()
-
-	-- Hook function that is called when the user SHIFT-Click a player name
-	-- in the chat frame to insert it into a text field.
-	-- We can replace the name inserted by the complete RP name of the player if we have it.
-
-	local function ParseTokens(editBox, send)
+	local function ParseTokens(text, context)
 		if lang.combatCheck() then
-			return
-		else
-			-- if not speaking default language, do not apply addon logic
-			local _, defaultLangID = GetDefaultLanguage("player")
-			if editBox.languageID ~= defaultLangID then
-				return
-			end
-
-			local text = editBox:GetText();
-			if text and send == 1 then
-				if text ~= "" and text ~= nil then
-					textBeforeParse = text;
-					parsedEditBox = editBox;
-					if ACTIVE_CHAT_EDIT_BOX == nil then -- required for things like macros, where active edit box is nil
-						return
-					end
+			return;
+		end
+		-- if not speaking default language, do not apply addon logic
+		local _, defaultLangID = GetDefaultLanguage()
+		if context.language ~= defaultLangID then
+			return text
+		end
+		
+		local chatType = context.chatType
+		if chatType == "SAY" or chatType == "YELL" then
+			text = ApplyDialectToText(text) 
+			if lang.factionCheck() and ShouldProcessLanguage() then
+				if mainFrame.prefix and currentLanguage.lang ~= nil then
+					local langName = L[currentLanguage.lang] or currentLanguage.lang
+					local prefix = format("[%s]", langName)
 					
-					local chatType = _G[ACTIVE_CHAT_EDIT_BOX:GetName()]:GetAttribute("chatType")
-
-					if chatType == "SAY" or chatType == "YELL" then
-						text = ApplyDialectToText(text) 
+					if C_AddOns.IsAddOnLoaded("EmoteSplitter") then
+						gopherPadding = LibGopher.GetPadding()
+						LibGopher.SetPadding(prefix)
+						text = format(" %s", text)
+					else
+						text = format("%s %s", prefix, text)
 					end
-					
-					if lang.factionCheck() == true and ShouldProcessLanguage() then
-						if mainFrame.prefix == true
-							and currentLanguage.lang ~= ""
-							and currentLanguage.lang ~= nil
-							and (chatType == "SAY" or chatType == "YELL")
-						then
-							local langName = L[currentLanguage.lang] or currentLanguage.lang
-							local prefix = string.format("[%s]", langName)
-
-							if editBox:GetMaxBytes() ~= 1280 then
-								if C_AddOns.IsAddOnLoaded("EmoteSplitter") == true then
-									gopherPadding = LibGopher.GetPadding()
-									LibGopher.SetPadding(prefix)
-									text = string.format(" %s", text)
-								else
-									text = string.format("%s %s", prefix, text)
-								end
-							else
-								text = string.format("%s %s", prefix, text)
-								editBox:SetVisibleTextByteLimit(255)
-							end
-						end
-					end
-
-					editBox:SetText(text);
 				end
 			end
 		end
+
+		return text;
 	end;
 
-	for i = 1, Constants.ChatFrameConstants.MaxChatWindows do
-		hooksecurefunc(_G["ChatFrame" .. i .. "EditBox"], "ParseText", ParseTokens);
-	end
-
-	-- Restore the text without substitution before it's stored in the chat history
-	hooksecurefunc(ChatFrameUtil, "SubstituteChatMessageBeforeSend", function()
-		if parsedEditBox and textBeforeParse then
-			parsedEditBox:SetText(textBeforeParse);
-			parsedEditBox = nil;
-			textBeforeParse = nil;
-		end
-	end);
+	local LibChatFilter = LibStub:GetLibrary("LibChatFilter");
+	LibChatFilter.RegisterMutator(ParseTokens, LibChatFilter.Stage.EXCLUSIVE_TRANSFORM);
 end
 
 mainFrame.enablePrefix()
@@ -1056,7 +1018,7 @@ local function RegisterLanguageTag(langKey, localizedName)
 	if not localizedName then return end
 	
 	local safeName = localizedName:gsub("([%(%)%.%%%+%-%*%?%[%^%$])", "%%%1")
-	local bracketPattern = "^%[" .. safeName .. "%]"
+	local bracketPattern = "^(%A*)%[" .. safeName .. "%]%s*"
 	local bracketName = "[" .. localizedName .. "]"
 
 	if not languageNoBrackets[bracketPattern] then
@@ -2368,7 +2330,7 @@ local function eventFilterStuff(frame, event, message, sender, ...)
 			return
 		else
 			if message:find(v) then
-				message = message:gsub(v, "")
+				message = message:gsub(v, "%1")
 				
 				local cleanMessage = StripTags(message)
 
@@ -2398,7 +2360,7 @@ local function eventFilterStuff(frame, event, message, sender, ...)
 
 				else
 					if Languages_DB.profiles[charKey].understandLanguage[internalKey] then
-						return false, "|c" .. textColor .. bracketName .. "|r " .. message, sender, ...
+						return false, "|c" .. textColor .. bracketName .. "|r" .. message, sender, ...
 					else
 						if event == "CHAT_MSG_SAY" then
 							chatTypeBingus = ChatTypeInfo["SAY"];
@@ -2416,7 +2378,6 @@ local function eventFilterStuff(frame, event, message, sender, ...)
 			end
 		end
 	end
-
 end
 
 ChatFrameUtil.AddMessageEventFilter("CHAT_MSG_SAY", eventFilterStuff);
@@ -2976,3 +2937,32 @@ local function OnAddonLoaded()
 end
 
 EventUtil.ContinueOnAddOnLoaded("Chattynator", OnAddonLoaded);
+
+local function ApplyChatteryCompatibility()
+	if not (Chattery and Chattery.Chunker and Chattery.Chunker.SplitMessage) then return; end
+	
+	local origSplitMessage = Chattery.Chunker.SplitMessage;
+	Chattery.Chunker.SplitMessage = function(message, chunkSize, chatType)
+		local chunks = origSplitMessage(message, chunkSize, chatType);
+		
+		if mainFrame.prefix and currentLanguage.lang and lang.factionCheck() and ShouldProcessLanguage() then
+			if chatType == "SAY" or chatType == "YELL" then
+				local langName = L[currentLanguage.lang] or currentLanguage.lang;
+				local prefixStr = format("[%s] ", langName);
+				
+				local splitMarker = Chattery.Chunker.GetMessageSplitMarker();
+				local startMarker = (splitMarker and splitMarker ~= "") and (splitMarker .. " ") or " ";
+				
+				local escapedMarker = startMarker:gsub("([%.%-%+%*%?%[%^%$%(%)%%])", "%%%1");
+				
+				for i = 2, #chunks do
+					chunks[i] = chunks[i]:gsub("^(.-" .. escapedMarker .. ")", "%1" .. prefixStr, 1);
+				end
+			end
+		end
+		
+		return chunks;
+	end
+end
+
+EventUtil.ContinueOnAddOnLoaded("Chattery", ApplyChatteryCompatibility);
