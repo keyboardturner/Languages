@@ -1,3 +1,7 @@
+# 1.0.6
+
+Added LibChatFilter, which should help compatibility with Chattery™
+
 # 1.0.4
 
 12.0.5 toc update
