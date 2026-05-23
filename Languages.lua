@@ -1018,7 +1018,7 @@ local function RegisterLanguageTag(langKey, localizedName)
 	if not localizedName then return end
 	
 	local safeName = localizedName:gsub("([%(%)%.%%%+%-%*%?%[%^%$])", "%%%1")
-	local bracketPattern = "^%[" .. safeName .. "%]"
+	local bracketPattern = "^(%A*)%[" .. safeName .. "%]%s*"
 	local bracketName = "[" .. localizedName .. "]"
 
 	if not languageNoBrackets[bracketPattern] then
@@ -2330,7 +2330,7 @@ local function eventFilterStuff(frame, event, message, sender, ...)
 			return
 		else
 			if message:find(v) then
-				message = message:gsub(v, "")
+				message = message:gsub(v, "%1")
 				
 				local cleanMessage = StripTags(message)
 
@@ -2360,7 +2360,7 @@ local function eventFilterStuff(frame, event, message, sender, ...)
 
 				else
 					if Languages_DB.profiles[charKey].understandLanguage[internalKey] then
-						return false, "|c" .. textColor .. bracketName .. "|r " .. message, sender, ...
+						return false, "|c" .. textColor .. bracketName .. "|r" .. message, sender, ...
 					else
 						if event == "CHAT_MSG_SAY" then
 							chatTypeBingus = ChatTypeInfo["SAY"];
@@ -2378,7 +2378,6 @@ local function eventFilterStuff(frame, event, message, sender, ...)
 			end
 		end
 	end
-
 end
 
 ChatFrameUtil.AddMessageEventFilter("CHAT_MSG_SAY", eventFilterStuff);
@@ -2938,3 +2937,32 @@ local function OnAddonLoaded()
 end
 
 EventUtil.ContinueOnAddOnLoaded("Chattynator", OnAddonLoaded);
+
+local function ApplyChatteryCompatibility()
+	if not (Chattery and Chattery.Chunker and Chattery.Chunker.SplitMessage) then return; end
+	
+	local origSplitMessage = Chattery.Chunker.SplitMessage;
+	Chattery.Chunker.SplitMessage = function(message, chunkSize, chatType)
+		local chunks = origSplitMessage(message, chunkSize, chatType);
+		
+		if mainFrame.prefix and currentLanguage.lang and lang.factionCheck() and ShouldProcessLanguage() then
+			if chatType == "SAY" or chatType == "YELL" then
+				local langName = L[currentLanguage.lang] or currentLanguage.lang;
+				local prefixStr = format("[%s] ", langName);
+				
+				local splitMarker = Chattery.Chunker.GetMessageSplitMarker();
+				local startMarker = (splitMarker and splitMarker ~= "") and (splitMarker .. " ") or " ";
+				
+				local escapedMarker = startMarker:gsub("([%.%-%+%*%?%[%^%$%(%)%%])", "%%%1");
+				
+				for i = 2, #chunks do
+					chunks[i] = chunks[i]:gsub("^(.-" .. escapedMarker .. ")", "%1" .. prefixStr, 1);
+				end
+			end
+		end
+		
+		return chunks;
+	end
+end
+
+EventUtil.ContinueOnAddOnLoaded("Chattery", ApplyChatteryCompatibility);
