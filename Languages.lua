@@ -716,7 +716,7 @@ function mainFrame.setMaxLetters()
 		if ACTIVE_CHAT_EDIT_BOX ~= nil then
 			local editBox = _G[ACTIVE_CHAT_EDIT_BOX:GetName()]
 			local header = _G[ACTIVE_CHAT_EDIT_BOX:GetName().."Header"]
-			if C_AddOns.IsAddOnLoaded("EmoteSplitter") == true then
+			if editBox:GetMaxLetters() ~= 255 then
 				return
 			else
 				local maxLetters = 255
@@ -735,78 +735,40 @@ function mainFrame.setMaxLetters()
 end
 
 function mainFrame.enablePrefix()
-
-	-- Hook function that is called when the user SHIFT-Click a player name
-	-- in the chat frame to insert it into a text field.
-	-- We can replace the name inserted by the complete RP name of the player if we have it.
-
-	local function ParseTokens(editBox, send)
+	local function ParseTokens(text, context)
 		if lang.combatCheck() then
-			return
-		else
-			-- if not speaking default language, do not apply addon logic
-			local _, defaultLangID = GetDefaultLanguage("player")
-			if editBox.languageID ~= defaultLangID then
-				return
-			end
-
-			local text = editBox:GetText();
-			if text and send == 1 then
-				if text ~= "" and text ~= nil then
-					textBeforeParse = text;
-					parsedEditBox = editBox;
-					if ACTIVE_CHAT_EDIT_BOX == nil then -- required for things like macros, where active edit box is nil
-						return
-					end
+			return;
+		end
+		-- if not speaking default language, do not apply addon logic
+		local _, defaultLangID = GetDefaultLanguage()
+		if context.language ~= defaultLangID then
+			return text
+		end
+		
+		local chatType = context.chatType
+		if chatType == "SAY" or chatType == "YELL" then
+			text = ApplyDialectToText(text) 
+			if lang.factionCheck() and ShouldProcessLanguage() then
+				if mainFrame.prefix and currentLanguage.lang ~= nil then
+					local langName = L[currentLanguage.lang] or currentLanguage.lang
+					local prefix = format("[%s]", langName)
 					
-					local chatType = _G[ACTIVE_CHAT_EDIT_BOX:GetName()]:GetAttribute("chatType")
-
-					if chatType == "SAY" or chatType == "YELL" then
-						text = ApplyDialectToText(text) 
+					if C_AddOns.IsAddOnLoaded("EmoteSplitter") then
+						gopherPadding = LibGopher.GetPadding()
+						LibGopher.SetPadding(prefix)
+						text = format(" %s", text)
+					else
+						text = format("%s %s", prefix, text)
 					end
-					
-					if lang.factionCheck() == true and ShouldProcessLanguage() then
-						if mainFrame.prefix == true
-							and currentLanguage.lang ~= ""
-							and currentLanguage.lang ~= nil
-							and (chatType == "SAY" or chatType == "YELL")
-						then
-							local langName = L[currentLanguage.lang] or currentLanguage.lang
-							local prefix = string.format("[%s]", langName)
-
-							if editBox:GetMaxBytes() ~= 1280 then
-								if C_AddOns.IsAddOnLoaded("EmoteSplitter") == true then
-									gopherPadding = LibGopher.GetPadding()
-									LibGopher.SetPadding(prefix)
-									text = string.format(" %s", text)
-								else
-									text = string.format("%s %s", prefix, text)
-								end
-							else
-								text = string.format("%s %s", prefix, text)
-								editBox:SetVisibleTextByteLimit(255)
-							end
-						end
-					end
-
-					editBox:SetText(text);
 				end
 			end
 		end
+
+		return text;
 	end;
 
-	for i = 1, Constants.ChatFrameConstants.MaxChatWindows do
-		hooksecurefunc(_G["ChatFrame" .. i .. "EditBox"], "ParseText", ParseTokens);
-	end
-
-	-- Restore the text without substitution before it's stored in the chat history
-	hooksecurefunc(ChatFrameUtil, "SubstituteChatMessageBeforeSend", function()
-		if parsedEditBox and textBeforeParse then
-			parsedEditBox:SetText(textBeforeParse);
-			parsedEditBox = nil;
-			textBeforeParse = nil;
-		end
-	end);
+	local LibChatFilter = LibStub:GetLibrary("LibChatFilter");
+	LibChatFilter.RegisterMutator(ParseTokens, LibChatFilter.Stage.EXCLUSIVE_TRANSFORM);
 end
 
 mainFrame.enablePrefix()
