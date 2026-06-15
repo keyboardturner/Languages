@@ -1,14 +1,14 @@
-# 1.0.7
-
-12.0.7 toc update
-
 # 1.0.6
 
 Added LibChatFilter, which should help compatibility with Chattery™
 
-# 1.0.4
+12.0.7 toc update
+
+# 1.0.4 / 1.0.5
 
 12.0.5 toc update
+
+(had to reship 1.0.5 because of packager shenanigans)
 
 # 1.0.3
 
