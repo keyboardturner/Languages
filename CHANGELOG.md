@@ -1,3 +1,23 @@
+# 1.0.7
+
+Added global API functions stored within LanguagesAPI:
+ - GetAllDialects
+ - GetDialect(dialectName)
+ - GetDialectWord(dialectName, word)
+ - ApplyDialectToText(text)
+ - GetActiveDialect
+ - GetAllDictionaries
+ - GetDictionary(languageName)
+ - GetDictionaryWord(languageName, word)
+ - GetAllLanguageReplacements
+ - GetLanguageReplacements(languageName)
+ - LanguageHasRunes(languageName)
+ - GetAllAlphabetKerning(languageName)
+ - GetAlphabetKerning
+ - GetActiveLanguage
+ - GetActiveProfileData
+ - GetActiveProfileName
+
 # 1.0.6
 
 Added LibChatFilter, which should help compatibility with Chattery™
