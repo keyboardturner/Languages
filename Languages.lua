@@ -709,6 +709,8 @@ local function ApplyDialectToText(text)
 	return text
 end
 
+Lang.ApplyDialectToText = ApplyDialectToText;
+
 function mainFrame.setMaxLetters()
 	if currentLanguage.lang == nil then
 		return
@@ -2966,3 +2968,97 @@ local function ApplyChatteryCompatibility()
 end
 
 EventUtil.ContinueOnAddOnLoaded("Chattery", ApplyChatteryCompatibility);
+
+--global API stuffs
+_G.LanguagesAPI = _G.LanguagesAPI or {};
+
+--dialects
+
+_G.LanguagesAPI.GetAllDialects = function()
+	return CopyTable(Lang.Dialects);
+end
+
+_G.LanguagesAPI.GetDialect = function(dialectName)
+	if Lang.Dialects[dialectName] then
+		return CopyTable(Lang.Dialects[dialectName]);
+	end
+	return nil;
+end
+
+_G.LanguagesAPI.GetDialectWord = function(dialectName, word)
+	if Lang.Dialects[dialectName] and Lang.Dialects[dialectName][word] then
+		return Lang.Dialects[dialectName][word];
+	end
+	return nil;
+end
+
+_G.LanguagesAPI.ApplyDialectToText = function(text)
+	return Lang.ApplyDialectToText(text);
+end
+
+_G.LanguagesAPI.GetActiveDialect = function()
+	local profile = GetActiveProfile();
+	if profile and profile.dialect then
+		return profile.dialect;
+	end
+	return nil;
+end
+
+--dictionary
+_G.LanguagesAPI.GetAllDictionaries = function()
+	return CopyTable(Lang.Dictionaries);
+end
+
+_G.LanguagesAPI.GetDictionary = function(languageName)
+	if Lang.Dictionaries[languageName] then
+		return CopyTable(Lang.Dictionaries[languageName]);
+	end
+	return nil;
+end
+
+_G.LanguagesAPI.GetDictionaryWord = function(languageName, word)
+	if Lang.Dictionaries[languageName] and Lang.Dictionaries[languageName][word] then
+		return Lang.Dictionaries[languageName][word];
+	end
+	return nil;
+end
+
+--primer
+_G.LanguagesAPI.GetAllLanguageReplacements = function()
+	return CopyTable(Lang.LANGUAGE_REPLACEMENTS);
+end
+
+_G.LanguagesAPI.GetLanguageReplacements = function(languageName)
+	if Lang.LANGUAGE_REPLACEMENTS[languageName] then
+		return CopyTable(Lang.LANGUAGE_REPLACEMENTS[languageName]);
+	end
+	return nil;
+end
+
+_G.LanguagesAPI.LanguageHasRunes = function(languageName)
+	if Lang.LANGUAGE_REPLACEMENTS[languageName] and Lang.LANGUAGE_REPLACEMENTS[languageName].hasRunes ~= nil then
+		return Lang.LANGUAGE_REPLACEMENTS[languageName].hasRunes;
+	end
+	return false;
+end
+
+_G.LanguagesAPI.GetAllAlphabetKerning = function()
+	if Lang.AlphabetKerning then
+		return CopyTable(Lang.AlphabetKerning);
+	end
+	return nil;
+end
+
+_G.LanguagesAPI.GetAlphabetKerning = function(languageName)
+	if Lang.AlphabetKerning and Lang.AlphabetKerning[languageName] then
+		return CopyTable(Lang.AlphabetKerning[languageName]);
+	end
+	return nil;
+end
+
+_G.LanguagesAPI.GetActiveLanguage = function()
+	if currentLanguage and currentLanguage.lang then
+		return currentLanguage.lang;
+	end
+	return nil;
+end
