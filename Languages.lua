@@ -3062,3 +3062,25 @@ _G.LanguagesAPI.GetActiveLanguage = function()
 	end
 	return nil;
 end
+
+-- profiles
+_G.LanguagesAPI.GetActiveProfileData = function()
+	return GetActiveProfile();
+end
+
+_G.LanguagesAPI.GetActiveProfileName = function()
+	if not Languages_DB or not Languages_DB.profiles or not charKey then
+		return nil;
+	end
+
+	if C_AddOns.IsAddOnLoaded("totalRP3") and TRP3_API then
+		local trpProfile = TRP3_API.profile.getPlayerCurrentProfile();
+		if trpProfile and trpProfile.profileName then
+			if Languages_DB.profiles[charKey] and Languages_DB.profiles[charKey].TRP3 then
+				return "TRP3_" .. trpProfile.profileName;
+			end
+		end
+	end
+
+	return charKey;
+end
