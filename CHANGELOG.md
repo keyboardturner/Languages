@@ -1,3 +1,7 @@
+# 1.0.8
+
+Added functionality to create a custom dialect from the dialect tab and set up custom replacement words.
+
 # 1.0.7
 
 Added global API functions stored within LanguagesAPI:

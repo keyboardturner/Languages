@@ -27,6 +27,8 @@ local defaultsTableAcc = {
 		x = 0,
 		y = 0,
 	},
+
+	customDialects = {},
 };
 
 local defaultsTableChar = {
@@ -81,7 +83,7 @@ local LANGPRESET_CLASS_LANGUAGE_DEFAULT = {
 
 local LANGPRESET_RACE_LANGUAGE_DEFAULT = {
 	gameplay = {
-		[1] = {[L["Common"]] = true}, -- 1 human 
+		[1] = {[L["Common"]] = true}, -- 1 human
 		[3] = {[L["Common"]] = true, [L["Dwarvish"]] = true}, -- 3 dwarf
 		[4] = {[L["Common"]] = true, [L["Darnassian"]] = true}, -- 4 night elf
 		[7] = {[L["Common"]] = true, [L["Gnomish"]] = true}, -- 7 gnome
@@ -106,7 +108,7 @@ local LANGPRESET_RACE_LANGUAGE_DEFAULT = {
 		[36] = {[L["Orcish"]] = true}, -- 36 mag'har
 		[31] = {[L["Orcish"]] = true, [L["Zandali"]] = true}, -- 31 zandalari
 		[35] = {[L["Orcish"]] = true, [L["Vulpera"]] = true}, -- 35 vulpera
-		--dracthyrN = {L["Draconic"]}, -- 
+		--dracthyrN = {L["Draconic"]}, --
 		[52] = {[L["Common"]] = true, [L["Draconic"]] = true}, -- 52 dracthyr alliance
 		[70] = {[L["Orcish"]] = true, [L["Draconic"]] = true}, -- 70 dracthyr horde
 		[84] = {[L["Common"]] = true, [L["Titan"]] = true}, -- 84 earthen alliance
@@ -124,7 +126,7 @@ local LANGPRESET_RACE_LANGUAGE_DEFAULT = {
 		[29] = {[L["Common"]] = true, [L["Thalassian"]] = true}, -- 29 void elf
 		[30] = {[L["Common"]] = true, [L["Draenei"]] = true}, -- 30 lightforged
 		[34] = {[L["Common"]] = true, [L["Dwarvish"]] = true}, -- 34 dark iron
-		[32] = {[L["Common"]] = true}, -- 32 kul tiran 
+		[32] = {[L["Common"]] = true}, -- 32 kul tiran
 		[37] = {[L["Common"]] = true, [L["Gnomish"]] = true}, -- 37 mechagnome
 		[24] = {[L["Pandaren"]] = true}, -- 24 pandaren neutral
 		[25] = {[L["Common"]] = true, [L["Pandaren"]] = true}, -- 25 pandaren alliance
@@ -140,7 +142,7 @@ local LANGPRESET_RACE_LANGUAGE_DEFAULT = {
 		[36] = {[L["Orcish"]] = true}, --36 mag'har
 		[31] = {[L["Orcish"]] = true, [L["Zandali"]] = true}, -- 31 zandalari
 		[35] = {[L["Orcish"]] = true, [L["Vulpera"]] = true}, -- 35 vulpera
-		--dracthyrN = {L["Draconic"], L["Common"], L["Orcish"]}, -- 
+		--dracthyrN = {L["Draconic"], L["Common"], L["Orcish"]}, --
 		[52] = {[L["Common"]] = true, [L["Draconic"]] = true, [L["Orcish"]] = true}, -- 52 dracthyr alliance
 		[70] = {[L["Orcish"]] = true, [L["Draconic"]] = true, [L["Common"]] = true}, -- 70 dracthyr horde
 		[84] = {[L["Common"]] = true, [L["Dwarvish"]] = true, [L["Titan"]] = true}, -- 84 earthen alliance
@@ -187,8 +189,8 @@ end
 function lang.InitializeDB()
 	if not Languages_DB then Languages_DB = {} end
 
-	if not Languages_DB.settings then 
-		Languages_DB.settings = CopyTable(defaultsTableAcc) 
+	if not Languages_DB.settings then
+		Languages_DB.settings = CopyTable(defaultsTableAcc)
 	else
 		for key, value in pairs(defaultsTableAcc) do
 			if Languages_DB.settings[key] == nil then
@@ -205,9 +207,9 @@ function lang.InitializeDB()
 
 	if not Languages_DB.profiles then Languages_DB.profiles = {} end
 	
-	if not Languages_DB.profiles[charKey] then 
-		Languages_DB.profiles[charKey] = CopyTable(defaultsTableChar) 
-		ApplyLanguagePreset(Languages_DB.profiles[charKey], "gameplay") 
+	if not Languages_DB.profiles[charKey] then
+		Languages_DB.profiles[charKey] = CopyTable(defaultsTableChar)
+		ApplyLanguagePreset(Languages_DB.profiles[charKey], "gameplay")
 	end
 
 	for profileName, profileData in pairs(Languages_DB.profiles) do
@@ -221,6 +223,12 @@ function lang.InitializeDB()
 			end
 		end
 	end
+
+	if Languages_DB.settings.customDialects then
+		for dialectName, dictionary in pairs(Languages_DB.settings.customDialects) do
+			Dialects[dialectName] = dictionary
+		end
+	end
 end
 
 local function GetActiveProfile()
@@ -232,7 +240,7 @@ local function GetActiveProfile()
 			
 			if not Languages_DB.profiles[key] then
 				Languages_DB.profiles[key] = CopyTable(defaultsTableChar)
-				ApplyLanguagePreset(Languages_DB.profiles[key], "gameplay") 
+				ApplyLanguagePreset(Languages_DB.profiles[key], "gameplay")
 			end
 			
 			if Languages_DB.profiles[charKey].TRP3 then
@@ -245,7 +253,7 @@ local function GetActiveProfile()
 	end
 	if Languages_DB and charKey and Languages_DB.profiles and not Languages_DB.profiles[charKey] then
 		Languages_DB.profiles[charKey] = CopyTable(defaultsTableChar)
-		ApplyLanguagePreset(Languages_DB.profiles[charKey], "gameplay") 
+		ApplyLanguagePreset(Languages_DB.profiles[charKey], "gameplay")
 	end
 	if Languages_DB and charKey and Languages_DB.profiles and Languages_DB.profiles[charKey] then
 		return Languages_DB.profiles[charKey]
@@ -507,49 +515,174 @@ DialectScrollBar:SetPoint("BOTTOMLEFT", DialectScrollBox, "BOTTOMRIGHT", 5, 0)
 local DialectScrollView = CreateScrollBoxListLinearView()
 ScrollUtil.InitScrollBoxListWithScrollBar(DialectScrollBox, DialectScrollBar, DialectScrollView)
 
+mainFrame.CustomWordInput = CreateFrame("EditBox", nil, mainFrame.DialectWordList_Frame, "InputBoxTemplate");
+mainFrame.CustomWordInput:SetSize(155, 20);
+mainFrame.CustomWordInput:SetPoint("BOTTOMLEFT", mainFrame.DialectWordList_Frame, "BOTTOMLEFT", 15, -20);
+mainFrame.CustomWordInput:SetAutoFocus(false);
+mainFrame.CustomWordInput:SetText("Original");
+mainFrame.CustomWordInput:SetTextColor(0.5, 0.5, 0.5);
+
+mainFrame.CustomReplacementInput = CreateFrame("EditBox", nil, mainFrame.DialectWordList_Frame, "InputBoxTemplate");
+mainFrame.CustomReplacementInput:SetSize(155, 20);
+mainFrame.CustomReplacementInput:SetPoint("LEFT", mainFrame.CustomWordInput, "RIGHT", 15, 0);
+mainFrame.CustomReplacementInput:SetAutoFocus(false);
+mainFrame.CustomReplacementInput:SetText("Replacement");
+mainFrame.CustomReplacementInput:SetTextColor(0.5, 0.5, 0.5);
+
+mainFrame.AddWordButton = CreateFrame("Button", nil, mainFrame.DialectWordList_Frame);
+mainFrame.AddWordButton:SetSize(25, 25);
+mainFrame.AddWordButton:SetPoint("LEFT", mainFrame.CustomReplacementInput, "RIGHT", 10, -2);
+mainFrame.AddWordButton:SetNormalAtlas("128-RedButton-Plus");
+mainFrame.AddWordButton:SetPushedAtlas("128-RedButton-Plus-Pressed");
+mainFrame.AddWordButton:SetDisabledAtlas("128-RedButton-Plus-Disabled");
+mainFrame.AddWordButton:SetHighlightAtlas("128-RedButton-Plus-Highlight");
+mainFrame.AddWordButton:Disable();
+
+local function ValidateInputs()
+	local word = strtrim(mainFrame.CustomWordInput:GetText());
+	local rep = strtrim(mainFrame.CustomReplacementInput:GetText());
+	
+	if word ~= "" and word ~= L["Original"] and rep ~= "" and rep ~= L["Replacement"] then
+		mainFrame.AddWordButton:Enable();
+	else
+		mainFrame.AddWordButton:Disable();
+	end
+end
+
+mainFrame.CustomWordInput:SetScript("OnEditFocusGained", function(self)
+	if self:GetText() == L["Original"] then
+		self:SetText("");
+		self:SetTextColor(1, 1, 1);
+	end
+end);
+
+mainFrame.CustomWordInput:SetScript("OnEditFocusLost", function(self)
+	if strtrim(self:GetText()) == "" then
+		self:SetText(L["Original"]);
+		self:SetTextColor(0.5, 0.5, 0.5);
+	end
+end);
+
+mainFrame.CustomWordInput:SetScript("OnTextChanged", ValidateInputs)
+
+mainFrame.CustomReplacementInput:SetScript("OnEditFocusGained", function(self)
+	if self:GetText() == L["Replacement"] then
+		self:SetText("");
+		self:SetTextColor(1, 1, 1);
+	end
+end);
+
+mainFrame.CustomReplacementInput:SetScript("OnEditFocusLost", function(self)
+	if strtrim(self:GetText()) == "" then
+		self:SetText(L["Replacement"]);
+		self:SetTextColor(0.5, 0.5, 0.5);
+	end
+end);
+
+mainFrame.CustomReplacementInput:SetScript("OnTextChanged", ValidateInputs);
+
+mainFrame.AddWordButton:SetScript("OnClick", function()
+	local profile = GetActiveProfile();
+	local dialect = profile.dialect;
+	
+	if dialect and Languages_DB.settings.customDialects and Languages_DB.settings.customDialects[dialect] then
+		local word = strtrim(mainFrame.CustomWordInput:GetText());
+		local rep = strtrim(mainFrame.CustomReplacementInput:GetText());
+		
+		if word ~= "" and word ~= L["Original"] and rep ~= "" and rep ~= L["Replacement"] then
+			Languages_DB.settings.customDialects[dialect][word] = rep;
+			Dialects[dialect][word] = rep;
+			
+			mainFrame.CustomWordInput:SetText(L["Original"]);
+			mainFrame.CustomWordInput:SetTextColor(0.5, 0.5, 0.5);
+			mainFrame.CustomWordInput:ClearFocus();
+			
+			mainFrame.CustomReplacementInput:SetText(L["Replacement"]);
+			mainFrame.CustomReplacementInput:SetTextColor(0.5, 0.5, 0.5);
+			mainFrame.CustomReplacementInput:ClearFocus();
+			
+			ValidateInputs();
+			mainFrame.RefreshDialectWordList();
+		end
+	end
+end);
+
 local function DialectRowInitializer(button, data)
 	if not button.bg then
-		button.bg = button:CreateTexture(nil, "BACKGROUND")
-		button.bg:SetAllPoints()
-		button.bg:SetAtlas("ClickCastList-ButtonBackground")
-		button.bg:SetAlpha(0.3)
+		button.bg = button:CreateTexture(nil, "BACKGROUND");
+		button.bg:SetAllPoints();
+		button.bg:SetAtlas("ClickCastList-ButtonBackground");
+		button.bg:SetAlpha(0.3);
 	end
 
 	if not button.checkbox then
-		button.checkbox = CreateFrame("CheckButton", nil, button, "UICheckButtonTemplate")
-		button.checkbox:SetSize(24, 24)
-		button.checkbox:SetPoint("LEFT", button, "LEFT", 5, 0)
+		button.checkbox = CreateFrame("CheckButton", nil, button, "UICheckButtonTemplate");
+		button.checkbox:SetSize(24, 24);
+		button.checkbox:SetPoint("LEFT", button, "LEFT", 5, 0);
+	end
+
+	if not button.removeBtn then
+		button.removeBtn = CreateFrame("Button", nil, button);
+		button.removeBtn:SetSize(14, 14);
+		button.removeBtn:SetPoint("RIGHT", button, "RIGHT", -10, 0);
+		button.removeBtn:SetNormalAtlas("common-icon-redx");
+		button.removeBtn:SetHighlightTexture("Interface\\Buttons\\UI-Panel-MinimizeButton-Highlight");
 	end
 
 	if not button.text then
-		button.text = button:CreateFontString(nil, "OVERLAY", "GameFontHighlight")
-		button.text:SetPoint("LEFT", button.checkbox, "RIGHT", 5, 0)
-		button.text:SetPoint("RIGHT", -5, 0)
-		button.text:SetJustifyH("LEFT")
+		button.text = button:CreateFontString(nil, "OVERLAY", "GameFontHighlight");
+		button.text:SetPoint("LEFT", button.checkbox, "RIGHT", 5, 0);
+		button.text:SetJustifyH("LEFT");
 	end
 	
-	button.text:SetText(string.format("%s |cFF888888->|r %s", data.word, data.replacement))
+	button.text:SetText(string.format("%s |A:arrow-short:12:24|a %s", data.word, data.replacement));
 	
-	local profile = GetActiveProfile()
-	local isEnabled = true
+	local profile = GetActiveProfile();
+	local isEnabled = true;
 	if profile.dialectWordToggles and profile.dialectWordToggles[profile.dialect] then
-		local val = profile.dialectWordToggles[profile.dialect][data.word]
-		if val == false then isEnabled = false end
+		local val = profile.dialectWordToggles[profile.dialect][data.word];
+		if val == false then
+			isEnabled = false;
+		end
 	end
 	
-	button.checkbox:SetChecked(isEnabled)
+	button.checkbox:SetChecked(isEnabled);
+
+	if profile.dialect and Languages_DB.settings.customDialects and Languages_DB.settings.customDialects[profile.dialect] then
+		button.removeBtn:Show();
+		button.text:SetPoint("RIGHT", button.removeBtn, "LEFT", -5, 0);
+		
+		button.removeBtn:SetScript("OnClick", function()
+			Languages_DB.settings.customDialects[profile.dialect][data.word] = nil;
+			Dialects[profile.dialect][data.word] = nil;
+			
+			mainFrame.RefreshDialectWordList();
+			PlaySound(SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_ON);
+		end)
+	else
+		button.removeBtn:Hide();
+		button.text:SetPoint("RIGHT", button, "RIGHT", -5, 0);
+	end
 
 	button.checkbox:SetScript("OnClick", function(self)
-		local isChecked = self:GetChecked()
-		local profile = GetActiveProfile()
-		local dialect = profile.dialect
+		local isChecked = self:GetChecked();
+		local profile = GetActiveProfile();
+		local dialect = profile.dialect;
 		
-		if not profile.dialectWordToggles then profile.dialectWordToggles = {} end
-		if not profile.dialectWordToggles[dialect] then profile.dialectWordToggles[dialect] = {} end
+		if not profile.dialectWordToggles then
+			profile.dialectWordToggles = {};
+		end
+		if not profile.dialectWordToggles[dialect] then
+			profile.dialectWordToggles[dialect] = {};
+		end
 		
-		profile.dialectWordToggles[dialect][data.word] = isChecked
+		profile.dialectWordToggles[dialect][data.word] = isChecked;
 		
-		if isChecked then PlaySound(856) else PlaySound(857) end
+		if isChecked then
+			PlaySound(856);
+		else
+			PlaySound(857);
+		end
 	end)
 end
 
@@ -558,33 +691,43 @@ DialectScrollView:SetElementExtent(30)
 DialectScrollView:SetPadding(5, 5, 5, 5, 2)
 
 function mainFrame.RefreshDialectWordList()
-	local dataProvider = CreateDataProvider()
-	local profile = GetActiveProfile()
-	local currentDialect = profile.dialect
+	local dataProvider = CreateDataProvider();
+	local profile = GetActiveProfile();
+	local currentDialect = profile.dialect;
+
+	if currentDialect and Languages_DB.settings.customDialects and Languages_DB.settings.customDialects[currentDialect] then
+		mainFrame.CustomWordInput:Show();
+		mainFrame.CustomReplacementInput:Show();
+		mainFrame.AddWordButton:Show();
+	else
+		mainFrame.CustomWordInput:Hide();
+		mainFrame.CustomReplacementInput:Hide();
+		mainFrame.AddWordButton:Hide();
+	end
 
 	if currentDialect and Dialects and Dialects[currentDialect] then
-		local sortedWords = {}
+		local sortedWords = {};
 		for word, replacement in pairs(Dialects[currentDialect]) do
-			table.insert(sortedWords, {word = word, replacement = replacement})
+			table.insert(sortedWords, {word = word, replacement = replacement});
 		end
 		
-		table.sort(sortedWords, function(a,b) return a.word < b.word end)
+		table.sort(sortedWords, function(a,b) return a.word < b.word end);
 		
 		for _, data in ipairs(sortedWords) do
-			dataProvider:Insert(data)
+			dataProvider:Insert(data);
 		end
 	end
 	
-	DialectScrollView:SetDataProvider(dataProvider)
+	DialectScrollView:SetDataProvider(dataProvider);
 end
 
 function lang.combatCheck()
 	if UnitAffectingCombat("player") == true then
-		return true
+		return true;
 	end
 end
 
-mainFrame.prefix = false
+mainFrame.prefix = false;
 function mainFrame.TogglePrefix()
 	if mainFrame.prefix == true then
 		mainFrame.prefix = false;
@@ -592,7 +735,7 @@ function mainFrame.TogglePrefix()
 		--Print(L["TogglePrefixTextOff"]);
 
 		if lang.SelectionButton then
-			lang.SelectionButton:SetBackdropBorderColor(0.6, 0.0, 0.0, 1)
+			lang.SelectionButton:SetBackdropBorderColor(0.6, 0.0, 0.0, 1);
 		end
 	else
 		mainFrame.prefix = true;
@@ -604,7 +747,7 @@ function mainFrame.TogglePrefix()
 		--Print(L["TogglePrefixTextOn"]);
 
 		if lang.SelectionButton then
-			lang.SelectionButton:SetBackdropBorderColor(0.6, 0.6, 0.6, 1)
+			lang.SelectionButton:SetBackdropBorderColor(0.6, 0.6, 0.6, 1);
 		end
 	end
 end
@@ -749,7 +892,7 @@ function mainFrame.enablePrefix()
 		
 		local chatType = context.chatType
 		if chatType == "SAY" or chatType == "YELL" then
-			text = ApplyDialectToText(text) 
+			text = ApplyDialectToText(text)
 			if lang.factionCheck() and ShouldProcessLanguage() then
 				if mainFrame.prefix and currentLanguage.lang ~= nil then
 					local langName = L[currentLanguage.lang] or currentLanguage.lang
@@ -863,7 +1006,7 @@ function mainFrame.HandleSlashCommands(str)
 		end
 	end
 
-	local path = mainFrame.commands; 
+	local path = mainFrame.commands;
 
 	for id, arg in ipairs(args) do
 		if (#arg > 0) then
@@ -871,8 +1014,8 @@ function mainFrame.HandleSlashCommands(str)
 			
 			if (path[lowerArg]) then
 				if (type(path[lowerArg]) == "function") then
-					path[lowerArg](select(id + 1, unpack(args))); 
-					return;                 
+					path[lowerArg](select(id + 1, unpack(args)));
+					return;
 				elseif (type(path[lowerArg]) == "table") then
 					path = path[lowerArg];
 				end
@@ -976,7 +1119,7 @@ local languageBasicList = {
 	"Orcish",
 	"Zandali",
 	"Taurahe",
-	"Forsaken", 
+	"Forsaken",
 	"Gutterspeak",
 	"Thalassian",
 	"Goblin",
@@ -1026,7 +1169,7 @@ local function RegisterLanguageTag(langKey, localizedName)
 	if not languageNoBrackets[bracketPattern] then
 		table.insert(thingsToHide, bracketPattern)
 		languagelist[bracketPattern] = bracketName
-		languageNoBrackets[bracketPattern] = langKey 
+		languageNoBrackets[bracketPattern] = langKey
 	end
 end
 
@@ -1267,7 +1410,7 @@ StaticPopupDialogs["LANGUAGES_CHAR_RESET_SETTINGS"] = {
 		else
 			Languages_DB.profiles[charKey] = nil;
 			Languages_DB.profiles[charKey] = CopyTable(defaultsTableChar);
-			ApplyLanguagePreset(Languages_DB.profiles[charKey], "gameplay") 
+			ApplyLanguagePreset(Languages_DB.profiles[charKey], "gameplay")
 		end
 		lang.checkSettings();
 	end,
@@ -1323,7 +1466,7 @@ mainFrame.LangList_Frame:SetBackdrop(mainFrame.backdropInfo)
 mainFrame.LangList_Frame:SetBackdropColor(0,0,0,.5)
 
 mainFrame.DialectList_Frame = CreateFrame("Frame", nil, contentDialect, "BackdropTemplate")
-mainFrame.DialectList_Frame:SetPoint("TOP", contentDialect, "BOTTOM", 0, -20) 
+mainFrame.DialectList_Frame:SetPoint("TOP", contentDialect, "BOTTOM", 0, -20)
 mainFrame.DialectList_Frame:SetSize(300, 45)
 mainFrame.DialectList_Frame:SetBackdrop(mainFrame.backdropInfo)
 mainFrame.DialectList_Frame:SetBackdropColor(0,0,0,.5)
@@ -1398,7 +1541,7 @@ function mainFrame.SetLanguage(langKey)
 			lang.SelectionButton.Text:SetText(displayName)
 		end
 		
-		mainFrame.prefix = false 
+		mainFrame.prefix = false
 		mainFrame.TogglePrefix()
 		
 		PlaySound(857)
@@ -1775,7 +1918,7 @@ mainFrame.runeScaleSlider.Title:SetPoint("RIGHT", mainFrame.runeScaleSlider, "LE
 mainFrame.runeScaleSlider.Title:SetText(L["RuneSize"])
 
 local sliderOptions = Settings.CreateSliderOptions(0.1, 1.5, 0.05)
-sliderOptions:SetLabelFormatter(MinimalSliderWithSteppersMixin.Label.Right, function(value) 
+sliderOptions:SetLabelFormatter(MinimalSliderWithSteppersMixin.Label.Right, function(value)
 	return string.format("%d%%", value * 100);
 end)
 
@@ -1965,39 +2108,259 @@ mainFrame.DialectDropdown:HookScript("OnLeave", function()
 end);
 
 local function IsDialectSelected(dialectName)
-	local profile = GetActiveProfile()
+	local profile = GetActiveProfile();
 	if profile then
-		return profile.dialect == dialectName
+		return profile.dialect == dialectName;
 	end
 end
 
 local function SetDialect(dialectName)
-	local profile = GetActiveProfile()
-	profile.dialect = dialectName
-	mainFrame.DialectDropdown:GenerateMenu() 
+	local profile = GetActiveProfile();
+	profile.dialect = dialectName;
+	mainFrame.DialectDropdown:GenerateMenu();
 	
 	if mainFrame.RefreshDialectWordList then
-		mainFrame.RefreshDialectWordList()
+		mainFrame.RefreshDialectWordList();
+	end
+	
+	local isCustom = false;
+	if dialectName and Languages_DB.settings.customDialects and Languages_DB.settings.customDialects[dialectName] then
+		isCustom = true;
+	end
+	
+	if mainFrame.CustomWordInput then
+		mainFrame.CustomWordInput:SetShown(isCustom);
+		mainFrame.CustomReplacementInput:SetShown(isCustom);
+		mainFrame.AddWordButton:SetShown(isCustom);
 	end
 end
+
+local function IsCustomDialect(dialectName)
+	return dialectName ~= nil and Languages_DB.settings.customDialects and Languages_DB.settings.customDialects[dialectName] ~= nil;
+end
+
+local function RefreshDialectDropdownUI()
+	mainFrame.DialectDropdown:GenerateMenu();
+
+	if mainFrame.RefreshDialectWordList then
+		mainFrame.RefreshDialectWordList();
+	end
+
+	local profile = GetActiveProfile();
+	local currentDialect = profile and profile.dialect;
+
+	if currentDialect then
+		mainFrame.DialectDropdown:SetText(currentDialect);
+	else
+		mainFrame.DialectDropdown:SetText(L["Dialect"]);
+	end
+
+	local isCustom = IsCustomDialect(currentDialect);
+	if mainFrame.CustomWordInput then
+		mainFrame.CustomWordInput:SetShown(isCustom);
+		mainFrame.CustomReplacementInput:SetShown(isCustom);
+		mainFrame.AddWordButton:SetShown(isCustom);
+	end
+end
+
+local function DeleteCustomDialect(dialectName)
+	if not IsCustomDialect(dialectName) then return; end
+
+	Languages_DB.settings.customDialects[dialectName] = nil;
+	Dialects[dialectName] = nil;
+
+	if Languages_DB.profiles then
+		for _, profileData in pairs(Languages_DB.profiles) do
+			if profileData.dialect == dialectName then
+				profileData.dialect = nil;
+			end
+			if profileData.dialectWordToggles then
+				profileData.dialectWordToggles[dialectName] = nil;
+			end
+		end
+	end
+
+	Print(string.format(L["DialectDeleted"], dialectName));
+	RefreshDialectDropdownUI();
+end
+
+function RenameCustomDialect(oldName, newName)
+	newName = strtrim(newName);
+	
+	if not newName or newName == "" then
+		return;
+	end
+
+	if Dialects[newName] then
+		Print(string.format(L["DialectNameTaken"], newName));
+		return;
+	end
+
+	if not Languages_DB.settings.customDialects[oldName] then
+		return; 
+	end
+
+	Languages_DB.settings.customDialects[newName] = Languages_DB.settings.customDialects[oldName];
+	Languages_DB.settings.customDialects[oldName] = nil;
+	
+	Dialects[newName] = Languages_DB.settings.customDialects[newName];
+	Dialects[oldName] = nil;
+
+	SetDialect(newName);
+end
+
+StaticPopupDialogs["LANGUAGES_CONFIRM_DELETE_DIALECT"] = {
+	text = L["Dialog_DeleteDialect"],
+	button1 = YES,
+	button2 = NO,
+	OnAccept = function(self, dialectName)
+		DeleteCustomDialect(dialectName);
+	end,
+	timeout = 0,
+	whileDead = true,
+	hideOnEscape = true,
+};
+
+StaticPopupDialogs["LANGUAGES_RENAME_DIALECT"] = {
+	text = L["Dialog_RenameDialect"],
+	button1 = ACCEPT,
+	button2 = CANCEL,
+	hasEditBox = true,
+	OnShow = function(self, dialectName)
+		local editBox = self:GetEditBox();
+		editBox:SetText(dialectName);
+		editBox:HighlightText();
+	end,
+	OnAccept = function(self, oldName)
+		local newName = strtrim(self:GetEditBox():GetText());
+		RenameCustomDialect(oldName, newName);
+	end,
+	EditBoxOnEnterPressed = function(self)
+		local dialog = self:GetParent();
+		if dialog:GetButton1():IsEnabled() then
+			StaticPopup_OnClick(dialog, 1);
+		end
+	end,
+	EditBoxOnEscapePressed = function(self)
+		self:GetParent():Hide();
+	end,
+	timeout = 0,
+	whileDead = true,
+	hideOnEscape = true,
+};
 
 local function DialectMenuGenerator(owner, rootDescription)
-	rootDescription:CreateRadio(NONE, IsDialectSelected, SetDialect, nil)
-	
-	local sortedDialects = {}
+	rootDescription:CreateRadio(NONE, IsDialectSelected, SetDialect, nil);
+
+	local builtInDialects, customDialects = {}, {};
 	if Dialects then
 		for name, _ in pairs(Dialects) do
-			table.insert(sortedDialects, name)
+			if IsCustomDialect(name) then
+				table.insert(customDialects, name);
+			else
+				table.insert(builtInDialects, name);
+			end
 		end
-		table.sort(sortedDialects)
+		table.sort(builtInDialects);
+		table.sort(customDialects);
 	end
 
-	for _, dialectName in ipairs(sortedDialects) do
-		rootDescription:CreateRadio(dialectName, IsDialectSelected, SetDialect, dialectName)
+	for _, dialectName in ipairs(builtInDialects) do
+		rootDescription:CreateRadio(dialectName, IsDialectSelected, SetDialect, dialectName);
+	end
+
+	if #customDialects > 0 then
+		rootDescription:CreateDivider();
+
+		for _, dialectName in ipairs(customDialects) do
+			local dialectBtn = rootDescription:CreateRadio(dialectName, IsDialectSelected, SetDialect, dialectName);
+
+			dialectBtn:AddInitializer(function(button, description, menu)
+				local cancelButton = MenuTemplates.AttachAutoHideCancelButton(button);
+				cancelButton:SetPoint("RIGHT", button, "RIGHT", -5, 0);
+
+				cancelButton:SetScript("OnClick", function()
+					menu:Close();
+					StaticPopup_Show("LANGUAGES_CONFIRM_DELETE_DIALECT", dialectName, nil, dialectName);
+				end);
+
+				MenuUtil.HookTooltipScripts(cancelButton, function(tooltip)
+					GameTooltip_SetTitle(tooltip, L["DeleteDialect"]);
+				end);
+
+				local gearButton = MenuTemplates.AttachAutoHideGearButton(button);
+				gearButton:SetPoint("RIGHT", cancelButton, "LEFT", -3, 0);
+
+				gearButton:SetScript("OnClick", function()
+					menu:Close();
+					StaticPopup_Show("LANGUAGES_RENAME_DIALECT", dialectName, nil, dialectName);
+				end);
+
+				MenuUtil.HookTooltipScripts(gearButton, function(tooltip)
+					GameTooltip_SetTitle(tooltip, L["RenameDialect"]);
+				end);
+			end);
+		end
 	end
 end
 
-mainFrame.DialectDropdown:SetupMenu(DialectMenuGenerator)
+mainFrame.DialectDropdown:SetupMenu(DialectMenuGenerator);
+
+mainFrame.NewDialectButton = CreateFrame("Button", nil, mainFrame.DialectWordList_Frame);
+mainFrame.NewDialectButton:SetSize(25, 25);
+mainFrame.NewDialectButton:SetPoint("LEFT", mainFrame.DialectDropdown, "RIGHT", 15, 0);
+mainFrame.NewDialectButton:SetNormalAtlas("128-RedButton-Plus");
+mainFrame.NewDialectButton:SetPushedAtlas("128-RedButton-Plus-Pressed");
+mainFrame.NewDialectButton:SetDisabledAtlas("128-RedButton-Plus-Disabled");
+mainFrame.NewDialectButton:SetHighlightAtlas("128-RedButton-Plus-Highlight");
+
+StaticPopupDialogs["LANGUAGES_NEW_DIALECT"] = {
+	text = L["EnterDialectName"],
+	button1 = ACCEPT,
+	button2 = CANCEL,
+	hasEditBox = 1,
+	OnAccept = function(self)
+		local text = strtrim(self.EditBox:GetText());
+		if text and text ~= "" then
+			if Dialects[text] then
+				Print(string.format(L["DialectNameTaken"], text));
+				return;
+			end
+
+			if not Languages_DB.settings.customDialects then
+				Languages_DB.settings.customDialects = {};
+			end
+			Languages_DB.settings.customDialects[text] = {};
+			Dialects[text] = Languages_DB.settings.customDialects[text];
+			
+			SetDialect(text);
+		end
+	end,
+	EditBoxOnEnterPressed = function(self)
+		local text = strtrim(self:GetParent().EditBox:GetText());
+		if text and text ~= "" then
+			if Dialects[text] then
+				Print(string.format(L["DialectNameTaken"], text));
+				return;
+			end
+
+			if not Languages_DB.settings.customDialects then
+				Languages_DB.settings.customDialects = {};
+			end
+			Languages_DB.settings.customDialects[text] = {};
+			Dialects[text] = Languages_DB.settings.customDialects[text];
+			SetDialect(text);
+		end
+		self:GetParent():Hide();
+	end,
+	timeout = 0,
+	whileDead = true,
+	hideOnEscape = true,
+};
+
+mainFrame.NewDialectButton:SetScript("OnClick", function()
+	StaticPopup_Show("LANGUAGES_NEW_DIALECT");
+end)
 
 
 
@@ -2106,7 +2469,7 @@ local function GetRuneString(text, language)
 
 	local runeString = ""
 	local scale = Languages_DB.settings.runeScale or 1.0
-	local fontSize = select(2, ChatFrame1:GetFont()) * scale 
+	local fontSize = select(2, ChatFrame1:GetFont()) * scale
 	local atlasPath = AddonPath .. language .. "\\"
 
 	local lowerCaseScale = 1 -- .75 would be a nice lowercase height if offset didn't lag
@@ -2238,7 +2601,7 @@ local function ReplaceLanguage(text, language)
 				protectedPhrases[token] = GetRuneString(casedTranslation, language)
 				
 				text = string.sub(text, 1, startPos - 1) .. token .. string.sub(text, endPos + 1)
-				textLower = string.lower(text) 
+				textLower = string.lower(text)
 				
 				startPos, endPos = string.find(textLower, phrase, 1, true)
 			end
@@ -2246,7 +2609,7 @@ local function ReplaceLanguage(text, language)
 	end
 	
 	local replacements = LANGUAGE_REPLACEMENTS[language]
-	if not replacements then return text end 
+	if not replacements then return text end
 	
 	local protectedWords = GetReverseDictionary(language)
 
@@ -2318,7 +2681,7 @@ local function StripTags(text)
 	
 	text = string.gsub(text, "|r", "")
 	
-	text = string.gsub(text, "|H.-|h", "") 
+	text = string.gsub(text, "|H.-|h", "")
 	
 	-- breaks other stuff just as a "catch-all"
 	text = string.gsub(text, "|", "")
@@ -2549,8 +2912,8 @@ function lang.shapeshiftForm()
 			
 			currentLanguage.lang = activeFormLanguage
 			
-			mainFrame.prefix = false 
-			mainFrame.TogglePrefix() 
+			mainFrame.prefix = false
+			mainFrame.TogglePrefix()
 		end
 		
 		lang.checkSettings()
@@ -2593,8 +2956,8 @@ function lang.checkSettings()
 	mainFrame.shapeshiftFormsCB:SetChecked(profile.shapeshift);
 	mainFrame.onlyInCharacterCB:SetChecked(profile.onlyInCharacter)
 
-	if not profile.selectionButton then 
-		profile.selectionButton = CopyTable(defaultsTableChar.selectionButton) 
+	if not profile.selectionButton then
+		profile.selectionButton = CopyTable(defaultsTableChar.selectionButton)
 	end
 
 	if not Languages_DB.settings.selectionButton then

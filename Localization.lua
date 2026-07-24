@@ -607,6 +607,17 @@ if LOCALE == "enUS" then
 	L["Dialects2TT"] = "Words can have their Dialect form prevented by adding underscores to each side, such as \"_are not_\". This will keep the term in its original spelling, and additionally remove the underscores placed on each side."
 	L["Contributors"] = "Contributors"
 	L["SpecialThanks"] = "Thank you to these wonderful people who contributed to this addon!"
+	L["Original"] = "Original"
+	L["Replacement"] = "Replacement"
+	L["RenameDialect"] = "Rename Dialect"
+	L["DeleteDialect"] = "Delete Dialect"
+	L["AddCustomDialect"] = "Add Custom Dialect"
+	L["DialectDeleted"] = "Dialect '%s' deleted."
+	L["DialectNameTaken"] = "A dialect named '%s' already exists."
+	L["DialectRenamed"] = "Dialect '%s' renamed to '%s'."
+	L["Dialog_DeleteDialect"] = "Are you sure you want to delete the custom dialect '%s'? This cannot be undone."
+	L["Dialog_RenameDialect"] = "Enter a new name for '%s':"
+	L["EnterDialectName"] = "Enter new dialect name:"
 
 	-- official languages
 	L["Common"] = 		"Common"			--7
@@ -956,6 +967,17 @@ if LOCALE == "esMX" then
 	L["Dialects2TT"] = "Las palabras pueden evitar su forma dialectal añadiendo guiones bajos a cada lado, como \"_are not_\". Esto mantendrá el término con su ortografía original y, además, eliminará los guiones bajos colocados a cada lado."
 	L["Contributors"] = "Colaboradores"
 	L["SpecialThanks"] = "¡Gracias a estas maravillosas personas que contribuyeron a este complemento!"
+	L["Original"] = "Original"
+	L["Replacement"] = "Reemplazo"
+	L["RenameDialect"] = "Renombrar dialecto"
+	L["DeleteDialect"] = "Eliminar dialecto"
+	L["AddCustomDialect"] = "Agregar dialecto personalizado"
+	L["DialectDeleted"] = "Dialecto '%s' eliminado."
+	L["DialectNameTaken"] = "Ya existe un dialecto llamado '%s'."
+	L["DialectRenamed"] = "Dialecto '%s' renombrado a '%s'."
+	L["Dialog_DeleteDialect"] = "¿Seguro que deseas eliminar el dialecto personalizado '%s'? Esta acción no se puede deshacer."
+	L["Dialog_RenameDialect"] = "Introduce un nuevo nombre para '%s':"
+	L["EnterDialectName"] = "Introduce el nombre del nuevo dialecto:"
 
 	L["Common"] = 		"Lengua común"		--7
 	L["Darnassian"] = 	"Darnassiano"		--2
@@ -1097,6 +1119,17 @@ if LOCALE == "esES" then
 	L["Dialects2TT"] = "Las palabras pueden evitar su forma dialectal añadiendo guiones bajos a cada lado, como \"_are not_\". Esto mantendrá el término con su ortografía original y, además, eliminará los guiones bajos colocados a cada lado."
 	L["Contributors"] = "Colaboradores"
 	L["SpecialThanks"] = "¡Gracias a estas maravillosas personas que contribuyeron a este complemento!"
+	L["Original"] = "Original"
+	L["Replacement"] = "Reemplazo"
+	L["RenameDialect"] = "Renombrar dialecto"
+	L["DeleteDialect"] = "Eliminar dialecto"
+	L["AddCustomDialect"] = "Añadir dialecto personalizado"
+	L["DialectDeleted"] = "Dialecto '%s' eliminado."
+	L["DialectNameTaken"] = "Ya existe un dialecto llamado '%s'."
+	L["DialectRenamed"] = "Dialecto '%s' renombrado a '%s'."
+	L["Dialog_DeleteDialect"] = "¿Seguro que quieres eliminar el dialecto personalizado '%s'? Esta acción no se puede deshacer."
+	L["Dialog_RenameDialect"] = "Introduce un nuevo nombre para '%s':"
+	L["EnterDialectName"] = "Introduce el nombre del nuevo dialecto:"
 
 	L["Common"] = 		"Lengua común"		--7
 	L["Darnassian"] = 	"Darnassiano"		--2
@@ -1238,6 +1271,17 @@ if LOCALE == "deDE" then
 	L["Dialects2TT"] = "Wörter können von ihrer Dialektform ausgenommen werden, indem auf beiden Seiten Unterstriche hinzugefügt werden, wie z. B. \"_are not_\". Dadurch bleibt die ursprüngliche Schreibweise erhalten, und die hinzugefügten Unterstriche werden anschließend entfernt."
 	L["Contributors"] = "Mitwirkende"
 	L["SpecialThanks"] = "Vielen Dank an diese wunderbaren Menschen, die zu diesem Add-on beigetragen haben!"
+	L["Original"] = "Original"
+	L["Replacement"] = "Ersetzung"
+	L["RenameDialect"] = "Dialekt umbenennen"
+	L["DeleteDialect"] = "Dialekt löschen"
+	L["AddCustomDialect"] = "Benutzerdefinierten Dialekt hinzufügen"
+	L["DialectDeleted"] = "Dialekt '%s' gelöscht."
+	L["DialectNameTaken"] = "Ein Dialekt mit dem Namen '%s' existiert bereits."
+	L["DialectRenamed"] = "Dialekt '%s' wurde in '%s' umbenannt."
+	L["Dialog_DeleteDialect"] = "Möchtest du den benutzerdefinierten Dialekt '%s' wirklich löschen? Dies kann nicht rückgängig gemacht werden."
+	L["Dialog_RenameDialect"] = "Gib einen neuen Namen für '%s' ein:"
+	L["EnterDialectName"] = "Neuen Dialektnamen eingeben:"
 
 	L["Common"] = 		"Gemeinsprache"		--7
 	L["Darnassian"] = 	"Darnassisch"		--2
@@ -1379,6 +1423,17 @@ if LOCALE == "frFR" then
 	L["Dialects2TT"] = "Il est possible d’empêcher la forme dialectale d’un mot en ajoutant des traits de soulignement de chaque côté, comme \"_are not_\". Le terme conserve alors son orthographe d’origine et les traits de soulignement ajoutés sont supprimés."
 	L["Contributors"] = "Contributeurs"
 	L["SpecialThanks"] = "Merci à ces merveilleuses personnes qui ont contribué à cet addon !"
+	L["Original"] = "Original"
+	L["Replacement"] = "Remplacement"
+	L["RenameDialect"] = "Renommer le dialecte"
+	L["DeleteDialect"] = "Supprimer le dialecte"
+	L["AddCustomDialect"] = "Ajouter un dialecte personnalisé"
+	L["DialectDeleted"] = "Le dialecte '%s' a été supprimé."
+	L["DialectNameTaken"] = "Un dialecte nommé '%s' existe déjà."
+	L["DialectRenamed"] = "Le dialecte '%s' a été renommé en '%s'."
+	L["Dialog_DeleteDialect"] = "Voulez-vous vraiment supprimer le dialecte personnalisé '%s' ? Cette action est irréversible."
+	L["Dialog_RenameDialect"] = "Entrez un nouveau nom pour '%s' :"
+	L["EnterDialectName"] = "Entrez le nom du nouveau dialecte :"
 
 	L["Common"] = 		"Commun"		--7
 	L["Darnassian"] = 	"Darnassien"	--2
@@ -1520,6 +1575,17 @@ if LOCALE == "itIT" then
 	L["Dialects2TT"] = "È possibile impedire la forma dialettale di una parola aggiungendo dei trattini bassi su entrambi i lati, come \"_are not_\". Questo manterrà il termine nella sua ortografia originale e rimuoverà inoltre i trattini bassi aggiunti."
 	L["Contributors"] = "Collaboratori"
 	L["SpecialThanks"] = "Grazie a queste persone meravigliose che hanno contribuito a questo componente aggiuntivo!"
+	L["Original"] = "Originale"
+	L["Replacement"] = "Sostituzione"
+	L["RenameDialect"] = "Rinomina dialetto"
+	L["DeleteDialect"] = "Elimina dialetto"
+	L["AddCustomDialect"] = "Aggiungi dialetto personalizzato"
+	L["DialectDeleted"] = "Dialetto '%s' eliminato."
+	L["DialectNameTaken"] = "Esiste già un dialetto chiamato '%s'."
+	L["DialectRenamed"] = "Il dialetto '%s' è stato rinominato in '%s'."
+	L["Dialog_DeleteDialect"] = "Vuoi davvero eliminare il dialetto personalizzato '%s'? L'operazione non può essere annullata."
+	L["Dialog_RenameDialect"] = "Inserisci un nuovo nome per '%s':"
+	L["EnterDialectName"] = "Inserisci il nome del nuovo dialetto:"
 
 	L["Common"] = 		"Comune"		--7
 	L["Darnassian"] = 	"Darnassiano"	--2
@@ -1661,6 +1727,17 @@ if LOCALE == "ptBR" then
 	L["Dialects2TT"] = "É possível impedir a forma dialetal de uma palavra adicionando sublinhados em ambos os lados, como \"_are not_\". Isso mantém o termo com sua grafia original e também remove os sublinhados adicionados."
 	L["Contributors"] = "Colaboradores"
 	L["SpecialThanks"] = "Obrigado a essas pessoas maravilhosas que contribuíram para este complemento!"
+	L["Original"] = "Original"
+	L["Replacement"] = "Substituição"
+	L["RenameDialect"] = "Renomear dialeto"
+	L["DeleteDialect"] = "Excluir dialeto"
+	L["AddCustomDialect"] = "Adicionar dialeto personalizado"
+	L["DialectDeleted"] = "Dialeto '%s' excluído."
+	L["DialectNameTaken"] = "Já existe um dialeto chamado '%s'."
+	L["DialectRenamed"] = "Dialeto '%s' renomeado para '%s'."
+	L["Dialog_DeleteDialect"] = "Tem certeza de que deseja excluir o dialeto personalizado '%s'? Esta ação não pode ser desfeita."
+	L["Dialog_RenameDialect"] = "Digite um novo nome para '%s':"
+	L["EnterDialectName"] = "Digite o nome do novo dialeto:"
 
 	L["Common"] = 		"Língua Comum"	--7
 	L["Darnassian"] = 	"Darnassiano"	--2
@@ -1804,6 +1881,17 @@ if LOCALE == "ruRU" then
 	L["Dialects2TT"] = "Можно предотвратить использование диалектной формы слова, добавив символы подчёркивания с обеих сторон, например \"_are not_\". Это сохранит исходное написание слова, а добавленные символы подчёркивания будут удалены."
 	L["Contributors"] = "Участники"
 	L["SpecialThanks"] = "Спасибо этим замечательным людям, которые внесли свой вклад в это дополнение!"
+	L["Original"] = "Оригинал"
+	L["Replacement"] = "Замена"
+	L["RenameDialect"] = "Переименовать диалект"
+	L["DeleteDialect"] = "Удалить диалект"
+	L["AddCustomDialect"] = "Добавить пользовательский диалект"
+	L["DialectDeleted"] = "Диалект «%s» удалён."
+	L["DialectNameTaken"] = "Диалект с именем «%s» уже существует."
+	L["DialectRenamed"] = "Диалект «%s» переименован в «%s»."
+	L["Dialog_DeleteDialect"] = "Вы уверены, что хотите удалить пользовательский диалект «%s»? Это действие нельзя отменить."
+	L["Dialog_RenameDialect"] = "Введите новое имя для «%s»:"
+	L["EnterDialectName"] = "Введите название нового диалекта:"
 
 	L["Common"] = 		"всеобщий"				--7
 	L["Darnassian"] = 	"дарнасский"			--2
@@ -1945,6 +2033,17 @@ if LOCALE == "koKR" then
 	L["Dialects2TT"] = "단어 양쪽에 밑줄을 추가하면 방언 형태로 변환되는 것을 막을 수 있습니다. 예: \"_are not_\". 이렇게 하면 단어는 원래 철자를 유지하며, 양쪽에 추가된 밑줄은 자동으로 제거됩니다."
 	L["Contributors"] = "기여자"
 	L["SpecialThanks"] = "이 애드온에 기여한 훌륭한 사람들에게 감사드립니다!"
+	L["Original"] = "원본"
+	L["Replacement"] = "대체"
+	L["RenameDialect"] = "방언 이름 변경"
+	L["DeleteDialect"] = "방언 삭제"
+	L["AddCustomDialect"] = "사용자 지정 방언 추가"
+	L["DialectDeleted"] = "방언 '%s'이(가) 삭제되었습니다."
+	L["DialectNameTaken"] = "'%s'라는 이름의 방언이 이미 존재합니다."
+	L["DialectRenamed"] = "방언 '%s'의 이름이 '%s'(으)로 변경되었습니다."
+	L["Dialog_DeleteDialect"] = "사용자 지정 방언 '%s'을(를) 삭제하시겠습니까? 이 작업은 되돌릴 수 없습니다."
+	L["Dialog_RenameDialect"] = "'%s'의 새 이름을 입력하세요:"
+	L["EnterDialectName"] = "새 방언 이름 입력:"
 
 	L["Common"] = 		"공용어"			--7
 	L["Darnassian"] = 	"나이트 엘프어"	--2
@@ -2086,6 +2185,17 @@ if LOCALE == "zhCN" then
 	L["Dialects2TT"] = "在单词两侧添加下划线可以阻止其被转换为方言形式，例如\"_are not_\"。这样可以保留该词的原始拼写，并会自动移除两侧添加的下划线。"
 	L["Contributors"] = "贡献者"
 	L["SpecialThanks"] = "感谢为这个插件做出贡献的优秀人士！"
+	L["Original"] = "原始"
+	L["Replacement"] = "替换"
+	L["RenameDialect"] = "重命名方言"
+	L["DeleteDialect"] = "删除方言"
+	L["AddCustomDialect"] = "添加自定义方言"
+	L["DialectDeleted"] = "方言“%s”已删除。"
+	L["DialectNameTaken"] = "名为“%s”的方言已存在。"
+	L["DialectRenamed"] = "方言“%s”已重命名为“%s”。"
+	L["Dialog_DeleteDialect"] = "确定要删除自定义方言“%s”吗？此操作无法撤销。"
+	L["Dialog_RenameDialect"] = "请输入“%s”的新名称："
+	L["EnterDialectName"] = "请输入新方言名称："
 
 	L["Common"] = 		"通用语"			--7
 	L["Darnassian"] = 	"达纳苏斯语"		--2
@@ -2227,6 +2337,17 @@ if LOCALE == "zhTW" then
 	L["Dialects2TT"] = "在單詞兩側加上下劃線可以防止其被轉換為方言形式，例如「_are not_」。這會保留該詞的原始拼寫，並同時移除兩側加入的下劃線。"
 	L["Contributors"] = "貢獻者"
 	L["SpecialThanks"] = "感謝這些為這個插件做出貢獻的優秀人士！"
+	L["Original"] = "原始"
+	L["Replacement"] = "取代"
+	L["RenameDialect"] = "重新命名方言"
+	L["DeleteDialect"] = "刪除方言"
+	L["AddCustomDialect"] = "新增自訂方言"
+	L["DialectDeleted"] = "方言「%s」已刪除。"
+	L["DialectNameTaken"] = "名稱為「%s」的方言已存在。"
+	L["DialectRenamed"] = "方言「%s」已重新命名為「%s」。"
+	L["Dialog_DeleteDialect"] = "確定要刪除自訂方言「%s」嗎？此操作無法復原。"
+	L["Dialog_RenameDialect"] = "請輸入「%s」的新名稱："
+	L["EnterDialectName"] = "請輸入新方言名稱："
 
 	L["Common"] = 		"通用語"			--7
 	L["Darnassian"] = 	"達納蘇斯語"		--2
