@@ -12,6 +12,7 @@ local defaultsTableAcc = {
 	runeScale = 1.0,
 	characterSpecific = true,
 	debug = false,
+	stripNativeLanguage = true,
 
 	colors = {
 		prefix = {r = 28/255, g = 230/255, b = 81/255},
@@ -1765,7 +1766,7 @@ end
 
 mainFrame.Acc_Frame = CreateFrame("Frame", nil, content2, "BackdropTemplate")
 mainFrame.Acc_Frame:SetPoint("TOP", content2, "TOP", 0, -75)
-mainFrame.Acc_Frame:SetSize(300,180)
+mainFrame.Acc_Frame:SetSize(300, 200)
 mainFrame.Acc_Frame:SetBackdrop(mainFrame.backdropInfo)
 mainFrame.Acc_Frame:SetBackdropColor(0,0,0,.5)
 
@@ -1906,6 +1907,34 @@ mainFrame.factionLangCB:SetScript("OnEnter", function(self)
 	GameTooltip:Show();
 end);
 mainFrame.factionLangCB:SetScript("OnLeave", function()
+	GameTooltip:Hide();
+end);
+
+mainFrame.stripNativeCB = CreateFrame("CheckButton", nil, mainFrame.factionLangCB, "UICheckButtonTemplate");
+mainFrame.stripNativeCB:SetPoint("TOPRIGHT", mainFrame.factionLangCB, "TOPRIGHT", 0, -30);
+mainFrame.stripNativeCB:SetScript("OnClick", function(self)
+	if self:GetChecked() then
+		Languages_DB.settings.stripNativeLanguage = true;
+		PlaySound(856);
+	else
+		Languages_DB.settings.stripNativeLanguage = false;
+		PlaySound(857);
+	end
+	lang.checkSettings();
+end);
+
+mainFrame.stripNativeCB.text = mainFrame.Acc_Frame:CreateFontString()
+mainFrame.stripNativeCB.text:SetFont(STANDARD_TEXT_FONT, 11)
+mainFrame.stripNativeCB.text:SetPoint("RIGHT", mainFrame.stripNativeCB, "LEFT", -5, 0)
+mainFrame.stripNativeCB.text:SetText(L["StripTonguesLanguage"])
+
+mainFrame.stripNativeCB:SetScript("OnEnter", function(self)
+	GameTooltip:SetOwner(self, "ANCHOR_TOP");
+	GameTooltip:AddLine(L["StripTonguesLanguage"]);
+	GameTooltip:AddLine(L["StripTonguesLanguageTT"], 1, 1, 1, true);
+	GameTooltip:Show();
+end);
+mainFrame.stripNativeCB:SetScript("OnLeave", function()
 	GameTooltip:Hide();
 end);
 
@@ -2748,6 +2777,19 @@ end
 ChatFrameUtil.AddMessageEventFilter("CHAT_MSG_SAY", eventFilterStuff);
 ChatFrameUtil.AddMessageEventFilter("CHAT_MSG_YELL", eventFilterStuff);
 
+local function StripNativeLanguageFilter(self, event, msg, author, language, ...)
+	if Languages_DB.settings.stripNativeLanguage and not issecretvalue(C_UnitAuras.GetPlayerAuraBySpellID(2336)) and C_UnitAuras.GetPlayerAuraBySpellID(2336) then
+		if language == L["Common"] or language == L["Orcish"] then
+			return false, msg, author, "", ...;
+		end
+	end
+	
+	return false;
+end
+
+ChatFrameUtil.AddMessageEventFilter("CHAT_MSG_SAY", StripNativeLanguageFilter)
+ChatFrameUtil.AddMessageEventFilter("CHAT_MSG_YELL", StripNativeLanguageFilter)
+
 local function testScriptHeader()
 	mainFrame.setMaxLetters()
 
@@ -2947,6 +2989,7 @@ function lang.checkSettings()
 	mainFrame.glyphsCB:SetChecked(Languages_DB.settings.glyphs);
 	mainFrame.speechbubCB:SetChecked(Languages_DB.settings.speechBubbles);
 	mainFrame.factionLangCB:SetChecked(Languages_DB.settings.faction);
+	mainFrame.stripNativeCB:SetChecked(Languages_DB.settings.stripNativeLanguage);
 
 	if mainFrame.runeScaleSlider then
 		mainFrame.runeScaleSlider:SetValue(Languages_DB.settings.runeScale or 0.5);
@@ -2954,7 +2997,7 @@ function lang.checkSettings()
 
 	mainFrame.trp3ProfileCB:SetChecked(profile.TRP3);
 	mainFrame.shapeshiftFormsCB:SetChecked(profile.shapeshift);
-	mainFrame.onlyInCharacterCB:SetChecked(profile.onlyInCharacter)
+	mainFrame.onlyInCharacterCB:SetChecked(profile.onlyInCharacter);
 
 	if not profile.selectionButton then
 		profile.selectionButton = CopyTable(defaultsTableChar.selectionButton)

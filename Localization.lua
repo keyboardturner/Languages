@@ -618,6 +618,20 @@ if LOCALE == "enUS" then
 	L["Dialog_DeleteDialect"] = "Are you sure you want to delete the custom dialect '%s'? This cannot be undone."
 	L["Dialog_RenameDialect"] = "Enter a new name for '%s':"
 	L["EnterDialectName"] = "Enter new dialect name:"
+	L["StripTonguesLanguage"] = "Elixir of Tongues Compatibility"
+	L["StripTonguesLanguageTT"] = "Removes the opposite faction's primary language tag while Elixir of Tongues is active."
+	--[[ Elixir of Tongues
+	--deDE		Elixier der Sprachen
+	--esES		Elixir de lenguas
+	--esMX		Elixir de lenguas
+	--frFR		Élixir des langages
+	--itIT		Elisir delle Lingue
+	--ptBR		Elixir de Línguas
+	--ruRU		Лингвистическое зелье
+	--koKR		언어의 비약
+	--zhCN		语言药剂
+	--zhTW		語言藥劑
+	]]
 
 	-- official languages
 	L["Common"] = 		"Common"			--7
@@ -978,6 +992,8 @@ if LOCALE == "esMX" then
 	L["Dialog_DeleteDialect"] = "¿Seguro que deseas eliminar el dialecto personalizado '%s'? Esta acción no se puede deshacer."
 	L["Dialog_RenameDialect"] = "Introduce un nuevo nombre para '%s':"
 	L["EnterDialectName"] = "Introduce el nombre del nuevo dialecto:"
+	L["StripTonguesLanguage"] = "Compatibilidad con Elixir de lenguas"
+	L["StripTonguesLanguageTT"] = "Elimina la etiqueta del idioma principal de la facción opuesta mientras el Elixir de lenguas está activo."
 
 	L["Common"] = 		"Lengua común"		--7
 	L["Darnassian"] = 	"Darnassiano"		--2
@@ -1130,6 +1146,8 @@ if LOCALE == "esES" then
 	L["Dialog_DeleteDialect"] = "¿Seguro que quieres eliminar el dialecto personalizado '%s'? Esta acción no se puede deshacer."
 	L["Dialog_RenameDialect"] = "Introduce un nuevo nombre para '%s':"
 	L["EnterDialectName"] = "Introduce el nombre del nuevo dialecto:"
+	L["StripTonguesLanguage"] = "Compatibilidad con Elixir de lenguas"
+	L["StripTonguesLanguageTT"] = "Elimina la etiqueta del idioma principal de la facción opuesta mientras el Elixir de lenguas está activo."
 
 	L["Common"] = 		"Lengua común"		--7
 	L["Darnassian"] = 	"Darnassiano"		--2
@@ -1282,6 +1300,8 @@ if LOCALE == "deDE" then
 	L["Dialog_DeleteDialect"] = "Möchtest du den benutzerdefinierten Dialekt '%s' wirklich löschen? Dies kann nicht rückgängig gemacht werden."
 	L["Dialog_RenameDialect"] = "Gib einen neuen Namen für '%s' ein:"
 	L["EnterDialectName"] = "Neuen Dialektnamen eingeben:"
+	L["StripTonguesLanguage"] = "Kompatibilität mit Elixier der Sprachen"
+	L["StripTonguesLanguageTT"] = "Entfernt die Kennzeichnung der Hauptsprache der gegnerischen Fraktion, solange das Elixier der Sprachen aktiv ist."
 
 	L["Common"] = 		"Gemeinsprache"		--7
 	L["Darnassian"] = 	"Darnassisch"		--2
@@ -1434,6 +1454,8 @@ if LOCALE == "frFR" then
 	L["Dialog_DeleteDialect"] = "Voulez-vous vraiment supprimer le dialecte personnalisé '%s' ? Cette action est irréversible."
 	L["Dialog_RenameDialect"] = "Entrez un nouveau nom pour '%s' :"
 	L["EnterDialectName"] = "Entrez le nom du nouveau dialecte :"
+	L["StripTonguesLanguage"] = "Compatibilité avec l'Élixir des langages"
+	L["StripTonguesLanguageTT"] = "Supprime l'étiquette de la langue principale de la faction adverse lorsque l'Élixir des langages est actif."
 
 	L["Common"] = 		"Commun"		--7
 	L["Darnassian"] = 	"Darnassien"	--2
@@ -1586,6 +1608,8 @@ if LOCALE == "itIT" then
 	L["Dialog_DeleteDialect"] = "Vuoi davvero eliminare il dialetto personalizzato '%s'? L'operazione non può essere annullata."
 	L["Dialog_RenameDialect"] = "Inserisci un nuovo nome per '%s':"
 	L["EnterDialectName"] = "Inserisci il nome del nuovo dialetto:"
+	L["StripTonguesLanguage"] = "Compatibilità con Elisir delle Lingue"
+	L["StripTonguesLanguageTT"] = "Rimuove l'etichetta della lingua principale della fazione opposta mentre l'Elisir delle Lingue è attivo."
 
 	L["Common"] = 		"Comune"		--7
 	L["Darnassian"] = 	"Darnassiano"	--2
@@ -1738,6 +1762,8 @@ if LOCALE == "ptBR" then
 	L["Dialog_DeleteDialect"] = "Tem certeza de que deseja excluir o dialeto personalizado '%s'? Esta ação não pode ser desfeita."
 	L["Dialog_RenameDialect"] = "Digite um novo nome para '%s':"
 	L["EnterDialectName"] = "Digite o nome do novo dialeto:"
+	L["StripTonguesLanguage"] = "Compatibilidade com Elixir de Línguas"
+	L["StripTonguesLanguageTT"] = "Remove a etiqueta do idioma principal da facção oposta enquanto o Elixir de Línguas estiver ativo."
 
 	L["Common"] = 		"Língua Comum"	--7
 	L["Darnassian"] = 	"Darnassiano"	--2
@@ -1892,6 +1918,8 @@ if LOCALE == "ruRU" then
 	L["Dialog_DeleteDialect"] = "Вы уверены, что хотите удалить пользовательский диалект «%s»? Это действие нельзя отменить."
 	L["Dialog_RenameDialect"] = "Введите новое имя для «%s»:"
 	L["EnterDialectName"] = "Введите название нового диалекта:"
+	L["StripTonguesLanguage"] = "Совместимость с Лингвистическим зельем"
+	L["StripTonguesLanguageTT"] = "Удаляет метку основного языка противоположной фракции, пока действует Лингвистическое зелье."
 
 	L["Common"] = 		"всеобщий"				--7
 	L["Darnassian"] = 	"дарнасский"			--2
@@ -2044,6 +2072,8 @@ if LOCALE == "koKR" then
 	L["Dialog_DeleteDialect"] = "사용자 지정 방언 '%s'을(를) 삭제하시겠습니까? 이 작업은 되돌릴 수 없습니다."
 	L["Dialog_RenameDialect"] = "'%s'의 새 이름을 입력하세요:"
 	L["EnterDialectName"] = "새 방언 이름 입력:"
+	L["StripTonguesLanguage"] = "언어의 비약 호환성"
+	L["StripTonguesLanguageTT"] = "언어의 비약이 활성화된 동안 반대 진영의 기본 언어 태그를 제거합니다."
 
 	L["Common"] = 		"공용어"			--7
 	L["Darnassian"] = 	"나이트 엘프어"	--2
@@ -2196,6 +2226,8 @@ if LOCALE == "zhCN" then
 	L["Dialog_DeleteDialect"] = "确定要删除自定义方言“%s”吗？此操作无法撤销。"
 	L["Dialog_RenameDialect"] = "请输入“%s”的新名称："
 	L["EnterDialectName"] = "请输入新方言名称："
+	L["StripTonguesLanguage"] = "语言药剂兼容性"
+	L["StripTonguesLanguageTT"] = "当语言药剂生效时，移除敌对阵营主要语言的标签。"
 
 	L["Common"] = 		"通用语"			--7
 	L["Darnassian"] = 	"达纳苏斯语"		--2
@@ -2348,6 +2380,8 @@ if LOCALE == "zhTW" then
 	L["Dialog_DeleteDialect"] = "確定要刪除自訂方言「%s」嗎？此操作無法復原。"
 	L["Dialog_RenameDialect"] = "請輸入「%s」的新名稱："
 	L["EnterDialectName"] = "請輸入新方言名稱："
+	L["StripTonguesLanguage"] = "語言藥劑相容性"
+	L["StripTonguesLanguageTT"] = "當語言藥劑生效時，移除敵對陣營主要語言的標籤。"
 
 	L["Common"] = 		"通用語"			--7
 	L["Darnassian"] = 	"達納蘇斯語"		--2
