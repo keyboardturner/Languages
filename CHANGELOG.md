@@ -1,3 +1,9 @@
+# 1.0.9
+
+Added option to remove the opposite language (Orcish / Common) while Elixir of Tongues is active
+
+12.1.0 toc update
+
 # 1.0.8
 
 Added functionality to create a custom dialect from the dialect tab and set up custom replacement words.
