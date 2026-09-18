@@ -116,6 +116,8 @@ local LANGPRESET_RACE_LANGUAGE_DEFAULT = {
 		[85] = {[L["Orcish"]] = true, [L["Titan"]] = true}, -- 85 earthen horde
 		[86] = {[L["Common"]] = true, [L["Hara'ni"]] = true}, -- 86 haranir alliance
 		[91] = {[L["Orcish"]] = true, [L["Hara'ni"]] = true}, -- 91 haranir horde
+		[95] = {[L["Common"]] = true, [L["Darnassian"]] = true}, -- 95 alliance skyborne
+		[96] = {[L["Orcish"]] = true, [L["Darnassian"]] = true}, -- 96 horde skyborne
 	},
 	recommended = {
 		[1] = {[L["Common"]] = true}, -- 1 human
@@ -150,6 +152,8 @@ local LANGPRESET_RACE_LANGUAGE_DEFAULT = {
 		[85] = {[L["Orcish"]] = true, [L["Dwarvish"]] = true, [L["Titan"]] = true}, -- 85 earthen horde
 		[86] = {[L["Common"]] = true, [L["Hara'ni"]] = true}, -- 86 haranir alliance
 		[91] = {[L["Orcish"]] = true, [L["Hara'ni"]] = true}, -- 91 haranir horde
+		[95] = {[L["Common"]] = true, [L["Darnassian"]] = true, [L["Thalassian"]] = true}, -- 95 alliance skyborne
+		[96] = {[L["Orcish"]] = true, [L["Darnassian"]] = true, [L["Thalassian"]] = true}, -- 96 horde skyborne
 	},
 };
 
@@ -160,7 +164,19 @@ local function ApplyLanguagePreset(targetProfile, presetKey)
 	local raceDefaults  = LANGPRESET_RACE_LANGUAGE_DEFAULT[presetKey]
 	local classDefaults = LANGPRESET_CLASS_LANGUAGE_DEFAULT[presetKey]
 
-	targetProfile.understandLanguage = CopyTable((raceDefaults and raceDefaults[raceID]) or {})
+	local fallback = {};
+	if raceDefaults and not raceDefaults[raceID] then
+		local faction = UnitFactionGroup("player");
+		if faction == "Alliance" then
+			fallback = { [L["Common"]] = true };
+		elseif faction == "Horde" then
+			fallback = { [L["Orcish"]] = true };
+		else
+			fallback = { [L["Pandaren"]] = true };
+		end
+	end
+
+	targetProfile.understandLanguage = CopyTable((raceDefaults and raceDefaults[raceID]) or fallback);
 
 	local bonuses = classDefaults and classDefaults[classID]
 	if bonuses then
@@ -2165,7 +2181,11 @@ local function SetDialect(dialectName)
 end
 
 local function IsCustomDialect(dialectName)
-	return dialectName ~= nil and Languages_DB.settings.customDialects and Languages_DB.settings.customDialects[dialectName] ~= nil;
+	return dialectName ~= nil 
+		and Languages_DB 
+		and Languages_DB.settings 
+		and Languages_DB.settings.customDialects 
+		and Languages_DB.settings.customDialects[dialectName] ~= nil;
 end
 
 local function RefreshDialectDropdownUI()
