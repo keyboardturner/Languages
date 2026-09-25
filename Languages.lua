@@ -55,7 +55,11 @@ local lang = CreateFrame("Frame");
 local chatTypeBingus = ChatTypeInfo["SAY"];
 
 local realmKey = GetRealmName()
-local charKey = UnitName("player") .. " - " .. realmKey
+local name, realm = UnitName("player") -- 2nd return can be realm or 2nd name
+if not realm then
+	realm = realmKey;
+end
+local charKey = name .. " - " .. realm
 local MatchCasing
 
 local function GetPlayerRaceID()
