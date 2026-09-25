@@ -1,3 +1,7 @@
+# 1.1.0
+
+WoW Forever testing - This is an in-development testing version. Some things may throw errors or explode.
+
 # 1.0.9
 
 Added option to remove the opposite language (Orcish / Common) while Elixir of Tongues is active
